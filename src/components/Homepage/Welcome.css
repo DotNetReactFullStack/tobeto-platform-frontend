@@ -1,0 +1,28 @@
+.container {
+    margin-top: 3.4rem;
+}
+
+.tobeto-text {
+    color: #9c33ff;
+    font-weight: 700;
+}
+
+.welcome-font-properties {
+    font-family: 'Poppins', sans-serif;
+    color: #4D4D4D;
+}
+
+.welcome-font-properties h1 {
+    font-weight: 400 !important;
+}
+
+.welcome-font-properties h2 {
+    font-weight: 400 !important;
+}
+
+.welcome-font-properties p {
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    font-weight: 500 !important;
+    color: #353434;
+}

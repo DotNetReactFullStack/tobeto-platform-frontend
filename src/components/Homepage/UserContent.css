@@ -1,0 +1,29 @@
+.container.main-section {
+    max-width: 1140px;
+}
+
+.main-section .card {
+    border-radius: 16px !important;
+    border: none !important;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.main-section .card .card-img.organization-logo {
+    width: 300px;
+    margin: 4.6rem auto 1.6rem auto;
+}
+
+.main-section .card h2 {}
+
+.main-section .card p {
+    margin-top: 1.6rem;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.green-apostrophe {
+    color: #00d29b;
+}

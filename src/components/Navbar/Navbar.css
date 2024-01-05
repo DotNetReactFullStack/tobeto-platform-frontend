@@ -1,0 +1,17 @@
+.navbar {
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.navbar a {
+    color: #201c1bf0;
+}
+
+.navbar a:hover {
+    color: #9A36FF;
+}
+
+.navbar-padding {
+    padding: 15px 5px 15px !important;
+}

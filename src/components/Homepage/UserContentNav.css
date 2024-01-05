@@ -1,0 +1,30 @@
+.user-content-nav-tabs {
+    padding: 0 15px 0 15px;
+}
+
+.nav-tabs {
+    border-bottom: none !important;
+}
+
+.nav-tabs .nav-link {
+    border: none !important;
+}
+
+.nav-tabs .nav-link.active {
+    border-bottom: 3px #5A5A5A solid !important;
+}
+
+.user-content-nav-tab {
+    font-size: 15px !important;
+    color: rgba(40, 40, 40, 0.8) !important;
+    font-weight: 500 !important;
+}
+
+.user-content-nav-tab:hover {
+    color: #282828 !important;
+}
+
+.nav-link.user-content-nav-tab.active {
+    font-weight: 500 !important;
+    color: #282828 !important;
+}

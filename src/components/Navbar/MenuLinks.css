@@ -1,0 +1,8 @@
+.nav-item {
+    padding: 5px 8px;
+}
+
+.nav-link.active {
+    font-weight: 800 !important;
+    color: #9933ff !important;
+}
