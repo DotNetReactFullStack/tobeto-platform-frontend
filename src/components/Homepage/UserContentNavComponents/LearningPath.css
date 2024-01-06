@@ -69,23 +69,6 @@
   background-color: #9933ff;
 }
 
-.show-more-block {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 25px !important;
-}
-
-.show-more-icon {
-  font-size: 34px !important;
-  color: dimgray;
-}
-
-.show-more-text {
-  font-size: 14px;
-  color: dimgray;
-}
-
 @media (max-width: 1300px) {
   .learning-path-component {
     justify-content: center;

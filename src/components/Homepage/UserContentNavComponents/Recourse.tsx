@@ -1,5 +1,6 @@
 import React from 'react'
 import '../UserContentNavComponents/Recourse.css'
+import ShowMoreButton from '../../ShowMoreButton/ShowMoreButton'
 
 type Props = {}
 
@@ -88,14 +89,7 @@ const Recourse = (props: Props) => {
         </div>
       </div>
 
-      <div className="show-more-block">
-        <div className="show-more-icon">
-          <i className="bi bi-arrow-right-circle"></i>
-        </div>
-        <div className="show-more-text">
-          Daha Fazla Göster
-        </div>
-      </div>
+      <ShowMoreButton />
     </>
   )
 }
