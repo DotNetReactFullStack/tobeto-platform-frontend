@@ -7,81 +7,83 @@ const Recourse = (props: Props) => {
 
 
   return (
-    <div className='recourse-component row'>
-      <div className='recourse-element col-12 mt-2'>
-        <div className="recourse-header">
+    <>
+      <div className='recourse-component'>
+        <div className='recourse-element'>
+          <div className="recourse-header">
 
-          <div className="recourse-header-left-side">
-            <div className="recourse-organization-name">
-              İstanbul Kodluyor
+            <div className="recourse-header-left-side">
+              <div className="recourse-organization-name">
+                İstanbul Kodluyor
+              </div>
+              <div className="recourse-type-info-title">
+                Bilgilendirme
+              </div>
             </div>
-            <div className="recourse-type-info-title">
-              Bilgilendirme
+
+            <div className="recourse-header-right-side">
+              <div className="recourse-step">
+                Kabul Edildi
+              </div>
+            </div>
+
+          </div>
+          <div className="recourse-content">
+            <div className="recourse-detail-step">
+              <span className="recourse-detail-step-icon">
+                <i className="bi bi-check-lg"></i>
+              </span>
+              <span className="recourse-detail-step-description">
+                İstanbul Kodluyor Başvuru Formu onaylandı.
+              </span>
+            </div>
+            <div className="recourse-detail-step">
+              <span className="recourse-detail-step-icon">
+                <i className="bi bi-check-lg"></i>
+              </span>
+              <span className="recourse-detail-step-description">
+                İstanbul Kodluyor Belge Yükleme Formu onaylandı.
+              </span>
             </div>
           </div>
-
-          <div className="recourse-header-right-side">
-            <div className="recourse-step">
-              Kabul Edildi
-            </div>
-          </div>
-
         </div>
-        <div className="recourse-content">
-          <div className="recourse-detail-step">
-            <span className="recourse-detail-step-icon">
-              <i className="bi bi-check-lg"></i>
-            </span>
-            <span className="recourse-detail-step-description">
-              İstanbul Kodluyor Başvuru Formu onaylandı.
-            </span>
-          </div>
-          <div className="recourse-detail-step">
-            <span className="recourse-detail-step-icon">
-              <i className="bi bi-check-lg"></i>
-            </span>
-            <span className="recourse-detail-step-description">
-              İstanbul Kodluyor Belge Yükleme Formu onaylandı.
-            </span>
-          </div>
-        </div>
-      </div>
 
-      <div className='recourse-element col-12 mt-2'>
-        <div className="recourse-header">
+        <div className='recourse-element'>
+          <div className="recourse-header">
 
-          <div className="recourse-header-left-side">
-            <div className="recourse-organization-name">
-              İstanbul Kodluyor
+            <div className="recourse-header-left-side">
+              <div className="recourse-organization-name">
+                İstanbul Kodluyor
+              </div>
+              <div className="recourse-type-info-title">
+                Bilgilendirme
+              </div>
             </div>
-            <div className="recourse-type-info-title">
-              Bilgilendirme
-            </div>
-          </div>
 
-          <div className="recourse-header-right-side">
-            <div className="recourse-step">
-              Kabul Edildi
+            <div className="recourse-header-right-side">
+              <div className="recourse-step">
+                Kabul Edildi
+              </div>
             </div>
-          </div>
 
-        </div>
-        <div className="recourse-content">
-          <div className="recourse-detail-step">
-            <span className="recourse-detail-step-icon">
-              <i className="bi bi-check-lg"></i>
-            </span>
-            <span className="recourse-detail-step-description">
-              İstanbul Kodluyor Başvuru Formu onaylandı.
-            </span>
           </div>
-          <div className="recourse-detail-step">
-            <span className="recourse-detail-step-icon">
-              <i className="bi bi-check-lg"></i>
-            </span>
-            <span className="recourse-detail-step-description">
-              İstanbul Kodluyor Belge Yükleme Formu onaylandı.
-            </span>
+          <div className="recourse-content">
+            <div className="recourse-detail-step">
+              <span className="recourse-detail-step-icon">
+                <i className="bi bi-check-lg"></i>
+              </span>
+              <span className="recourse-detail-step-description">
+                İstanbul Kodluyor Başvuru Formu onaylandı.
+              </span>
+            </div>
+            <div className="recourse-detail-step">
+              <span className="recourse-detail-step-icon">
+                <i className="bi bi-check-lg"></i>
+              </span>
+              <span className="recourse-detail-step-description">
+                İstanbul Kodluyor Belge Yükleme Formu onaylandı.
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -94,8 +96,7 @@ const Recourse = (props: Props) => {
           Daha Fazla Göster
         </div>
       </div>
-    </div>
-
+    </>
   )
 }
 
