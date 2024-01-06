@@ -1,0 +1,50 @@
+.announcement-component {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 34px !important;
+}
+.announcement-element {
+  margin-top: 20px;
+  padding: 16px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 0px 16px;
+  border-left: 0.4rem solid #00956e;
+}
+
+.announcement-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.announcement-header span {
+  color: #00956e;
+  font-size: 14px;
+}
+.announcement-content {
+  margin-top: 15px;
+}
+
+.announcement-content span {
+  color: #767676;
+  font-size: 18px;
+  font-weight: 1000;
+}
+.announcement-footer {
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.announcement-footer-left-side .calendar-color {
+  color: #9397a0;
+}
+.announcement-footer-left-side span {
+  color: #9397a0;
+  margin-left: 8px;
+}
+
+.announcement-footer-right-side button {
+  border: none;
+  background: none;
+  color: #9397a0;
+}
