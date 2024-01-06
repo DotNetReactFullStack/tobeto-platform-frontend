@@ -8,7 +8,7 @@ const Recourse = (props: Props) => {
 
   return (
     <div className='recourse-component row'>
-      <div className='recourse-element col-md-5 col-12 mt-2'>
+      <div className='recourse-element col-12 mt-2'>
         <div className="recourse-header">
 
           <div className="recourse-header-left-side">
@@ -47,7 +47,7 @@ const Recourse = (props: Props) => {
         </div>
       </div>
 
-      <div className='recourse-element  col-md-5 col-12 mt-2'>
+      <div className='recourse-element col-12 mt-2'>
         <div className="recourse-header">
 
           <div className="recourse-header-left-side">

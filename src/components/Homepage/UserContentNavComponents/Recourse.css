@@ -1,10 +1,11 @@
 .recourse-component {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     margin-top: 34px !important;
 }
 
 .recourse-element {
+    width: 525px !important;
     margin-top: 20px;
     padding: 16px;
     border-radius: 10px;
@@ -65,4 +66,34 @@
 .show-more-text {
     font-size: 14px;
     color: dimgray;
+}
+
+@media (max-width: 1300px) {
+
+    .recourse-component {
+        justify-content: center;
+    }
+
+    .recourse-element {
+        width: 55% !important;
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .recourse-element {
+        width: 68% !important;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .recourse-element {
+        width: 82% !important;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .recourse-element {
+        width: 95% !important;
+    }
 }
