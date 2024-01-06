@@ -71,19 +71,13 @@
     color: dimgray;
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 992px) {
 
     .recourse-component {
         justify-content: center;
         flex-wrap: wrap;
     }
 
-    .recourse-element {
-        width: 60% !important;
-    }
-}
-
-@media (max-width: 991.98px) {
     .recourse-element {
         width: 70% !important;
     }
@@ -92,11 +86,5 @@
 @media (max-width: 767.98px) {
     .recourse-element {
         width: 85% !important;
-    }
-}
-
-@media (max-width: 575.98px) {
-    .recourse-element {
-        width: 100% !important;
     }
 }
