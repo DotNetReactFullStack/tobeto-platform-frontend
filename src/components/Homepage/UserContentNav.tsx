@@ -3,6 +3,7 @@ import Recourse from "./UserContentNavComponents/Recourse";
 import "./UserContentNav.css";
 import Announcement from "./UserContentNavComponents/Announcement";
 import LearningPath from "./UserContentNavComponents/LearningPath";
+import Survey from "./UserContentNavComponents/Survey";
 
 type Props = {};
 
@@ -92,7 +93,7 @@ const UserContentNav = (props: Props) => {
           role="tabpanel"
           aria-labelledby="nav-survey-tab"
         >
-          Survey
+          <Survey />
         </div>
       </div>
     </div>

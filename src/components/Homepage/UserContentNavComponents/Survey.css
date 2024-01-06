@@ -1,0 +1,10 @@
+.survey-component {
+
+    margin-top: 54px !important;
+}
+
+.image-survey-not-found {
+    max-width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 0px 16px;
+    border-radius: 13px;
+}

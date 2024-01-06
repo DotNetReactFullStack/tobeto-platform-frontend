@@ -1,10 +1,13 @@
 .announcement-component {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   margin-top: 34px !important;
 }
+
 .announcement-element {
-  margin-top: 20px;
+  min-width: 340px !important;
+  min-height: 135px !important;
+  margin: 20px 5px;
   padding: 16px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 0px 16px;
@@ -16,35 +19,71 @@
   justify-content: space-between;
   align-items: center;
 }
+
 .announcement-header span {
   color: #00956e;
-  font-size: 14px;
-}
-.announcement-content {
-  margin-top: 15px;
+  font-size: 11px;
 }
 
-.announcement-content span {
-  color: #767676;
-  font-size: 18px;
-  font-weight: 1000;
+.announcement-content {
+  margin-top: 10px;
 }
+
+.announcement-content .announcement-title {
+  color: #767676;
+  font-size: 14px;
+  font-weight: 900;
+}
+
 .announcement-footer {
-  margin-top: 50px;
+  margin-top: 25px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.announcement-footer-left-side .calendar-color {
+
+.announcement-footer-left-side {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
   color: #9397a0;
 }
+
+.announcement-footer-left-side .calendar-color {
+  font-size: 14px;
+}
+
 .announcement-footer-left-side span {
-  color: #9397a0;
   margin-left: 8px;
 }
+
+.announcement-footer-right-side {}
 
 .announcement-footer-right-side button {
   border: none;
   background: none;
   color: #9397a0;
+  font-size: 12px;
+}
+
+.announcement-footer-right-side button:hover {
+  color: #797b80;
+}
+
+@media (max-width: 1150px) {
+
+  .announcement-component {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .announcement-element {
+    width: 60% !important;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .announcement-element {
+    width: 80% !important;
+  }
 }
