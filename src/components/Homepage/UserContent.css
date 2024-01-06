@@ -27,3 +27,9 @@
 .green-apostrophe {
     color: #00d29b;
 }
+
+@media (max-width: 767.98px) { 
+    .main-section .card .card-img.organization-logo {
+        width: 200px;
+    }
+ }

@@ -1,6 +1,8 @@
 import React from "react";
 import Recourse from "./UserContentNavComponents/Recourse";
-import "./UserContentNav.css"
+import "./UserContentNav.css";
+import Announcement from "./UserContentNavComponents/Announcement";
+import LearningPath from "./UserContentNavComponents/LearningPath";
 
 type Props = {};
 
@@ -74,7 +76,7 @@ const UserContentNav = (props: Props) => {
           role="tabpanel"
           aria-labelledby="nav-path-tab"
         >
-          Path
+          <LearningPath />
         </div>
         <div
           className="tab-pane fade"
@@ -82,7 +84,7 @@ const UserContentNav = (props: Props) => {
           role="tabpanel"
           aria-labelledby="nav-announcement-tab"
         >
-          Announcement
+          <Announcement />
         </div>
         <div
           className="tab-pane fade"
