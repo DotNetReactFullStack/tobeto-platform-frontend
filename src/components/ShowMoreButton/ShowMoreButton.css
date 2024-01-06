@@ -1,0 +1,16 @@
+.show-more-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px !important;
+}
+
+.show-more-icon {
+    font-size: 34px !important;
+    color: dimgray;
+}
+
+.show-more-text {
+    font-size: 14px;
+    color: dimgray;
+}

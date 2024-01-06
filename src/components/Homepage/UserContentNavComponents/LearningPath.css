@@ -12,10 +12,12 @@
   box-shadow: rgba(0, 0, 0, 0.058) 0px 3px 20px, rgba(0, 0, 0, 0.231) 0px 0px 25px;
   background-color: #fdfdfd;
   padding: 2px;
+  transition: 0.16s;
 }
 
 .learning-path-element:hover {
   border: 3px solid #9933ffca;
+  border-radius: 23px;
 }
 
 .learning-path-cover-photo {}
@@ -65,23 +67,6 @@
 .learning-path-footer .learning-path-button:hover {
   color: white;
   background-color: #9933ff;
-}
-
-.show-more-block {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 25px !important;
-}
-
-.show-more-icon {
-  font-size: 34px !important;
-  color: dimgray;
-}
-
-.show-more-text {
-  font-size: 14px;
-  color: dimgray;
 }
 
 @media (max-width: 1300px) {

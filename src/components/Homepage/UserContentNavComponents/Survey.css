@@ -8,3 +8,20 @@
     box-shadow: rgba(0, 0, 0, 0.19) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 0px 16px;
     border-radius: 13px;
 }
+
+.information-for-small-screen {
+    display: none;
+}
+
+@media (max-width: 767.98px) {
+    .image-survey-not-found {
+        display: none;
+    }
+
+    .information-for-small-screen {
+        display: block;
+        text-align: center;
+        margin-bottom: 50px;
+        color: rgb(103, 149, 18);
+    }
+}

@@ -1,0 +1,72 @@
+.number-of-lines-1 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    /* number of lines to show */
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.number-of-lines-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    /* number of lines to show */
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.number-of-lines-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    /* number of lines to show */
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.number-of-lines-4 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    /* number of lines to show */
+    line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+
+.number-of-lines-5 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    /* number of lines to show */
+    line-clamp: 5;
+    -webkit-box-orient: vertical;
+}
+
+.text-length-10ch {
+    max-width: 10ch;
+}
+
+.text-length-15ch {
+    max-width: 15ch;
+}
+
+.text-length-20ch {
+    max-width: 20ch;
+}
+
+.text-length-25ch {
+    max-width: 25ch;
+}
+
+.text-length-30ch {
+    max-width: 30ch;
+}
+
+.text-length-35ch {
+    max-width: 35ch;
+}
+
+.text-length-40ch {
+    max-width: 40ch;
+}
