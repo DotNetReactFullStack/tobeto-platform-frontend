@@ -14,6 +14,10 @@
   padding: 2px;
 }
 
+.learning-path-element:hover {
+  border: 3px solid #9933ffca;
+}
+
 .learning-path-cover-photo {}
 
 .learning-path-cover-photo .learning-path-img {
@@ -54,6 +58,13 @@
   background-color: #d9d9d9;
   color: #282828;
   font-size: 14px;
+  margin-top: 20px;
+  transition: 0.5s;
+}
+
+.learning-path-footer .learning-path-button:hover {
+  color: white;
+  background-color: #9933ff;
 }
 
 .show-more-block {
