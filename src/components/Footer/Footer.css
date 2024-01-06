@@ -1,0 +1,28 @@
+.footer-component {
+  background-color: #9933ff;
+  min-height: 106px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.footer-component .footer-logo-link {
+  margin-left: 250px;
+}
+
+.footer-component .footer-logo {
+  height: 21px;
+}
+
+.footer-component .footer-contact-us-link {
+  margin-right: 250px;
+}
+
+.footer-component .footer-contact-us-button {
+  min-height: 35px;
+  min-width: 110px;
+  border: none;
+  border-radius: 15px;
+  font-weight: bold;
+  font-size: 16px;
+}
