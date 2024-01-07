@@ -1,0 +1,45 @@
+.exam-detail {
+  font-weight: 800;
+  margin-left: 15px;
+  margin-bottom: 20px;
+}
+
+.exam-detail-modal-footer-buttons {
+  justify-content: center !important;
+}
+
+.exem-detail-modal-close-button {
+  min-height: 35px;
+  min-width: 110px;
+  padding: 8px;
+  border: none;
+  border-radius: 20px;
+  background-color: chocolate;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  transition: all 0.5s ease;
+}
+
+.exem-detail-modal-close-button:hover {
+  background-color: rgb(194, 97, 28);
+  transform: scale(1.05);
+}
+
+.exem-detail-modal-view-report-button {
+  min-height: 35px;
+  min-width: 110px;
+  padding: 8px;
+  border: none;
+  border-radius: 20px;
+  background-color: #9933ff;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  transition: all 0.5s ease;
+}
+
+.exem-detail-modal-view-report-button:hover {
+  background-color: #822bd9;
+  transform: scale(1.05);
+}

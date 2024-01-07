@@ -1,4 +1,5 @@
 import React from "react";
+import "./ExamDetailModal.css";
 
 type Props = {};
 
@@ -28,7 +29,6 @@ const ExamDetailModal = (props: Props) => {
           <div className="modal-body">
             <h4>Sevgili Adayımız,</h4>
             <br />
-            <br />
             Herkes için Kodlama Eğitimi'ni tamamladığınız için tebrik ederiz. Bu
             eğitim sonrası bir sonraki aşamaya geçiş için 25 sorudan oluşan bir
             değerlendirme sınavımız bulunmaktadır.
@@ -48,15 +48,25 @@ const ExamDetailModal = (props: Props) => {
             <br />
             TOBETO
           </div>
-          <div className="modal-footer">
+          <div className="exam-detail">
+            <span>Sınav Süresi : 45 Dakika</span>
+            <br />
+            <span>Soru Sayısı : 25</span>
+            <br />
+            <span>Soru Tipi : Çoktan Seçmeli</span>
+          </div>
+          <div className="modal-footer exam-detail-modal-footer-buttons">
             <button
               type="button"
-              className="btn btn-secondary"
+              className="exem-detail-modal-close-button"
               data-bs-dismiss="modal"
             >
               Kapat
             </button>
-            <button type="button" className="btn btn-primary">
+            <button
+              type="button"
+              className="exem-detail-modal-view-report-button"
+            >
               Raporu Görüntüle
             </button>
           </div>
