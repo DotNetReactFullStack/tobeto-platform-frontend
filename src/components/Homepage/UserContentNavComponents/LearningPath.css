@@ -12,12 +12,13 @@
   box-shadow: rgba(0, 0, 0, 0.058) 0px 3px 20px, rgba(0, 0, 0, 0.231) 0px 0px 25px;
   background-color: #fdfdfd;
   padding: 2px;
-  transition: 0.08s;
+  transition: all 0.25s ease;
 }
 
 .learning-path-element:hover {
-  border: 3px solid #9933ffca;
+  transform: scale(1.025);
   border-radius: 23px;
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
 }
 
 .learning-path-cover-photo {}
@@ -61,7 +62,7 @@
   color: #282828;
   font-size: 14px;
   margin-top: 20px;
-  transition: 0.3s;
+  transition: 0.5s;
 }
 
 .learning-path-footer .learning-path-button:hover {
