@@ -1,3 +1,7 @@
+.container.main-section {
+    max-width: 1140px;
+}
+
 .number-of-lines-1 {
     overflow: hidden;
     display: -webkit-box;

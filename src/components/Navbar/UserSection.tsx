@@ -7,7 +7,7 @@ function UserSection({ }: Props) {
   return (
     <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
       <div className="user-and-tobeto">
-        <li className="nav-item dropdown d-none d-lg-block d-xl-block">
+        <li className="nav-item dropdown d-none d-xxl-block">
           <a className="nav-link p-0" href="#" role="button">
             <img src="https://i.ibb.co/CHMmd9v/tobeto-logo.png" alt="Bootstrap" width="25" height="25" />
           </a>

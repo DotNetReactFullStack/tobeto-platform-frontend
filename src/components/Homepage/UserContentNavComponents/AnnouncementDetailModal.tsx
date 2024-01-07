@@ -6,7 +6,7 @@ type Props = {};
 const AnnouncementDetailModal = (props: Props) => {
   return (
     <div
-      className="modal fade modal-size"
+      className="modal modal-xl fade"
       id="exampleModal"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"

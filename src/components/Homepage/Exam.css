@@ -3,43 +3,41 @@
   border: none !important;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
   font-family: "Poppins", sans-serif;
-}
-
-.exam-component-margin {
-  margin-top: 24px;
+  margin-top: -36px;
+  padding: 20px 36px;
 }
 
 .exam-component-header {
-  padding-left: 40px;
-  padding-top: 40px;
+  margin-bottom: 12px;
 }
+
 .exam-component-header-title {
+  color: #1c1917;
   font-size: 16px;
-  font-weight: 600;
-  letter-spacing: 1px;
+  font-weight: 900 !important;
+  letter-spacing: 0.5px;
 }
-.exam-elements {
+
+.exam-component-body {
   display: flex;
   justify-content: space-between;
-  padding-left: 16px;
-  padding-right: 16px;
+  flex-wrap: wrap;
 }
-.exam-element {
-  border: 0;
-  text-align: inherit;
-  background-color: transparent;
 
+.exam-element {
+  cursor: pointer;
   width: 500px !important;
   min-height: 100px !important;
-  margin: 20px 16px;
-  padding: 10px;
-  padding-bottom: 5px;
+  padding: 12px;
+  margin: 16px 0px;
   border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.19) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 0px 16px;
+  box-shadow: rgba(0, 0, 0, 0.126) 0px 3px 10px, rgba(0, 0, 0, 0.157) 0px 0px 16px;
   transition: all 0.5s ease;
 }
+
 .exam-element:hover {
   transform: scale(1.05);
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
 
 .exam-element-header {
@@ -48,20 +46,25 @@
   align-items: center;
 }
 
-.exam-element-header-title {
+.exam-element-header-left-side {}
+
+.exam-element-header-right-side {}
+
+.exam-element-title {
+  color: #1c1917;
   font-size: 16px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
+  font-weight: 900 !important;
+  letter-spacing: 0.16px;
 }
 
 .image-exam-status {
   height: 25px;
-  border-radius: 5px;
+  border-radius: 8px;
 }
-.exam-element-content {
-  margin-top: 5px;
-}
-.exam-element-content-title {
+
+.exam-element-content {}
+
+.exam-element-subtitle {
   font-weight: 500;
   font-size: 14px;
   color: #828282;
@@ -72,12 +75,34 @@
 }
 
 .exam-element-footer-icon {
-  color: #9933ff;
+  color: #9933ffe6;
   font-size: 20px;
 }
 
 .exam-element-footer-duration {
+  margin-left: 5px;
   font-weight: 600;
   letter-spacing: 0.5px;
-  margin-left: 4px;
+}
+
+@media (max-width: 1200px) {
+
+  .exam-component-header {
+    display: flex;
+    justify-content: center;
+  }
+
+  .exam-component-body {
+    justify-content: center;
+  }
+
+  .exam-element {
+    width: 65% !important;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .exam-element {
+    width: 85% !important;
+  }
 }

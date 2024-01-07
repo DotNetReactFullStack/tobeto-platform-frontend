@@ -5,7 +5,7 @@ type Props = {};
 
 const Footer = (props: Props) => {
   return (
-    <div className="footer-component">
+    <div className="footer">
       <a className="footer-logo-link" href="#">
         <img
           className="footer-logo"
@@ -13,9 +13,9 @@ const Footer = (props: Props) => {
         />
       </a>
       <a className="footer-contact-us-link" href="#">
-        <button type="button" className="footer-contact-us-button">
+        <span>
           Bize Ulaşın
-        </button>
+        </span>
       </a>
     </div>
   );
