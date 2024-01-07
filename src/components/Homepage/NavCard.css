@@ -1,0 +1,54 @@
+.nav-card-component {
+  font-family: "Poppins", sans-serif;
+  padding-left: 40px;
+  padding-right: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-card-element {
+  width: 240px;
+  height: 256px;
+  background: linear-gradient(to bottom left, #1d0b8c, #b39df7);
+  border-top-right-radius: 35px;
+  border-bottom-right-radius: 35px;
+  border-bottom-left-radius: 35px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-card-element-body {
+  align-self: center;
+}
+
+.nav-card-element-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 0.3px;
+}
+
+.nav-card-element-footer {
+}
+
+.nav-card-element-footer-button {
+  min-height: 30px;
+  min-width: 200px;
+  padding: 5px;
+  border: none;
+  border-radius: 20px;
+  background-color: #9933ff;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  letter-spacing: 1px;
+  transition: all 0.5s ease;
+}
+
+.nav-card-element-footer-button:hover {
+  background-color: #822bd9;
+  transform: scale(1.05);
+}
