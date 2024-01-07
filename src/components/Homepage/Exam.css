@@ -1,0 +1,83 @@
+.exam-component {
+  border-radius: 16px !important;
+  border: none !important;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  font-family: "Poppins", sans-serif;
+}
+
+.exam-component-margin {
+  margin-top: 24px;
+}
+
+.exam-component-header {
+  padding-left: 40px;
+  padding-top: 40px;
+}
+.exam-component-header-title {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+.exam-elements {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+.exam-element {
+  border: 0;
+  text-align: inherit;
+  background-color: transparent;
+
+  width: 500px !important;
+  min-height: 100px !important;
+  margin: 20px 16px;
+  padding: 10px;
+  padding-bottom: 5px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 0px 16px;
+  transition: all 0.5s ease;
+}
+.exam-element:hover {
+  transform: scale(1.05);
+}
+
+.exam-element-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.exam-element-header-title {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.image-exam-status {
+  height: 25px;
+  border-radius: 5px;
+}
+.exam-element-content {
+  margin-top: 5px;
+}
+.exam-element-content-title {
+  font-weight: 500;
+  font-size: 14px;
+  color: #828282;
+}
+
+.exam-element-footer {
+  margin-top: 10px;
+}
+
+.exam-element-footer-icon {
+  color: #9933ff;
+  font-size: 20px;
+}
+
+.exam-element-footer-duration {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-left: 4px;
+}
