@@ -2,6 +2,8 @@
     font-family: 'Poppins', sans-serif;
     font-size: 15px;
     font-weight: 500;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.18) 0px 4px 10px;
 }
 
 .navbar a {

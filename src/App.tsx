@@ -7,7 +7,6 @@ function App() {
   return (
     <>
       <Navbar />
-      <hr className="border border-1 opacity-25 mt-0" />
       <RouteDefinitions />
       <Footer />
     </>

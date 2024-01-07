@@ -7,7 +7,7 @@ type Props = {};
 
 const Navbar = (props: Props) => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-padding">
+    <nav className="navbar sticky-xxl-top navbar-expand-xxl navbar-padding">
       <div className="container-fluid">
 
         {/* LOGO */}
