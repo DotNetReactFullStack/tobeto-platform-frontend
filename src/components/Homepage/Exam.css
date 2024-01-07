@@ -87,6 +87,11 @@
 
 @media (max-width: 1200px) {
 
+  .exam-component-header {
+    display: flex;
+    justify-content: center;
+  }
+
   .exam-component-body {
     justify-content: center;
   }
