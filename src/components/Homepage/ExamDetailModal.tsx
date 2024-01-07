@@ -6,7 +6,7 @@ type Props = {};
 const ExamDetailModal = (props: Props) => {
   return (
     <div
-      className="modal fade"
+      className="modal modal-xl fade"
       id="staticBackdrop"
       data-bs-backdrop="static"
       data-bs-keyboard="false"
@@ -48,7 +48,7 @@ const ExamDetailModal = (props: Props) => {
             <br />
             TOBETO
           </div>
-          <div className="exam-detail">
+          <div className="modal-body exam-detail">
             <span>Sınav Süresi : 45 Dakika</span>
             <br />
             <span>Soru Sayısı : 25</span>
