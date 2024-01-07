@@ -5,6 +5,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+  margin-top: 50px;
 }
 .footer-component .footer-logo-link {
   margin-left: 250px;
