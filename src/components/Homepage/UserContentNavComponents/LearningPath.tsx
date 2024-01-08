@@ -13,7 +13,7 @@ const LearningPath = (props: Props) => {
           <div className="learning-path-cover-photo">
             <img
               className="learning-path-img"
-              src="https://tobeto.s3.cloud.ngn.com.tr/Paragraf_metniniz_1_d00b1e78d4.png"
+              src={process.env.PUBLIC_URL + "/dotnet-react-full-stack.png"}
             />
           </div>
           <div className="learning-path-body">
@@ -33,7 +33,7 @@ const LearningPath = (props: Props) => {
           <div className="learning-path-cover-photo">
             <img
               className="learning-path-img"
-              src="https://tobeto.s3.cloud.ngn.com.tr/Paragraf_metniniz_1_d00b1e78d4.png"
+              src={process.env.PUBLIC_URL + "/dotnet-react-full-stack.png"}
             />
           </div>
           <div className="learning-path-body">
@@ -53,7 +53,7 @@ const LearningPath = (props: Props) => {
           <div className="learning-path-cover-photo">
             <img
               className="learning-path-img"
-              src="https://tobeto.s3.cloud.ngn.com.tr/Paragraf_metniniz_1_d00b1e78d4.png"
+              src={process.env.PUBLIC_URL + "/dotnet-react-full-stack.png"}
             />
           </div>
           <div className="learning-path-body">
@@ -73,7 +73,7 @@ const LearningPath = (props: Props) => {
           <div className="learning-path-cover-photo">
             <img
               className="learning-path-img"
-              src="https://tobeto.s3.cloud.ngn.com.tr/Paragraf_metniniz_1_d00b1e78d4.png"
+              src={process.env.PUBLIC_URL + "/dotnet-react-full-stack.png"}
             />
           </div>
           <div className="learning-path-body">
