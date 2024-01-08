@@ -7,36 +7,40 @@ const NavCard = (props: Props) => {
   return (
     <div className="container main-section">
       <div className="nav-card-component">
+
         <div className="nav-card-element">
+          <div></div>
           <div className="nav-card-element-body">
-            <span className="nav-card-element-title">Profilini oluştur</span>
+            <div className="nav-card-element-title">Profilini Oluştur</div>
           </div>
           <div className="nav-card-element-footer">
-            <button type="button" className="nav-card-element-footer-button">
+            <a href="#" className="nav-card-element-footer-link">
               Başla
-            </button>
+            </a>
           </div>
         </div>
 
         <div className="nav-card-element">
+          <div></div>
           <div className="nav-card-element-body">
-            <span className="nav-card-element-title">Kendini değerlendir</span>
+            <span className="nav-card-element-title">Kendini Değerlendir</span>
           </div>
           <div className="nav-card-element-footer">
-            <button type="button" className="nav-card-element-footer-button">
+            <a href="#" className="nav-card-element-footer-link">
               Başla
-            </button>
+            </a>
           </div>
         </div>
 
         <div className="nav-card-element">
+          <div></div>
           <div className="nav-card-element-body">
-            <span className="nav-card-element-title">Öğrenmeye başla</span>
+            <span className="nav-card-element-title">Öğrenmeye Başla</span>
           </div>
           <div className="nav-card-element-footer">
-            <button type="button" className="nav-card-element-footer-button">
+            <a href="#" className="nav-card-element-footer-link">
               Başla
-            </button>
+            </a>
           </div>
         </div>
       </div>
