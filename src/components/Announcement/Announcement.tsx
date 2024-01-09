@@ -1,6 +1,6 @@
 import React from "react";
 import "./Announcement.css";
-import ShowMoreButton from "../../ShowMoreButton/ShowMoreButton";
+import ShowMoreButton from "../ShowMoreButton/ShowMoreButton";
 import AnnouncementElement from "./AnnouncementElement";
 
 type Props = {};

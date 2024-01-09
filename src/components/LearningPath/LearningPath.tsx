@@ -1,6 +1,6 @@
 import React from "react";
 import "./LearningPath.css";
-import ShowMoreButton from "../../ShowMoreButton/ShowMoreButton";
+import ShowMoreButton from "../ShowMoreButton/ShowMoreButton";
 import LearningPathElement from "./LearningPathElement";
 
 type Props = {};
