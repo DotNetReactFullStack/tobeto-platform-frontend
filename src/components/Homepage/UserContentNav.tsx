@@ -1,5 +1,5 @@
 import React from "react";
-import Recourse from "./UserContentNavComponents/Recourse";
+import Recourse from "../Recourse/Recourse";
 import "./UserContentNav.css";
 import Announcement from "../Announcement/Announcement";
 import LearningPath from "../LearningPath/LearningPath";
