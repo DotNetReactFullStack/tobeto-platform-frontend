@@ -1,5 +1,5 @@
 import React from "react";
-import "../UserContentNavComponents/Recourse.css";
+import "./Recourse.css";
 import ShowMoreButton from "../ShowMoreButton/ShowMoreButton";
 import RecourseElement from "./RecourseElement";
 
