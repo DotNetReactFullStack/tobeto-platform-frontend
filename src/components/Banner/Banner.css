@@ -1,0 +1,23 @@
+.banner-element {
+  background-image: url("../../../public/banner.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  border-radius: 20px;
+
+  height: 200px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.banner-title {
+  margin-right: 20vw;
+}
+
+.banner-text {
+  color: #fff;
+  font-size: 5vw;
+}
