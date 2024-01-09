@@ -1,8 +1,8 @@
 import React from "react";
 import Recourse from "./UserContentNavComponents/Recourse";
 import "./UserContentNav.css";
-import Announcement from "./UserContentNavComponents/Announcement";
-import LearningPath from "./UserContentNavComponents/LearningPath";
+import Announcement from "../Announcement/Announcement";
+import LearningPath from "../LearningPath/LearningPath";
 import Survey from "./UserContentNavComponents/Survey";
 
 type Props = {};
