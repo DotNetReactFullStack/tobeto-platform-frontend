@@ -9,12 +9,12 @@ function UserSection({ }: Props) {
       <div className="user-and-tobeto">
         <li className="nav-item dropdown d-none d-xxl-block">
           <a className="nav-link p-0" href="#" role="button">
-            <img src="https://i.ibb.co/CHMmd9v/tobeto-logo.png" alt="Bootstrap" width="25" height="25" />
+            <img src={process.env.PUBLIC_URL + "/tobeto-icon.png"} alt="Bootstrap" width="25" height="25" />
           </a>
         </li>
         <li className="nav-item dropdown">
           <a className="nav-link navbar-user-section-border" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <img className='rounded-circle me-2' src="https://emojiisland.com/cdn/shop/products/Emoji_Icon_-_Sunglasses_cool_emoji_grande.png?v=1571606093" alt="Bootstrap" width="35" height="35" />
+            <img className='rounded-circle me-2' src={process.env.PUBLIC_URL + "/user-icon.png"} alt="Bootstrap" width="35" height="35" />
             <span className='user-full-name me-2'>Burhan Özşahinoğlu</span>
             <i className="bi bi-chevron-down"></i>
           </a>

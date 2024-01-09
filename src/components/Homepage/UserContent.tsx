@@ -9,7 +9,7 @@ const UserContent = (props: Props) => {
     <div className="container main-section">
       <div className="card mb-3">
         <img
-          src="https://tobeto.com/_next/static/media/ik-logo-dark.7938c0de.svg"
+          src={process.env.PUBLIC_URL + "/istanbul-kodluyor.svg"}
           className="card-img organization-logo"
         />
         <div className="card-body">
