@@ -1,34 +1,34 @@
 .navbar-user-section-border {
-    padding: 8px 12px !important;
-    border: 1px solid #8282822a !important;
-    border-radius: 50px !important;
+  padding: 8px 12px !important;
+  border: 1px solid #8282822a !important;
+  border-radius: 50px !important;
 }
 
 .user-full-name {
-    font-size: 14px;
-    font-weight: 400;
-    color: #656565
+  font-size: 14px;
+  font-weight: 400;
+  color: #656565;
 }
 
-.dropdown-menu {
-    background-color: #9933FF !important;
+.user-and-tobeto .dropdown-menu {
+  background-color: #9933ff !important;
 }
 
-.dropdown-item {
-    color: whitesmoke !important;
-    font-size: 14px !important;
-    font-weight: 400 !important;
+.user-and-tobeto .dropdown-item {
+  color: whitesmoke !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
 }
 
-.dropdown-item:hover {
-    color: black !important;
+.user-and-tobeto .dropdown-item:hover {
+  color: black !important;
 }
 
-.dropdown-item:active {
-    background-color: #b66dff !important;
+.user-and-tobeto .dropdown-item:active {
+  background-color: #b66dff !important;
 }
 
 .user-and-tobeto {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
