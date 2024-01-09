@@ -3,7 +3,7 @@ import Recourse from "../Recourse/Recourse";
 import "./UserContentNav.css";
 import Announcement from "../Announcement/Announcement";
 import LearningPath from "../LearningPath/LearningPath";
-import Survey from "./UserContentNavComponents/Survey";
+import Survey from "../Survey/Survey";
 
 type Props = {};
 
