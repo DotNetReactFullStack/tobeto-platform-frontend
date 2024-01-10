@@ -7,8 +7,8 @@
   border-radius: 20px;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 0px 16px;
   padding: 0px 15px;
-  min-width: 400px;
-
+  width: 400px;
+  min-width: 200px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -96,17 +96,21 @@
 
 /* --------------------------------------------------- */
 
+.filter-by-organization-type,
+.filter-by-organization-type-element,
+.filter-by-organization-type-icons {
+  display: flex;
+  align-items: center;
+}
+
 .filter-by-organization-type {
   box-shadow: rgba(0, 0, 0, 0.19) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 0px 16px;
   border-radius: 20px;
-  display: flex;
-  align-items: center;
   min-width: 200px;
 }
 
 .filter-by-organization-type-element {
-  display: flex;
-  align-items: center;
+  justify-content: space-between;
   padding-left: 15px;
   padding-right: 10px;
 }
@@ -117,6 +121,10 @@
   outline: none;
   font-size: 16px;
   width: 85%;
+}
+
+.filter-by-organization-type-icons {
+  justify-content: center;
 }
 
 .filter-by-organization-type-icon {
@@ -215,4 +223,44 @@
 .read-toggle-button i {
   font-size: 25px;
   color: #8015ea;
+}
+
+/* -------- Media Query --------  */
+
+@media (max-width: 1200px) {
+  .announcement-filter-element {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .announcement-filter-search-box,
+  .filter-by-announcement-type,
+  .filter-by-organization-type,
+  .sorting-bar,
+  .filter-by-read {
+    width: 50%;
+    margin: 10px 5px;
+  }
+
+  .filter-by-read {
+    background: none;
+    box-shadow: none;
+    border-radius: none;
+    font-size: 30px;
+  }
+
+  .filter-by-organization-type-element {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .announcement-filter-search-box,
+  .filter-by-announcement-type,
+  .filter-by-organization-type,
+  .sorting-bar,
+  .filter-by-read {
+    width: 80%;
+  }
 }

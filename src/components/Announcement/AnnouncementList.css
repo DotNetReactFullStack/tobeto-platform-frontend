@@ -1,0 +1,25 @@
+.announcement-list-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.announcement-list-announcement-element {
+  padding: 5px 5px;
+}
+
+@media (max-width: 1200px) {
+  .announcement-list-container {
+    justify-content: center;
+  }
+  .announcement-list-announcement-element {
+    max-width: 50%;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 992px) {
+  .announcement-list-announcement-element {
+    max-width: 100%;
+  }
+}
