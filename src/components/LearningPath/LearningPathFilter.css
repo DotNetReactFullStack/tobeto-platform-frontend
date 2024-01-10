@@ -1,0 +1,60 @@
+.learning-path-filter-element {
+  display: flex;
+  justify-content: center;
+}
+
+.learning-path-filter-element div {
+  margin: 0px 5px;
+}
+
+.learning-path-filter-search-box {
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 0px 16px;
+  padding: 0px 15px;
+  width: 400px;
+  min-width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.learning-path-filter-search-box-input {
+  border: none;
+  background: none;
+  outline: none;
+  font-size: 16px;
+  width: 85%;
+}
+
+.learning-path-filter-search-box-button {
+  border: none;
+  background: none;
+}
+
+.learning-path-filter-search-box-icon {
+  font-size: 25px;
+  color: #828282;
+}
+
+/* --------------------------------------------------- */
+
+/* -------- Media Query --------  */
+
+@media (max-width: 1200px) {
+  .learning-path-filter-element {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .learning-path-filter-element .learning-path-filter-search-box,
+  .learning-path-filter-element .filter-by-organization-type,
+  .learning-path-filter-element .sorting-bar {
+    width: 50%;
+    margin: 10px 5px;
+  }
+
+  .learning-path-filter-element .filter-by-organization-type-element {
+    width: 100%;
+  }
+}
