@@ -5,7 +5,7 @@ type Props = {};
 
 const AnnouncementFilter = (props: Props) => {
   return (
-    <div className="container main-section announcement-filter-component">
+    <div className="announcement-filter-component">
       <div className="announcement-filter-element">
         <div className="announcement-filter-search-box">
           <input
