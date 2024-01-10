@@ -8,12 +8,14 @@ type Props = {};
 
 const LearningPaths = (props: Props) => {
   return (
-    <div>
+    <>
       <Banner />
-      <LearningPathFilter />
-      <LearningPathNav />
-      <Pagination />
-    </div>
+      <div className="container main-section">
+        <LearningPathFilter />
+        <LearningPathNav />
+        <Pagination />
+      </div>
+    </>
   );
 };
 
