@@ -1,18 +1,29 @@
 .pagination-element {
   display: flex;
   justify-content: center;
+  margin: 50px 0 !important;
 }
 
 .pagination-element .page-item:first-child .page-link,
 .pagination-element .page-item:last-child .page-link {
-  background-color: rgb(44, 44, 44);
-}
-
-.pagination-element i {
+  background-color: rgb(0, 36, 70);
+  opacity: .85;
   color: white;
 }
 
+.pagination-element .page-link {
+  color: rgba(0, 0, 0, 0.766);
+}
+
+.pagination-element .page-link:hover {
+  color: rgb(151, 0, 151);
+}
+
 .pagination-element .page-item.active a {
-  background-color: #4c4141;
-  border-color: rgb(44, 44, 44);
+  pointer-events: none;
+  background-color: #651e38;
+  border-color: #651e38;
+  border: none;
+  margin-top: 1px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 6px inset;
 }
