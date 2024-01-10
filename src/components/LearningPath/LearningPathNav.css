@@ -1,41 +1,45 @@
 .learning-paths-nav-tabs {
+  margin-top: 25px;
   padding: 0 15px 0 15px;
 }
 
-.learning-paths-nav .nav-tabs {
+.learning-paths-nav-tabs .nav-tabs {
+  justify-content: center;
   border-bottom: none !important;
 }
 
-.learning-paths-nav .nav-tabs .nav-link {
+.learning-paths-nav-tabs .nav-tabs .nav-link {
   border: none !important;
 }
 
-.learning-paths-nav .nav-tabs .nav-link.active {
-  border-bottom: 3px #5a5a5a solid !important;
+.learning-paths-nav-tabs .nav-tabs .nav-link.active {
+  border-bottom: 3px #5A5A5A solid !important;
 }
 
-.learning-paths-nav button {
+.learning-paths-nav-tabs .learning-paths-nav-tab {
+  background: none !important;
   font-size: 15px !important;
   color: rgba(40, 40, 40, 0.8) !important;
   font-weight: 500 !important;
 }
 
-.learning-paths-nav-tab:hover {
+.learning-paths-nav-tabs .learning-paths-nav-tab:hover {
   color: #282828 !important;
 }
 
-.learning-paths-nav .nav-link.active {
+.learning-paths-nav-tabs .nav-link.learning-paths-nav-tab.active {
   font-weight: 500 !important;
   color: #282828 !important;
 }
 
-.learning-paths-nav-tabs {
-}
-
-.learning-paths-nav {
+.learning-paths-nav-tabs .tab-content>.active {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }
 
-.learning-paths-nav-tabs {
+@media (max-width: 1200px) {
+  .learning-paths-nav-tabs .tab-content>.active {
+    justify-content: center;
+  }
 }
