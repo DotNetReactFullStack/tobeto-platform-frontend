@@ -6,62 +6,54 @@ type Props = {};
 
 const LearningPathNav = (props: Props) => {
   return (
-    <div className="container main-section learning-paths-nav-tabs">
-      <div className="learning-paths-nav">
+    <div className="learning-paths-nav-tabs">
+      <nav>
         <div className="nav nav-tabs" id="nav-tab" role="tablist">
           <button
-            className="nav-link all-learning-paths-nav-tab active"
-            id="nav-all-learning-paths-tab"
+            className="nav-link learning-paths-nav-tab active"
+            id="nav-recourse-tab"
             data-bs-toggle="tab"
-            data-bs-target="#nav-all-learning-paths"
+            data-bs-target="#nav-recourse"
             type="button"
             role="tab"
-            aria-controls="nav-all-learning-paths"
+            aria-controls="nav-recourse"
             aria-selected="true"
           >
             Tüm Eğitimlerim
           </button>
-
           <button
-            className="nav-link ongoing-learning-paths-nav-tab"
-            id="nav-ongoing-learning-paths-tab"
+            className="nav-link learning-paths-nav-tab"
+            id="nav-path-tab"
             data-bs-toggle="tab"
-            data-bs-target="#nav-ongoing-learning-paths"
+            data-bs-target="#nav-path"
             type="button"
             role="tab"
-            aria-controls="nav-ongoing-learning-paths"
+            aria-controls="nav-path"
             aria-selected="false"
           >
             Devam Ettiklerim
           </button>
-
           <button
-            className="nav-link completed-learning-paths-nav-tab"
-            id="nav-completed-learning-paths-tab"
+            className="nav-link learning-paths-nav-tab"
+            id="nav-announcement-tab"
             data-bs-toggle="tab"
-            data-bs-target="#nav-completed-learning-paths"
+            data-bs-target="#nav-announcement"
             type="button"
             role="tab"
-            aria-controls="nav-completed-learning-paths"
+            aria-controls="nav-announcement"
             aria-selected="false"
           >
             Tamamladıklarım
           </button>
         </div>
-      </div>
-
+      </nav>
       <div className="tab-content" id="nav-tabContent">
         <div
           className="tab-pane fade show active"
-          id="nav-all-learning-paths"
+          id="nav-recourse"
           role="tabpanel"
-          aria-labelledby="nav-all-learning-paths-tab"
+          aria-labelledby="nav-recourse-tab"
         >
-          <LearningPathElement />
-          <LearningPathElement />
-          <LearningPathElement />
-          <LearningPathElement />
-          <LearningPathElement />
           <LearningPathElement />
           <LearningPathElement />
           <LearningPathElement />
@@ -72,21 +64,19 @@ const LearningPathNav = (props: Props) => {
         </div>
         <div
           className="tab-pane fade"
-          id="nav-ongoing-learning-paths"
+          id="nav-path"
           role="tabpanel"
-          aria-labelledby="nav-ongoing-learning-paths-tab"
+          aria-labelledby="nav-path-tab"
         >
-          <LearningPathElement />
-          <LearningPathElement />
           <LearningPathElement />
           <LearningPathElement />
           <LearningPathElement />
         </div>
         <div
           className="tab-pane fade"
-          id="nav-completed-learning-paths"
+          id="nav-announcement"
           role="tabpanel"
-          aria-labelledby="nav-completed-learning-paths-tab"
+          aria-labelledby="nav-announcement-tab"
         >
           <LearningPathElement />
           <LearningPathElement />

@@ -8,12 +8,14 @@ type Props = {};
 
 const Announcements = (props: Props) => {
   return (
-    <div>
+    <>
       <Banner />
-      <AnnouncementFilter />
-      <AnnouncementList />
-      <Pagination />
-    </div>
+      <div className="container main-section">
+        <AnnouncementFilter />
+        <AnnouncementList />
+        <Pagination />
+      </div>
+    </>
   );
 };
 
