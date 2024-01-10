@@ -1,0 +1,18 @@
+.pagination-element {
+  display: flex;
+  justify-content: center;
+}
+
+.pagination-element .page-item:first-child .page-link,
+.pagination-element .page-item:last-child .page-link {
+  background-color: rgb(44, 44, 44);
+}
+
+.pagination-element i {
+  color: white;
+}
+
+.pagination-element .page-item.active a {
+  background-color: #4c4141;
+  border-color: rgb(44, 44, 44);
+}
