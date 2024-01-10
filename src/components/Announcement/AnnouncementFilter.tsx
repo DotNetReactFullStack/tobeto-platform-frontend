@@ -60,8 +60,10 @@ const AnnouncementFilter = (props: Props) => {
               className="filter-by-organization-type-input "
               placeholder="Organizasyon"
             ></input>
-            <i className="bi bi-three-dots-vertical filter-by-organization-type-icon"></i>
-            <i className="bi bi-chevron-down filter-by-organization-type-icon"></i>
+            <div className="filter-by-organization-type-icons">
+              <i className="bi bi-three-dots-vertical filter-by-organization-type-icon"></i>
+              <i className="bi bi-chevron-down filter-by-organization-type-icon"></i>
+            </div>
           </div>
 
           <ul className="dropdown-menu filter-by-organization-type-menu">
