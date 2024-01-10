@@ -1,0 +1,41 @@
+.learning-paths-nav-tabs {
+  padding: 0 15px 0 15px;
+}
+
+.learning-paths-nav .nav-tabs {
+  border-bottom: none !important;
+}
+
+.learning-paths-nav .nav-tabs .nav-link {
+  border: none !important;
+}
+
+.learning-paths-nav .nav-tabs .nav-link.active {
+  border-bottom: 3px #5a5a5a solid !important;
+}
+
+.learning-paths-nav button {
+  font-size: 15px !important;
+  color: rgba(40, 40, 40, 0.8) !important;
+  font-weight: 500 !important;
+}
+
+.learning-paths-nav-tab:hover {
+  color: #282828 !important;
+}
+
+.learning-paths-nav .nav-link.active {
+  font-weight: 500 !important;
+  color: #282828 !important;
+}
+
+.learning-paths-nav-tabs {
+}
+
+.learning-paths-nav {
+  display: flex;
+  justify-content: center;
+}
+
+.learning-paths-nav-tabs {
+}
