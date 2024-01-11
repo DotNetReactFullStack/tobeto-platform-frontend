@@ -5,11 +5,15 @@ import "./App.css"
 
 function App() {
   return (
-    <>
-      <Navbar />
-      <RouteDefinitions />
-      <Footer />
-    </>
+    <div className="app">
+      <div className="app-nav-and-page-content">
+        <Navbar />
+        <RouteDefinitions />
+      </div>
+      <div className="app-footer">
+        <Footer />
+      </div>
+    </div>
   );
 }
 
