@@ -12,7 +12,7 @@ const Navbar = (props: Props) => {
 
         {/* LOGO */}
         <a className="navbar-brand" href="#">
-          <img src={process.env.PUBLIC_URL + "/tobeto-logo.png"} alt="Bootstrap" width="170" height="35" />
+          <img src={process.env.PUBLIC_URL + "/images/tobeto-logo.png"} alt="Bootstrap" width="170" height="35" />
         </a>
 
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
