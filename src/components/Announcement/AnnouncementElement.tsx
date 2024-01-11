@@ -1,6 +1,5 @@
 import React from "react";
 import "./AnnouncementElement.css";
-import AnnouncementDetailModal from "./AnnouncementDetailModal";
 
 type Props = {};
 
@@ -36,7 +35,6 @@ const AnnouncementElement = (props: Props) => {
           </button>
         </div>
       </div>
-      <AnnouncementDetailModal />
     </div>
   );
 };

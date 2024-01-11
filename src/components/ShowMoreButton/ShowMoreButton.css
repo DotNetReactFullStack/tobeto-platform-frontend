@@ -1,8 +1,17 @@
+.show-more-button-link {
+    text-decoration: none;
+    pointer-events: none;
+}
+
 .show-more-block {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 20px !important;
+}
+
+.show-more-block>div {
+    pointer-events: all;
 }
 
 .show-more-icon {

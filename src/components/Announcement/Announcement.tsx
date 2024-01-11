@@ -2,6 +2,7 @@ import React from "react";
 import "./Announcement.css";
 import ShowMoreButton from "../ShowMoreButton/ShowMoreButton";
 import AnnouncementElement from "./AnnouncementElement";
+import AnnouncementDetailModal from "./AnnouncementDetailModal";
 
 type Props = {};
 
@@ -14,6 +15,7 @@ const Announcement = (props: Props) => {
         <AnnouncementElement />
       </div>
       <ShowMoreButton />
+      <AnnouncementDetailModal />
     </>
   );
 };
