@@ -29,7 +29,7 @@ const AnnouncementElement = (props: Props) => {
             className="btn announcement-read-more-button"
             type="button"
             data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
+            data-bs-target="#exampleModalAnnouncementId1"
           >
             Devamını oku
           </button>

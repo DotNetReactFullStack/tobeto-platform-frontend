@@ -7,7 +7,7 @@ const AnnouncementDetailModal = (props: Props) => {
   return (
     <div
       className="modal modal-xl fade"
-      id="exampleModal"
+      id="exampleModalAnnouncementId1"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
     >

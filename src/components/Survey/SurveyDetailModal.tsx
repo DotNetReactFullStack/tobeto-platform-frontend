@@ -1,13 +1,13 @@
 import React from "react";
-import "./ExamDetailModal.css";
+import "./SurveyDetailModal.css";
 
 type Props = {};
 
-const ExamDetailModal = (props: Props) => {
+const SurveyDetailModal = (props: Props) => {
   return (
     <div
       className="modal modal-xl fade"
-      id="staticBackdropExamId1"
+      id="staticBackdropSurveyId1"
       data-bs-backdrop="static"
       data-bs-keyboard="false"
       aria-labelledby="staticBackdropLabel"
@@ -17,7 +17,7 @@ const ExamDetailModal = (props: Props) => {
         <div className="modal-content">
           <div className="modal-header">
             <h1 className="modal-title fs-5" id="staticBackdropLabel">
-              Herkes için Kodlama 1B Değerlendirme Sınavı
+              Herkes için Kodlama Değerlendirme Anketi
             </h1>
             <button
               type="button"
@@ -30,11 +30,11 @@ const ExamDetailModal = (props: Props) => {
             <h4>Sevgili Adayımız,</h4>
             <br />
             Herkes için Kodlama Eğitimi'ni tamamladığınız için tebrik ederiz. Bu
-            eğitim sonrası bir sonraki aşamaya geçiş için 25 sorudan oluşan bir
-            değerlendirme sınavımız bulunmaktadır.
+            eğitim sonrası 25 sorudan oluşan bir değerlendirme anketimiz
+            bulunmaktadır.
             <br />
             <br />
-            Bu test her kullanıcı için sadece 1 kez sunulmakta olup 45 dakika
+            Bu anket her kullanıcı için sadece 1 kez sunulmakta olup 15 dakika
             içinde tamamlanması gerekmektedir.
             <br />
             <br />
@@ -48,14 +48,14 @@ const ExamDetailModal = (props: Props) => {
             <br />
             TOBETO
           </div>
-          <div className="modal-body exam-detail">
-            <span>Sınav Süresi : 45 Dakika</span>
+          <div className="modal-body survey-detail">
+            <span>Anket Süresi : 15 Dakika</span>
             <br />
             <span>Soru Sayısı : 25</span>
             <br />
             <span>Soru Tipi : Çoktan Seçmeli</span>
           </div>
-          <div className="modal-footer exam-detail-modal-footer-buttons">
+          <div className="modal-footer survey-detail-modal-footer-buttons">
             <button
               type="button"
               className="exem-detail-modal-close-button"
@@ -67,7 +67,7 @@ const ExamDetailModal = (props: Props) => {
               type="button"
               className="exem-detail-modal-view-report-button"
             >
-              Raporu Görüntüle
+              Ankete Git
             </button>
           </div>
         </div>
@@ -76,4 +76,4 @@ const ExamDetailModal = (props: Props) => {
   );
 };
 
-export default ExamDetailModal;
+export default SurveyDetailModal;
