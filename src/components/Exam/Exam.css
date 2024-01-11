@@ -23,67 +23,6 @@
   flex-wrap: wrap;
 }
 
-.exam-element {
-  cursor: pointer;
-  width: 500px !important;
-  min-height: 100px !important;
-  padding: 12px;
-  margin: 16px 0px;
-  border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.126) 0px 3px 10px, rgba(0, 0, 0, 0.157) 0px 0px 16px;
-  transition: all 0.5s ease;
-}
-
-.exam-element:hover {
-  transform: scale(1.05);
-  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
-}
-
-.exam-element-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.exam-element-header-left-side {}
-
-.exam-element-header-right-side {}
-
-.exam-element-title {
-  color: #1c1917;
-  font-size: 16px;
-  font-weight: 900 !important;
-  letter-spacing: 0.16px;
-}
-
-.image-exam-status {
-  height: 25px;
-  border-radius: 8px;
-}
-
-.exam-element-content {}
-
-.exam-element-subtitle {
-  font-weight: 500;
-  font-size: 14px;
-  color: #828282;
-}
-
-.exam-element-footer {
-  margin-top: 10px;
-}
-
-.exam-element-footer-icon {
-  color: #9933ffe6;
-  font-size: 20px;
-}
-
-.exam-element-footer-duration {
-  margin-left: 5px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-}
-
 @media (max-width: 1200px) {
 
   .exam-component-header {
