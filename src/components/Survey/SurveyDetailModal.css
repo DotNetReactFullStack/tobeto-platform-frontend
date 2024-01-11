@@ -1,0 +1,32 @@
+.survey-detail {
+  font-weight: 800;
+}
+
+.survey-detail-modal-footer-buttons {
+  justify-content: center !important;
+}
+
+.survey-detail-modal-footer-buttons button {
+  min-width: 150px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  transition: all 0.5s ease;
+  opacity: 0.9;
+}
+
+.survey-detail-modal-footer-buttons button:hover {
+  transform: scale(1.025);
+  opacity: 1;
+}
+
+.exem-detail-modal-close-button {
+  background-color: rgb(253, 51, 0);
+}
+
+.exem-detail-modal-view-report-button {
+  background-color: #9933ff;
+}
