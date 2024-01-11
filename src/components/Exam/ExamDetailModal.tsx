@@ -7,7 +7,7 @@ const ExamDetailModal = (props: Props) => {
   return (
     <div
       className="modal modal-xl fade"
-      id="staticBackdrop"
+      id="staticBackdropExamId1"
       data-bs-backdrop="static"
       data-bs-keyboard="false"
       aria-labelledby="staticBackdropLabel"
