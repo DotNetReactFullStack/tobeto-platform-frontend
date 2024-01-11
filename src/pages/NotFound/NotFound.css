@@ -1,0 +1,62 @@
+.not-found {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  z-index: -10;
+
+  background: rgb(202, 19, 0);
+  background: linear-gradient(
+    180deg,
+    rgba(202, 19, 0, 0.7651654411764706) 0%,
+    rgba(153, 51, 255, 1) 50%
+  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.not-found-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 250px;
+}
+
+.not-found-content span {
+  font-family: "Rubik Maps", system-ui;
+  color: white;
+  font-size: 10vh;
+
+  letter-spacing: 5px;
+  transform: skew(40deg) rotate(-10deg) rotateX(50deg) translate3d(0, 0, 0);
+  -webkit-perspective: 100px;
+  perspective: 100px;
+}
+
+.not-found-content span::before {
+  text-shadow: 0 2px 3px #747474, -3px 3px 1px #222, -6px 5px 1px #474747,
+    -9px 7px 1px #747474, -12px 9px 1px #565656, -15px 11px 1px #343434,
+    -22px 15px 1px #171717;
+}
+
+.not-found-content span:before,
+.not-found-content span:after {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  content: attr(data-text);
+}
+
+.not-found-content span:after {
+  color: #edc;
+}
+
+/* ------- Media Querry --------- */
+
+@media (max-width: 600px) {
+  .not-found-content span {
+    font-size: 5vh;
+  }
+}
