@@ -9,7 +9,7 @@ const LearningPathElement = (props: Props) => {
       <div className="learning-path-cover-photo">
         <img
           className="learning-path-img"
-          src={process.env.PUBLIC_URL + "/dotnet-react-full-stack.png"}
+          src={process.env.PUBLIC_URL + "/images/dotnet-react-full-stack.png"}
         />
       </div>
       <div className="learning-path-body">

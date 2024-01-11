@@ -26,7 +26,7 @@ const Exam = (props: Props) => {
               <div className="exam-element-header-right-side">
                 <img
                   className="image-exam-status"
-                  src={process.env.PUBLIC_URL + "/exam-status-completed-icon.png"}
+                  src={process.env.PUBLIC_URL + "/images/exam-status-completed-icon.svg"}
                 />
               </div>
             </div>
@@ -54,7 +54,7 @@ const Exam = (props: Props) => {
               <div className="exam-element-header-right-side">
                 <img
                   className="image-exam-status"
-                  src={process.env.PUBLIC_URL + "/exam-status-completed-icon.png"}
+                  src={process.env.PUBLIC_URL + "/images/exam-status-completed-icon.svg"}
                 />
               </div>
             </div>
@@ -81,7 +81,7 @@ const Exam = (props: Props) => {
               <div className="exam-element-header-right-side">
                 <img
                   className="image-exam-status"
-                  src={process.env.PUBLIC_URL + "/exam-status-completed-icon.png"}
+                  src={process.env.PUBLIC_URL + "/images/exam-status-completed-icon.svg"}
                 />
               </div>
             </div>
@@ -109,7 +109,7 @@ const Exam = (props: Props) => {
               <div className="exam-element-header-right-side">
                 <img
                   className="image-exam-status"
-                  src={process.env.PUBLIC_URL + "/exam-status-completed-icon.png"}
+                  src={process.env.PUBLIC_URL + "/images/exam-status-completed-icon.svg"}
                 />
               </div>
             </div>

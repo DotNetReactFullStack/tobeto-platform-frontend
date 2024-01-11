@@ -8,9 +8,9 @@ const Survey = (props: Props) => {
         <div className='survey-component'>
             <img
                 className='image-survey-not-found'
-                src={process.env.PUBLIC_URL + '/survey-not-found.png'}
+                src={process.env.PUBLIC_URL + '/images/survey-not-found.svg'}
             />
-            <div className="information-for-small-screen">
+            <div className="information-text">
                 Atanmış herhangi anketiniz bulunmamaktadır.
             </div>
         </div>
