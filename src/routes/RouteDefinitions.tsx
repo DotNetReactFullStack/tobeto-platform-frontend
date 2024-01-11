@@ -1,9 +1,9 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Homepage from "../../pages/Homepage/Homepage";
-import NotFound from "../../pages/NotFound/NotFound";
-import Announcements from "../../pages/Announcements/Announcements";
-import LearningPaths from "../../pages/LearningPaths/LearningPaths";
+import Homepage from "../pages/Homepage/Homepage";
+import NotFound from "../pages/NotFound/NotFound";
+import Announcements from "../pages/Announcements/Announcements";
+import LearningPaths from "../pages/LearningPaths/LearningPaths";
 
 type Props = {};
 
