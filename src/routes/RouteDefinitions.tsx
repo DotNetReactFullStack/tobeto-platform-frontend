@@ -5,6 +5,7 @@ import NotFound from "../pages/NotFound/NotFound";
 import Announcements from "../pages/Announcements/Announcements";
 import LearningPaths from "../pages/LearningPaths/LearningPaths";
 import Login from "../pages/Login/Login";
+import Register from "../pages/Register/Register";
 
 type Props = {};
 
@@ -16,6 +17,7 @@ const RouteDefinitions = (props: Props) => {
       <Route path="/duyurular" element={<Announcements />} />
       <Route path="/egitimlerim" element={<LearningPaths />} />
       <Route path="/giris" element={<Login />} />
+      <Route path="/kayit" element={<Register />} />
     </Routes>
   );
 };
