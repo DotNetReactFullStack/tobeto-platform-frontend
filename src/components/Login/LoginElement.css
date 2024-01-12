@@ -1,22 +1,36 @@
 .login-element {
-  margin: auto;
-  margin-top: 100px;
-
-  background: rgb(131, 58, 180);
-  background: linear-gradient(
-    90deg,
-    rgba(131, 58, 180, 1) 0%,
-    rgba(253, 29, 29, 1) 50%,
-    rgba(252, 176, 69, 1) 100%
-  );
   width: 550px;
   height: 450px;
   padding: 6px;
+  margin: auto;
+  margin-top: 100px;
+
+  background: linear-gradient(-90deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 200% 200%;
+  animation: gradient 4s ease infinite;
 }
 
-.login-element,
-.login-element > .login-content {
+@keyframes gradient {
+  0% {
+    background-position: 0% 75%;
+  }
+
+  50% {
+    background-position: 100% 75%;
+  }
+
+  100% {
+    background-position: 0% 75%;
+  }
+}
+
+
+.login-element {
   border-radius: 20px;
+}
+
+.login-element>.login-content {
+  border-radius: 16px;
 }
 
 .login-content {
@@ -32,8 +46,7 @@
   padding: 20px 0px;
 }
 
-.login-element-logo {
-}
+.login-element-logo {}
 
 .login-element-body {
   display: flex;
@@ -60,8 +73,7 @@
   border-radius: 10px;
 }
 
-.login-element-body button {
-}
+.login-element-body button {}
 
 .login-element-login-button {
   margin: 10px;
@@ -69,7 +81,7 @@
   background-color: none;
   border: none;
 
-  padding: 6px 77px;
+  padding: 10px 77px;
   border-radius: 20px;
   background-color: #9933ff;
   color: white;
