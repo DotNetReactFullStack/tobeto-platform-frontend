@@ -1,8 +1,18 @@
-.app {
+.app-container {
     min-height: 100vh;
+
+    /* app-container'ın altındaki tüm komponentleri sayfada dikey doğrultuda hizalamak için kullanıyoruz */
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+}
+
+.body-container {
+    /* bu container'ın yüksekliğini, içerisinde bulunduğu app-container'dan kalan yüksekliğe (navbar ve footer hariç) ayarlamak için kullanıyoruz */
+    flex-grow: 1;
+
+    /* body-container'ın altındaki tüm komponentleri sayfada dikey doğrultuda hizalamak için kullanıyoruz */
+    display: flex;
+    flex-direction: column;
 }
 
 .container.main-section {

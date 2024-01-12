@@ -1,13 +1,11 @@
 import React from "react";
-import "./Login.css";
-import LoginElement from "../../components/Login/LoginElement";
+import LoginElement from "../../components/LoginAndRegister/LoginElement";
+import LoginAndRegisterContainer from "../../components/LoginAndRegister/LoginAndRegisterContainer";
 type Props = {};
 
 const Login = (props: Props) => {
   return (
-    <div className="login-page">
-      <LoginElement />
-    </div>
+    <LoginAndRegisterContainer childComponent={LoginElement} />
   );
 };
 

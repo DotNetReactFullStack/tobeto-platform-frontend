@@ -1,0 +1,79 @@
+.login-and-register-container {
+    /* login-and-register-container-background class'ına sahip elementi kapsayan container olarak, bu container'ın yüksekliğini body-container'ın yüksekliğine çıkarmak/ayarlamak için kullanıyoruz */
+    flex-grow: 1;
+
+    /* login-and-register-container-background class'ına sahip elementi sayfada ortalamak için kullanıyoruz */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-and-register-container-background {
+    width: 550px;
+    padding: 6px;
+    scale: 0.88;
+
+    background: linear-gradient(-90deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 200% 200%;
+    animation: gradient 4s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 75%;
+    }
+
+    50% {
+        background-position: 100% 75%;
+    }
+
+    100% {
+        background-position: 0% 75%;
+    }
+}
+
+.login-and-register-container-background {
+    border-radius: 20px;
+}
+
+.login-and-register-container-background>.login-and-register-container-content {
+    border-radius: 16px;
+}
+
+.login-and-register-container-content {
+    width: 100%;
+    height: 100%;
+    background: none;
+    background-color: white;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0px;
+}
+
+.login-and-register-container-content-logo img {
+    scale: 0.8;
+    padding: 10px 0 34px;
+}
+
+@media (max-width: 770px) {
+    .login-and-register-container-background {
+        width: 90%;
+    }
+}
+
+@media (max-width: 500px) {
+    .login-and-register-container-background {
+        scale: 0.8;
+        width: 100%;
+        margin-top: 34px;
+    }
+}
+
+@media (max-width: 350px) {
+    .login-and-register-container-content-logo img {
+        scale: 0.7;
+    }
+}

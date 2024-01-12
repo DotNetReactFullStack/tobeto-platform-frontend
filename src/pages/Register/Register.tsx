@@ -1,13 +1,12 @@
 import React from "react";
-import RegisterElement from "../../components/Register/RegisterElement";
+import RegisterElement from "../../components/LoginAndRegister/RegisterElement";
+import LoginAndRegisterContainer from "../../components/LoginAndRegister/LoginAndRegisterContainer";
 
 type Props = {};
 
 const Register = (props: Props) => {
   return (
-    <div className="register-page">
-      <RegisterElement />
-    </div>
+    <LoginAndRegisterContainer childComponent={RegisterElement} />
   );
 };
 
