@@ -95,3 +95,23 @@
   text-decoration: none;
   font-weight: 700;
 }
+
+@media (max-width: 770px) {
+  .login-element {
+    width: 90%;
+  }
+}
+
+@media (max-width: 500px) {
+  .login-element {
+    scale: 0.8;
+    width: 100%;
+    margin-top: 34px;
+  }
+}
+
+@media (max-width: 350px) {
+  .login-element-logo img {
+    scale: 0.7;
+  }
+}
