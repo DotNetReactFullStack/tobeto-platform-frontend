@@ -5,14 +5,12 @@ import "./App.css";
 
 function App() {
   return (
-    <div className="app">
-      <div className="app-nav-and-page-content">
-        <Navbar />
+    <div className="app-container">
+      <Navbar />
+      <div className="body-container">
         <RouteDefinitions />
       </div>
-      <div className="app-footer">
-        <Footer />
-      </div>
+      <Footer />
     </div>
   );
 }
