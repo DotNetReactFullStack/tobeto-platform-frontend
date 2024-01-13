@@ -1,0 +1,16 @@
+.certificates-element {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 20px;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  padding: 8px 16px;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.certificates-file-type-icon {
+  color: #b51308;
+  font-size: 18px;
+}
