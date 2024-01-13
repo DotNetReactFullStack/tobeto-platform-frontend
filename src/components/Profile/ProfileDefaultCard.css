@@ -1,0 +1,19 @@
+.profile-default-card {
+  border-radius: 16px !important;
+  border: none !important;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  padding: 16px;
+  width: 100%;
+}
+
+.profile-default-card-header {
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: 0.75px;
+  color: #323232;
+  border-bottom: 3px solid rgba(153, 51, 255, 0.4);
+  padding-bottom: 10px;
+}
+.profile-default-card-body {
+  margin: 10px 0px;
+}
