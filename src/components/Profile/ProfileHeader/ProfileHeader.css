@@ -1,0 +1,16 @@
+.profile-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.profile-header-edit-link,
+.profile-header-share-link {
+  margin-left: 20px;
+}
+
+.profile-header-edit-icon,
+.profile-header-share-icon {
+  font-size: 25px;
+  color: #818181;
+}
