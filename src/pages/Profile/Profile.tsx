@@ -4,6 +4,7 @@ import ProfileDefaultCard from "../../components/Profile/ProfileDefaultCard";
 import SocialMediaAccounts from "../../components/Profile/SocialMediaAccounts/SocialMediaAccounts";
 import UserInformationCard from "../../components/Profile/UserInformationCard/UserInformationCard";
 import ProfileHeader from "../../components/Profile/ProfileHeader/ProfileHeader";
+import Exams from "../../components/Profile/Exams/Exams";
 
 type Props = {};
 
@@ -30,6 +31,29 @@ const socialMediaAccountsFakeData: any[] = [
   }
 ];
 
+const examsFakeData: any[] = [
+  {
+    name: "Frontend",
+    date: "13-01-2024",
+    points: "100.00"
+  },
+  {
+    name: "Herkes İçin Kodlama 1A Değerlendirme Sınavı",
+    date: "11-10-2023",
+    points: "100.00"
+  },
+  {
+    name: "Microsoft SQL Server",
+    date: "05-09-2023",
+    points: "68.00"
+  },
+  {
+    name: "Masaüstü Programlama",
+    date: "06-09-2023",
+    points: "76.00"
+  }
+];
+
 const Profile = (props: Props) => {
   return (
     <div className="container main-section d-flex flex-column">
@@ -44,6 +68,9 @@ const Profile = (props: Props) => {
           </ProfileDefaultCard>
         </div>
         <div className="profile-page-right-col">
+          <ProfileDefaultCard title="Sınav Sonuçlarım">
+            <Exams data={examsFakeData}></Exams>
+          </ProfileDefaultCard>
         </div>
       </div>
     </div>

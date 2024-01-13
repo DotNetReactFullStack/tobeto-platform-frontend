@@ -1,0 +1,38 @@
+.profile-exam-element {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    width: 330px;
+    height: 100px;
+    padding: 12px;
+    margin: 5px 0px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.126) 0px 3px 10px, rgba(0, 0, 0, 0.157) 0px 0px 16px;
+    transition: all 0.5s ease;
+}
+
+.profile-exam-element:hover {
+    scale: 1.025;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+
+.profile-exam-element-header {
+    display: flex;
+    justify-content: space-between;
+    color: #828282;
+}
+
+.exam-element-name {
+    font-size: 15px;
+}
+
+.exam-element-date {
+
+    font-size: 14px;
+}
+
+.exam-element-points {
+    font-size: 16px;
+    font-weight: 500;
+}
