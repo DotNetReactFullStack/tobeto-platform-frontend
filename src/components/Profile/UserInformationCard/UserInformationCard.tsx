@@ -10,7 +10,7 @@ const UserInformationCard = (props: Props) => {
       <div className="user-information-header">
         <img
           className="user-information-img rounded-circle"
-          src={process.env.PUBLIC_URL + "/images/user-icon.png"}
+          src="https://cdn-icons-png.flaticon.com/512/4139/4139993.png"
         />
       </div>
       <div className="user-information-body">
@@ -36,7 +36,7 @@ const UserInformationCard = (props: Props) => {
           iconName="bi bi-telephone"
           iconColor="#5cca84"
           contentHeaderText="Telefon Numarası"
-          contentText="+90516 516 16 16"
+          contentText="+90 516 516 16 16"
         />
       </div>
     </div>

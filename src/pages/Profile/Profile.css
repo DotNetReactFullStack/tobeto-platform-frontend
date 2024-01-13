@@ -1,12 +1,14 @@
 .profile-page-header {
   width: 100%;
-  padding: 15px 10px;
+  padding: 10px 25px;
   display: flex;
   justify-content: flex-end;
+  margin-top: -40px;
 }
 
 .profile-page-body {
   display: flex;
+  margin-top: -10px;
 }
 
 .profile-page-left-col {
