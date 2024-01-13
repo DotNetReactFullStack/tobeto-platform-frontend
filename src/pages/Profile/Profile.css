@@ -1,0 +1,30 @@
+.profile-page-header {
+  width: 100%;
+  padding: 15px 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.profile-page-body {
+  display: flex;
+}
+
+.profile-page-left-col {
+  padding: 15px 10px;
+  width: 35%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.profile-page-right-col {
+  padding: 15px 10px;
+  width: 65%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
