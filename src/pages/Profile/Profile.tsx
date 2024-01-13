@@ -7,6 +7,8 @@ import ProfileHeader from "../../components/Profile/ProfileHeader/ProfileHeader"
 import AboutMe from "../../components/Profile/AboutMe/AboutMe";
 import Capabilities from "../../components/Profile/Capabilities/Capabilities";
 import ForeignLanguages from "../../components/Profile/ForeignLanguages/ForeignLanguages";
+import Exams from "../../components/Profile/Exams/Exams";
+
 
 type Props = {};
 
@@ -42,6 +44,7 @@ const capabilitiesFakeData: any[] = [
   "Frontend",
 ];
 
+
 const foreignLanguagesFakeData: any[] = [
   { name: "İngilizce", level: "Orta Seviye (B1, B2)" },
   { name: "Korece", level: "Temel Seviye (A1, A2)" },
@@ -49,6 +52,29 @@ const foreignLanguagesFakeData: any[] = [
 ];
 
 const aboutMeFakeData: string = "Kendini kısaca anlat";
+
+const examsFakeData: any[] = [
+  {
+    name: "Frontend",
+    date: "13-01-2024",
+    points: "100.00"
+  },
+  {
+    name: "Herkes İçin Kodlama 1A Değerlendirme Sınavı",
+    date: "11-10-2023",
+    points: "100.00"
+  },
+  {
+    name: "Microsoft SQL Server",
+    date: "05-09-2023",
+    points: "68.00"
+  },
+  {
+    name: "Masaüstü Programlama",
+    date: "06-09-2023",
+    points: "76.00"
+  }
+];
 
 const Profile = (props: Props) => {
   return (
@@ -76,7 +102,14 @@ const Profile = (props: Props) => {
             <SocialMediaAccounts data={socialMediaAccountsFakeData} />
           </ProfileDefaultCard>
         </div>
+
         <div className="profile-page-right-col"></div>
+
+        <div className="profile-page-right-col">
+          <ProfileDefaultCard title="Sınav Sonuçlarım">
+            <Exams data={examsFakeData}></Exams>
+          </ProfileDefaultCard>
+        </div>
       </div>
     </div>
   );

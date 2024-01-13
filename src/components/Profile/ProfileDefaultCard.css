@@ -4,6 +4,7 @@
   box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
   padding: 16px;
   width: 100%;
+  margin-bottom: 16px;
 }
 
 .profile-default-card-header {
