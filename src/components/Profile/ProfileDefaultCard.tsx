@@ -1,10 +1,9 @@
 import React from "react";
 import "./ProfileDefaultCard.css";
-import { title } from "process";
 
 type Props = {
   title: string;
-  childComponent: React.FC;
+  children: React.ReactNode;
 };
 
 const ProfileDefaultCard = (props: Props) => {
@@ -12,7 +11,7 @@ const ProfileDefaultCard = (props: Props) => {
     <div className="profile-default-card">
       <div className="profile-default-card-header">{props.title}</div>
       <div className="profile-default-card-body">
-        <props.childComponent />
+        {props.children}
       </div>
     </div>
   );
