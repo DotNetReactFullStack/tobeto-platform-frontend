@@ -1,0 +1,31 @@
+.user-information-card {
+  border-radius: 16px !important;
+  border: none !important;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.user-information-header {
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 144px;
+
+  background: rgb(143, 148, 251);
+  background: linear-gradient(
+    0deg,
+    rgba(79, 85, 201, 1) 50%,
+    rgba(143, 148, 251, 1) 100%
+  );
+}
+
+.user-information-body {
+  margin: 12px 0px;
+}
+
+.user-information-img {
+  height: 128px;
+  background-color: white;
+}

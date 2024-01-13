@@ -1,0 +1,38 @@
+.user-information-card-element {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 8px 16px;
+}
+
+.user-information-card-element-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  min-width: 40px;
+  min-height: 40px;
+  padding: 0px 10px;
+}
+
+.user-information-card-element-icon i {
+  font-size: 24px;
+}
+
+.user-information-card-element-content {
+  margin-left: 10px;
+}
+
+.user-information-card-element-content-header {
+  font-weight: 500;
+  font-size: 10px;
+  color: #828282;
+}
+
+.user-information-card-element-content-text {
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 0.3px;
+  color: #181818;
+}
