@@ -8,8 +8,34 @@ import AboutMe from "../../components/Profile/AboutMe/AboutMe";
 import Capabilities from "../../components/Profile/Capabilities/Capabilities";
 import ForeignLanguages from "../../components/Profile/ForeignLanguages/ForeignLanguages";
 import Exams from "../../components/Profile/Exams/Exams";
+import AccountCertificates from "../../components/Profile/AccountCertificates/AccountCertificates";
 
 type Props = {};
+
+const aboutMeFakeData: string = "Kendini kısaca anlat";
+
+const capabilitiesFakeData: any[] = [
+  "CSS",
+  "Backend",
+  "JavaScript",
+  ".Net",
+  "React",
+  "Frontend",
+];
+
+const foreignLanguagesFakeData: any[] = [
+  { name: "İngilizce", level: "Orta Seviye (B1, B2)" },
+  { name: "Korece", level: "Temel Seviye (A1, A2)" },
+  { name: "Japonca", level: "Anadil" },
+];
+
+const accountCertificatesFakeData: any[] = [
+  { name: "CSS sertifika" },
+  { name: "JavaScript sertifika" },
+  { name: ".Net sertifika" },
+  { name: "React sertifika" },
+  { name: "İstanbul Kodluyor kurs sertifikası" },
+];
 
 const socialMediaAccountsFakeData: any[] = [
   {
@@ -33,23 +59,6 @@ const socialMediaAccountsFakeData: any[] = [
     link: "https://pair4.tobetoplatform.ersinkaya.dev",
   },
 ];
-
-const capabilitiesFakeData: any[] = [
-  "CSS",
-  "Backend",
-  "JavaScript",
-  ".Net",
-  "React",
-  "Frontend",
-];
-
-const foreignLanguagesFakeData: any[] = [
-  { name: "İngilizce", level: "Orta Seviye (B1, B2)" },
-  { name: "Korece", level: "Temel Seviye (A1, A2)" },
-  { name: "Japonca", level: "Anadil" },
-];
-
-const aboutMeFakeData: string = "Kendini kısaca anlat";
 
 const examsFakeData: any[] = [
   {
@@ -94,6 +103,10 @@ const Profile = (props: Props) => {
 
           <ProfileDefaultCard title="Yabancı Dillerim">
             <ForeignLanguages data={foreignLanguagesFakeData} />
+          </ProfileDefaultCard>
+
+          <ProfileDefaultCard title="Sertifikalarım">
+            <AccountCertificates data={accountCertificatesFakeData} />
           </ProfileDefaultCard>
 
           <ProfileDefaultCard title="Medya Hesaplarım">
