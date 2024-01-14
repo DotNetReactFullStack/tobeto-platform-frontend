@@ -36,7 +36,7 @@ const Recourse = (props: Props) => {
           />
         ))}
       </div>
-      <ShowMoreButton />
+      <ShowMoreButton redirectUrl="/my-profile" />
     </>
   );
 };

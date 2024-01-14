@@ -1,21 +1,20 @@
 import React from "react";
 import "./Footer.css";
+import { Link } from "react-router-dom";
 
 type Props = {};
 
 const Footer = (props: Props) => {
   return (
     <div className="footer">
-      <a className="footer-logo-link" href="#">
+      <Link className="footer-logo-link" to="/">
         <img
           className="footer-logo"
           src={process.env.PUBLIC_URL + "/images/tobeto-footer-logo.png"}
         />
-      </a>
+      </Link>
       <a className="footer-contact-us-link" href="#">
-        <span>
-          Bize Ulaşın
-        </span>
+        <span>Bize Ulaşın</span>
       </a>
     </div>
   );
