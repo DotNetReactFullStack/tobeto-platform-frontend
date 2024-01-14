@@ -10,7 +10,7 @@ const Footer = (props: Props) => {
       <Link className="footer-logo-link" to="/">
         <img
           className="footer-logo"
-          src={process.env.PUBLIC_URL + "/images/tobeto-footer-logo.png"}
+          src={process.env.PUBLIC_URL + "/assets/images/tobeto-footer-logo.png"}
         />
       </Link>
       <a className="footer-contact-us-link" href="#">

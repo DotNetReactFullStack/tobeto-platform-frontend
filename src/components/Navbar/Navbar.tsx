@@ -13,7 +13,7 @@ const Navbar = (props: Props) => {
         {/* LOGO */}
         <Link className="navbar-brand" to="/">
           <img
-            src={process.env.PUBLIC_URL + "/images/tobeto-logo.png"}
+            src={process.env.PUBLIC_URL + "/assets/images/tobeto-logo.png"}
             alt="Bootstrap"
             width="170"
             height="35"

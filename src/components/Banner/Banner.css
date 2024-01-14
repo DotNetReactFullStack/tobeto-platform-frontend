@@ -1,23 +1,33 @@
 .banner-element {
-  background-image: url("../../../public/images/banner.svg");
+  background-image: url("../../../public/assets/images/banner.svg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 
   border-radius: 20px;
-
   height: 200px;
 
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 
 .banner-title {
-  margin-right: 20vw;
+  position: absolute;
+  left: 200px;
 }
 
 .banner-text {
   color: #fff;
   font-size: 5vw;
+  font-weight: 900;
+}
+
+@media (max-width: 767.98px) {
+  .banner-title {
+    left: 40px;
+  }
+
+  .banner-text {
+    font-size: 8vw;
+  }
 }

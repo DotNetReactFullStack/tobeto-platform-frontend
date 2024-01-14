@@ -9,7 +9,7 @@ type Props = {};
 const LearningPaths = (props: Props) => {
   return (
     <>
-      <Banner />
+      <Banner bannerTitle="Eğitimlerim" />
       <div className="container main-section">
         <LearningPathFilter />
         <LearningPathNav />
