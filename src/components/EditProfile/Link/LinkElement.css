@@ -1,0 +1,30 @@
+.link-element {
+  width: 100%;
+  padding: 8px 16px;
+}
+
+.link-element:hover {
+  border-right: 3px solid #9933ff;
+}
+
+.link-element:hover .link-element-title {
+  color: #9933ff;
+}
+
+.link-element a {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.link-element-icon {
+  font-size: 25px;
+  color: #828282;
+}
+
+.link-element-title {
+  color: #828282;
+  font-size: 16px;
+  font-weight: 500;
+  margin-left: 5px;
+}
