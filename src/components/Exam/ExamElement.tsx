@@ -1,9 +1,14 @@
 import React from "react";
 import "./ExamElement.css";
 
-type Props = {};
+type Props = {
+  title: string;
+  statusUrl: string;
+  subTitle: string;
+  duration: string;
+};
 
-const ExamElement = (props: Props) => {
+const ExamElement = ({ title, statusUrl, subTitle, duration }: Props) => {
   return (
     <div
       className="exam-element"
@@ -12,25 +17,21 @@ const ExamElement = (props: Props) => {
     >
       <div className="exam-element-header">
         <div className="exam-element-header-left-side">
-          <span className="exam-element-title">
-            Herkes için Kodlama 1B Değerlendirme Sınavı
-          </span>
+          <span className="exam-element-title">{title}</span>
         </div>
         <div className="exam-element-header-right-side">
           <img
             className="image-exam-status"
-            src={
-              process.env.PUBLIC_URL + "/images/exam-status-completed-icon.svg"
-            }
+            src={process.env.PUBLIC_URL + statusUrl}
           />
         </div>
       </div>
       <div className="exam-element-content">
-        <span className="exam-element-subtitle">Herkes İçin Kodlama - 1B</span>
+        <span className="exam-element-subtitle">{subTitle}</span>
       </div>
       <div className="exam-element-footer">
         <i className="bi bi-stopwatch exam-element-footer-icon"></i>
-        <span className="exam-element-footer-duration">45 Dakika</span>
+        <span className="exam-element-footer-duration">{duration}</span>
       </div>
     </div>
   );
