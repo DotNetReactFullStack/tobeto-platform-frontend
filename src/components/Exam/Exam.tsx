@@ -9,37 +9,37 @@ type Props = {};
 const examFakeData: any[] = [
   {
     title: "Herkes için Kodlama 1A Değerlendirme Sınavı",
-    statusUrl: "/images/exam-status-completed-icon.svg",
+    examStatusImageUrl: "/assets/images/exam-status-completed-icon.svg",
     subTitle: "Herkes İçin Kodlama - 1A",
     duration: "45 Dakika",
   },
   {
     title: "Herkes için Kodlama 1B Değerlendirme Sınavı",
-    statusUrl: "/images/exam-status-completed-icon.svg",
+    examStatusImageUrl: "/assets/images/exam-status-completed-icon.svg",
     subTitle: "Herkes İçin Kodlama - 1B",
     duration: "45 Dakika",
   },
   {
     title: ".Net 1A Değerlendirme Sınavı",
-    statusUrl: "/images/exam-status-completed-icon.svg",
+    examStatusImageUrl: "/assets/images/exam-status-completed-icon.svg",
     subTitle: ".Net 1A",
     duration: "60 Dakika",
   },
   {
     title: ".Net 1B Değerlendirme Sınavı",
-    statusUrl: "/images/exam-status-completed-icon.svg",
+    examStatusImageUrl: "/assets/images/exam-status-completed-icon.svg",
     subTitle: ".Net - 1B",
     duration: "60 Dakika",
   },
   {
     title: "Java 1A Değerlendirme Sınavı",
-    statusUrl: "/images/exam-status-completed-icon.svg",
+    examStatusImageUrl: "/assets/images/exam-status-completed-icon.svg",
     subTitle: "Java - 1A",
     duration: "60 Dakika",
   },
   {
     title: "Java 1B Değerlendirme Sınavı",
-    statusUrl: "/images/exam-status-completed-icon.svg",
+    examStatusImageUrl: "/assets/images/exam-status-completed-icon.svg",
     subTitle: "Java - 1B",
     duration: "60 Dakika",
   },
@@ -57,7 +57,7 @@ const Exam = (props: Props) => {
             <ExamElement
               key={index}
               title={value.title}
-              statusUrl={value.statusUrl}
+              examStatusImageUrl={value.examStatusImageUrl}
               subTitle={value.subTitle}
               duration={value.duration}
             />

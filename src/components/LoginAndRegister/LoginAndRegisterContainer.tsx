@@ -13,7 +13,7 @@ const LoginAndRegisterContainer = (props: Props) => {
                     <div className="login-and-register-container-content-header">
                         <a className="login-and-register-container-content-logo" href="#">
                             <img
-                                src={process.env.PUBLIC_URL + "/images/tobeto-logo.png"}
+                                src={process.env.PUBLIC_URL + "/assets/images/tobeto-logo.png"}
                                 alt="Tobeto Logo"
                             />
                         </a>

@@ -19,7 +19,7 @@ const SurveyElement = (props: Props) => {
           <img
             className="image-survey-status"
             src={
-              process.env.PUBLIC_URL + "/images/exam-status-completed-icon.svg"
+              process.env.PUBLIC_URL + "/assets/images/exam-status-completed-icon.svg"
             }
           />
         </div>

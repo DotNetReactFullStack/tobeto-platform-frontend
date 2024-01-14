@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 
 type Props = {};
 
-function UserSection({}: Props) {
+function UserSection({ }: Props) {
   return (
     <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
       <div className="user-and-tobeto">
         <li className="nav-item dropdown d-none d-xxl-block">
           <a className="nav-link p-0" href="#" role="button">
             <img
-              src={process.env.PUBLIC_URL + "/images/tobeto-icon.svg"}
+              src={process.env.PUBLIC_URL + "/assets/images/tobeto-icon.svg"}
               alt="Bootstrap"
               width="25"
               height="25"
@@ -28,7 +28,7 @@ function UserSection({}: Props) {
           >
             <img
               className="rounded-circle me-2"
-              src={process.env.PUBLIC_URL + "/images/user-icon.png"}
+              src={process.env.PUBLIC_URL + "/assets/images/user-icon.png"}
               alt="Bootstrap"
               width="35"
               height="35"

@@ -9,7 +9,7 @@ type Props = {};
 const Announcements = (props: Props) => {
   return (
     <>
-      <Banner />
+      <Banner bannerTitle="Duyurularım" />
       <div className="container main-section">
         <AnnouncementFilter />
         <AnnouncementList />

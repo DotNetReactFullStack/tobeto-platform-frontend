@@ -1,14 +1,18 @@
 import React from "react";
 import "./Banner.css";
 
-type Props = {};
+type Props = {
+  bannerTitle: string;
+};
 
-const Banner = (props: Props) => {
+const Banner = ({ bannerTitle }: Props) => {
   return (
     <div className="container-fluid banner-compenent">
       <div className="banner-element">
         <div className="banner-title">
-          <span className="banner-text">Duyurularım</span>
+          <span className="banner-text">
+            {bannerTitle}
+          </span>
         </div>
       </div>
     </div>

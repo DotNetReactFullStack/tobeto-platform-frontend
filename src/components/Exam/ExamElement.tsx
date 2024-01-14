@@ -3,12 +3,12 @@ import "./ExamElement.css";
 
 type Props = {
   title: string;
-  statusUrl: string;
+  examStatusImageUrl: string;
   subTitle: string;
   duration: string;
 };
 
-const ExamElement = ({ title, statusUrl, subTitle, duration }: Props) => {
+const ExamElement = ({ title, examStatusImageUrl, subTitle, duration }: Props) => {
   return (
     <div
       className="exam-element"
@@ -22,7 +22,7 @@ const ExamElement = ({ title, statusUrl, subTitle, duration }: Props) => {
         <div className="exam-element-header-right-side">
           <img
             className="image-exam-status"
-            src={process.env.PUBLIC_URL + statusUrl}
+            src={process.env.PUBLIC_URL + examStatusImageUrl}
           />
         </div>
       </div>
