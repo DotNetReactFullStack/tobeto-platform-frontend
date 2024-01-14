@@ -10,7 +10,7 @@ const AccountCertificates = (props: Props) => {
   return (
     <div className="account-certificates">
       {props.data.map((certificate, index) => (
-        <CertificatesElement certificateName={certificate.name} />
+        <CertificatesElement key={index} certificateName={certificate.name} />
       ))}
     </div>
   );
