@@ -6,6 +6,45 @@ import ExamElement from "./ExamElement";
 
 type Props = {};
 
+const examFakeData: any[] = [
+  {
+    title: "Herkes için Kodlama 1A Değerlendirme Sınavı",
+    statusUrl: "/images/exam-status-completed-icon.svg",
+    subTitle: "Herkes İçin Kodlama - 1A",
+    duration: "45 Dakika",
+  },
+  {
+    title: "Herkes için Kodlama 1B Değerlendirme Sınavı",
+    statusUrl: "/images/exam-status-completed-icon.svg",
+    subTitle: "Herkes İçin Kodlama - 1B",
+    duration: "45 Dakika",
+  },
+  {
+    title: ".Net 1A Değerlendirme Sınavı",
+    statusUrl: "/images/exam-status-completed-icon.svg",
+    subTitle: ".Net 1A",
+    duration: "60 Dakika",
+  },
+  {
+    title: ".Net 1B Değerlendirme Sınavı",
+    statusUrl: "/images/exam-status-completed-icon.svg",
+    subTitle: ".Net - 1B",
+    duration: "60 Dakika",
+  },
+  {
+    title: "Java 1A Değerlendirme Sınavı",
+    statusUrl: "/images/exam-status-completed-icon.svg",
+    subTitle: "Java - 1A",
+    duration: "60 Dakika",
+  },
+  {
+    title: "Java 1B Değerlendirme Sınavı",
+    statusUrl: "/images/exam-status-completed-icon.svg",
+    subTitle: "Java - 1B",
+    duration: "60 Dakika",
+  },
+];
+
 const Exam = (props: Props) => {
   return (
     <div className="container main-section">
@@ -14,10 +53,15 @@ const Exam = (props: Props) => {
           <span className="exam-component-header-title">Sınavlarım</span>
         </div>
         <div className="exam-component-body">
-          <ExamElement />
-          <ExamElement />
-          <ExamElement />
-          <ExamElement />
+          {examFakeData.slice(0, 4).map((value, index) => (
+            <ExamElement
+              key={index}
+              title={value.title}
+              statusUrl={value.statusUrl}
+              subTitle={value.subTitle}
+              duration={value.duration}
+            />
+          ))}
         </div>
         <ShowMoreButton />
       </div>
