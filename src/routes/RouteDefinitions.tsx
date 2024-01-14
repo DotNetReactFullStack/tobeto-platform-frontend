@@ -7,6 +7,7 @@ import LearningPaths from "../pages/LearningPaths/LearningPaths";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import Profile from "../pages/Profile/Profile";
+import PersonalInformation from "../pages/Profile/EditProfile/PersonalInformation/PersonalInformation";
 
 type Props = {};
 
@@ -20,6 +21,10 @@ const RouteDefinitions = (props: Props) => {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/my-profile" element={<Profile />} />
+      <Route
+        path="/my-profile/edit-profile/my-personal-information"
+        element={<PersonalInformation />}
+      />
     </Routes>
   );
 };
