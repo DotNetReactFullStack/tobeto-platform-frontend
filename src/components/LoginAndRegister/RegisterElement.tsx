@@ -1,5 +1,6 @@
 import React from "react";
 import "./RegisterElement.css";
+import { Link } from "react-router-dom";
 
 type Props = {};
 
@@ -20,10 +21,10 @@ const RegisterElement = (props: Props) => {
       </div>
       <div className="register-element-footer">
         <span>Zaten bir hesabın var mı?</span>
-        <a className="register-element-footer-link" href="#">
+        <Link className="register-element-footer-link" to="/login">
           {" "}
           Giriş Yap
-        </a>
+        </Link>
       </div>
     </>
   );
