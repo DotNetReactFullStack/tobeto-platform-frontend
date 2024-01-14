@@ -15,11 +15,11 @@ const RouteDefinitions = (props: Props) => {
     <Routes>
       <Route path="/" element={<Homepage />} />
       <Route path="*" element={<NotFound />} />
-      <Route path="/duyurular" element={<Announcements />} />
-      <Route path="/egitimlerim" element={<LearningPaths />} />
-      <Route path="/giris" element={<Login />} />
-      <Route path="/kayit" element={<Register />} />
-      <Route path="/profilim" element={<Profile />} />
+      <Route path="/announcements" element={<Announcements />} />
+      <Route path="/my-learning-paths" element={<LearningPaths />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/my-profile" element={<Profile />} />
     </Routes>
   );
 };

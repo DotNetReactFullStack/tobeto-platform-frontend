@@ -63,7 +63,7 @@ const Exam = (props: Props) => {
             />
           ))}
         </div>
-        <ShowMoreButton />
+        <ShowMoreButton redirectUrl="/my-profile" />
       </div>
       <ExamDetailModal />
     </div>

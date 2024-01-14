@@ -63,7 +63,7 @@ const LearningPath = (props: Props) => {
           />
         ))}
       </div>
-      <ShowMoreButton />
+      <ShowMoreButton redirectUrl="/my-learning-paths" />
     </>
   );
 };

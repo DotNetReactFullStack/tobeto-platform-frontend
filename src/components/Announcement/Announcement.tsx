@@ -83,7 +83,7 @@ const Announcement = (props: Props) => {
           />
         ))}
       </div>
-      <ShowMoreButton />
+      <ShowMoreButton redirectUrl="/announcements" />
       <AnnouncementDetailModal />
     </>
   );
