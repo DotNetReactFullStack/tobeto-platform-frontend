@@ -9,8 +9,8 @@ type Props = {
 const Capabilities = (props: Props) => {
   return (
     <div className="capabilities">
-      {props.data.map((value) => (
-        <CapabilitiesElement content={value} />
+      {props.data.map((value, index) => (
+        <CapabilitiesElement key={index} content={value} />
       ))}
     </div>
   );
