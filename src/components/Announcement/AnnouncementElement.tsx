@@ -1,28 +1,36 @@
 import React from "react";
 import "./AnnouncementElement.css";
 
-type Props = {};
+type Props = {
+  announcementType: string;
+  organizationType: string;
+  title: string;
+  publishDate: string;
+};
 
-const AnnouncementElement = (props: Props) => {
+const AnnouncementElement = ({
+  announcementType,
+  organizationType,
+  title,
+  publishDate,
+}: Props) => {
   return (
     <div className="announcement-element">
       <div className="announcement-header">
         <div className="announcement-header-left-side">
-          <span>Duyuru</span>
+          <span>{announcementType}</span>
         </div>
         <div className="announcement-header-right-side">
-          <span>İstanbul Kodluyor</span>
+          <span>{organizationType}</span>
         </div>
       </div>
       <div className="announcement-content">
-        <span className="announcement-title">
-          30 Ocak Online Hoşgeldin Buluşması-5
-        </span>
+        <span className="announcement-title">{title}</span>
       </div>
       <div className="announcement-footer">
         <div className="announcement-footer-left-side">
           <i className="bi bi-calendar3 calendar-color"></i>
-          <span className="announcement-publish-date">06-01-2024</span>
+          <span className="announcement-publish-date">{publishDate}</span>
         </div>
         <div className="announcement-footer-right-side">
           <button
