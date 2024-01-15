@@ -25,4 +25,7 @@
 
 .user-information-img {
   height: 128px;
+  width: 128px;
+  outline: 3px solid rgba(255, 255, 255, 0.826);
+  outline-offset: -2px;
 }

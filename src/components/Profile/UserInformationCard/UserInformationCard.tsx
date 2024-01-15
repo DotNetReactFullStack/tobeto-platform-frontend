@@ -10,7 +10,7 @@ const UserInformationCard = (props: Props) => {
       <div className="user-information-header">
         <img
           className="user-information-img rounded-circle"
-          src="https://cdn-icons-png.flaticon.com/512/4139/4139993.png"
+          src={process.env.PUBLIC_URL + "/assets/images/default-profile-photo.jpg"}
         />
       </div>
       <div className="user-information-body">
