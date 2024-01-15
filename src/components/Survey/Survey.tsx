@@ -40,37 +40,45 @@ const Survey = (props: Props) => {
     <>
       <div className="survey-component">
         {
-          surveyFakeData.slice(0, 2).map(({ id, title, content, organization, publishedDate, surveyStatus, surveyLink }, index) => (
-            <>
-              <SurveyElement
-                key={index}
-                id={id}
-                title={title}
-                organization={organization}
-                surveyStatus={surveyStatus}
-              />
-              <SurveyDetailModal
-                id={id}
-                title={title}
-                content={content}
-                organization={organization}
-                publishedDate={publishedDate}
-                surveyLink={surveyLink}
-              />
-            </>
-          ))
+          (surveyFakeData.length > 0)
+            ?
+            surveyFakeData.slice(0, 2).map(({ id, title, content, organization, publishedDate, surveyStatus, surveyLink }, index) => (
+              <>
+                <SurveyElement
+                  key={index}
+                  id={id}
+                  title={title}
+                  organization={organization}
+                  surveyStatus={surveyStatus}
+                />
+                <SurveyDetailModal
+                  id={id}
+                  title={title}
+                  content={content}
+                  organization={organization}
+                  publishedDate={publishedDate}
+                  surveyLink={surveyLink}
+                />
+              </>
+            ))
+            : <></>
         }
       </div>
 
-      <div className="survey-not-found-component">
-        <img
-          className="image-survey-not-found"
-          src={process.env.PUBLIC_URL + "/assets/images/survey-not-found.svg"}
-        />
-        <div className="information-text">
-          Atanmış herhangi anketiniz bulunmamaktadır.
-        </div>
-      </div>
+      {
+        !(surveyFakeData.length > 0)
+          ?
+          <div className="survey-not-found-component">
+            <img
+              className="image-survey-not-found"
+              src={process.env.PUBLIC_URL + "/assets/images/survey-not-found.svg"}
+            />
+            <div className="information-text">
+              Atanmış herhangi anketiniz bulunmamaktadır.
+            </div>
+          </div>
+          : <></>
+      }
     </>
   );
 };
