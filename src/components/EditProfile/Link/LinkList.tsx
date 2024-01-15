@@ -4,7 +4,11 @@ import LinkElement from "./LinkElement";
 type Props = {};
 
 const linkListFakeData: any[] = [
-  { iconClass: "bi bi-person", title: "Kişisel Bilgilerim", redirectUrl: "/" },
+  {
+    iconClass: "bi bi-person",
+    title: "Kişisel Bilgilerim",
+    redirectUrl: "/my-profile/edit-profile/my-personal-information",
+  },
   { iconClass: "bi bi-suitcase-lg", title: "Deneyimlerim", redirectUrl: "/" },
   { iconClass: "bi bi-book", title: "Eğitim Hayatım", redirectUrl: "/" },
   {
