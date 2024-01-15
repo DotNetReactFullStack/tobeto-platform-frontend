@@ -1,13 +1,20 @@
 import React from "react";
 import "./SurveyDetailModal.css";
 
-type Props = {};
+type Props = {
+  id: string;
+  title: string;
+  content: string;
+  organization: string;
+  publishedDate: string;
+  surveyLink: string;
+};
 
-const SurveyDetailModal = (props: Props) => {
+const SurveyDetailModal = ({ id, title, content, organization, publishedDate, surveyLink }: Props) => {
   return (
     <div
       className="modal modal-xl fade"
-      id="staticBackdropSurveyId1"
+      id={id}
       data-bs-backdrop="static"
       data-bs-keyboard="false"
       aria-labelledby="staticBackdropLabel"
@@ -17,7 +24,7 @@ const SurveyDetailModal = (props: Props) => {
         <div className="modal-content">
           <div className="modal-header">
             <h1 className="modal-title fs-5" id="staticBackdropLabel">
-              Herkes için Kodlama Değerlendirme Anketi
+              {title}
             </h1>
             <button
               type="button"
@@ -27,33 +34,12 @@ const SurveyDetailModal = (props: Props) => {
             ></button>
           </div>
           <div className="modal-body">
-            <h4>Sevgili Adayımız,</h4>
-            <br />
-            Herkes için Kodlama Eğitimi'ni tamamladığınız için tebrik ederiz. Bu
-            eğitim sonrası 25 sorudan oluşan bir değerlendirme anketimiz
-            bulunmaktadır.
-            <br />
-            <br />
-            Bu anket her kullanıcı için sadece 1 kez sunulmakta olup 15 dakika
-            içinde tamamlanması gerekmektedir.
-            <br />
-            <br />
-            <br />
-            Tüm değerlendirme kriterleri sonrası Mesleki Gelişim Eğitimlerine
-            geçişiniz ile ilgili bilgilendirileceksiniz.
-            <br />
-            <br />
-            <br />
-            Sevgiler
-            <br />
-            TOBETO
+            {content}
           </div>
           <div className="modal-body survey-detail">
-            <span>Anket Süresi : 15 Dakika</span>
+            Organizasyon: <span>{organization}</span>
             <br />
-            <span>Soru Sayısı : 25</span>
-            <br />
-            <span>Soru Tipi : Çoktan Seçmeli</span>
+            Yayınlanma tarihi: <span>{publishedDate}</span>
           </div>
           <div className="modal-footer survey-detail-modal-footer-buttons">
             <button
@@ -63,12 +49,14 @@ const SurveyDetailModal = (props: Props) => {
             >
               Kapat
             </button>
-            <button
-              type="button"
-              className="exem-detail-modal-view-report-button"
-            >
-              Ankete Git
-            </button>
+            <a href={surveyLink} target="_blank">
+              <button
+                type="button"
+                className="exem-detail-modal-view-report-button"
+              >
+                Ankete Git
+              </button>
+            </a>
           </div>
         </div>
       </div>
