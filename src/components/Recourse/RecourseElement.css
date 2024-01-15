@@ -32,12 +32,12 @@
     margin-right: -16px;
 }
 
-.bi-check-lg {
+.recourse-detail-step-icon .bi-check-lg {
     color: green;
     margin-right: 5px;
 }
 
-.bi-check-lg:hover {
+.recourse-detail-step-icon .bi-check-lg:hover {
     color: orange;
 }
 
