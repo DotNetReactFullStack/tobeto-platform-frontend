@@ -53,7 +53,8 @@ const Exam = (props: Props) => {
           <span className="exam-component-header-title">Sınavlarım</span>
         </div>
         <div className="exam-component-body">
-          {examFakeData.slice(0, 4).map((value, index) => (
+
+          {examFakeData.slice(0, 2).map((value, index) => (
             <ExamElement
               key={index}
               title={value.title}
@@ -63,7 +64,11 @@ const Exam = (props: Props) => {
             />
           ))}
         </div>
-        <ShowMoreButton redirectUrl="/my-profile" />
+        {
+          (examFakeData.length > 2)
+            ? <ShowMoreButton redirectUrl="/my-profile" />
+            : <></>
+        }
       </div>
       <ExamDetailModal />
     </div>

@@ -63,7 +63,11 @@ const LearningPath = (props: Props) => {
           />
         ))}
       </div>
-      <ShowMoreButton redirectUrl="/my-learning-paths" />
+      {
+        (learningPathElementFakeData.length > 4)
+          ? <ShowMoreButton redirectUrl="/my-learning-paths" />
+          : <></>
+      }
     </>
   );
 };

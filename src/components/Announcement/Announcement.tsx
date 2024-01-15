@@ -83,7 +83,11 @@ const Announcement = (props: Props) => {
           />
         ))}
       </div>
-      <ShowMoreButton redirectUrl="/announcements" />
+      {
+        (announcementFakeData.length > 3)
+          ? <ShowMoreButton redirectUrl="/announcements" />
+          : <></>
+      }
       <AnnouncementDetailModal />
     </>
   );

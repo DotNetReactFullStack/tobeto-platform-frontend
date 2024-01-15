@@ -25,7 +25,7 @@ const Recourse = (props: Props) => {
   return (
     <>
       <div className="recourse-component">
-        {recoursesFakeData.map((value, index) => (
+        {recoursesFakeData.slice(0, 2).map((value, index) => (
           <RecourseElement
             key={index}
             name={value.name}
@@ -36,7 +36,11 @@ const Recourse = (props: Props) => {
           />
         ))}
       </div>
-      <ShowMoreButton redirectUrl="/my-profile" />
+      {
+        (recoursesFakeData.length > 2)
+          ? <ShowMoreButton redirectUrl="/my-profile" />
+          : <></>
+      }
     </>
   );
 };
