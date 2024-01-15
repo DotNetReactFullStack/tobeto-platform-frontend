@@ -1,7 +1,7 @@
 import React from "react";
-import "./PersonalInformation.css";
-import LinkList from "../../../../components/EditProfile/Link/LinkList";
 import "../EditProfilePages.css";
+import LinkList from "../../../../components/EditProfile/Link/LinkList";
+import PersonalInformationComponent from "../../../../components/EditProfile/PersonalInformation/PersonalInformation";
 
 type Props = {};
 
@@ -12,7 +12,7 @@ const PersonalInformation = (props: Props) => {
         <LinkList />
       </div>
       <div className="edit-profile-page-right-side">
-        <h1>right</h1>
+        <PersonalInformationComponent />
       </div>
     </div>
   );

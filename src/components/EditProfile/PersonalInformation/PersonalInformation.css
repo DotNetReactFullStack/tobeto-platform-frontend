@@ -1,0 +1,122 @@
+.personal-information {
+  width: 100%;
+  display: block;
+  align-items: center;
+  justify-content: center;
+  margin-left: 5px;
+}
+
+.profile-photo {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.profile-photo-edit {
+  background-image: url("../../../../public/assets/images/default-profile-photo.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 140px;
+  height: 140px;
+  display: flex;
+  align-items: end;
+  justify-content: space-around;
+}
+
+.profile-photo-delete-button {
+  background-color: #fc6d6d;
+  border: 1px solid white;
+  border-radius: 50%;
+  padding: 4px 8px;
+}
+
+.profile-photo-delete-button-icon {
+  color: white;
+  font-size: 14px;
+}
+
+.profile-photo-edit-button {
+  background-color: white;
+  border: 1px solid #9933ff;
+  border-radius: 50%;
+  padding: 4px 8px;
+}
+
+.profile-photo-edit-button-icon {
+  color: #9933ff;
+  font-size: 14px;
+}
+
+/* inputs */
+
+.personal-information-user-input {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.personal-information-user-input div {
+  width: 49%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.personal-information-user-input label {
+  color: #928282;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.personal-information-user-input input,
+.user-address-input select,
+.user-address-input textarea {
+  border: 2px solid #b3a6c0;
+  border-radius: 8px;
+  padding: 12px 18px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+/* Adress inputs */
+
+.user-address-input {
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.user-address-country-input,
+.user-address-detail-input,
+.user-about-me-input {
+  width: 100% !important;
+}
+
+.user-address-input textarea {
+  height: 100px;
+}
+
+/* Save Button*/
+
+.personal-information-save-button {
+  min-width: 150px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 20px;
+  background-color: #9933ff;
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  transition: all 0.5s ease;
+  opacity: 0.9;
+}
+
+.personal-information-save-button:hover {
+  transform: scale(1.025);
+  opacity: 1;
+}
