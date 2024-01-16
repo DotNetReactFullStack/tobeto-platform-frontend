@@ -1,0 +1,84 @@
+.education-element {
+  width: 100%;
+  margin-top: 20px;
+
+  padding: 16px 4px 16px 16px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 0px 16px;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.education-element-content {
+  width: 100%;
+}
+
+/* Buttons */
+.education-element-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.education-element-delete-button {
+  background-color: #fc6d6d;
+  border: none;
+  border-radius: 50%;
+  padding: 4px 8px;
+}
+
+.education-element-delete-button-icon {
+  color: white;
+  font-size: 14px;
+}
+
+/* Header */
+.education-element-header {
+  color: #bc79ff;
+  font-size: 14px;
+  font-weight: 500;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.education-element-header span {
+  margin-left: 10px;
+}
+
+/* Body  */
+
+.education-element-body {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 10px;
+}
+
+.education-element-body div {
+  display: flex;
+  flex-direction: column;
+}
+
+.education-element-college {
+  width: 30%;
+}
+
+.education-element-program {
+  width: 25%;
+}
+
+.education-element-body span:nth-child(odd) {
+  color: #828282;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.education-element-body span:nth-child(even) {
+  color: #171717 !important;
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: capitalize;
+  margin-top: 3px;
+}
