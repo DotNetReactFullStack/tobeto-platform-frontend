@@ -8,6 +8,7 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import Profile from "../pages/Profile/Profile";
 import PersonalInformation from "../pages/Profile/EditProfile/PersonalInformation/PersonalInformation";
+import Experience from "../pages/Profile/EditProfile/Experience/Experience";
 
 type Props = {};
 
@@ -24,6 +25,10 @@ const RouteDefinitions = (props: Props) => {
       <Route
         path="/my-profile/edit-profile/my-personal-information"
         element={<PersonalInformation />}
+      />
+      <Route
+        path="/my-profile/edit-profile/my-experience"
+        element={<Experience />}
       />
     </Routes>
   );

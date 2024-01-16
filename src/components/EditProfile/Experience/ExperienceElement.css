@@ -1,0 +1,96 @@
+.experience-element {
+  width: 100%;
+  margin-top: 20px;
+
+  padding: 16px 4px 16px 16px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 0px 16px;
+
+  display: flex;
+  justify-content: space-between;
+}
+.experience-element-content {
+  width: 100%;
+}
+
+/* Buttons */
+.experience-element-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.experience-element-edit-button {
+  background-color: #9933ff;
+  border: none;
+  border-radius: 50%;
+  padding: 4px 8px;
+}
+
+.experience-element-edit-button-icon {
+  color: white;
+  font-size: 14px;
+}
+
+.experience-element-delete-button {
+  background-color: #fc6d6d;
+  border: none;
+  border-radius: 50%;
+  padding: 4px 8px;
+}
+
+.experience-element-delete-button-icon {
+  color: white;
+  font-size: 14px;
+}
+
+/* Header */
+.experience-element-header {
+  color: #bc79ff;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.experience-element-header span {
+  margin-left: 10px;
+}
+
+/* Body  */
+
+.experience-element-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.experience-element-body div {
+  display: flex;
+  flex-direction: column;
+}
+
+.experience-element-company-name {
+  width: 34%;
+}
+.experience-element-job {
+  width: 30%;
+}
+
+.experience-element-sector,
+.experience-element-city {
+  width: 18%;
+}
+
+.experience-element-body span:nth-child(odd) {
+  color: #828282;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.experience-element-body span:nth-child(even) {
+  color: #171717 !important;
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: capitalize;
+  margin-top: 3px;
+}
