@@ -36,3 +36,30 @@
     font-size: 16px;
     font-weight: 500;
 }
+
+@media (max-width: 1200px) {
+    .profile-exam-element {
+        width: 75%;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .profile-exam-element {
+        width: 90%;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .profile-exam-element {
+        width: 100%;
+    }
+
+    .exam-element-name {
+        font-weight: 500;
+        color: #444444;
+    }
+
+    .profile-exam-element-header {
+        flex-direction: column;
+    }
+}

@@ -30,3 +30,35 @@
   justify-content: flex-start;
   align-items: center;
 }
+
+@media (max-width: 1200px) {
+  .profile-page-body {
+    flex-wrap: wrap;
+  }
+
+  .profile-page-left-col {
+    width: 40%;
+  }
+
+  .profile-page-right-col {
+    width: 60%;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .profile-page-header {
+    width: 90%;
+  }
+
+  .profile-page-body {
+    justify-content: center;
+  }
+
+  .profile-page-left-col {
+    width: 80%;
+  }
+
+  .profile-page-right-col {
+    width: 80%;
+  }
+}
