@@ -2,6 +2,7 @@ import React from "react";
 import "./Survey.css";
 import SurveyElement from "./SurveyElement";
 import SurveyDetailModal from "./SurveyDetailModal";
+import ShowMoreButton from "../ShowMoreButton/ShowMoreButton";
 
 type Props = {};
 
@@ -64,6 +65,11 @@ const Survey = (props: Props) => {
             : <></>
         }
       </div>
+      {
+        (surveyFakeData.length > 2)
+          ? <ShowMoreButton redirectUrl="/my-profile" />
+          : <></>
+      }
 
       {
         !(surveyFakeData.length > 0)
