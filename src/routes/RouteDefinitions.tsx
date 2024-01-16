@@ -11,6 +11,7 @@ import PersonalInformation from "../pages/Profile/EditProfile/PersonalInformatio
 import Experience from "../pages/Profile/EditProfile/Experience/Experience";
 import Education from "../pages/Profile/EditProfile/Education/Education";
 import Capabilities from "../pages/Profile/EditProfile/Capabilities/Capabilities";
+import Exams from "../pages/Exams/Exams";
 
 type Props = {};
 
@@ -40,6 +41,7 @@ const RouteDefinitions = (props: Props) => {
         path="/my-profile/edit-profile/capabilities"
         element={<Capabilities />}
       />
+      <Route path="/my-exams" element={<Exams />} />
     </Routes>
   );
 };
