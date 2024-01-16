@@ -9,7 +9,11 @@ const linkListFakeData: any[] = [
     title: "Kişisel Bilgilerim",
     redirectUrl: "/my-profile/edit-profile/my-personal-information",
   },
-  { iconClass: "bi bi-suitcase-lg", title: "Deneyimlerim", redirectUrl: "/" },
+  {
+    iconClass: "bi bi-suitcase-lg",
+    title: "Deneyimlerim",
+    redirectUrl: "/my-profile/edit-profile/my-experience",
+  },
   { iconClass: "bi bi-book", title: "Eğitim Hayatım", redirectUrl: "/" },
   {
     iconClass: "bi bi-bookmark-star",
