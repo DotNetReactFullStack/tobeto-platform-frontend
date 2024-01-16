@@ -66,7 +66,7 @@ const Exam = (props: Props) => {
         </div>
         {
           (examFakeData.length > 2)
-            ? <ShowMoreButton redirectUrl="/my-profile" />
+            ? <ShowMoreButton redirectUrl="/my-exams" />
             : <></>
         }
       </div>
