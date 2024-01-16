@@ -22,7 +22,7 @@ const linkListFakeData: any[] = [
   {
     iconClass: "bi bi-bookmark-star",
     title: "Yetkinliklerim",
-    redirectUrl: "/",
+    redirectUrl: "/my-profile/edit-profile/capabilities",
   },
   { iconClass: "bi bi-award", title: "Sertifikalarım", redirectUrl: "/" },
   { iconClass: "bi bi-globe2", title: "Medya Hesaplarım", redirectUrl: "/" },
