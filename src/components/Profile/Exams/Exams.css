@@ -3,3 +3,9 @@
     flex-wrap: wrap;
     justify-content: space-between;
 }
+
+@media (max-width: 1200px) {
+    .exams {
+        justify-content: center;
+    }
+}
