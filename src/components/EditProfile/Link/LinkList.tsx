@@ -1,5 +1,6 @@
 import React from "react";
 import LinkElement from "./LinkElement";
+import './LinkList.css';
 
 type Props = {};
 
@@ -36,7 +37,7 @@ const linkListFakeData: any[] = [
 
 const LinkList = (props: Props) => {
   return (
-    <div className="link-lists">
+    <div className="link-list">
       {linkListFakeData.map((value, index) => (
         <LinkElement
           key={index}
