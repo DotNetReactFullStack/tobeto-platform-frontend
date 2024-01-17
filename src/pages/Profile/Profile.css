@@ -47,7 +47,7 @@
 
 @media (max-width: 991.98px) {
   .profile-page-header {
-    width: 90%;
+    width: 100%;
   }
 
   .profile-page-body {
@@ -55,10 +55,10 @@
   }
 
   .profile-page-left-col {
-    width: 80%;
+    width: 100%;
   }
 
   .profile-page-right-col {
-    width: 80%;
+    width: 100%;
   }
 }

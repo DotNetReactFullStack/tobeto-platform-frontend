@@ -1,33 +1,37 @@
-.experience-information {
+.experience-form {
   width: 100%;
-  display: block;
-  align-items: center;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: flex-start;
 }
 
-.experience-input {
+.experience-form textarea {
+  height: 100px;
+}
+
+.experience-input-section {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
-.experience-input div {
-  width: 49%;
+.experience-input-section div {
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
 }
 
-.experience-input label {
+.experience-input-section label {
   color: #928282;
   font-size: 16px;
   font-weight: 500;
 }
 
-.experience-input input,
-.experience-input select,
-.experience-input textarea {
+.experience-input-section input,
+.experience-input-section select,
+.experience-input-section textarea {
   border: 2px solid #b3a6c0;
   border-radius: 8px;
   padding: 12px 18px;
@@ -35,14 +39,14 @@
   font-weight: 400;
 }
 
-.job-continue-input {
+.job-continue-checkbox {
   display: flex !important;
   flex-direction: row !important;
   width: 100% !important;
   margin: 5px 0px;
 }
 
-.job-continue-input label {
+.job-continue-checkbox label {
   margin-left: 5px;
 }
 
@@ -70,4 +74,21 @@
 .experience-save-button:hover {
   transform: scale(1.025);
   opacity: 1;
+}
+
+@media (max-width: 767.98px) {
+  .experience-form {
+    align-items: center;
+    margin-bottom: 30px;
+  }
+
+  .experience-input-section {
+    justify-content: center;
+  }
+
+  .experience-save-button {
+    width: 85%;
+    padding: 10px 16px;
+    margin: 16px auto;
+  }
 }

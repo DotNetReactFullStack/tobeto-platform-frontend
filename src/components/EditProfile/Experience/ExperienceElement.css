@@ -2,13 +2,14 @@
   width: 100%;
   margin-top: 20px;
 
-  padding: 16px 4px 16px 16px;
+  padding: 16px 8px 16px 16px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 0px 16px;
 
   display: flex;
   justify-content: space-between;
 }
+
 .experience-element-content {
   width: 100%;
 }
@@ -72,6 +73,7 @@
 .experience-element-company-name {
   width: 34%;
 }
+
 .experience-element-job {
   width: 30%;
 }
@@ -93,4 +95,24 @@
   font-weight: 500;
   text-transform: capitalize;
   margin-top: 3px;
+}
+
+@media (max-width: 991.98px) {
+  .experience-element-body {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .experience-element-body div {
+    width: 90%;
+    margin-bottom: 16px;
+  }
+
+  .experience-element-body span:nth-child(even) {
+    margin-top: 0px;
+  }
+
+  .experience-element-buttons {
+    margin-right: 20px;
+  }
 }

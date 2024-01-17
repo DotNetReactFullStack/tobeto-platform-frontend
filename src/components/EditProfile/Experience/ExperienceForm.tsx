@@ -6,20 +6,20 @@ type Props = {};
 const ExperienceForm = (props: Props) => {
   return (
     <div className="experience-form">
-      <div className="experience-input">
-        <div className="company-name-input">
+      <div className="experience-input-section">
+        <div className="company-name-input-container input-container-w-50">
           <label>Kurum Adı*</label>
           <input type="text" placeholder="Tobeto" />
         </div>
-        <div className="job-input">
+        <div className="job-input-container input-container-w-50">
           <label>Pozisyon*</label>
           <input type="text" placeholder="Full-Stack Developer" />
         </div>
-        <div className="sector-input">
+        <div className="sector-input-container input-container-w-50">
           <label>Sektör*</label>
           <input type="text" placeholder="Yazılım" />
         </div>
-        <div className="experience-city-input">
+        <div className="experience-city-input-container input-container-w-50">
           <label>Şehir Seçiniz*</label>
           <select name="city">
             <option value="">İl Seçiniz</option>
@@ -106,19 +106,19 @@ const ExperienceForm = (props: Props) => {
             <option value="81">Düzce</option>
           </select>
         </div>
-        <div className="job-start-date-input">
+        <div className="job-start-date-input-container input-container-w-50">
           <label>İş Başlangıcı*</label>
           <input type="date" />
         </div>
-        <div className="job-end-date-input">
+        <div className="job-end-date-input-container input-container-w-50">
           <label>İş Bitiş*</label>
           <input type="date" />
-          <div className="job-continue-input">
+          <div className="job-continue-checkbox">
             <input type="checkbox" />
             <label>Çalışmaya Devam Ediyorum</label>
           </div>
         </div>
-        <div className="job-detail-input">
+        <div className="job-detail-input-container input-container-w-100">
           <label>İş Açıklaması</label>
           <textarea
             name="about-me"
