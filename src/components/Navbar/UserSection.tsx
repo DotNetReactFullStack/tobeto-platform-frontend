@@ -28,7 +28,7 @@ function UserSection({ }: Props) {
           >
             <img
               className="rounded-circle me-2"
-              src={process.env.PUBLIC_URL + "/assets/images/user-icon.png"}
+              src={process.env.PUBLIC_URL + "/assets/images/default-profile-photo.png"}
               alt="Bootstrap"
               width="35"
               height="35"
