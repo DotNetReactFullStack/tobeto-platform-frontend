@@ -12,6 +12,7 @@ import Experience from "../pages/Profile/EditProfile/Experience/Experience";
 import Education from "../pages/Profile/EditProfile/Education/Education";
 import Capabilities from "../pages/Profile/EditProfile/Capabilities/Capabilities";
 import Exams from "../pages/Exams/Exams";
+import MyCertificates from "../pages/Profile/EditProfile/MyCertificates/MyCertificates";
 
 type Props = {};
 
@@ -40,6 +41,10 @@ const RouteDefinitions = (props: Props) => {
       <Route
         path="/my-profile/edit-profile/capabilities"
         element={<Capabilities />}
+      />
+      <Route
+        path="/my-profile/edit-profile/certificates"
+        element={<MyCertificates />}
       />
       <Route path="/my-exams" element={<Exams />} />
     </Routes>

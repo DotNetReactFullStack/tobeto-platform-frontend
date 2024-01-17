@@ -1,0 +1,32 @@
+.upload-certificate-header {
+  font-size: 18px;
+  font-weight: 500;
+  color: #9933ff;
+  margin-bottom: 10px;
+}
+
+.upload-certificate-body {
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 0px 16px;
+  border: 1px dashed #9933ff;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 0px;
+}
+
+.upload-certificate-file-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.upload-file-image {
+  cursor: pointer;
+}
+
+.upload-file-text {
+  margin-top: 10px;
+  color: #828282;
+  font-size: 16px;
+  font-weight: 500;
+}

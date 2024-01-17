@@ -1,0 +1,79 @@
+.certificate-list {
+  margin-top: 50px;
+}
+
+.certificate-list-table-header {
+  background-color: #dcdcdc;
+}
+
+.certificate-list-table-header tr th {
+  font-size: 14px;
+  color: #667085;
+  font-weight: 500;
+  padding: 10px;
+}
+
+.certificate-list-table-body {
+  background-color: #eeeeee;
+}
+
+.certificate-list-table-body tr {
+  align-items: center;
+  border: 2px solid white;
+}
+
+.certificate-list-table-body td {
+  padding: 10px 12px;
+  font-size: 14px;
+}
+
+.certificate-list-title-td {
+  width: 30%;
+}
+
+.certificate-list-file-icon-td {
+  width: 20%;
+  text-align: center;
+}
+
+.certificate-list-date-td {
+  width: 20%;
+}
+
+.certificate-list-buttons-td {
+  width: 30%;
+  text-align: center;
+}
+
+.certificate-list-file-icon {
+  color: #f15642;
+  font-size: 18px;
+}
+
+/* Buttons */
+.certificate-list-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.certificate-file-button,
+.certificate-delete-button {
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 0px 16px;
+  border: none;
+  background-color: white;
+  padding: 5px 8px;
+  border-radius: 8px;
+  margin: 0px 10px;
+}
+
+.certificate-file-button-icon {
+  color: #7fbffb;
+  font-size: 18px;
+}
+
+.certificate-delete-button-icon {
+  color: #fb4a4a;
+  font-size: 18px;
+}
