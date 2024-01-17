@@ -13,10 +13,25 @@
   justify-content: center;
   height: 144px;
 
-  background: rgb(143, 148, 251);
-  background: linear-gradient(0deg,
-      rgba(79, 85, 201, 1) 50%,
-      rgba(143, 148, 251, 1) 100%);
+  background: linear-gradient(-90deg, #2a54fd, #00b3b0, #898ef6, #6525c4);
+  background-size: 500% 100%;
+  animation: gradient 16s ease infinite;
+
+
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 75%;
+  }
+
+  50% {
+    background-position: 100% 75%;
+  }
+
+  100% {
+    background-position: 0% 75%;
+  }
 }
 
 .user-information-body {
