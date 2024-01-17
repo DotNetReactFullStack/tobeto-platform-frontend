@@ -33,7 +33,7 @@ const MenuLinks = (props: Props) => {
         </a>
       </li>
       <li className="nav-item">
-        <a className="nav-link" href="#">
+        <a className="nav-link" target="_blank" href="https://tobeto.com/istanbul-kodluyor">
           İstanbul Kodluyor
         </a>
       </li>
