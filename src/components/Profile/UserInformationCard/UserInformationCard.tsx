@@ -10,7 +10,7 @@ const UserInformationCard = (props: Props) => {
       <div className="user-information-header">
         <img
           className="user-information-img rounded-circle"
-          src={process.env.PUBLIC_URL + "/assets/images/default-profile-photo.jpg"}
+          src={process.env.PUBLIC_URL + "/assets/images/default-profile-photo.png"}
         />
       </div>
       <div className="user-information-body">
