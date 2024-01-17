@@ -5,9 +5,9 @@ import CapabilityList from "../../../../components/EditProfile/Capability/Capabi
 
 type Props = {};
 
-function Capabilities({}: Props) {
+function Capabilities({ }: Props) {
   return (
-    <div className="container main-section d-flex">
+    <div className="edit-profile-page-body container main-section d-flex">
       <div className="edit-profile-page-left-side">
         <LinkList />
       </div>

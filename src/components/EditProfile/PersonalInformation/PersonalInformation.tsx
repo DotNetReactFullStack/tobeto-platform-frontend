@@ -16,37 +16,37 @@ const PersonalInformation = (props: Props) => {
           </button>
         </div>
       </div>
-      <div className="personal-information-user-input">
-        <div className="user-name-input">
+      <div className="personal-information-input-section">
+        <div className="user-name-input-container input-container-w-50">
           <label> Adınız*</label>
-          <input type="text" placeholder="Adınız" />
+          <input className="" type="text" placeholder="Adınız" />
         </div>
-        <div className="user-surname-input">
+        <div className="user-surname-input-container input-container-w-50">
           <label> Soyadınız*</label>
           <input type="text" placeholder="Soyadınız" />
         </div>
-        <div className="user-phone-input">
+        <div className="user-phone-input-container input-container-w-50">
           <label>Telefon Numaranız*</label>
           <input type="tel" placeholder="Telefon Numaranız" />
         </div>
-        <div className="user-birthdate-input">
+        <div className="user-birthdate-input-container input-container-w-50">
           <label>Doğum Tarihiniz*</label>
           <input type="date" />
         </div>
-        <div className="user-identity-number-input">
+        <div className="user-identity-number-input-container input-container-w-50">
           <label>TC Kimlik No*</label>
           <input type="text" placeholder="TC Kimlik No" />
         </div>
-        <div className="user-email-input">
+        <div className="user-email-input-container input-container-w-50">
           <label>E-Posta*</label>
           <input type="email" placeholder="E-Posta adresiniz" />
         </div>
-        <div className="user-address-input">
-          <div className="user-address-country-input">
+        <div className="user-address-section">
+          <div className="user-address-country-input-container input-container-w-100">
             <label> Ülke*</label>
             <input type="text" placeholder="Ülke" />
           </div>
-          <div className="user-address-city-input">
+          <div className="user-address-city-input-container input-container-w-50">
             <label> İl*</label>
             <select name="city">
               <option value="">İl</option>
@@ -133,7 +133,7 @@ const PersonalInformation = (props: Props) => {
               <option value="81">Düzce</option>
             </select>
           </div>
-          <div className="user-address-districts-input">
+          <div className="user-address-districts-input-container input-container-w-50">
             <label>İlçe*</label>
             <select name="districts">
               <option value="">İlçe</option>
@@ -143,14 +143,14 @@ const PersonalInformation = (props: Props) => {
               <option value="4">Maltape</option>
             </select>
           </div>
-          <div className="user-address-detail-input">
+          <div className="user-address-detail-input-container input-container-w-100">
             <label>Mahalle / Sokak</label>
             <textarea
               name="address-detail"
               placeholder="Açık Adres..."
             ></textarea>
           </div>
-          <div className="user-about-me-input">
+          <div className="user-about-me-input-container input-container-w-100">
             <label>Hakkımda</label>
             <textarea
               name="about-me"

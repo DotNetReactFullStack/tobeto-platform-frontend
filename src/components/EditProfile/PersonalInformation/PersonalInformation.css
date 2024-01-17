@@ -1,9 +1,19 @@
+.input-container-w-100 {
+  width: 100%;
+}
+
+.input-container-w-50 {
+  width: 49%;
+}
+
 .personal-information {
   width: 100%;
-  display: block;
-  align-items: center;
-  justify-content: center;
-  margin-left: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.personal-information textarea {
+  height: 100px;
 }
 
 .profile-photo {
@@ -51,29 +61,32 @@
 
 /* inputs */
 
-.personal-information-user-input {
+.personal-information-input-section {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
-.personal-information-user-input div {
-  width: 49%;
+.personal-information-input-section .user-address-section {
+  justify-content: space-between;
+}
+
+.personal-information-input-section div {
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
 }
 
-.personal-information-user-input label {
+.personal-information-input-section label {
   color: #928282;
   font-size: 16px;
   font-weight: 500;
 }
 
-.personal-information-user-input input,
-.user-address-input select,
-.user-address-input textarea {
+.personal-information-input-section input,
+.user-address-section select,
+.user-address-section textarea {
   border: 2px solid #b3a6c0;
   border-radius: 8px;
   padding: 12px 18px;
@@ -83,7 +96,7 @@
 
 /* Adress inputs */
 
-.user-address-input {
+.user-address-section {
   width: 100% !important;
   display: flex !important;
   flex-direction: row !important;
@@ -91,20 +104,10 @@
   justify-content: space-between;
 }
 
-.user-address-country-input,
-.user-address-detail-input,
-.user-about-me-input {
-  width: 100% !important;
-}
-
-.user-address-input textarea {
-  height: 100px;
-}
-
 /* Save Button*/
 
 .personal-information-save-button {
-  min-width: 150px;
+  width: 150px;
   padding: 8px 16px;
   border: none;
   border-radius: 20px;
@@ -119,4 +122,39 @@
 .personal-information-save-button:hover {
   transform: scale(1.025);
   opacity: 1;
+}
+
+@media (max-width: 767.98px) {
+  .personal-information {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .input-container-w-100 {
+    width: 85%;
+  }
+
+  .input-container-w-50 {
+    width: 85%;
+  }
+
+  .personal-information-input-section {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .personal-information-input-section {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .personal-information-input-section .user-address-section {
+    justify-content: center;
+  }
+
+  .personal-information .personal-information-save-button {
+    width: 85%;
+    padding: 10px 16px;
+  }
 }

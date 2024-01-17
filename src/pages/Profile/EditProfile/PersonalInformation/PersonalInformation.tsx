@@ -7,7 +7,7 @@ type Props = {};
 
 const PersonalInformation = (props: Props) => {
   return (
-    <div className="container main-section d-flex">
+    <div className="edit-profile-page-body container main-section d-flex">
       <div className="edit-profile-page-left-side">
         <LinkList />
       </div>

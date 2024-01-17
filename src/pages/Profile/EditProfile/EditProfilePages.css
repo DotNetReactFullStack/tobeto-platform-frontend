@@ -1,3 +1,11 @@
+@media (max-width: 575.98px) {
+  .input-sm-w-100 {
+    width: 85% !important;
+    margin: auto;
+  }
+}
+
+/*  */
 .edit-profile-page-left-side {
   width: 20%;
 }
@@ -5,4 +13,35 @@
 .edit-profile-page-right-side {
   width: 80%;
   padding-left: 20px;
+}
+
+@media (max-width: 1200px) {
+
+  .edit-profile-page-body {
+    flex-wrap: wrap;
+  }
+
+  .edit-profile-page-left-side {
+    width: 100%;
+  }
+
+  .edit-profile-page-right-side {
+    padding-left: 0px;
+    width: 80%;
+    margin: auto;
+    margin-top: 50px;
+  }
+
+}
+
+@media (max-width: 991.98px) {
+  .edit-profile-page-right-side {
+    width: 90%;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .edit-profile-page-right-side {
+    width: 100%;
+  }
 }
