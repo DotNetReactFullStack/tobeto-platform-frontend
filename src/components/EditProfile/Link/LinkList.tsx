@@ -1,6 +1,6 @@
 import React from "react";
 import LinkElement from "./LinkElement";
-import './LinkList.css';
+import "./LinkList.css";
 
 type Props = {};
 
@@ -30,8 +30,16 @@ const linkListFakeData: any[] = [
     title: "Sertifikalarım",
     redirectUrl: "/my-profile/edit-profile/certificates",
   },
-  { iconClass: "bi bi-globe2", title: "Medya Hesaplarım", redirectUrl: "/" },
-  { iconClass: "bi bi-translate", title: "Yabancı Dillerim", redirectUrl: "/" },
+  {
+    iconClass: "bi bi-globe2",
+    title: "Medya Hesaplarım",
+    redirectUrl: "/my-profile/edit-profile/social-media-accounts",
+  },
+  {
+    iconClass: "bi bi-translate",
+    title: "Yabancı Dillerim",
+    redirectUrl: "/my-profile/edit-profile/foreing-languages",
+  },
   {
     iconClass: "bi bi-gear-wide-connected",
     title: "Ayarlar",

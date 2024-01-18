@@ -1,0 +1,44 @@
+.social-media-account-input {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.social-media-account-type-input {
+  width: 30%;
+}
+
+.social-media-account-link-input {
+  width: 67%;
+}
+.social-media-account-type-input select,
+.social-media-account-link-input input {
+  width: 100%;
+  border: 2px solid #b3a6c0;
+  border-radius: 8px;
+  padding: 12px 18px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+/* Save Button*/
+
+.social-media-account-save-button {
+  min-width: 150px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 20px;
+  background-color: #9933ff;
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  transition: all 0.5s ease;
+  opacity: 0.9;
+}
+
+.social-media-account-save-button:hover {
+  transform: scale(1.025);
+  opacity: 1;
+}

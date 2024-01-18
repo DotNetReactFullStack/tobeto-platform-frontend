@@ -1,0 +1,78 @@
+.social-media-account-element {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.social-media-account-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.social-media-account-header label {
+  font-size: 16px;
+  font-weight: 500;
+  color: #828282;
+  margin-left: 5px;
+  margin-bottom: 3px;
+}
+
+.social-media-account-body {
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  border: 2px solid #b3a6c0;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 0px 16px;
+}
+
+.social-media-account-content {
+  width: 85%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  border-right: 2px solid #b3a6c0;
+  border-radius: 10px;
+  padding: 12px 15px;
+}
+
+.social-media-account-icon {
+  font-size: 20px;
+}
+
+.social-media-account-url-text {
+  font-size: 15px;
+  font-weight: 400;
+  margin-left: 8px;
+}
+
+/* Buttons */
+.social-media-account-element-buttons {
+  width: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.social-media-account-element-delete-button,
+.social-media-account-element-edit-button {
+  border: none;
+  border-radius: 50%;
+  padding: 4px 8px;
+  margin: 0px 15px;
+}
+
+.social-media-account-element-delete-button {
+  background-color: #fc6d6d;
+}
+
+.social-media-account-element-edit-button {
+  background-color: #000000;
+}
+
+.social-media-account-element-delete-button-icon,
+.social-media-account-element-edit-button-icon {
+  color: white;
+  font-size: 14px;
+}
