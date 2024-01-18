@@ -15,6 +15,7 @@ import Exams from "../pages/Exams/Exams";
 import MyCertificates from "../pages/Profile/EditProfile/MyCertificates/MyCertificates";
 import SocialMediaAccounts from "../pages/Profile/EditProfile/SocialMediaAccounts/SocialMediaAccounts";
 import ForeignLanguages from "../pages/Profile/EditProfile/ForeignLanguages/ForeignLanguages";
+import AccountSettings from "../pages/Profile/EditProfile/AccountSettings/AccountSettings";
 
 type Props = {};
 
@@ -55,6 +56,10 @@ const RouteDefinitions = (props: Props) => {
       <Route
         path="/my-profile/edit-profile/foreing-languages"
         element={<ForeignLanguages />}
+      />
+      <Route
+        path="/my-profile/edit-profile/settings"
+        element={<AccountSettings />}
       />
       <Route path="/my-exams" element={<Exams />} />
     </Routes>

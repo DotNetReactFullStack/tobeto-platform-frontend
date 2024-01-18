@@ -1,0 +1,66 @@
+.account-setting-pasword {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.account-setting-previous-password,
+.account-setting-new-password,
+.account-setting-new-password-repeat {
+  width: 31%;
+}
+
+.account-setting-previous-password label,
+.account-setting-new-password label,
+.account-setting-new-password-repeat label {
+  color: #928282;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.account-setting-previous-password input,
+.account-setting-new-password input,
+.account-setting-new-password-repeat input {
+  width: 100%;
+  border: 2px solid #b3a6c0;
+  border-radius: 8px;
+  padding: 12px 18px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+/* Buttons */
+
+.account-setting-buttons {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.account-setting-buttons button {
+  width: 48%;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  transition: all 0.5s ease;
+  opacity: 0.9;
+}
+
+.account-setting-buttons button:hover {
+  transform: scale(1.025);
+  opacity: 1;
+}
+
+.account-setting-change-password-button {
+  background-color: #9933ff;
+}
+
+.account-setting-terminate-membership-button {
+  background-color: rgb(253, 51, 0);
+}
