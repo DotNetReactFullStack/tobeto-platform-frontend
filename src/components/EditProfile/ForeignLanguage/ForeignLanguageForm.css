@@ -1,0 +1,49 @@
+.foreing-language {
+  margin-bottom: 20px;
+}
+
+.foreing-language-input {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.foreing-language-input select {
+  width: 99%;
+  border: 2px solid #b3a6c0;
+  border-radius: 8px;
+  padding: 12px 18px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.foreing-language-name-input,
+.foreing-language-level-input {
+  display: flex;
+  align-items: center;
+}
+.foreing-language-level-input {
+  justify-content: flex-end;
+}
+
+/* Save Button*/
+
+.foreing-language-save-button {
+  min-width: 150px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 20px;
+  background-color: #9933ff;
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  transition: all 0.5s ease;
+  opacity: 0.9;
+}
+
+.foreing-language-save-button:hover {
+  transform: scale(1.025);
+  opacity: 1;
+}
