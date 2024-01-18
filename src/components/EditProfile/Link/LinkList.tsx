@@ -43,7 +43,7 @@ const linkListFakeData: any[] = [
   {
     iconClass: "bi bi-gear-wide-connected",
     title: "Ayarlar",
-    redirectUrl: "/",
+    redirectUrl: "/my-profile/edit-profile/settings",
   },
 ];
 
