@@ -10,6 +10,10 @@
   width: 49%;
 }
 
+.input-container-w-33 {
+  width: 32%;
+}
+
 .input-container-w-30 {
   width: 29%;
 }
@@ -51,6 +55,7 @@
   .input-container-w-100,
   .input-container-w-70,
   .input-container-w-50,
+  .input-container-w-33,
   .input-container-w-30 {
     width: 85%;
   }
