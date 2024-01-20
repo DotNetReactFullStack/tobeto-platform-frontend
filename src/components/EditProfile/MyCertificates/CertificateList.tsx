@@ -30,7 +30,7 @@ const CertificateList = (props: Props) => {
             <th>Dosya Adı</th>
             <th className="text-center">Dosya Türü</th>
             <th>Dosya Tarih</th>
-            <th className="text-center">Dosya İşlem</th>
+            <th>Dosya İşlem</th>
           </tr>
         </thead>
         <tbody className="certificate-list-table-body">
