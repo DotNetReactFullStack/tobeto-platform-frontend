@@ -52,7 +52,7 @@
   width: 15%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .social-media-account-element-delete-button,
@@ -75,4 +75,41 @@
 .social-media-account-element-edit-button-icon {
   color: white;
   font-size: 14px;
+}
+
+@media (max-width: 991.98px) {
+
+  .social-media-account-element-delete-button,
+  .social-media-account-element-edit-button {
+    margin: 0px 5px;
+  }
+}
+
+@media (max-width: 666px) {
+  .social-media-account-url-text {
+    overflow: auto;
+  }
+
+  .social-media-account-element-buttons {
+    justify-content: center;
+  }
+
+  .social-media-account-element-delete-button,
+  .social-media-account-element-edit-button {
+    padding: 0px;
+    background-color: transparent;
+  }
+
+  .social-media-account-element-delete-button-icon,
+  .social-media-account-element-edit-button-icon {
+    font-size: 16px;
+  }
+
+  .social-media-account-element-delete-button-icon {
+    color: #fc6d6d;
+  }
+
+  .social-media-account-element-edit-button-icon {
+    color: rgb(79, 152, 155);
+  }
 }
