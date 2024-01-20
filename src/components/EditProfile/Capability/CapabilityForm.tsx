@@ -1,23 +1,53 @@
 import React from "react";
 import "./CapabilityForm.css";
+import InputContainer from "../InputContainer";
 
 type Props = {};
+
+const ifVisibilityIsTrue = (value: any) => value.visibility === true;
+let capabilitiesOptionDataFilters = [ifVisibilityIsTrue];
+const sortByPriorityDesc = (a: any, b: any) => b.priority - a.priority;
+
+const capabilities = [
+  {
+    id: '1',
+    name: 'CSS',
+    priority: 4,
+    visibility: true
+  },
+  {
+    id: '2',
+    name: 'JavaScript',
+    priority: 3,
+    visibility: true
+  },
+  {
+    id: '3',
+    name: 'TypeScript',
+    priority: 2,
+    visibility: true
+  },
+  {
+    id: '4',
+    name: 'React',
+    priority: 1,
+    visibility: true
+  }
+];
 
 const CapabilityForm = (props: Props) => {
   return (
     <div className="capability-form">
-      <div className="capability-input">
-        <label>Yetkinlikler*</label>
-        <select name="capability-select">
-          <option value="">Seçiniz</option>
-          <option value="1">.NET</option>
-          <option value="2">Java</option>
-          <option value="3">CSS</option>
-          <option value="4">JavaScript</option>
-          <option value="5">React</option>
-          <option value="6">Frontend</option>
-        </select>
-      </div>
+      <InputContainer
+        inputContainerClasses="capability-input-container input-container-w-100"
+        elementType="select"
+        labelText="Yetkinlik"
+        inputName="capability"
+        defaultOptionText="Yetkinlik Seçiniz"
+        optionData={capabilities}
+        optionDataFilters={capabilitiesOptionDataFilters}
+        optionDataSort={sortByPriorityDesc}
+      />
 
       <button type="submit" className="capability-save-button">
         Kaydet
