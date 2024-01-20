@@ -30,7 +30,7 @@ const EducationElement = ({
         </div>
         <div className="education-element-body">
           <div className="education-element-college">
-            <span>Universite</span>
+            <span>Üniversite</span>
             <span>{college}</span>
           </div>
           <div className="education-element-program">
@@ -40,8 +40,8 @@ const EducationElement = ({
         </div>
       </div>
       <div className="education-element-button">
-        <button className="experience-element-delete-button">
-          <i className="bi bi-trash experience-element-delete-button-icon"></i>
+        <button className="education-element-delete-button">
+          <i className="bi bi-trash education-element-delete-button-icon"></i>
         </button>
       </div>
     </div>
