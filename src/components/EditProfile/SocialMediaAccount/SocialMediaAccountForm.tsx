@@ -1,24 +1,60 @@
 import React from "react";
 import "./SocialMediaAccountForm.css";
+import InputContainer from "../InputContainer";
 
 type Props = {};
+
+const ifVisibilityIsTrue = (value: any) => value.visibility === true;
+let socialMediaPlatformsOptionDataFilters = [ifVisibilityIsTrue];
+const sortByPriorityDesc = (a: any, b: any) => b.priority - a.priority;
+
+const socialMediaPlatforms = [
+  {
+    id: '1',
+    name: 'GitHub',
+    priority: 4,
+    visibility: true
+  },
+  {
+    id: '2',
+    name: 'LinkedIn',
+    priority: 3,
+    visibility: true
+  },
+  {
+    id: '3',
+    name: 'Instagram',
+    priority: 2,
+    visibility: true
+  },
+  {
+    id: '4',
+    name: 'Twitter',
+    priority: 1,
+    visibility: true
+  }
+];
 
 const SocialMediaAccountsFrom = (props: Props) => {
   return (
     <div className="social-media-account-form">
-      <div className="social-media-account-input">
-        <div className="social-media-account-type-input">
-          <select name="social-media-account-type">
-            <option value="">Seçiniz</option>
-            <option value="1">Instagram</option>
-            <option value="2">LınkedIn</option>
-            <option value="3">Twitter</option>
-            <option value="4">GitHub</option>
-          </select>
-        </div>
-        <div className="social-media-account-link-input">
-          <input type="url" placeholder="http://" />
-        </div>
+      <div className="social-media-account-input-section">
+        <InputContainer
+          inputContainerClasses="social-media-account-type-input-container input-container-w-30"
+          elementType="select"
+          inputName="account-type"
+          defaultOptionText="Seçiniz"
+          optionData={socialMediaPlatforms}
+          optionDataFilters={socialMediaPlatformsOptionDataFilters}
+          optionDataSort={sortByPriorityDesc}
+        />
+
+        <InputContainer
+          inputContainerClasses="social-media-account-link-input-container input-container-w-70"
+          inputType="url"
+          inputName="account-url"
+          inputPlaceholder="http://"
+        />
       </div>
       <button type="submit" className="social-media-account-save-button">
         Kaydet
