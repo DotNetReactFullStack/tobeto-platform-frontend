@@ -1,4 +1,4 @@
-.account-setting-pasword {
+.account-settings-password-section {
   width: 100%;
   display: flex;
   align-items: center;
@@ -6,23 +6,17 @@
   margin-bottom: 30px;
 }
 
-.account-setting-previous-password,
-.account-setting-new-password,
-.account-setting-new-password-repeat {
-  width: 31%;
-}
-
-.account-setting-previous-password label,
-.account-setting-new-password label,
-.account-setting-new-password-repeat label {
+.account-settings-previous-password-container label,
+.account-settings-new-password-container label,
+.account-settings-new-password-repeat-container label {
   color: #928282;
   font-size: 16px;
   font-weight: 500;
 }
 
-.account-setting-previous-password input,
-.account-setting-new-password input,
-.account-setting-new-password-repeat input {
+.account-settings-previous-password-container input,
+.account-settings-new-password-container input,
+.account-settings-new-password-repeat-container input {
   width: 100%;
   border: 2px solid #b3a6c0;
   border-radius: 8px;
@@ -33,14 +27,14 @@
 
 /* Buttons */
 
-.account-setting-buttons {
+.account-settings-buttons {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.account-setting-buttons button {
+.account-settings-buttons button {
   width: 48%;
   padding: 8px 16px;
   border: none;
@@ -52,15 +46,15 @@
   opacity: 0.9;
 }
 
-.account-setting-buttons button:hover {
+.account-settings-buttons button:hover {
   transform: scale(1.025);
   opacity: 1;
 }
 
-.account-setting-change-password-button {
+.account-settings-change-password-button {
   background-color: #9933ff;
 }
 
-.account-setting-terminate-membership-button {
+.account-settings-terminate-membership-button {
   background-color: rgb(253, 51, 0);
 }
