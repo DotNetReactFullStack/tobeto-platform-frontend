@@ -13,15 +13,12 @@
   align-items: center;
   justify-content: center;
   padding: 30px 0px;
+  cursor: pointer;
 }
 
 .upload-certificate-file-input {
   display: flex;
   flex-direction: column;
-}
-
-.upload-file-image {
-  cursor: pointer;
 }
 
 .upload-file-text {
