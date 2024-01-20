@@ -1,5 +1,5 @@
 import React from "react";
-import "./SocialMediaAccountFrom.css";
+import "./SocialMediaAccountForm.css";
 
 type Props = {};
 
