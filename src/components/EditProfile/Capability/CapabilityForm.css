@@ -1,5 +1,8 @@
 .capability-form {
   margin-bottom: 57px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .capability-input-container {
@@ -40,4 +43,14 @@
 .capability-save-button:hover {
   transform: scale(1.025);
   opacity: 1;
+}
+
+@media (max-width: 767.98px) {
+  .capability-form {
+    align-items: center;
+  }
+
+  .capability-save-button {
+    min-width: 295px;
+  }
 }
