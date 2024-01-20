@@ -1,6 +1,6 @@
 import React from "react";
 import LinkList from "../../../../components/EditProfile/Link/LinkList";
-import AccountSettingForm from "../../../../components/EditProfile/AccountSettings/AccountSettingForm";
+import AccountSettingsForm from "../../../../components/EditProfile/AccountSettings/AccountSettingsForm";
 
 type Props = {};
 
@@ -11,7 +11,7 @@ const AccountSettings = (props: Props) => {
         <LinkList />
       </div>
       <div className="edit-profile-page-right-side">
-        <AccountSettingForm />
+        <AccountSettingsForm />
       </div>
     </div>
   );

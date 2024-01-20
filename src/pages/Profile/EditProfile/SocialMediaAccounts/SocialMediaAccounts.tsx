@@ -1,5 +1,5 @@
 import React from "react";
-import SocialMediaAccountFrom from "../../../../components/EditProfile/SocialMediaAccount/SocialMediaAccountFrom";
+import SocialMediaAccountFrom from "../../../../components/EditProfile/SocialMediaAccount/SocialMediaAccountForm";
 import LinkList from "../../../../components/EditProfile/Link/LinkList";
 import SocialMediaAccountList from "../../../../components/EditProfile/SocialMediaAccount/SocialMediaAccountList";
 

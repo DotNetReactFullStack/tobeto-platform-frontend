@@ -2,16 +2,17 @@
   margin-bottom: 20px;
 }
 
-.foreing-language-input {
+.foreing-language-input-section {
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 20px;
 }
 
-.foreing-language-input select {
-  width: 99%;
+.foreing-language-input-section select {
+  width: 100%;
   border: 2px solid #b3a6c0;
   border-radius: 8px;
   padding: 12px 18px;
@@ -19,12 +20,13 @@
   font-weight: 400;
 }
 
-.foreing-language-name-input,
-.foreing-language-level-input {
+.foreing-language-name-input-container,
+.foreing-language-level-input-container {
   display: flex;
   align-items: center;
 }
-.foreing-language-level-input {
+
+.foreing-language-level-input-container {
   justify-content: flex-end;
 }
 

@@ -27,12 +27,12 @@ const UploadCertificate = (props: Props) => {
       <div className="upload-certificate-header">
         <span>Sertifikalarım</span>
       </div>
-      <div className="upload-certificate-body">
+      <div className="upload-certificate-body"
+        onClick={handleImageClick}>
         <div className="upload-certificate-file-input">
           <img
             className="upload-file-image"
             src={process.env.PUBLIC_URL + "/assets/images/upload.svg"}
-            onClick={handleImageClick}
           />
           <input
             type="file"
