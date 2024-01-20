@@ -25,6 +25,8 @@
 .edit-profile-page-right-side {
   width: 80%;
   padding-left: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 @media (max-width: 1200px) {
@@ -62,6 +64,7 @@
 
   .edit-profile-page-right-side {
     width: 100%;
+    align-items: center;
   }
 }
 
