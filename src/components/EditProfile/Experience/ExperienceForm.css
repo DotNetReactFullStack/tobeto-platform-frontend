@@ -1,5 +1,4 @@
 .experience-form {
-  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -11,7 +10,6 @@
 }
 
 .experience-input-section {
-  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -21,6 +19,10 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
+}
+
+.experience-input-section div:nth-last-child(-n+2) {
+  margin-bottom: 0px !important;
 }
 
 .experience-input-section label {
@@ -42,7 +44,6 @@
 .job-continue-checkbox {
   display: flex !important;
   flex-direction: row !important;
-  width: 100% !important;
   margin: 5px 0px;
 }
 
@@ -52,7 +53,6 @@
 
 .job-detail-input,
 .job-detail-input textarea {
-  width: 100% !important;
   height: 150px;
 }
 
@@ -69,6 +69,7 @@
   font-size: 12px;
   transition: all 0.5s ease;
   opacity: 0.9;
+  margin-top: 15px;
 }
 
 .experience-save-button:hover {

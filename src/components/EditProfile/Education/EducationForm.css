@@ -1,33 +1,30 @@
 .education-information {
-  width: 100%;
   display: block;
   align-items: center;
   justify-content: center;
 }
 
-.education-input {
-  width: 100%;
+.education-input-section {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
-.education-input div {
-  width: 49%;
+.education-input-section div {
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
 }
 
-.education-input label {
+.education-input-section label {
   color: #928282;
   font-size: 16px;
   font-weight: 500;
 }
 
-.education-input input,
-.education-input select,
-.education-input textarea {
+.education-input-section input,
+.education-input-section select,
+.education-input-section textarea {
   border: 2px solid #b3a6c0;
   border-radius: 8px;
   padding: 12px 18px;
@@ -35,14 +32,14 @@
   font-weight: 400;
 }
 
-.education-program-continue-input {
+.education-program-continue-input-container {
   display: flex !important;
   flex-direction: row !important;
   width: 100% !important;
   margin: 5px 0px;
 }
 
-.education-program-continue-input label {
+.education-program-continue-input-container label {
   margin-left: 5px;
 }
 

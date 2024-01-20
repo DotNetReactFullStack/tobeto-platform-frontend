@@ -1,42 +1,143 @@
 import React from "react";
 import "./EducationForm.css";
+import InputContainer from "../InputContainer";
 
 type Props = {};
+
+const ifVisibilityIsTrue = (value: any) => value.visibility === true;
+let graduationStatusOptionDataFilters = [ifVisibilityIsTrue];
+let collegeOptionDataFilters = [ifVisibilityIsTrue];
+let educationProgramOptionDataFilters = [ifVisibilityIsTrue];
+const sortByPriorityDesc = (a: any, b: any) => b.priority - a.priority;
+
+const graduationStatus = [
+  {
+    id: 1,
+    name: 'Lisans',
+    priority: 4,
+    visibility: true
+  },
+  {
+    id: 2,
+    name: 'Ön Lisans',
+    priority: 3,
+    visibility: true
+  },
+  {
+    id: 3,
+    name: 'Yüksek Lisans',
+    priority: 2,
+    visibility: true
+  },
+  {
+    id: 4,
+    name: 'Doktora',
+    priority: 1,
+    visibility: true
+  }
+];
+
+const colleges = [
+  {
+    id: 1,
+    name: 'Sinop Üniversite',
+    priority: 3,
+    visibility: true
+  },
+  {
+    id: 2,
+    name: 'Düzce Üniversitesi',
+    priority: 2,
+    visibility: true
+  },
+  {
+    id: 3,
+    name: 'Uludağ Üniversitesi',
+    priority: 1,
+    visibility: true
+  }
+];
+
+const educationPrograms = [
+  {
+    id: 1,
+    collegeId: 1,
+    name: 'Makine Mühendisliği',
+    priority: 3,
+    visibility: true
+  },
+  {
+    id: 2,
+    collegeId: 2,
+    name: 'Elektrik Elektronik Mühendisliği',
+    priority: 2,
+    visibility: true
+  },
+  {
+    id: 3,
+    collegeId: 3,
+    name: 'Peyzaj Mimarlığı',
+    priority: 1,
+    visibility: true
+  }
+];
+
 
 const EducationForm = (props: Props) => {
   return (
     <div className="education-form">
-      <div className="education-input">
-        <div className="graduation-status-input">
-          <label>Eğitim Durumu*</label>
-          <select name="graduation-status">
-            <option value="">Seviye Seçiniz</option>
-            <option value="1">Lisans</option>
-            <option value="2">Ön Lisans</option>
-            <option value="3">Yüksek Lisans</option>
-            <option value="4">Doktora</option>
-          </select>
-        </div>
-        <div className="college-input">
-          <label>Universite*</label>
-          <input type="text" placeholder="Sinop Üniversitesi" />
-        </div>
-        <div className="education-program-input">
-          <label>Bölüm*</label>
-          <input type="text" placeholder="Yazılım" />
-        </div>
-        <div className="education-program-start-date-input">
-          <label>Başlangıç Yılı*</label>
-          <input type="month" placeholder="Başlangıç Yılını Seçiniz" />
-        </div>
-        <div className="education-program-end-date-input">
-          <label>Mezuniyet Yılı*</label>
-          <input type="month" placeholder="Mezuniyet Yılını Seçiniz" />
-          <div className="education-program-continue-input">
+      <div className="education-input-section">
+        <InputContainer
+          inputContainerClasses="graduation-status-input-container input-container-w-50"
+          elementType="select"
+          labelText="Eğitim Durumu*"
+          inputName="graduation-status"
+          defaultOptionText="Seviye Seçiniz"
+          optionData={graduationStatus}
+          optionDataFilters={graduationStatusOptionDataFilters}
+          optionDataSort={sortByPriorityDesc}
+        />
+
+        <InputContainer
+          inputContainerClasses="college-input-container input-container-w-50"
+          elementType="select"
+          labelText="Üniversite*"
+          inputName="college"
+          defaultOptionText="Üniversite Seçiniz"
+          optionData={colleges}
+          optionDataFilters={collegeOptionDataFilters}
+          optionDataSort={sortByPriorityDesc}
+        />
+
+        <InputContainer
+          inputContainerClasses="education-program-input-container input-container-w-100"
+          elementType="select"
+          labelText="Bölüm*"
+          inputName="education-program"
+          defaultOptionText="Bölüm Seçiniz"
+          optionData={educationPrograms}
+          optionDataFilters={educationProgramOptionDataFilters}
+          optionDataSort={sortByPriorityDesc}
+        />
+
+        <InputContainer
+          inputContainerClasses="education-program-start-date-input-container input-container-w-50"
+          labelText="Başlangıç Yılı*"
+          inputName="education-program-start-date"
+          inputType="month"
+        />
+
+        <InputContainer
+          inputContainerClasses="education-program-end-date-input-container input-container-w-50"
+          labelText="Mezuniyet Yılı*"
+          inputName="education-program-end-date"
+          inputType="month"
+        >
+          <div className="education-program-continue-input-container">
             <input type="checkbox" />
             <label>Devam Ediyorum</label>
           </div>
-        </div>
+        </InputContainer>
       </div>
       <button type="submit" className="education-save-button">
         Kaydet

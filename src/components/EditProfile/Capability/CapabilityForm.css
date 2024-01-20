@@ -1,23 +1,21 @@
 .capability-form {
-  width: 100%;
   margin-bottom: 57px;
 }
 
-.capability-input {
-  width: 100%;
+.capability-input-container {
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
 }
 
-.capability-input label {
+.capability-input-container label {
   color: #928282;
   font-size: 16px;
   font-weight: 500;
 }
 
-.capability-input input,
-.capability-input select {
+.capability-input-container input,
+.capability-input-container select {
   border: 2px solid #b3a6c0;
   border-radius: 8px;
   padding: 12px 18px;
@@ -25,8 +23,7 @@
   font-weight: 400;
 }
 
-/* Save Button*/
-
+/* Save Button */
 .capability-save-button {
   min-width: 150px;
   padding: 8px 16px;
