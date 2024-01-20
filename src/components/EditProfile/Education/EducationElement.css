@@ -1,4 +1,11 @@
+.education-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .education-element {
+  width: 100%;
   margin-top: 20px;
   padding: 16px 4px 16px 16px;
   border-radius: 10px;
@@ -23,7 +30,8 @@
   background-color: #fc6d6d;
   border: none;
   border-radius: 50%;
-  padding: 4px 8px;
+  padding: 3px 8px;
+  margin-right: 5px;
 }
 
 .education-element-delete-button-icon {
@@ -45,6 +53,10 @@
   margin-left: 10px;
 }
 
+.education-element-header-right-side {
+  margin-right: -30px;
+}
+
 /* Body  */
 
 .education-element-body {
@@ -64,7 +76,7 @@
 }
 
 .education-element-program {
-  width: 25%;
+  width: 30%;
 }
 
 .education-element-body span:nth-child(odd) {
@@ -79,4 +91,37 @@
   font-weight: 500;
   text-transform: capitalize;
   margin-top: 3px;
+}
+
+@media (max-width: 991.98px) {
+  .education-element-college {
+    width: 35%;
+  }
+
+  .education-element-program {
+    width: 45%;
+  }
+}
+
+
+@media (max-width: 767.98px) {
+  .education-element {
+    width: 85%;
+  }
+
+  .education-element-college {
+    width: 40%;
+  }
+
+  .education-element-program {
+    width: 45%;
+  }
+
+  .education-element-body span:nth-child(odd) {
+    font-size: 13px;
+  }
+
+  .education-element-body span:nth-child(even) {
+    font-size: 13px;
+  }
 }

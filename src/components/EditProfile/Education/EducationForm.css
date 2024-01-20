@@ -4,6 +4,11 @@
   justify-content: center;
 }
 
+.education-form {
+  display: flex;
+  flex-direction: column;
+}
+
 .education-input-section {
   display: flex;
   flex-wrap: wrap;
@@ -47,6 +52,7 @@
 
 .education-save-button {
   min-width: 150px;
+  max-width: 175px;
   padding: 8px 16px;
   border: none;
   border-radius: 20px;
@@ -61,4 +67,18 @@
 .education-save-button:hover {
   transform: scale(1.025);
   opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .education-form {
+    align-items: center;
+  }
+
+  .education-input-section {
+    justify-content: center;
+  }
+
+  .education-save-button {
+    min-width: 275px;
+  }
 }
