@@ -1,0 +1,15 @@
+.social-media-account-list {
+    width: 100%;
+}
+
+@media (max-width: 767.98px) {
+    .social-media-account-list {
+        width: 85%;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .social-media-account-list {
+        width: 100%;
+    }
+}
