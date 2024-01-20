@@ -87,6 +87,10 @@
     justify-content: center;
   }
 
+  .experience-input-section div:nth-last-child(-n+2) {
+    margin-bottom: 15px !important;
+  }
+
   .experience-save-button {
     width: 85%;
     padding: 10px 16px;
