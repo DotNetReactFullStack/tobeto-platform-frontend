@@ -1,0 +1,16 @@
+.foreing-language-list {
+    width: 100%;
+    background-color: #faf8fb;
+    border-radius: 16px;
+    padding: 16px 5px;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+@media (max-width: 767.98px) {
+    .foreing-language-list {
+        width: 85%;
+    }
+}
