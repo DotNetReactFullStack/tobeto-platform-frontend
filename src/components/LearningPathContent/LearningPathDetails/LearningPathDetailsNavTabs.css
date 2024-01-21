@@ -1,0 +1,31 @@
+.learning-path-details-nav-tabs {
+  margin-top: 40px;
+}
+
+.learning-path-details-nav-tabs .nav-tabs {
+}
+
+.learning-path-details-nav-tabs .nav-link {
+  border: none !important;
+}
+
+.learning-path-details-nav-tabs .nav-tabs .nav-link.active {
+  border-bottom: 3px #5a5a5a solid !important;
+  color: #282828 !important;
+  font-size: 18px !important;
+}
+
+.learning-path-details-nav-tabs .learning-path-details-nav-tab {
+  background: none !important;
+  font-size: 17px !important;
+  color: rgba(40, 40, 40, 0.8) !important;
+  font-weight: 500 !important;
+}
+
+.learning-path-details-nav-tabs .learning-path-details-nav-tab:hover {
+  color: #282828 !important;
+}
+
+.learning-path-details-nav-tabs .tab-content {
+  margin-top: 20px;
+}

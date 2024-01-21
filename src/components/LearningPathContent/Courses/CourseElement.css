@@ -1,0 +1,13 @@
+.course-element {
+  margin-bottom: 5px;
+}
+
+.course-element-collapse-button {
+  border: none;
+  background: none;
+}
+
+.course-element-collapse-text {
+  font-size: 18px;
+  font-weight: 600;
+}

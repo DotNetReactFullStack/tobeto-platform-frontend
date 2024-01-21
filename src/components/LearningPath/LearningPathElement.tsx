@@ -1,5 +1,6 @@
 import React from "react";
 import "./LearningPathElement.css";
+import { Link } from "react-router-dom";
 
 type Props = {
   imageUrl: string;
@@ -21,7 +22,9 @@ const LearningPathElement = ({ imageUrl, name, datetime }: Props) => {
         <div className="learning-path-publish-datetime">{datetime}</div>
       </div>
       <div className="learning-path-footer">
-        <button className="learning-path-button">Eğitime Git</button>
+        <Link to={"/my-learning-paths/net-react-fullstack"}>
+          <button className="learning-path-button">Eğitime Git</button>
+        </Link>
       </div>
     </div>
   );
