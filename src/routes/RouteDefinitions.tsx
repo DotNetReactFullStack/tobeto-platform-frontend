@@ -17,6 +17,7 @@ import SocialMediaAccounts from "../pages/Profile/EditProfile/SocialMediaAccount
 import ForeignLanguages from "../pages/Profile/EditProfile/ForeignLanguages/ForeignLanguages";
 import AccountSettings from "../pages/Profile/EditProfile/AccountSettings/AccountSettings";
 import LearningPathContent from "../pages/LearningPathContent/LearningPathContent";
+import Assessments from "../pages/Assessments/Assessments";
 
 type Props = {};
 
@@ -67,6 +68,7 @@ const RouteDefinitions = (props: Props) => {
         element={<LearningPathContent />}
       />
       <Route path="/my-exams" element={<Exams />} />
+      <Route path="/my-assessments" element={<Assessments />} />
     </Routes>
   );
 };

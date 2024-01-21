@@ -18,9 +18,9 @@ const MenuLinks = (props: Props) => {
         </Link>
       </li>
       <li className="nav-item">
-        <a className="nav-link" href="#">
+        <Link className="nav-link" to="/my-assessments">
           Değerlendirmeler
-        </a>
+        </Link>
       </li>
       <li className="nav-item">
         <a className="nav-link" href="#">
@@ -33,7 +33,11 @@ const MenuLinks = (props: Props) => {
         </a>
       </li>
       <li className="nav-item">
-        <a className="nav-link" target="_blank" href="https://tobeto.com/istanbul-kodluyor">
+        <a
+          className="nav-link"
+          target="_blank"
+          href="https://tobeto.com/istanbul-kodluyor"
+        >
           İstanbul Kodluyor
         </a>
       </li>

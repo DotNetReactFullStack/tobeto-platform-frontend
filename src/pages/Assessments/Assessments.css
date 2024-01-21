@@ -1,0 +1,42 @@
+.assessments-page-body {
+  display: flex !important;
+  margin-top: -10px;
+  justify-content: space-between;
+}
+
+.assessments-page-left-col {
+  padding: 15px 10px;
+  width: 50%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.assessments-page-right-col {
+  padding: 15px 10px;
+  width: 50%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.assessments-text {
+  color: purple;
+}
+
+@media (max-width: 948px) {
+  .assessments-page-body {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .assessments-page-left-col,
+  .assessments-page-right-col {
+    justify-content: center;
+    width: 100%;
+  }
+}
