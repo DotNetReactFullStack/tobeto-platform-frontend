@@ -1,0 +1,67 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 1rem;
+    font-family: system-ui, sans-serif;
+    color: black;
+    background-color: white;
+}
+
+h1 {
+    font-weight: 800;
+    font-size: 1.5rem;
+}
+
+.fc-dayGridMonth-button {
+    background-color: #721ec0 !important;
+}
+
+.fc-timeGridWeek-button {
+    background-color: #9c33ff !important;
+}
+
+.fc-timeGridDay-button {
+    background-color: #c590f7 !important;
+}
+
+.fc .fc-button-primary {
+    border: white;
+}
+
+.fc-toolbar-title {
+    color: #9c33ff !important;
+}
+
+.fc-today-button {
+    background-color: #9c33ff !important;
+}
+
+.fc-col-header-cell-cushion {
+    color: #9c33ff
+}
+
+.fc-daygrid-day-number {
+    color: #aa83ce
+}
+
+.fc-event {
+    background-color: #8e4eca;
+    color: white
+}
+
+.fc-day-today {
+    background-color: #ecabec76 !important;
+}
+
+.fc-highlight {
+    background-color: #ecabec76 !important;
+}
+
+.fc-prev-button,
+.fc-next-button {
+    background-color: #9c33ff !important;
+
+}
