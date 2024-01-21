@@ -1,0 +1,99 @@
+.success-exam-card-element {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 20px;
+  border: none;
+  padding: 8px 16px;
+  width: 100%;
+  margin-bottom: 12px;
+
+  background: rgb(133, 101, 207);
+  background: linear-gradient(
+    45deg,
+    rgba(133, 101, 207, 1) 20%,
+    rgba(31, 6, 128, 1) 70%
+  );
+}
+
+.success-exam-card-element-left {
+  width: 10%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.success-exam-card-element-left-image {
+  width: 50px;
+  height: 50px;
+}
+
+.success-exam-card-element-middle {
+  width: 55%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.success-exam-card-element-rigth {
+  width: 35%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.success-exam-card-element-title {
+  font-size: 17px;
+  letter-spacing: 0.3px;
+  color: white;
+
+  text-align: center;
+}
+
+.success-exam-card-element-link {
+  text-decoration: none;
+  padding: 6px 30px;
+  border-radius: 20px;
+  background-color: #b511d6;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  letter-spacing: 1px;
+  transition: all 0.5s ease;
+}
+
+.success-exam-card-element-link:hover {
+  background-color: #800c97;
+}
+
+@media (max-width: 500px) {
+  .success-exam-card-element {
+    height: 50px;
+    padding: 8px;
+  }
+
+  .success-exam-card-element-middle {
+    width: 100%;
+  }
+
+  .success-exam-card-element-title {
+    font-size: 15px;
+  }
+
+  .success-exam-card-element-link {
+    text-decoration: none;
+    padding: 5px 16px;
+    font-size: 13px;
+  }
+
+  .success-exam-card-element-left-image {
+    width: 28px;
+    height: 28px;
+  }
+}
