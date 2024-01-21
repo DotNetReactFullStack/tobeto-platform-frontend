@@ -1,0 +1,9 @@
+.account-settings-page-body {
+    display: flex !important;
+}
+
+@media (max-width: 1199.98px) {
+    .account-settings-page-body {
+        flex-direction: column;
+    }
+}
