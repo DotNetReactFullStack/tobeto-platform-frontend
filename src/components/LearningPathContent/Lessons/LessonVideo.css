@@ -1,0 +1,125 @@
+.lesson-video {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 0px 16px;
+  padding: 10px;
+  border-radius: 10px;
+}
+.lesson-video-section {
+}
+
+.lesson-video-body {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.lesson-video-title {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.lesson-video-information {
+  display: flex;
+  align-items: center;
+}
+
+.lesson-video-information span {
+  font-size: 14px;
+  margin-right: 15px;
+}
+
+.lesson-video-information-duration {
+  color: #818181;
+}
+
+.lesson-video-information-status-icon {
+  color: #3dcb79;
+  font-size: 18px;
+  margin-right: 5px;
+}
+
+.lesson-video-detail-button {
+  background: none;
+  border: 1px solid #9933ff;
+  border-radius: 8px;
+
+  padding: 5px 30px;
+}
+
+.lesson-video-detail-button-text {
+  color: #9933ff;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+@media (max-width: 720px) {
+  .lesson-video-section {
+    scale: 0.9;
+  }
+}
+
+@media (max-width: 650px) {
+  .lesson-video-section {
+    scale: 0.8;
+  }
+}
+
+@media (max-width: 580px) {
+  .lesson-video-section {
+    scale: 0.75;
+  }
+}
+
+@media (max-width: 550px) {
+  .lesson-video-section {
+    scale: 0.7;
+  }
+  .lesson-video-body {
+    flex-direction: column;
+    align-items: start;
+  }
+}
+
+@media (max-width: 520px) {
+  .lesson-video-section {
+    scale: 0.65;
+  }
+  .lesson-video-detail-button {
+    scale: 0.8;
+  }
+}
+
+@media (max-width: 490px) {
+  .lesson-video-section {
+    scale: 0.6;
+  }
+}
+
+@media (max-width: 450px) {
+  .lesson-video-section {
+    scale: 0.55;
+  }
+}
+
+@media (max-width: 420px) {
+  .lesson-video-section {
+    scale: 0.5;
+  }
+  .lesson-video-information {
+    flex-direction: column;
+    align-items: start;
+  }
+}
+
+@media (max-width: 380px) {
+  .lesson-video-section {
+    scale: 0.45;
+  }
+}

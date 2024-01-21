@@ -1,0 +1,26 @@
+.lesson-element {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  margin-left: 17px;
+}
+
+.lesson-element.clicked {
+  background-color: #704040;
+}
+
+.lesson-element-title {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.lesson-element-content {
+  color: #818181;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.lesson-element-status-icon {
+  color: #3dcb79;
+}

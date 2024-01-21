@@ -1,0 +1,25 @@
+.course-list {
+  overflow-y: auto;
+  max-height: 550px;
+  padding-right: 20px;
+}
+
+/* width */
+.course-list::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+.course-list::-webkit-scrollbar-track {
+  background: white;
+}
+
+/* Handle */
+.course-list::-webkit-scrollbar-thumb {
+  background: #ededed;
+}
+
+/* Handle on hover */
+.course-list::-webkit-scrollbar-thumb:hover {
+  background: #7b7979;
+}

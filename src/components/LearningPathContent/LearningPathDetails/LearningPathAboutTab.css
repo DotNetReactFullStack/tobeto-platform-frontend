@@ -1,0 +1,33 @@
+.learning-path-times,
+.learning-path-total-duration,
+.learning-path-total-video {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.learning-path-icons-section {
+  margin-right: 5px;
+}
+
+.learning-path-info-section {
+}
+
+.learning-path-info-subsection {
+  display: flex;
+  margin-top: 2px;
+}
+
+.learning-path-info-icon {
+  font-size: 20px;
+}
+
+.learning-path-info-title-text {
+  width: 125px;
+  font-weight: 600;
+}
+
+.learning-path-info-content-text {
+}

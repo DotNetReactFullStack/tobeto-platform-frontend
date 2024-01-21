@@ -1,0 +1,180 @@
+.learning-path-details-header {
+  display: flex;
+  align-items: center;
+}
+
+.learning-path-details-header-left-col {
+}
+.learning-path-details-header-right-col {
+  width: 100%;
+  padding-left: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/*  Header Left Side */
+.learning-path-details-header-img {
+  height: 100px;
+  border-radius: 8px;
+}
+
+/* Header Right Side */
+.learning-path-details-header-right-col-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.learning-path-details-header-title-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.learning-path-details-header-title {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.learning-path-details-date-info {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2372ba;
+  letter-spacing: 0.3px;
+}
+
+/* Activity Section */
+
+.learning-path-details-header-activity-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.learning-path-details-header-activity-section .activity-favorite-button {
+  margin-left: 20px;
+}
+
+.learning-path-details-header-activity-section .activity-score {
+  font-size: 18px;
+  font-weight: 600;
+  margin-right: 20px;
+}
+
+.learning-path-details-header-activity-section .activity-like-button,
+.learning-path-details-header-activity-section .activity-like-count-button,
+.learning-path-details-header-activity-section .activity-favorite-button {
+  background: none;
+  border: none;
+}
+
+.learning-path-details-header-activity-section .activity-like-icon,
+.learning-path-details-header-activity-section .activity-favorite-icon {
+  font-size: 40px;
+}
+
+.learning-path-details-header-activity-section .activity-like-icon,
+.learning-path-details-header-activity-section .activity-like-count {
+  color: #ff4757;
+  margin: 0px 2px;
+}
+
+.learning-path-details-header-activity-section .activity-like-count {
+  font-size: 32px;
+}
+
+.learning-path-details-header-activity-section .activity-favorite-icon {
+  color: #ffd228;
+}
+
+.learning-path-details-header-right-col-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.learning-path-details-progress {
+  width: 95%;
+}
+
+.learning-path-details-progress-bar {
+  background: rgb(45, 223, 255);
+  background: linear-gradient(
+    90deg,
+    rgba(45, 223, 255, 1) 30%,
+    rgba(183, 223, 46, 1) 100%
+  );
+}
+
+.learning-path-details-progress-bar-value-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: #565656;
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 800px) {
+  .learning-path-details-header-img {
+    height: 90px;
+  }
+
+  .learning-path-details-header-title {
+    font-size: 20px;
+  }
+
+  .learning-path-details-date-info {
+    font-size: 12px;
+  }
+  .learning-path-details-header-activity-section .activity-score {
+    font-size: 16px;
+    margin-right: 10px;
+  }
+  .learning-path-details-header-activity-section .activity-favorite-button {
+    margin-left: 10px;
+  }
+
+  .learning-path-details-header-activity-section .activity-like-icon,
+  .learning-path-details-header-activity-section .activity-favorite-icon {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 600px) {
+  .learning-path-details-header-right-col-body {
+    flex-direction: column;
+  }
+
+  .learning-path-details-header-title-section {
+    align-items: center;
+  }
+
+  .learning-path-details-header-activity-section {
+    width: 100%;
+    justify-content: center;
+  }
+  .learning-path-details-header-img {
+    height: 90px;
+    display: none;
+  }
+
+  .learning-path-details-header-title {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .learning-path-details-date-info {
+    font-size: 12px;
+  }
+  .learning-path-details-header-activity-section .activity-score {
+    font-size: 14px;
+    margin-right: 5px;
+  }
+  .learning-path-details-header-activity-section .activity-favorite-button {
+    margin-left: 5px;
+  }
+
+  .learning-path-details-header-activity-section .activity-like-icon,
+  .learning-path-details-header-activity-section .activity-favorite-icon {
+    font-size: 28px;
+  }
+}
