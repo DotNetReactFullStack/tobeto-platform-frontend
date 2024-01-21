@@ -28,9 +28,9 @@ const MenuLinks = (props: Props) => {
         </a>
       </li>
       <li className="nav-item">
-        <a className="nav-link" href="#">
+        <Link className="nav-link" to="/calendar">
           Takvim
-        </a>
+        </Link>
       </li>
       <li className="nav-item">
         <a

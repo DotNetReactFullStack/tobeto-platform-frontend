@@ -18,6 +18,7 @@ import ForeignLanguages from "../pages/Profile/EditProfile/ForeignLanguages/Fore
 import AccountSettings from "../pages/Profile/EditProfile/AccountSettings/AccountSettings";
 import LearningPathContent from "../pages/LearningPathContent/LearningPathContent";
 import Assessments from "../pages/Assessments/Assessments";
+import Calendar from "../pages/Calendar/CalendarPage";
 
 type Props = {};
 
@@ -69,6 +70,7 @@ const RouteDefinitions = (props: Props) => {
       />
       <Route path="/my-exams" element={<Exams />} />
       <Route path="/my-assessments" element={<Assessments />} />
+      <Route path="/calendar" element={<Calendar />} />
     </Routes>
   );
 };

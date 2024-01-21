@@ -1,0 +1,100 @@
+.calendar-filter-search-element {
+  display: flex !important;
+  justify-content: space-between !important;
+}
+
+/*.calendar-filter-search-element div {
+  margin: 0px 5px;
+} */
+
+.calendar-filter-search-box {
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 0px 16px;
+  padding: 0px 15px;
+  width: 400px;
+  min-width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.calendar-filter-search-box-input {
+  border: none;
+  background: none;
+  outline: none;
+  font-size: 16px;
+  width: 85%;
+}
+
+.calendar-filter-search-box-button {
+  border: none;
+  background: none;
+}
+
+.calendar-filter-search-box-icon {
+  font-size: 25px;
+  color: #828282;
+}
+
+/*---------------*/
+
+.sorting-bar-calender-filter-title {
+  color: #828282 !important;
+  padding-left: 10px !important;
+}
+
+.calendar-filter-situation-of-education {
+  display: flex !important;
+  justify-content: space-between !important;
+}
+
+/*---------------*/
+
+.calendar-filter-select-instructor-element {
+  display: flex;
+  justify-content: space-between;
+}
+
+#customCheck1:checked {
+  background-color: #ff442b !important;
+  border-color: #ff442b !important;
+}
+
+#customCheck2:checked {
+  background-color: #fac059 !important;
+  border-color: #fac059 !important;
+}
+
+#customCheck3:checked {
+  background-color: #5fbf9f !important;
+  border-color: #5fbf9f !important;
+}
+
+#customCheck4:checked {
+  background-color: #5c6cc1 !important;
+  border-color: #5c6cc1 !important;
+}
+
+@media (max-width: 768px) {
+  .calendar-filter-component {
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .calendar-filter-search-element,
+  .calendar-filter-select-instructor-element,
+  .calendar-filter-situation-of-education {
+    justify-content: center !important;
+    width: 100% !important;
+  }
+
+  .select-instructor {
+    width: 400px !important;
+  }
+
+  .situation-of-education {
+    width: 400px !important;
+  }
+}
