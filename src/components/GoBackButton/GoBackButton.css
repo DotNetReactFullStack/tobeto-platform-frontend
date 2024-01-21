@@ -1,0 +1,16 @@
+.go-back-button-container {
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.go-back-button-container .go-back-button {
+  border: none;
+  border-radius: 50%;
+  background-color: #9933ff;
+  padding: 5px 10px;
+}
+
+.go-back-button-container .go-back-button-icon {
+  font-size: 20px;
+  color: white;
+}
