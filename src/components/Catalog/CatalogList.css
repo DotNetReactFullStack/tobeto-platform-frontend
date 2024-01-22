@@ -1,0 +1,13 @@
+.catalog-component {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+}
+
+@media (max-width: 1300px) {
+    .catalog-component {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}

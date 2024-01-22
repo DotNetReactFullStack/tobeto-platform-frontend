@@ -19,6 +19,7 @@ import AccountSettings from "../pages/Profile/EditProfile/AccountSettings/Accoun
 import LearningPathContent from "../pages/LearningPathContent/LearningPathContent";
 import Assessments from "../pages/Assessments/Assessments";
 import Calendar from "../pages/Calendar/CalendarPage";
+import Catalog from "../pages/Catalog/Catalog";
 
 type Props = {};
 
@@ -68,9 +69,18 @@ const RouteDefinitions = (props: Props) => {
         path="/my-learning-paths/net-react-fullstack"
         element={<LearningPathContent />}
       />
-      <Route path="/my-exams" element={<Exams />} />
-      <Route path="/my-assessments" element={<Assessments />} />
-      <Route path="/calendar" element={<Calendar />} />
+      <Route
+        path="/my-exams"
+        element={<Exams />} />
+      <Route
+        path="/my-assessments"
+        element={<Assessments />} />
+      <Route
+        path="/calendar"
+        element={<Calendar />} />
+      <Route
+        path="/catalog"
+        element={<Catalog />} />
     </Routes>
   );
 };
