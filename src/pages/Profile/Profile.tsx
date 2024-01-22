@@ -9,6 +9,12 @@ import Capabilities from "../../components/Profile/Capabilities/Capabilities";
 import ForeignLanguages from "../../components/Profile/ForeignLanguages/ForeignLanguages";
 import Exams from "../../components/Profile/Exams/Exams";
 import AccountCertificates from "../../components/Profile/AccountCertificates/AccountCertificates";
+import ActivityMap from "../../components/Profile/ActivityMap/ActivityMap";
+
+type DayData = {
+  date: string;
+  count: number;
+};
 
 type Props = {};
 
@@ -83,6 +89,31 @@ const examsFakeData: any[] = [
   },
 ];
 
+// Aktivite haritası için
+
+const generateActivityData = () => {
+  const today = new Date();
+
+  //Son 7*53=371 gün için başlangıç tarihi;
+  const StartDate = new Date(today);
+  StartDate.setDate(today.getDate() - 370);
+
+  const data: DayData[] = [];
+
+  //Tarih ve o tarihe ait aktivite sayısı üretildi;
+  while (StartDate <= today) {
+    const dateStr = StartDate.toISOString().split("T")[0];
+    const count = Math.floor(Math.random() * 40); //0-41 arası (4 dahil) bir tam sayı elde edildi.
+    data.push({ date: dateStr, count });
+    StartDate.setDate(StartDate.getDate() + 1);
+  }
+
+  return data;
+};
+
+// generateActivityData fonksiyonu ile rastgele veri oluşturduk.
+const activityData = generateActivityData();
+
 const Profile = (props: Props) => {
   return (
     <div className="container main-section d-flex flex-column">
@@ -117,6 +148,10 @@ const Profile = (props: Props) => {
         <div className="profile-page-right-col">
           <ProfileDefaultCard title="Sınav Sonuçlarım">
             <Exams data={examsFakeData}></Exams>
+          </ProfileDefaultCard>
+
+          <ProfileDefaultCard title="Aktivite Haritam">
+            <ActivityMap data={activityData} />
           </ProfileDefaultCard>
         </div>
       </div>
