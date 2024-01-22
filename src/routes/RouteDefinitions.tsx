@@ -20,6 +20,7 @@ import LearningPathContent from "../pages/LearningPathContent/LearningPathConten
 import Assessments from "../pages/Assessments/Assessments";
 import Calendar from "../pages/Calendar/CalendarPage";
 import Catalog from "../pages/Catalog/Catalog";
+import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 
 type Props = {};
 
@@ -81,6 +82,10 @@ const RouteDefinitions = (props: Props) => {
       <Route
         path="/catalog"
         element={<Catalog />} />
+        <Route
+        path="/forgot-password"
+        element={<ForgotPassword />}
+      />
     </Routes>
   );
 };
