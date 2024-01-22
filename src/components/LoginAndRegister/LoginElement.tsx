@@ -15,7 +15,7 @@ const LoginElement: React.FC = (props: Props) => {
         <button className="login-element-login-button" type="submit">
           Giriş Yap
         </button>
-        <a href="#">Şifremi Unuttum</a>
+        <Link to="/forgot-password">Şifremi Unuttum</Link>
       </div>
       <div className="login-element-footer">
         <span>Henüz üye değil misin?</span>
