@@ -1,0 +1,99 @@
+.activity-map-element {
+  display: flex;
+  justify-content: space-between;
+}
+
+.activity-map-circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-bottom: 1px;
+  cursor: pointer;
+  transition: all 1s ease;
+
+  background-color: #361259;
+}
+
+.activity-map-circle:hover {
+  border: 1px solid red;
+  transform: scale(1.5);
+}
+
+.activity-map-footer-info {
+  display: flex;
+  justify-content: center;
+}
+
+.activity-map-footer-info-box {
+  width: 11px;
+  height: 11px;
+  border-radius: 3px;
+  cursor: pointer;
+  margin: 10px 4px 0px 0px;
+}
+
+.contribution-level-0 {
+  background-color: #cacaca;
+}
+.contribution-level-1 {
+  background-color: #bb66ff;
+}
+.contribution-level-2 {
+  background-color: #9933ff;
+}
+.contribution-level-3 {
+  background-color: #5c1f99;
+}
+.contribution-level-4 {
+  background-color: #361259;
+}
+
+/* Aktivite sayısına göre background */
+
+.contribution-count-0 {
+  background-color: #cacaca;
+}
+.contribution-count-1,
+.contribution-count-2,
+.contribution-count-3,
+.contribution-count-4,
+.contribution-count-5,
+.contribution-count-6,
+.contribution-count-7,
+.contribution-count-8,
+.contribution-count-9 {
+  background-color: #bb66ff;
+}
+
+.contribution-count-10,
+.contribution-count-11,
+.contribution-count-12,
+.contribution-count-13,
+.contribution-count-14,
+.contribution-count-15,
+.contribution-count-16,
+.contribution-count-17,
+.contribution-count-18,
+.contribution-count-19 {
+  background-color: #9933ff;
+}
+
+.contribution-count-20,
+.contribution-count-21,
+.contribution-count-22,
+.contribution-count-23,
+.contribution-count-24,
+.contribution-count-25,
+.contribution-count-26,
+.contribution-count-27,
+.contribution-count-28,
+.contribution-count-29 {
+  background-color: #5c1f99;
+}
+
+@media (max-width: 650px) {
+  .activity-map-element {
+    padding-bottom: 10px;
+    overflow-x: auto;
+  }
+}
