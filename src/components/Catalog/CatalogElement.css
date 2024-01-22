@@ -1,0 +1,68 @@
+.catalog-element {
+    width: 250px !important;
+    height: 320px !important;
+    margin: 0px 8px 20px 8px;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.058) 0px 3px 20px,
+        rgba(0, 0, 0, 0.231) 0px 0px 25px;
+    background-color: #fdfdfd;
+    padding: 2px;
+    transition: all 0.25s ease;
+}
+
+.catalog-element:hover {
+    transform: scale(1.025);
+    border-radius: 23px;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+}
+
+.catalog-element-cover-photo .catalog-element-img {
+    height: 181px;
+    width: 100%;
+    object-fit: cover !important;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+
+}
+
+.catalog-element-body {
+    background: #ffd581;
+    padding: 12px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+}
+
+.catalog-element-body .catalog-element-title {
+    color: #515151;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.catalog-element-body .catalog-element-publish-instructor {
+    color: #0011fd;
+    font-size: 12px;
+}
+
+.catalog-element-footer {
+    display: flex;
+    justify-content: center;
+
+}
+
+.catalog-element-button {
+    width: 80%;
+    border: none;
+    border-radius: 28px;
+    background-color: #d9d9d9;
+    color: #282828;
+    font-size: 14px;
+    margin-top: 20px;
+    padding: 5px 0px;
+    transition: 0.5s;
+}
+
+.catalog-element-footer .catalog-element-button:hover {
+    color: white;
+    background-color: #9933ff;
+}

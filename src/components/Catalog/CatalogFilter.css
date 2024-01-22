@@ -1,0 +1,36 @@
+.catalog-filter {
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.058) 0px 3px 20px,
+        rgba(0, 0, 0, 0.231) 0px 0px 25px;
+    padding: 20px 10px;
+    width: 270px;
+    margin-bottom: 15px;
+
+}
+
+.catalog-filter-title {
+    text-align: center;
+    border-bottom: 3px solid rgba(153, 51, 255, 0.4);
+    padding-bottom: 12px;
+
+}
+
+.catalog-for-me .catalog-for-me-button {
+    width: 240px;
+    height: 40px;
+    border: none;
+    border-radius: 28px;
+    background-color: #ffffff;
+    color: #282828;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-top: 12px;
+    transition: 0.5s;
+    border: 2px solid #9933ff;
+}
+
+.catalog-for-me .catalog-for-me-button:hover {
+    color: white;
+    background-color: #9933ff;
+}

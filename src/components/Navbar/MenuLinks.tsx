@@ -23,9 +23,9 @@ const MenuLinks = (props: Props) => {
         </Link>
       </li>
       <li className="nav-item">
-        <a className="nav-link" href="#">
+        <Link className="nav-link" to="/catalog">
           Katalog
-        </a>
+        </Link>
       </li>
       <li className="nav-item">
         <Link className="nav-link" to="/calendar">

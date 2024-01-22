@@ -1,0 +1,13 @@
+.container-page-body {
+    display: flex;
+    margin-top: 60px !important;
+
+}
+
+@media (max-width: 900px) {
+    .container-page-body {
+        flex-direction: column;
+        align-items: center;
+
+    }
+}
