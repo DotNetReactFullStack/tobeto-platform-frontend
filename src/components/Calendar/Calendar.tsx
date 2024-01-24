@@ -26,7 +26,8 @@ const Calendar = (props: Props) => {
     }, [events]);
 
     return (
-        <div className="container mt-5">
+
+        <div className="container main-section mt-5">
             <div className="card p-5">
                 <FullCalendar
                     locales={[trLocale]}
@@ -49,6 +50,7 @@ const Calendar = (props: Props) => {
                     eventsSet={(arg: any) => console.log(arg)} // ay,hafta,gün gibi seçimlerde tetiklenir.
                 />
             </div>
+
         </div>
     );
 };

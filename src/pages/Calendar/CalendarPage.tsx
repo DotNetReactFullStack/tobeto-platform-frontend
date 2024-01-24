@@ -7,7 +7,7 @@ const CalendarPage = (props: Props) => {
     return (
 
         <>
-            <div>
+            <div className="container main-section">
                 <CalendarFilter />
                 <Calendar />
             </div>

@@ -48,3 +48,27 @@
     background-color: #9c33ff !important;
 
 }
+
+@media (max-width: 624px) {
+
+    .fc-prev-button,
+    .fc-next-button {
+
+        width: 80% !important;
+    }
+}
+
+/*
+ .fc-dayGridMonth-button,
+    .fc-timeGridWeek-button,
+    .fc-timeGridDay-button,
+    .fc-toolbar-title,
+    .fc-today-button,
+    .fc-col-header-cell-cushion,
+    .fc-daygrid-day-number,
+    .fc-event,
+    .fc-day-today,
+    .fc-highlight,
+    .fc-prev-button,
+    .fc-next-button
+*/
