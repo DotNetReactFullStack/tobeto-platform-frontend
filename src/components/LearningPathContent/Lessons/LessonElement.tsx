@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./LessonElement.css";
+import { useDispatch, useSelector } from "react-redux";
+import { setVideoId } from "../../../store/video/videoSlice";
 
 type Props = {
   lessonName: string;
@@ -7,10 +9,10 @@ type Props = {
 };
 
 const LessonElement = ({ lessonName, videoId }: Props) => {
-  const [youtubeId, setYoutubeId] = useState("");
+  const dispatch = useDispatch();
 
   const handleLessonElementClick = () => {
-    setYoutubeId(videoId);
+    dispatch(setVideoId(videoId));
   };
 
   return (
