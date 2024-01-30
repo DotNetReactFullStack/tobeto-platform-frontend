@@ -2,13 +2,12 @@ import React from "react";
 import "./LessonVideo.css";
 
 import YouTube from "react-youtube";
+import { useSelector } from "react-redux";
 
-type Props = {
-  videoIdData?: string;
-};
+type Props = {};
 
-const LessonVideo = ({ videoIdData }: Props) => {
-  const videoId: string = videoIdData || "S_A_VVSQdpU";
+const LessonVideo = (props: Props) => {
+  const youtubeVideoId = useSelector((state: any) => state.video.videoId);
 
   const opts = {
     height: "390",
@@ -29,7 +28,7 @@ const LessonVideo = ({ videoIdData }: Props) => {
     <div className="lesson-video">
       <div className="lesson-video-section">
         <YouTube
-          videoId={videoId}
+          videoId={youtubeVideoId}
           opts={opts}
           onReady={onReady}
           onEnd={onEnd}
