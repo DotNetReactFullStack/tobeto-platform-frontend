@@ -10,6 +10,7 @@ import ForeignLanguages from "../../components/Profile/ForeignLanguages/ForeignL
 import Exams from "../../components/Profile/Exams/Exams";
 import AccountCertificates from "../../components/Profile/AccountCertificates/AccountCertificates";
 import ActivityMap from "../../components/Profile/ActivityMap/ActivityMap";
+import EducationAndExperienceList from "../../components/Profile/EducationAndExperience/EducationAndExperienceList";
 
 type DayData = {
   date: string;
@@ -114,6 +115,46 @@ const generateActivityData = () => {
 // generateActivityData fonksiyonu ile rastgele veri oluşturduk.
 const activityData = generateActivityData();
 
+// Eğitim Hayatım ve Deneyimlerim
+
+const EducationAndExperienceFakeData: any[] = [
+  {
+    type: "Education",
+    startYear: "2014",
+    endYear: "2019",
+    name: "Sinop Universitesi",
+    content: "Yazılım Mühendisliği",
+  },
+  {
+    type: "Experience",
+    startYear: "2019",
+    endYear: "2020",
+    name: "Amazon",
+    content: "Back-End Developer",
+  },
+  {
+    type: "Education",
+    startYear: "2019",
+    endYear: "2022",
+    name: "Sinop Universitesi",
+    content: "Yazılım Mühendisliği",
+  },
+  {
+    type: "Experience",
+    startYear: "2020",
+    endYear: "2021",
+    name: "Google",
+    content: "Front-End Developer",
+  },
+  {
+    type: "Experience",
+    startYear: "2021",
+    endYear: "...",
+    name: "Microsoft",
+    content: "Full-Stack Developer",
+  },
+];
+
 const Profile = (props: Props) => {
   return (
     <div className="container main-section d-flex flex-column">
@@ -152,6 +193,10 @@ const Profile = (props: Props) => {
 
           <ProfileDefaultCard title="Aktivite Haritam">
             <ActivityMap data={activityData} />
+          </ProfileDefaultCard>
+
+          <ProfileDefaultCard title="Eğitim Hayatım ve Deneyimlerim">
+            <EducationAndExperienceList data={EducationAndExperienceFakeData} />
           </ProfileDefaultCard>
         </div>
       </div>
