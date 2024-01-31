@@ -3,6 +3,26 @@
   overflow-x: auto;
 }
 
+/* height */
+.education-and-experience-list::-webkit-scrollbar {
+  height: 5px;
+}
+
+/* Track */
+.education-and-experience-list::-webkit-scrollbar-track {
+  background: white;
+}
+
+/* Handle */
+.education-and-experience-list::-webkit-scrollbar-thumb {
+  background: #ededed;
+}
+
+/* Handle on hover */
+.education-and-experience-list::-webkit-scrollbar-thumb:hover {
+  background: #7b7979;
+}
+
 .education-and-experience-line {
   height: 7px;
   width: fit-content;
