@@ -136,7 +136,7 @@ const EducationAndExperienceFakeData: any[] = [
     type: "Education",
     startYear: "2019",
     endYear: "2022",
-    name: "Sinop Universitesi",
+    name: "Uludağ Universitesi",
     content: "Yazılım Mühendisliği",
   },
   {
