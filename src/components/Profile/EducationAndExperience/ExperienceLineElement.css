@@ -1,0 +1,19 @@
+.experience-line-element {
+  background: #488ff6;
+}
+
+.experience-circle-vertical-line {
+  border-left: 3px solid #488ff6;
+}
+
+.experience-line-content {
+  position: absolute;
+  right: 16px;
+  top: 45px;
+}
+
+.experience-content-list {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}

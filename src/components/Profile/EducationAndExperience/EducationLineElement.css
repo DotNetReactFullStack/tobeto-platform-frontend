@@ -1,0 +1,13 @@
+.education-line-element {
+  background: #a442ff;
+}
+
+.education-circle-vertical-line {
+  border-left: 3px solid #a442ff;
+  transform: translateY(-100%);
+}
+
+.education-line-content {
+  margin-left: -20px;
+  position: relative;
+}

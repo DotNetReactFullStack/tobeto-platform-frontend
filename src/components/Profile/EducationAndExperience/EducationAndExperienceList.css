@@ -1,0 +1,17 @@
+.education-and-experience-list {
+  height: 300px;
+  overflow-x: auto;
+}
+
+.education-and-experience-line {
+  height: 7px;
+  width: fit-content;
+  min-width: 100%;
+  background: #ccc;
+  border-radius: 5px;
+
+  gap: 250px;
+  position: relative;
+  top: 50%;
+  display: flex;
+}

@@ -1,0 +1,26 @@
+.education-and-experience-line-element {
+  width: 20px;
+  height: 20px;
+  border-radius: 15px;
+  border: 3px solid #fff;
+  position: relative;
+  top: -7px;
+}
+
+.circle-vertical-line {
+  min-height: 100px;
+  margin-left: 6px;
+}
+
+.education-and-experience-content {
+}
+
+.education-and-experience-content-list {
+  list-style: none;
+}
+
+.education-and-experience-content-list li {
+  font-size: 12px;
+  width: max-content;
+  max-width: 220px;
+}
