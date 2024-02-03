@@ -1,13 +1,25 @@
 import React from "react";
 import "./ExamDetailModal.css";
 
-type Props = {};
+type Props = {
+  id: string;
+  title: string;
+  content: string;
+  duration: number;
+  numberOfQuestions: number;
+};
 
-const ExamDetailModal = (props: Props) => {
+const ExamDetailModal = ({
+  id,
+  title,
+  content,
+  duration,
+  numberOfQuestions,
+}: Props) => {
   return (
     <div
       className="modal modal-xl fade"
-      id="staticBackdropExamId1"
+      id={id}
       data-bs-backdrop="static"
       data-bs-keyboard="false"
       aria-labelledby="staticBackdropLabel"
@@ -17,7 +29,7 @@ const ExamDetailModal = (props: Props) => {
         <div className="modal-content">
           <div className="modal-header">
             <h1 className="modal-title fs-5" id="staticBackdropLabel">
-              Herkes için Kodlama 1B Değerlendirme Sınavı
+              {title}
             </h1>
             <button
               type="button"
@@ -26,32 +38,11 @@ const ExamDetailModal = (props: Props) => {
               aria-label="Close"
             ></button>
           </div>
-          <div className="modal-body">
-            <h4>Sevgili Adayımız,</h4>
-            <br />
-            Herkes için Kodlama Eğitimi'ni tamamladığınız için tebrik ederiz. Bu
-            eğitim sonrası bir sonraki aşamaya geçiş için 25 sorudan oluşan bir
-            değerlendirme sınavımız bulunmaktadır.
-            <br />
-            <br />
-            Bu test her kullanıcı için sadece 1 kez sunulmakta olup 45 dakika
-            içinde tamamlanması gerekmektedir.
-            <br />
-            <br />
-            <br />
-            Tüm değerlendirme kriterleri sonrası Mesleki Gelişim Eğitimlerine
-            geçişiniz ile ilgili bilgilendirileceksiniz.
-            <br />
-            <br />
-            <br />
-            Sevgiler
-            <br />
-            TOBETO
-          </div>
+          <div className="modal-body">{content}</div>
           <div className="modal-body exam-detail">
-            <span>Sınav Süresi : 45 Dakika</span>
+            <span>{"Sınav Süresi : " + duration + " Dakika"}</span>
             <br />
-            <span>Soru Sayısı : 25</span>
+            <span>{"Soru Sayısı : " + numberOfQuestions}</span>
             <br />
             <span>Soru Tipi : Çoktan Seçmeli</span>
           </div>

@@ -2,18 +2,25 @@ import React from "react";
 import "./ExamElement.css";
 
 type Props = {
+  id: string;
   title: string;
   examStatusImageUrl: string;
   subTitle: string;
-  duration: string;
+  duration: number;
 };
 
-const ExamElement = ({ title, examStatusImageUrl, subTitle, duration }: Props) => {
+const ExamElement = ({
+  id,
+  title,
+  examStatusImageUrl,
+  subTitle,
+  duration,
+}: Props) => {
   return (
     <div
       className="exam-element"
       data-bs-toggle="modal"
-      data-bs-target="#staticBackdropExamId1"
+      data-bs-target={"#" + id}
     >
       <div className="exam-element-header">
         <div className="exam-element-header-left-side">
@@ -31,7 +38,9 @@ const ExamElement = ({ title, examStatusImageUrl, subTitle, duration }: Props) =
       </div>
       <div className="exam-element-footer">
         <i className="bi bi-stopwatch exam-element-footer-icon"></i>
-        <span className="exam-element-footer-duration">{duration}</span>
+        <span className="exam-element-footer-duration">
+          {duration + " Dakika"}
+        </span>
       </div>
     </div>
   );
