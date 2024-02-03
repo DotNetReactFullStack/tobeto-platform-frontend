@@ -2,6 +2,7 @@ import React from "react";
 import "./AnnouncementElement.css";
 
 type Props = {
+  id: string;
   announcementType: string;
   organizationType: string;
   title: string;
@@ -9,6 +10,7 @@ type Props = {
 };
 
 const AnnouncementElement = ({
+  id,
   announcementType,
   organizationType,
   title,
@@ -37,7 +39,7 @@ const AnnouncementElement = ({
             className="btn announcement-read-more-button"
             type="button"
             data-bs-toggle="modal"
-            data-bs-target="#exampleModalAnnouncementId1"
+            data-bs-target={"#" + id}
           >
             Devamını oku
           </button>
