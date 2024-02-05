@@ -13,7 +13,8 @@
   width: 100%;
 }
 
-.register-element-body button {}
+.register-element-body button {
+}
 
 .register-element-body a {
   color: #555351;
@@ -28,6 +29,11 @@
   background-color: #e8f0fe;
   padding: 5px 10px;
   border-radius: 10px;
+}
+
+.register-element-form input[type="number"]::-webkit-inner-spin-button,
+.register-element-form input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
 }
 
 .register-element-register-button {
