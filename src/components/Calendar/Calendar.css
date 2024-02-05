@@ -1,74 +1,95 @@
 .fc-dayGridMonth-button {
-    background-color: #721ec0 !important;
+  background-color: #721ec0 !important;
 }
 
 .fc-timeGridWeek-button {
-    background-color: #9c33ff !important;
+  background-color: #9c33ff !important;
 }
 
 .fc-timeGridDay-button {
-    background-color: #c590f7 !important;
+  background-color: #c590f7 !important;
 }
 
 .fc .fc-button-primary {
-    border: white;
+  border: white;
 }
 
 .fc-toolbar-title {
-    color: #9c33ff !important;
+  color: #9c33ff !important;
 }
 
 .fc-today-button {
-    background-color: #9c33ff !important;
+  background-color: #9c33ff !important;
 }
 
 .fc-col-header-cell-cushion {
-    color: #9c33ff
+  color: #9c33ff;
 }
 
 .fc-daygrid-day-number {
-    color: #aa83ce
+  color: #aa83ce;
 }
 
 .fc-event {
-    background-color: #8e4eca;
-    color: white
+  background-color: #8e4eca;
+  color: white;
 }
 
 .fc-day-today {
-    background-color: #ecabec76 !important;
+  background-color: #ecabec76 !important;
 }
 
 .fc-highlight {
-    background-color: #ecabec76 !important;
+  background-color: #ecabec76 !important;
 }
 
 .fc-prev-button,
 .fc-next-button {
-    background-color: #9c33ff !important;
-
+  background-color: #9c33ff !important;
 }
 
 @media (max-width: 624px) {
+  .fc-col-header-cell-cushion {
+    font-size: 10px !important;
+  }
 
-    .fc-prev-button,
-    .fc-next-button {
+  .fc-prev-button,
+  .fc-next-button {
+    width: 80% !important;
+  }
 
-        width: 80% !important;
-    }
+  .fc-toolbar {
+    font-size: 12px;
+  }
+
+  .fc-toolbar button {
+    padding: 4px 8px;
+  }
+
+  .fc-toolbar-title {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .fc-toolbar .fc-button-group button {
+    padding: 4px 8px;
+  }
+
+  .fc-toolbar .fc-select {
+    font-size: 12px;
+  }
+
+  .fc-toolbar-chunk {
+    margin-right: 5px;
+  }
 }
 
-/*
- .fc-dayGridMonth-button,
-    .fc-timeGridWeek-button,
-    .fc-timeGridDay-button,
-    .fc-toolbar-title,
-    .fc-today-button,
-    .fc-col-header-cell-cushion,
-    .fc-daygrid-day-number,
-    .fc-event,
-    .fc-day-today,
-    .fc-highlight,
-    .fc-prev-button,
-    .fc-next-button
-*/
+@media (max-width: 464px) {
+  .fc-toolbar-title {
+    font-size: 15px !important;
+  }
+
+  .fc-toolbar .fc-button-group button {
+    font-size: 10px !important;
+  }
+}
