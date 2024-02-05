@@ -12,6 +12,7 @@ const RegisterElement = (props: Props) => {
           <input type="text" placeholder="Ad*" />
           <input type="text" placeholder="Soyad*" />
           <input type="email" placeholder="E-Posta*" />
+          <input type="number" placeholder="TC No*" />
           <input type="password" placeholder="Şifre*" />
           <input type="password" placeholder="Şifre Tekrar*" />
         </div>
