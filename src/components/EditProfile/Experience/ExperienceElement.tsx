@@ -48,19 +48,19 @@ const ExperienceElement = ({
         </div>
       </div>
       <div className="experience-element-buttons">
+        <button className="experience-element-edit-button">
+          <i className="bi bi-three-dots experience-element-edit-button-icon"></i>
+        </button>
         <button
-          className="experience-element-edit-button"
+          className="experience-element-delete-button"
           data-bs-toggle="modal"
           data-bs-target={"#" + experienceId}
         >
-          <i className="bi bi-three-dots experience-element-edit-button-icon"></i>
+          <i className="bi bi-trash experience-element-delete-button-icon"></i>
           <DeleteModal
             deleteModalId={experienceId}
             deleteModalTitle="deneyimi"
           />
-        </button>
-        <button className="experience-element-delete-button">
-          <i className="bi bi-trash experience-element-delete-button-icon"></i>
         </button>
       </div>
     </div>
