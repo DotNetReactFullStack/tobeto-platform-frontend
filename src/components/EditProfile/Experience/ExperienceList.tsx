@@ -14,6 +14,7 @@ const ExperienceList = (props: Props) => {
       job: "Back-End Developer",
       sector: "Yazılım",
       experienceCity: "Sinop",
+      jobDetail: "Amazon iş açıklaması",
     },
     {
       experienceId: "experience2",
@@ -23,6 +24,7 @@ const ExperienceList = (props: Props) => {
       job: "Front-End Developer",
       sector: "Yazılım",
       experienceCity: "Bursa",
+      jobDetail: "Google iş açıklaması",
     },
     {
       experienceId: "experience3",
@@ -32,6 +34,7 @@ const ExperienceList = (props: Props) => {
       job: "Full-Stack Developer",
       sector: "Yazılım",
       experienceCity: "İstanbul",
+      jobDetail: "Microsoft iş açıklaması",
     },
   ];
 
@@ -47,6 +50,7 @@ const ExperienceList = (props: Props) => {
           job={value.job}
           sector={value.sector}
           experienceCity={value.experienceCity}
+          jobDetail={value.jobDetail}
         />
       ))}
     </div>
