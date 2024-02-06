@@ -27,10 +27,11 @@
 }
 
 .delete-modal-footer {
-  background-color: #e0dddd;
+  background-color: #e0dddd !important;
   margin-top: 40px;
   justify-content: space-between;
   padding: 16px 16px !important;
+  border: none !important;
 }
 
 .delete-modal-footer button {
