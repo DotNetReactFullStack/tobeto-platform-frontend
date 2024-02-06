@@ -6,10 +6,26 @@ type Props = {};
 
 const SocialMediaAccountList = (props: Props) => {
   const socialMediaFakeData: any[] = [
-    { title: "Instagram", url: "https://www.instagram.com/ozgursonmez00" },
-    { title: "LinkedIn", url: "https://www.linkedin.com/in/ozgursonmez00/" },
-    { title: "GitHub", url: "https://github.com/OzgurSonmez" },
-    { title: "Twitter", url: "https://twitter.com/" },
+    {
+      socialMediaId: "socialMedia1",
+      title: "Instagram",
+      url: "https://www.instagram.com/ozgursonmez00",
+    },
+    {
+      socialMediaId: "socialMedia2",
+      title: "LinkedIn",
+      url: "https://www.linkedin.com/in/ozgursonmez00/",
+    },
+    {
+      socialMediaId: "socialMedia3",
+      title: "GitHub",
+      url: "https://github.com/OzgurSonmez",
+    },
+    {
+      socialMediaId: "socialMedia4",
+      title: "Twitter",
+      url: "https://twitter.com/",
+    },
   ];
 
   return (
@@ -21,6 +37,7 @@ const SocialMediaAccountList = (props: Props) => {
               case "Instagram":
                 return (
                   <SocialMediaAccountElement
+                    socialMediaId={value.socialMediaId}
                     label={value.title}
                     iconClass="bi bi-instagram"
                     iconColor="#e03780"
@@ -30,6 +47,7 @@ const SocialMediaAccountList = (props: Props) => {
               case "LinkedIn":
                 return (
                   <SocialMediaAccountElement
+                    socialMediaId={value.socialMediaId}
                     label={value.title}
                     iconClass="bi bi-linkedin"
                     iconColor="#0077b5"
@@ -39,6 +57,7 @@ const SocialMediaAccountList = (props: Props) => {
               case "GitHub":
                 return (
                   <SocialMediaAccountElement
+                    socialMediaId={value.socialMediaId}
                     label={value.title}
                     iconClass="bi bi-github"
                     iconColor="#181717"
@@ -48,6 +67,7 @@ const SocialMediaAccountList = (props: Props) => {
               case "Twitter":
                 return (
                   <SocialMediaAccountElement
+                    socialMediaId={value.socialMediaId}
                     label={value.title}
                     iconClass="bi bi-twitter-x"
                     iconColor="#181717"
