@@ -21,14 +21,14 @@
   justify-content: space-around;
 }
 
-.experience-element-edit-button {
+.experience-element-detail-button {
   background-color: #9933ff;
   border: none;
   border-radius: 50%;
   padding: 4px 8px;
 }
 
-.experience-element-edit-button-icon {
+.experience-element-detail-button-icon {
   color: white;
   font-size: 14px;
 }
