@@ -1,7 +1,9 @@
 import React from "react";
 import "./EducationElement.css";
+import DeleteModal from "../Modals/DeleteModal";
 
 type Props = {
+  educationId: string;
   programStartDate: string;
   programEndDate: string;
   graduationStatus: string;
@@ -10,6 +12,7 @@ type Props = {
 };
 
 const EducationElement = ({
+  educationId,
   programStartDate,
   programEndDate,
   graduationStatus,
@@ -40,8 +43,13 @@ const EducationElement = ({
         </div>
       </div>
       <div className="education-element-button">
-        <button className="education-element-delete-button">
+        <button
+          className="education-element-delete-button"
+          data-bs-toggle="modal"
+          data-bs-target={"#" + educationId}
+        >
           <i className="bi bi-trash education-element-delete-button-icon"></i>
+          <DeleteModal deleteModalId={educationId} deleteModalTitle="eğitimi" />
         </button>
       </div>
     </div>

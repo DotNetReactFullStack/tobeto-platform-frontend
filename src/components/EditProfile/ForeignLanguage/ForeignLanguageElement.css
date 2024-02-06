@@ -13,10 +13,6 @@
   transition: 0.6s;
 }
 
-.foreing-language-element:hover {
-  transform: scale(1.075);
-}
-
 .foreing-language-element-body {
   display: flex;
   align-items: center;
@@ -47,16 +43,11 @@
   padding: 3px 8px;
   margin: 0px;
   background-color: #fc6d6d;
-  display: none;
 }
 
 .foreing-language-element-delete-button-icon {
   color: white;
   font-size: 14px;
-}
-
-.foreing-language-element:hover .foreing-language-element-delete-button {
-  display: block;
 }
 
 @media (max-width: 1200px) {

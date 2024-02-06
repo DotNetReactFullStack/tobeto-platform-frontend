@@ -7,6 +7,7 @@ type Props = {};
 const EducationList = (props: Props) => {
   const educationFakeData: any[] = [
     {
+      educationId: "education1",
       programStartDate: "2014",
       programEndDate: "2019",
       graduationStatus: "Lisans",
@@ -14,6 +15,7 @@ const EducationList = (props: Props) => {
       program: "Yazılım Mühendisliği",
     },
     {
+      educationId: "education2",
       programStartDate: "2019",
       programEndDate: "2021",
       graduationStatus: "Yüksek Lisans",
@@ -21,6 +23,7 @@ const EducationList = (props: Props) => {
       program: "Yazılım Mühendisliği",
     },
     {
+      educationId: "education3",
       programStartDate: "2021",
       programEndDate: "2023",
       graduationStatus: "Doktora",
@@ -34,6 +37,7 @@ const EducationList = (props: Props) => {
       {educationFakeData.map((value, index) => (
         <EducationElement
           key={index}
+          educationId={value.educationId}
           programStartDate={value.programStartDate}
           programEndDate={value.programEndDate}
           graduationStatus={value.graduationStatus}

@@ -7,6 +7,7 @@ type Props = {};
 const ExperienceList = (props: Props) => {
   const experienceFakeData: any[] = [
     {
+      experienceId: "experience1",
       jobStartDate: "01.01.2020",
       jobEndDate: "01.01.2021",
       companyName: "Amazon",
@@ -15,6 +16,7 @@ const ExperienceList = (props: Props) => {
       experienceCity: "Sinop",
     },
     {
+      experienceId: "experience2",
       jobStartDate: "02.01.2021",
       jobEndDate: "02.01.2022",
       companyName: "Google",
@@ -23,6 +25,7 @@ const ExperienceList = (props: Props) => {
       experienceCity: "Bursa",
     },
     {
+      experienceId: "experience3",
       jobStartDate: "03.01.2022",
       jobEndDate: "03.01.2023",
       companyName: "Microsoft",
@@ -37,6 +40,7 @@ const ExperienceList = (props: Props) => {
       {experienceFakeData.map((value, index) => (
         <ExperienceElement
           key={index}
+          experienceId={value.experienceId}
           jobStartDate={value.jobStartDate}
           jobEndDate={value.jobEndDate}
           companyName={value.companyName}

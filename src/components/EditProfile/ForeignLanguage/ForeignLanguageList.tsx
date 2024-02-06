@@ -5,9 +5,17 @@ import ForeignLanguagesElement from "./ForeignLanguageElement";
 type Props = {};
 
 const foreignLanguagesFakeData: any[] = [
-  { name: "İngilizce", level: "Orta Seviye (B1, B2)" },
-  { name: "Korece", level: "Temel Seviye (A1, A2)" },
-  { name: "Japonca", level: "Anadil" },
+  {
+    foreignLanguageId: "foreingLanguage1",
+    name: "İngilizce",
+    level: "Orta Seviye (B1, B2)",
+  },
+  {
+    foreignLanguageId: "foreingLanguage2",
+    name: "Korece",
+    level: "Temel Seviye (A1, A2)",
+  },
+  { foreignLanguageId: "foreingLanguage3", name: "Japonca", level: "Anadil" },
 ];
 
 const ForeignLanguageList = (props: Props) => {
@@ -16,6 +24,7 @@ const ForeignLanguageList = (props: Props) => {
       {foreignLanguagesFakeData.map((value, index) => (
         <ForeignLanguagesElement
           key={index}
+          foreignLanguageId={value.foreignLanguageId}
           languageName={value.name}
           languageLevel={value.level}
         />
