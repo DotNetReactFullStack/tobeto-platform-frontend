@@ -1,7 +1,9 @@
 import React from "react";
 import "./ExperienceElement.css";
+import DeleteModal from "../Modals/DeleteModal";
 
 type Props = {
+  experienceId: string;
   jobStartDate: string;
   jobEndDate: string;
   companyName: string;
@@ -11,6 +13,7 @@ type Props = {
 };
 
 const ExperienceElement = ({
+  experienceId,
   jobStartDate,
   jobEndDate,
   companyName,
@@ -45,8 +48,16 @@ const ExperienceElement = ({
         </div>
       </div>
       <div className="experience-element-buttons">
-        <button className="experience-element-edit-button">
+        <button
+          className="experience-element-edit-button"
+          data-bs-toggle="modal"
+          data-bs-target={"#" + experienceId}
+        >
           <i className="bi bi-three-dots experience-element-edit-button-icon"></i>
+          <DeleteModal
+            deleteModalId={experienceId}
+            deleteModalTitle="deneyimi"
+          />
         </button>
         <button className="experience-element-delete-button">
           <i className="bi bi-trash experience-element-delete-button-icon"></i>
