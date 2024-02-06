@@ -1,20 +1,24 @@
 import React from "react";
 import "./CertificateList.css";
+import DeleteModal from "../Modals/DeleteModal";
 
 type Props = {};
 
 const certificateListFakeData: any[] = [
   {
+    certificateId: "certificate1",
     title: ".Net Sertifika.pdf",
     fileTypeIcon: "bi-file-earmark-pdf-fill",
     date: "01.01.2024",
   },
   {
+    certificateId: "certificate2",
     title: ".React Sertifika.pdf",
     fileTypeIcon: "bi-file-earmark-pdf-fill",
     date: "02.01.2024",
   },
   {
+    certificateId: "certificate3",
     title: ".TypeScript Sertifika.pdf",
     fileTypeIcon: "bi-file-earmark-pdf-fill",
     date: "03.01.2024",
@@ -50,8 +54,16 @@ const CertificateList = (props: Props) => {
                   <button className="certificate-file-button">
                     <i className="bi bi-file-earmark-break certificate-file-button-icon"></i>
                   </button>
-                  <button className="certificate-delete-button">
+                  <button
+                    className="certificate-delete-button"
+                    data-bs-toggle="modal"
+                    data-bs-target={"#" + value.certificateId}
+                  >
                     <i className="bi bi-trash3 certificate-delete-button-icon"></i>
+                    <DeleteModal
+                      deleteModalId={value.certificateId}
+                      deleteModalTitle="sertifikayı"
+                    />
                   </button>
                 </div>
               </td>
