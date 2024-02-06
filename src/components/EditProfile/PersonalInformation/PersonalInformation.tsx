@@ -1,17 +1,16 @@
 import React from "react";
 import "./PersonalInformation.css";
 import InputContainer from "../InputContainer";
+import DeleteProfilePhotoModal from "../Modals/DeleteProfilePhotoModal";
 
 type Props = {};
 
-
 const ifVisibilityIsTrue = (value: any) => value.visibility === true;
 const ifVisibilityIsFalse = (value: any) => value.visibility === false;
-const ifCountryIsTurkey = (value: any) => value.name === 'Türkiye';
+const ifCountryIsTurkey = (value: any) => value.name === "Türkiye";
 
 const sortByPriorityDesc = (a: any, b: any) => b.priority - a.priority;
 const sortByPriorityAsc = (a: any, b: any) => a.priority - b.priority;
-
 
 let countriesOptionDataFilters = [ifVisibilityIsTrue, ifCountryIsTurkey];
 let citiesOptionDataFilters = [ifVisibilityIsTrue];
@@ -20,99 +19,123 @@ let districtsOptionDataFilters = [ifVisibilityIsTrue];
 const countries = [
   {
     id: 1,
-    name: 'Türkiye',
+    name: "Türkiye",
     priority: 2,
-    visibility: true
+    visibility: true,
   },
   {
     id: 2,
-    name: 'Almanya',
+    name: "Almanya",
     priority: 1,
-    visibility: true
+    visibility: true,
   },
 ];
 
 const cities = [
   {
-    id: '1',
-    countryId: '1',
-    name: 'Artvin',
+    id: "1",
+    countryId: "1",
+    name: "Artvin",
     priority: 6,
-    visibility: true
+    visibility: true,
   },
   {
-    id: '2',
-    countryId: '1',
-    name: 'Sinop',
+    id: "2",
+    countryId: "1",
+    name: "Sinop",
     priority: 5,
-    visibility: true
+    visibility: true,
   },
   {
-    id: '3',
-    countryId: '1',
-    name: 'İstanbul',
+    id: "3",
+    countryId: "1",
+    name: "İstanbul",
     priority: 4,
-    visibility: true
+    visibility: true,
   },
   {
-    id: '4',
-    countryId: '1',
-    name: 'Bursa',
+    id: "4",
+    countryId: "1",
+    name: "Bursa",
     priority: 2,
-    visibility: true
+    visibility: true,
   },
   {
-    id: '5',
-    countryId: '2',
-    name: 'Berlin',
+    id: "5",
+    countryId: "2",
+    name: "Berlin",
     priority: 2,
-    visibility: true
+    visibility: true,
   },
   {
-    id: '6',
-    countryId: '2',
-    name: 'Munich',
+    id: "6",
+    countryId: "2",
+    name: "Munich",
     priority: 1,
-    visibility: true
-  }
+    visibility: true,
+  },
 ];
 
 const districts = [
   {
-    id: '1',
-    cityId: '1',
-    name: 'Ardanuç',
+    id: "1",
+    cityId: "1",
+    name: "Ardanuç",
     priority: 3,
-    visibility: true
+    visibility: true,
   },
   {
-    id: '2',
-    cityId: '2',
-    name: 'Erfelek',
+    id: "2",
+    cityId: "2",
+    name: "Erfelek",
     priority: 2,
-    visibility: true
+    visibility: true,
   },
   {
-    id: '3',
-    cityId: '3',
-    name: 'Pendik',
+    id: "3",
+    cityId: "3",
+    name: "Pendik",
     priority: 1,
-    visibility: true
-  }
+    visibility: true,
+  },
 ];
 
-
 const PersonalInformation = (props: Props) => {
+  // Dosya yükleme girişinin referansı
+  const profilePhotofileInputRef = React.createRef<HTMLInputElement>();
+
+  // Dosya yükleme girişi açma işlemi
+  const handleEditButtonClick = () => {
+    // Dosya yükleme girişini tıklama işlemiyle aç
+    if (profilePhotofileInputRef.current) {
+      profilePhotofileInputRef.current.click();
+    }
+  };
+
   return (
     <div className="personal-information">
       <div className="profile-photo">
         <div className="profile-photo-edit rounded-circle">
-          <button className="profile-photo-delete-button">
-            <i className="bi bi-trash profile-photo-delete-button-icon"></i>{" "}
+          <button
+            className="profile-photo-delete-button"
+            data-bs-toggle="modal"
+            data-bs-target="#profile-photo-delete"
+          >
+            <i className="bi bi-trash profile-photo-delete-button-icon"></i>
+            <DeleteProfilePhotoModal deleteModalId="profile-photo-delete" />
           </button>
-          <button className="profile-photo-edit-button">
-            <i className="bi bi-pencil profile-photo-edit-button-icon"></i>{" "}
+
+          <button
+            className="profile-photo-edit-button"
+            onClick={handleEditButtonClick}
+          >
+            <i className="bi bi-pencil profile-photo-edit-button-icon"></i>
           </button>
+          <input
+            type="file"
+            ref={profilePhotofileInputRef} // Dosya yükleme girişine referansı ata
+            style={{ display: "none" }}
+          />
         </div>
       </div>
       <div className="personal-information-input-section">
