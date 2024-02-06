@@ -5,16 +5,20 @@ type Props = {};
 
 const CapabilityList = (props: Props) => {
   const capabiltyFakeData: any[] = [
-    { capability: ".NET" },
-    { capability: "React" },
-    { capability: "Full-Stack Developer" },
-    { capability: "TypeScript" },
-    { capability: "CSS" },
+    { capabilityId: "capability1", capability: ".NET" },
+    { capabilityId: "capability2", capability: "React" },
+    { capabilityId: "capability3", capability: "Full-Stack Developer" },
+    { capabilityId: "capability4", capability: "TypeScript" },
+    { capabilityId: "capability5", capability: "CSS" },
   ];
   return (
     <div className="capability-list">
       {capabiltyFakeData.map((value, index) => (
-        <CapabilityElement key={index} capability={value.capability} />
+        <CapabilityElement
+          key={index}
+          capabilityId={value.capabilityId}
+          capability={value.capability}
+        />
       ))}
     </div>
   );
