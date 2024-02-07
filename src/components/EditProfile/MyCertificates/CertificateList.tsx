@@ -60,11 +60,11 @@ const CertificateList = (props: Props) => {
                     data-bs-target={"#" + value.certificateId}
                   >
                     <i className="bi bi-trash3 certificate-delete-button-icon"></i>
-                    <DeleteModal
-                      deleteModalId={value.certificateId}
-                      deleteModalTitle="sertifikayı"
-                    />
                   </button>
+                  <DeleteModal
+                    deleteModalId={value.certificateId}
+                    deleteModalTitle="sertifikayı"
+                  />
                 </div>
               </td>
             </tr>

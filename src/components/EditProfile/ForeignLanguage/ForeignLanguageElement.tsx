@@ -35,11 +35,11 @@ const ForeignLanguageElement = ({
           data-bs-target={"#" + foreignLanguageId}
         >
           <i className="bi bi-trash foreing-language-element-delete-button-icon"></i>
-          <DeleteModal
-            deleteModalId={foreignLanguageId}
-            deleteModalTitle="yabancı dili"
-          />
         </button>
+        <DeleteModal
+          deleteModalId={foreignLanguageId}
+          deleteModalTitle="yabancı dili"
+        />
       </div>
     </div>
   );

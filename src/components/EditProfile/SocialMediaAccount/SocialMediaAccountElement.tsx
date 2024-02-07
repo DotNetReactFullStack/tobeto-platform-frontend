@@ -38,11 +38,11 @@ const SocialMediaAccountElement = ({
             data-bs-target={"#" + socialMediaId}
           >
             <i className="bi bi-trash social-media-account-element-delete-button-icon"></i>
-            <DeleteModal
-              deleteModalId={socialMediaId}
-              deleteModalTitle="sosyal medya hesabını"
-            />
           </button>
+          <DeleteModal
+            deleteModalId={socialMediaId}
+            deleteModalTitle="sosyal medya hesabını"
+          />
           <button
             className="social-media-account-element-edit-button"
             data-bs-toggle="modal"
