@@ -1,7 +1,7 @@
 import React from "react";
 import "./PersonalInformation.css";
 import InputContainer from "../InputContainer";
-import DeleteProfilePhotoModal from "../Modals/DeleteProfilePhotoModal";
+import DeleteProfilePhotoModal from "./DeleteProfilePhotoModal";
 
 type Props = {};
 

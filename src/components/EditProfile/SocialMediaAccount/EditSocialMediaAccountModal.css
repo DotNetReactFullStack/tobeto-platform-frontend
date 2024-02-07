@@ -1,0 +1,49 @@
+.edit-social-media-account-modal-header,
+.edit-social-media-account-modal-body {
+  border: none !important;
+  padding: 10px 16px !important;
+}
+
+.edit-social-media-account-modal-header {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.edit-social-media-account-modal-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.edit-social-media-account-modal-footer {
+  background-color: #e0dddd !important;
+  margin-top: 20px;
+  justify-content: space-between !important;
+  padding: 16px 16px !important;
+  border: none !important;
+}
+
+.edit-social-media-account-modal-footer button {
+  width: 48%;
+  background-color: white;
+  border: none;
+  color: #828282;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 0px;
+  transition: all 0.5s ease;
+}
+
+.edit-social-media-account-modal-footer button:hover {
+  transform: scale(1.025);
+  opacity: 1;
+  background-color: #9933ff;
+}
+
+.edit-social-media-account-modal-footer button i {
+  font-size: 20px;
+  margin: 0px 5px;
+}
