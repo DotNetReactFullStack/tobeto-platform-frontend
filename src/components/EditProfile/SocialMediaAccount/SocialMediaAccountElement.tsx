@@ -1,6 +1,7 @@
 import React from "react";
 import "./SocialMediaAccountElement.css";
 import DeleteModal from "../Modals/DeleteModal";
+import EditSocialMediaAccountModal from "./EditSocialMediaAccountModal";
 
 type Props = {
   socialMediaId: string;
@@ -42,9 +43,16 @@ const SocialMediaAccountElement = ({
               deleteModalTitle="sosyal medya hesabını"
             />
           </button>
-          <button className="social-media-account-element-edit-button">
+          <button
+            className="social-media-account-element-edit-button"
+            data-bs-toggle="modal"
+            data-bs-target={"#edit-" + socialMediaId}
+          >
             <i className="bi bi-pencil-fill social-media-account-element-edit-button-icon"></i>
           </button>
+          <EditSocialMediaAccountModal
+            editSocialMediaAccountModalId={socialMediaId}
+          />
         </div>
       </div>
     </div>
