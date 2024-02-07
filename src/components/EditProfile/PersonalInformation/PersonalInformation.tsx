@@ -122,9 +122,8 @@ const PersonalInformation = (props: Props) => {
             data-bs-target="#profile-photo-delete"
           >
             <i className="bi bi-trash profile-photo-delete-button-icon"></i>
-            <DeleteProfilePhotoModal deleteModalId="profile-photo-delete" />
           </button>
-
+          <DeleteProfilePhotoModal deleteModalId="profile-photo-delete" />
           <button
             className="profile-photo-edit-button"
             onClick={handleEditButtonClick}

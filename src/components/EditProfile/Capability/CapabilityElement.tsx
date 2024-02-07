@@ -20,11 +20,11 @@ function CapabilityElement({ capabilityId, capability }: Props) {
           data-bs-target={"#" + capabilityId}
         >
           <i className="bi bi-trash capability-element-delete-button-icon"></i>
-          <DeleteModal
-            deleteModalId={capabilityId}
-            deleteModalTitle="yetkinliği"
-          />
         </button>
+        <DeleteModal
+          deleteModalId={capabilityId}
+          deleteModalTitle="yetkinliği"
+        />
       </div>
     </div>
   );

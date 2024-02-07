@@ -10,7 +10,6 @@
   width: 30%;
   height: 50px;
   margin: 8px 10px;
-  transition: 0.6s;
 }
 
 .foreing-language-element-body {
@@ -43,11 +42,16 @@
   padding: 3px 8px;
   margin: 0px;
   background-color: #fc6d6d;
+  display: none;
 }
 
 .foreing-language-element-delete-button-icon {
   color: white;
   font-size: 14px;
+}
+
+.foreing-language-element:hover .foreing-language-element-delete-button {
+  display: block;
 }
 
 @media (max-width: 1200px) {

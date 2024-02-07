@@ -49,8 +49,8 @@ const EducationElement = ({
           data-bs-target={"#" + educationId}
         >
           <i className="bi bi-trash education-element-delete-button-icon"></i>
-          <DeleteModal deleteModalId={educationId} deleteModalTitle="eğitimi" />
         </button>
+        <DeleteModal deleteModalId={educationId} deleteModalTitle="eğitimi" />
       </div>
     </div>
   );
