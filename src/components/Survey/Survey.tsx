@@ -44,9 +44,8 @@ const Survey = (props: Props) => {
           (surveyFakeData.length > 0)
             ?
             surveyFakeData.slice(0, 2).map(({ id, title, content, organization, publishedDate, surveyStatus, surveyLink }, index) => (
-              <>
+              <div key={index}>
                 <SurveyElement
-                  key={index}
                   id={id}
                   title={title}
                   organization={organization}
@@ -60,7 +59,7 @@ const Survey = (props: Props) => {
                   publishedDate={publishedDate}
                   surveyLink={surveyLink}
                 />
-              </>
+              </div>
             ))
             : <></>
         }
