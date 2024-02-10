@@ -7,14 +7,13 @@ type Props = {};
 const GoBackButton = (props: Props) => {
   const navigate = useNavigate();
 
-  const handleGeriButtonClick = () => {
-    // Bir önceki sayfaya git
-    navigate(-1);
+  const handleGoBackButtonClick = () => {
+    navigate(-1); // go to previous page
   };
 
   return (
     <div className="go-back-button-container">
-      <button className="go-back-button" onClick={handleGeriButtonClick}>
+      <button className="go-back-button" onClick={handleGoBackButtonClick}>
         <i className="bi bi-chevron-left go-back-button-icon"></i>
       </button>
     </div>

@@ -72,9 +72,8 @@ const Exam = (props: Props) => {
         </div>
         <div className="exam-component-body">
           {examFakeData.slice(0, 2).map((value, index) => (
-            <>
+            <div key={index}>
               <ExamElement
-                key={index}
                 id={value.id}
                 title={value.title}
                 examStatusImageUrl={value.examStatusImageUrl}
@@ -82,14 +81,13 @@ const Exam = (props: Props) => {
                 duration={value.duration}
               />
               <ExamDetailModal
-                key={index}
                 id={value.id}
                 title={value.title}
                 content={value.content}
                 duration={value.duration}
                 numberOfQuestions={value.numberOfQuestions}
               />
-            </>
+            </div>
           ))}
         </div>
         {examFakeData.length > 2 ? (

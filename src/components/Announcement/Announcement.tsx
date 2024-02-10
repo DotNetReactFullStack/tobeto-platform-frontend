@@ -94,9 +94,8 @@ const Announcement = (props: Props) => {
     <>
       <div className="announcement-component">
         {announcementFakeData.slice(0, 3).map((value, index) => (
-          <>
+          <div key={index}>
             <AnnouncementElement
-              key={index}
               id={value.id}
               announcementType={value.announcementType}
               organizationType={value.organizationType}
@@ -104,13 +103,12 @@ const Announcement = (props: Props) => {
               publishDate={value.publishDate}
             />
             <AnnouncementDetailModal
-              key={index}
               id={value.id}
               title={value.title}
               content={value.content}
               organization={value.organizationType}
             />
-          </>
+          </div>
         ))}
       </div>
       {announcementFakeData.length > 3 ? (
