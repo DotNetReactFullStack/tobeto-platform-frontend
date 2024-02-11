@@ -1,10 +1,19 @@
-import React from "react";
 import "../Navbar/UserSection.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { removeToken } from "../../store/auth/authSlice";
 
 type Props = {};
 
+const handleLogout = async (navigate: any, dispatch: any) => {
+  dispatch(removeToken());
+  navigate("/login");
+}
+
 function UserSection({ }: Props) {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   return (
     <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
       <div className="user-and-tobeto">
@@ -46,7 +55,7 @@ function UserSection({ }: Props) {
               <hr className="dropdown-divider" />
             </li>
             <li>
-              <Link className="dropdown-item" to="/login">
+              <Link onClick={() => handleLogout(navigate, dispatch)} className="dropdown-item" to="/login">
                 Oturumu Kapat
               </Link>
             </li>

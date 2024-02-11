@@ -1,6 +1,8 @@
 import React from "react";
 import "./SocialMediaAccountForm.css";
 import InputContainer from "../InputContainer";
+import { FormElementType } from "../../../models/formElementType";
+import { InputType } from "../../../models/inputType";
 
 type Props = {};
 
@@ -41,7 +43,7 @@ const SocialMediaAccountsFrom = (props: Props) => {
       <div className="social-media-account-input-section">
         <InputContainer
           inputContainerClasses="social-media-account-type-input-container input-container-w-30"
-          elementType="select"
+          elementType={FormElementType.Select}
           inputName="account-type"
           defaultOptionText="Seçiniz"
           optionData={socialMediaPlatforms}
@@ -51,7 +53,7 @@ const SocialMediaAccountsFrom = (props: Props) => {
 
         <InputContainer
           inputContainerClasses="social-media-account-link-input-container input-container-w-70"
-          inputType="url"
+          inputType={InputType.URL}
           inputName="account-url"
           inputPlaceholder="http://"
         />

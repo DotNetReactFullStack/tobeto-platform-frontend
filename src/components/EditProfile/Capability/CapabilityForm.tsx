@@ -1,6 +1,7 @@
 import React from "react";
 import "./CapabilityForm.css";
 import InputContainer from "../InputContainer";
+import { FormElementType } from "../../../models/formElementType";
 
 type Props = {};
 
@@ -40,7 +41,7 @@ const CapabilityForm = (props: Props) => {
     <div className="capability-form">
       <InputContainer
         inputContainerClasses="capability-input-container input-container-w-100"
-        elementType="select"
+        elementType={FormElementType.Select}
         labelText="Yetkinlik"
         inputName="capability"
         defaultOptionText="Yetkinlik Seçiniz"

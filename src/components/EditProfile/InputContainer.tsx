@@ -1,13 +1,17 @@
+import { ErrorMessage, Field } from 'formik';
 import React, { useState } from 'react'
+import { FormElementType } from '../../models/formElementType';
+import { InputType } from '../../models/inputType';
 
 type Props = {
+    useFormikField?: boolean;
     inputContainerClasses?: string;
     labelClasses?: string;
     labelText?: string;
-    elementType?: string;
+    elementType?: FormElementType;
     inputName?: string;
     inputClasses?: string;
-    inputType?: string;
+    inputType?: InputType;
     inputPlaceholder?: string;
     defaultOptionValue?: string;
     defaultOptionText?: string;
@@ -17,7 +21,7 @@ type Props = {
     children?: React.ReactNode;
 }
 
-const InputContainer = ({ inputContainerClasses, labelClasses, labelText, elementType, inputName, inputClasses, inputType, inputPlaceholder, defaultOptionValue, defaultOptionText, optionData, optionDataFilters, optionDataSort, children }: Props) => {
+const InputContainer = ({ useFormikField, inputContainerClasses, labelClasses, labelText, elementType, inputName, inputClasses, inputType, inputPlaceholder, defaultOptionValue, defaultOptionText, optionData, optionDataFilters, optionDataSort, children }: Props) => {
 
     return (
         <div className={inputContainerClasses}>
@@ -25,61 +29,86 @@ const InputContainer = ({ inputContainerClasses, labelClasses, labelText, elemen
             {
                 <>
                     {(() => {
-                        console.log(elementType);
-                        switch (elementType) {
-                            case "input":
-                                return (
-                                    <>
-                                        <input
+                        return (
+                            <>
+                                {useFormikField
+                                    ? (
+                                        <Field
+                                            as={elementType}
                                             className={inputClasses}
                                             name={inputName}
-                                            type={inputType || "text"}
-                                            placeholder={inputPlaceholder} />
-                                        {children}
-                                    </>
-                                )
-                            case "textarea":
-                                return (
-                                    <>
-                                        <textarea
-                                            className={inputClasses}
-                                            name={inputName}
+                                            {...(elementType === 'input' ? { type: inputType } : {})}
                                             placeholder={inputPlaceholder}
-                                        ></textarea>
-                                        {children}
-                                    </>
-                                )
-                            case "select":
-                                return (
-                                    <>
-                                        <select name={inputName}>
-                                            <option value={defaultOptionValue}>{defaultOptionText}</option>
-                                            {
-                                                optionData?.filter(
-                                                    optionDataFilters
-                                                        ?
-                                                        (filter) => optionDataFilters.every((filterFunction: (arg0: any) => any) => filterFunction(filter))
-                                                        :
-                                                        (element) => { return element })
-                                                    .sort(optionDataSort)
-                                                    .map((optionValue, index) => (
-                                                        <option key={index} value={optionValue.id}>{optionValue.name}</option>
-                                                    ))
-                                            }
-                                        </select>
-                                        {children}
-                                    </>
-                                )
-                        }
+                                        />
+                                    )
+                                    : (
+                                        <>
+                                            {(() => {
+                                                switch (elementType) {
+                                                    case FormElementType.Input:
+                                                        return (
+                                                            <input
+                                                                className={inputClasses}
+                                                                name={inputName}
+                                                                type={inputType}
+                                                                placeholder={inputPlaceholder} />
+                                                        )
+                                                    case FormElementType.Select:
+                                                        return (
+                                                            <select name={inputName}>
+                                                                <option value={defaultOptionValue}>{defaultOptionText}</option>
+                                                                {
+                                                                    optionData?.filter(
+                                                                        optionDataFilters
+                                                                            ?
+                                                                            (filter) => optionDataFilters.every((filterFunction: (arg0: any) => any) => filterFunction(filter))
+                                                                            :
+                                                                            (element) => { return element })
+                                                                        .sort(optionDataSort)
+                                                                        .map((optionValue, index) => (
+                                                                            <option key={index} value={optionValue.id}>{optionValue.name}</option>
+                                                                        ))
+                                                                }
+                                                            </select>
+                                                        )
+                                                    case FormElementType.TextArea:
+                                                        return (
+                                                            <textarea
+                                                                className={inputClasses}
+                                                                name={inputName}
+                                                                placeholder={inputPlaceholder}>
+                                                            </textarea>
+                                                        )
+                                                }
+                                            })()}
+                                        </>
+                                    )
+                                }
+                            </>
+                        )
                     })()}
                 </>
+            }
+
+            {children}
+
+            {
+                useFormikField === true && inputName !== undefined
+                    ? (
+                        <ErrorMessage name={inputName} className='validation-error-message-horizontal-alignment-start'>
+                            {message => <span className="text-danger">{message}</span>}
+                        </ErrorMessage>
+                    )
+                    : <></>
             }
         </div >
     )
 }
 
 InputContainer.defaultProps = {
-    elementType: 'input',
+    useFormikField: false,
+    elementType: FormElementType.Input,
+    inputType: InputType.Text,
     defaultOptionValue: 'default',
     optionDataFilters: [(value: any) => { return value }],
     optionDataSort: (value: any) => { return value },

@@ -1,6 +1,7 @@
 import React from "react";
 import "./AccountSettingsForm.css";
 import InputContainer from "../InputContainer";
+import { InputType } from "../../../models/inputType";
 
 type Props = {};
 
@@ -11,7 +12,7 @@ const AccountSettingsForm = (props: Props) => {
         <InputContainer
           inputContainerClasses="account-settings-previous-password-container input-container-w-33"
           labelText="Mevcut Şifre*"
-          inputType="password"
+          inputType={InputType.Password}
           inputName="previous-password"
           inputPlaceholder="Mevcut Şifreniz"
         />
@@ -19,7 +20,7 @@ const AccountSettingsForm = (props: Props) => {
         <InputContainer
           inputContainerClasses="account-settings-new-password-container input-container-w-33"
           labelText="Yeni Şifre*"
-          inputType="password"
+          inputType={InputType.Password}
           inputName="new-password"
           inputPlaceholder="Yeni Şifre*"
         />
@@ -27,7 +28,7 @@ const AccountSettingsForm = (props: Props) => {
         <InputContainer
           inputContainerClasses="account-settings-new-password-repeat-container input-container-w-33"
           labelText="Yeni Şifre Tekrarı*"
-          inputType="password"
+          inputType={InputType.Password}
           inputName="new-password-repeat"
           inputPlaceholder="Yeni Şifre Tekrarı"
         />

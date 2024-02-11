@@ -1,6 +1,8 @@
 import React from "react";
 import "./ExperienceForm.css";
 import InputContainer from "../InputContainer";
+import { FormElementType } from "../../../models/formElementType";
+import { InputType } from "../../../models/inputType";
 
 type Props = {};
 
@@ -81,7 +83,7 @@ const ExperienceForm = (props: Props) => {
 
         <InputContainer
           inputContainerClasses="user-address-city-input-container input-container-w-50"
-          elementType="select"
+          elementType={FormElementType.Select}
           labelText="İl Seçiniz*"
           inputName="city"
           defaultOptionText="İl Seçiniz"
@@ -94,14 +96,14 @@ const ExperienceForm = (props: Props) => {
           inputContainerClasses="job-start-date-input-container input-container-w-50"
           labelText="İş Başlangıcı*"
           inputName="job-start-date"
-          inputType="date"
+          inputType={InputType.Date}
         />
 
         <InputContainer
           inputContainerClasses="job-end-date-input-container input-container-w-50"
           labelText="İş Bitiş*"
           inputName="job-end-date"
-          inputType="date"
+          inputType={InputType.Date}
         >
           <div className="job-continue-checkbox">
             <input type="checkbox" />
@@ -111,10 +113,9 @@ const ExperienceForm = (props: Props) => {
 
         <InputContainer
           inputContainerClasses="job-detail-input-container input-container-w-100"
-          elementType="textarea"
+          elementType={FormElementType.TextArea}
           labelText="Detaylı Bilgi"
           inputName="job-detail"
-          inputType="textarea"
         />
       </div>
       <button type="submit" className="experience-save-button">

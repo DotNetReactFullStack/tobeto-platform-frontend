@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import Homepage from "../pages/Homepage/Homepage";
 import NotFound from "../pages/NotFound/NotFound";
@@ -21,71 +21,35 @@ import Assessments from "../pages/Assessments/Assessments";
 import Calendar from "../pages/Calendar/CalendarPage";
 import Catalog from "../pages/Catalog/Catalog";
 import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
+import { PrivateRoute } from "./PrivateRoute";
+import { useSelector } from "react-redux";
 
 type Props = {};
 
 const RouteDefinitions = (props: Props) => {
   return (
     <Routes>
-      <Route path="/" element={<Homepage />} />
+      <Route path="/" element={<PrivateRoute component={Homepage} />} />
       <Route path="*" element={<NotFound />} />
-      <Route path="/announcements" element={<Announcements />} />
-      <Route path="/my-learning-paths" element={<LearningPaths />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/my-profile" element={<Profile />} />
-      <Route
-        path="/my-profile/edit-profile/my-personal-information"
-        element={<PersonalInformation />}
-      />
-      <Route
-        path="/my-profile/edit-profile/my-experience"
-        element={<Experience />}
-      />
-      <Route
-        path="/my-profile/edit-profile/education"
-        element={<Education />}
-      />
-      <Route
-        path="/my-profile/edit-profile/capabilities"
-        element={<Capabilities />}
-      />
-      <Route
-        path="/my-profile/edit-profile/certificates"
-        element={<MyCertificates />}
-      />
-      <Route
-        path="/my-profile/edit-profile/social-media-accounts"
-        element={<SocialMediaAccounts />}
-      />
-      <Route
-        path="/my-profile/edit-profile/foreing-languages"
-        element={<ForeignLanguages />}
-      />
-      <Route
-        path="/my-profile/edit-profile/settings"
-        element={<AccountSettings />}
-      />
-      <Route
-        path="/my-learning-paths/net-react-fullstack"
-        element={<LearningPathContent />}
-      />
-      <Route
-        path="/my-exams"
-        element={<Exams />} />
-      <Route
-        path="/my-assessments"
-        element={<Assessments />} />
-      <Route
-        path="/calendar"
-        element={<Calendar />} />
-      <Route
-        path="/catalog"
-        element={<Catalog />} />
-        <Route
-        path="/forgot-password"
-        element={<ForgotPassword />}
-      />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/announcements" element={<PrivateRoute component={Announcements} />} />
+      <Route path="/my-learning-paths" element={<PrivateRoute component={LearningPaths} />} />
+      <Route path="/my-profile" element={<PrivateRoute component={Profile} />} />
+      <Route path="/my-profile/edit-profile/my-personal-information" element={<PrivateRoute component={PersonalInformation} />} />
+      <Route path="/my-profile/edit-profile/my-experience" element={<PrivateRoute component={Experience} />} />
+      <Route path="/my-profile/edit-profile/education" element={<PrivateRoute component={Education} />} />
+      <Route path="/my-profile/edit-profile/capabilities" element={<PrivateRoute component={Capabilities} />} />
+      <Route path="/my-profile/edit-profile/certificates" element={<PrivateRoute component={MyCertificates} />} />
+      <Route path="/my-profile/edit-profile/social-media-accounts" element={<PrivateRoute component={SocialMediaAccounts} />} />
+      <Route path="/my-profile/edit-profile/foreing-languages" element={<PrivateRoute component={ForeignLanguages} />} />
+      <Route path="/my-profile/edit-profile/settings" element={<PrivateRoute component={AccountSettings} />} />
+      <Route path="/my-learning-paths/net-react-fullstack" element={<PrivateRoute component={LearningPathContent} />} />
+      <Route path="/my-exams" element={<PrivateRoute component={Exams} />} />
+      <Route path="/my-assessments" element={<PrivateRoute component={Assessments} />} />
+      <Route path="/calendar" element={<PrivateRoute component={Calendar} />} />
+      <Route path="/catalog" element={<Catalog />} />
     </Routes>
   );
 };
