@@ -6,11 +6,22 @@
 }
 
 .login-element-body,
-.login-element-form {
+.login-element-form,
+.login-element-form-element {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
+}
+
+.login-element-form .login-element-form-element input,
+.login-element-form .login-element-form-element select,
+.login-element-form .login-element-form-element textarea {
+  margin-top: -10px;
+}
+
+.login-element-form-element span {
+  width: 79%;
 }
 
 .login-element-body button {}

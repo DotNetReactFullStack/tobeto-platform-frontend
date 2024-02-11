@@ -1,8 +1,5 @@
 import { AxiosResponse } from 'axios';
 import { LoggedResponse } from "../../models/auth/loggedResponse";
-import { data } from 'jquery';
-import { useDispatch } from 'react-redux';
-import { authActions } from '../../store/auth/authSlice';
 
 class TokenService {
     getToken(): string | null {
@@ -16,12 +13,9 @@ class TokenService {
     async setToken(loggedResponse: Promise<AxiosResponse<LoggedResponse>>) {
         const token = (await loggedResponse).data.accessToken?.token;
 
-        // authActions.setAuthTrue();
-
         return (token !== undefined)
             ? localStorage.setItem("token", token)
             : {};
-
     }
 
     removeToken() {
