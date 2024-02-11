@@ -1,6 +1,8 @@
 import React from "react";
 import "./EditSocialMediaAccountModal.css";
 import InputContainer from "../InputContainer";
+import { FormElementType } from "../../../models/formElementType";
+import { InputType } from "../../../models/inputType";
 
 type Props = {
   editSocialMediaAccountModalId: string;
@@ -57,7 +59,7 @@ const EditSocialMediaAccountModal = ({
           <div className="modal-body edit-social-media-account-modal-body">
             <InputContainer
               inputContainerClasses="social-media-account-type-input-container input-container-w-30"
-              elementType="select"
+              elementType={FormElementType.Select}
               inputName="account-type"
               defaultOptionText="Seçiniz"
               optionData={socialMediaPlatforms}
@@ -67,7 +69,7 @@ const EditSocialMediaAccountModal = ({
 
             <InputContainer
               inputContainerClasses="social-media-account-link-input-container input-container-w-70"
-              inputType="url"
+              inputType={InputType.URL}
               inputName="account-url"
               inputPlaceholder="http://"
             />

@@ -2,6 +2,8 @@ import React from "react";
 import "./PersonalInformation.css";
 import InputContainer from "../InputContainer";
 import DeleteProfilePhotoModal from "./DeleteProfilePhotoModal";
+import { FormElementType } from "../../../models/formElementType";
+import { InputType } from "../../../models/inputType";
 
 type Props = {};
 
@@ -156,7 +158,7 @@ const PersonalInformation = (props: Props) => {
           inputContainerClasses="user-phone-input-container input-container-w-50"
           labelText="Telefon Numaranız*"
           inputName="phone-number"
-          inputType="tel"
+          inputType={InputType.Tel}
           inputPlaceholder="Telefon Numaranız"
         />
 
@@ -164,7 +166,7 @@ const PersonalInformation = (props: Props) => {
           inputContainerClasses="user-birthdate-input-container input-container-w-50"
           labelText="Doğum Tarihiniz*"
           inputName="date-of-birth"
-          inputType="date"
+          inputType={InputType.Date}
         />
 
         <InputContainer
@@ -178,14 +180,14 @@ const PersonalInformation = (props: Props) => {
           inputContainerClasses="user-email-input-container input-container-w-50"
           labelText="E-Posta*"
           inputName="e-mail"
-          inputType="email"
+          inputType={InputType.Email}
           inputPlaceholder="E-Posta adresiniz"
         />
 
         <div className="user-address-section">
           <InputContainer
             inputContainerClasses="user-address-country-input-container input-container-w-100"
-            elementType="select"
+            elementType={FormElementType.Select}
             labelText="Ülke*"
             inputName="country"
             defaultOptionText="Ülke"
@@ -196,7 +198,7 @@ const PersonalInformation = (props: Props) => {
 
           <InputContainer
             inputContainerClasses="user-address-city-input-container input-container-w-50"
-            elementType="select"
+            elementType={FormElementType.Select}
             labelText="İl*"
             inputName="city"
             defaultOptionText="İl"
@@ -207,7 +209,7 @@ const PersonalInformation = (props: Props) => {
 
           <InputContainer
             inputContainerClasses="user-address-districts-input-container input-container-w-50"
-            elementType="select"
+            elementType={FormElementType.Select}
             labelText="İlçe*"
             inputName="district"
             defaultOptionText="İlçe"
@@ -218,19 +220,17 @@ const PersonalInformation = (props: Props) => {
 
           <InputContainer
             inputContainerClasses="user-address-detail-input-container input-container-w-100"
-            elementType="textarea"
+            elementType={FormElementType.TextArea}
             labelText="Mahalle / Sokak"
             inputName="address-detail"
-            inputType="textarea"
             inputPlaceholder="Açık Adres..."
           />
 
           <InputContainer
             inputContainerClasses="user-about-me-input-container input-container-w-100"
-            elementType="textarea"
+            elementType={FormElementType.TextArea}
             labelText="Hakkımda"
             inputName="about-me"
-            inputType="textarea"
             inputPlaceholder="Kendini kısaca tanıt..."
           />
         </div>

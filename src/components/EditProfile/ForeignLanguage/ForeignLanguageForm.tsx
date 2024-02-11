@@ -1,6 +1,7 @@
 import React from "react";
 import "./ForeignLanguageForm.css";
 import InputContainer from "../InputContainer";
+import { FormElementType } from "../../../models/formElementType";
 
 type Props = {};
 
@@ -69,7 +70,7 @@ const ForeignLanguageForm = (props: Props) => {
       <div className="foreing-language-input-section">
         <InputContainer
           inputContainerClasses="foreing-language-name-input-container input-container-w-50"
-          elementType="select"
+          elementType={FormElementType.Select}
           inputName="foreing-language-name"
           defaultOptionText="Dil Seçiniz*"
           optionData={languages}
@@ -79,7 +80,7 @@ const ForeignLanguageForm = (props: Props) => {
 
         <InputContainer
           inputContainerClasses="foreing-language-level-input-container input-container-w-50"
-          elementType="select"
+          elementType={FormElementType.Select}
           inputName="foreing-language-level"
           defaultOptionText="Seviye Seçiniz*"
           optionData={languageLevels}

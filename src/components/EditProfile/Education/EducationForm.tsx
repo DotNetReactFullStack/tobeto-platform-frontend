@@ -1,6 +1,8 @@
 import React from "react";
 import "./EducationForm.css";
 import InputContainer from "../InputContainer";
+import { FormElementType } from "../../../models/formElementType";
+import { InputType } from "../../../models/inputType";
 
 type Props = {};
 
@@ -89,7 +91,7 @@ const EducationForm = (props: Props) => {
       <div className="education-input-section">
         <InputContainer
           inputContainerClasses="graduation-status-input-container input-container-w-50"
-          elementType="select"
+          elementType={FormElementType.Select}
           labelText="Eğitim Durumu*"
           inputName="graduation-status"
           defaultOptionText="Seviye Seçiniz"
@@ -100,7 +102,7 @@ const EducationForm = (props: Props) => {
 
         <InputContainer
           inputContainerClasses="college-input-container input-container-w-50"
-          elementType="select"
+          elementType={FormElementType.Select}
           labelText="Üniversite*"
           inputName="college"
           defaultOptionText="Üniversite Seçiniz"
@@ -111,7 +113,7 @@ const EducationForm = (props: Props) => {
 
         <InputContainer
           inputContainerClasses="education-program-input-container input-container-w-100"
-          elementType="select"
+          elementType={FormElementType.Select}
           labelText="Bölüm*"
           inputName="education-program"
           defaultOptionText="Bölüm Seçiniz"
@@ -124,14 +126,14 @@ const EducationForm = (props: Props) => {
           inputContainerClasses="education-program-start-date-input-container input-container-w-50"
           labelText="Başlangıç Yılı*"
           inputName="education-program-start-date"
-          inputType="month"
+          inputType={InputType.Month}
         />
 
         <InputContainer
           inputContainerClasses="education-program-end-date-input-container input-container-w-50"
           labelText="Mezuniyet Yılı*"
           inputName="education-program-end-date"
-          inputType="month"
+          inputType={InputType.Month}
         >
           <div className="education-program-continue-input-container">
             <input type="checkbox" />
