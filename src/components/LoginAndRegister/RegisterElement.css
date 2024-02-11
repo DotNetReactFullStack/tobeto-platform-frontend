@@ -6,15 +6,25 @@
 }
 
 .register-element-body,
-.register-element-form {
+.register-element-form,
+.register-element-form-element {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
 }
 
-.register-element-body button {
+.register-element-form .register-element-form-element input,
+.register-element-form .register-element-form-element select,
+.register-element-form .register-element-form-element textarea {
+  margin-top: -10px;
 }
+
+.register-element-form-element span {
+  width: 79%;
+}
+
+.register-element-body button {}
 
 .register-element-body a {
   color: #555351;
