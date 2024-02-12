@@ -10,8 +10,10 @@ class TokenService {
         return localStorage.getItem("token") != null;
     }
 
-    async setToken(loggedResponse: Promise<AxiosResponse<LoggedResponse>>) {
-        const token = (await loggedResponse).data.accessToken?.token;
+    async setToken(response: any) {
+        const token =
+            (await response).data.accessToken?.token //login
+            || (await response).data.token;          //register
 
         return (token !== undefined)
             ? localStorage.setItem("token", token)
