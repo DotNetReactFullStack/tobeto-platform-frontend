@@ -24,7 +24,7 @@ const handleRegister = async (
 
   if (status === HttpStatusCode.Created) {
     dispatch(setToken(response));
-    navigate("/");
+    navigate("/my-profile/edit-profile/my-personal-information");
   }
 };
 
