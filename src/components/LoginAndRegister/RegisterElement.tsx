@@ -22,11 +22,9 @@ const handleRegister = async (
   const response = authService.register(values);
   const status = (await response).status;
 
-  if (status === HttpStatusCode.OK) {
+  if (status === HttpStatusCode.Created) {
     dispatch(setToken(response));
     navigate("/");
-  } else {
-    //...
   }
 };
 
