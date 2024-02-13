@@ -4,6 +4,8 @@ import InputContainer from "../InputContainer";
 import DeleteProfilePhotoModal from "./DeleteProfilePhotoModal";
 import { FormElementType } from "../../../models/formElementType";
 import { InputType } from "../../../models/inputType";
+import * as yup from "yup";
+import { Form, Formik } from "formik";
 
 type Props = {};
 
@@ -102,6 +104,60 @@ const districts = [
   },
 ];
 
+//Formik, Yup
+const initialValues: any = {
+  firstName: "",
+  lastName: "",
+  phoneNumber: "",
+  birthDate: "",
+  nationalIdentificationNumber: "",
+  email: "",
+  country: "",
+  city: "",
+  district: "",
+  addressDetail: "",
+  aboutMe: "",
+};
+const validationSchema = yup.object({
+  firstName: yup
+    .string()
+    .required("Ad alanı zorunludur")
+    .min(2, "Ad en az 2 karakter olmalıdır")
+    .max(30, "Ad en fazla 30 karakter olmalıdır"),
+  lastName: yup
+    .string()
+    .required("Soyad alanı zorunludur")
+    .min(2, "Soyad en az 2 karakter olmalıdır")
+    .max(30, "Soyad en fazla 30 karakter olmalıdır"),
+  phoneNumber: yup
+    .string()
+    .matches(
+      /^[1-9]\d*$/,
+      "Telefon numarası sadece rakam içermelidir ve sıfır ile başlamamalıdır"
+    )
+    .required("Telefon numarası gereklidir")
+    .min(10, "Telefon numarası 10 karakter olmalıdır")
+    .max(10, "Telefon numarası 10 karakter olmalıdır"),
+  birthDate: yup
+    .date()
+    .required("Doğum tarihi gereklidir")
+    .max(new Date(), "Geçerli bir doğum tarihi girin"),
+  email: yup
+    .string()
+    .email("Geçerli bir e-posta adresi giriniz")
+    .required("E-posta alanı zorunludur"),
+  addressDetail: yup
+    .string()
+    .max(200, "Adres detayı en fazla 200 karakter olabilir"),
+  aboutMe: yup
+    .string()
+    .max(200, "Hakkımda bölümü en fazla 1000 karakter olabilir"),
+});
+
+const handlePersonalInformation = async (values: any) => {
+  console.log(values);
+};
+
 const PersonalInformation = (props: Props) => {
   // Dosya yükleme girişinin referansı
   const profilePhotofileInputRef = React.createRef<HTMLInputElement>();
@@ -113,6 +169,14 @@ const PersonalInformation = (props: Props) => {
       profilePhotofileInputRef.current.click();
     }
   };
+
+  // Tarihi gg.aa.yyyy formatından yyyy-mm-dd formatına dönüştürme
+  const dateOfBirthValue = "17.06.1995";
+  const [day, month, year] = dateOfBirthValue.split("."); // Tarihi parçalara ayırma
+  const formattedDate = `${year}-${month.padStart(2, "0")}-${day.padStart(
+    2,
+    "0"
+  )}`;
 
   return (
     <div className="personal-information">
@@ -139,105 +203,135 @@ const PersonalInformation = (props: Props) => {
           />
         </div>
       </div>
-      <div className="personal-information-input-section">
-        <InputContainer
-          inputContainerClasses="user-name-input-container input-container-w-50"
-          labelText="Adınız*"
-          inputName="first-name"
-          inputPlaceholder="Adınız"
-        />
-
-        <InputContainer
-          inputContainerClasses="user-surname-input-container input-container-w-50"
-          labelText="Soyadınız*"
-          inputName="last-name"
-          inputPlaceholder="Soyadınız"
-        />
-
-        <InputContainer
-          inputContainerClasses="user-phone-input-container input-container-w-50"
-          labelText="Telefon Numaranız*"
-          inputName="phone-number"
-          inputType={InputType.Tel}
-          inputPlaceholder="Telefon Numaranız"
-        />
-
-        <InputContainer
-          inputContainerClasses="user-birthdate-input-container input-container-w-50"
-          labelText="Doğum Tarihiniz*"
-          inputName="date-of-birth"
-          inputType={InputType.Date}
-        />
-
-        <InputContainer
-          inputContainerClasses="user-identity-number-input-container input-container-w-50"
-          labelText="TC Kimlik No*"
-          inputName="identity-number"
-          inputPlaceholder="TC Kimlik No"
-        />
-
-        <InputContainer
-          inputContainerClasses="user-email-input-container input-container-w-50"
-          labelText="E-Posta*"
-          inputName="e-mail"
-          inputType={InputType.Email}
-          inputPlaceholder="E-Posta adresiniz"
-        />
-
-        <div className="user-address-section">
+      <Formik
+        initialValues={initialValues}
+        onSubmit={(values): any => {
+          handlePersonalInformation(values);
+        }}
+        validationSchema={validationSchema}
+      >
+        <Form className="personal-information-input-section">
           <InputContainer
-            inputContainerClasses="user-address-country-input-container input-container-w-100"
-            elementType={FormElementType.Select}
-            labelText="Ülke*"
-            inputName="country"
-            defaultOptionText="Ülke"
-            optionData={countries}
-            optionDataFilters={countriesOptionDataFilters}
-            optionDataSort={sortByPriorityDesc}
+            useFormikField={true}
+            inputContainerClasses="user-name-input-container input-container-w-50"
+            labelText="Adınız*"
+            inputName="firstName"
+            inputPlaceholder="Adınız"
+            //inputValue="özgür"
           />
 
           <InputContainer
-            inputContainerClasses="user-address-city-input-container input-container-w-50"
-            elementType={FormElementType.Select}
-            labelText="İl*"
-            inputName="city"
-            defaultOptionText="İl"
-            optionData={cities}
-            optionDataFilters={citiesOptionDataFilters}
-            optionDataSort={sortByPriorityDesc}
+            useFormikField={true}
+            inputContainerClasses="user-surname-input-container input-container-w-50"
+            labelText="Soyadınız*"
+            inputName="lastName"
+            inputPlaceholder="Soyadınız"
+            //inputValue="sönmez"
           />
 
           <InputContainer
-            inputContainerClasses="user-address-districts-input-container input-container-w-50"
-            elementType={FormElementType.Select}
-            labelText="İlçe*"
-            inputName="district"
-            defaultOptionText="İlçe"
-            optionData={districts}
-            optionDataFilters={districtsOptionDataFilters}
-            optionDataSort={sortByPriorityDesc}
+            useFormikField={true}
+            inputContainerClasses="user-phone-input-container input-container-w-50"
+            labelText="Telefon Numaranız*"
+            inputName="phoneNumber"
+            inputType={InputType.Tel}
+            inputPlaceholder="Telefon Numaranız"
+            //inputValue="5554443322"
           />
 
           <InputContainer
-            inputContainerClasses="user-address-detail-input-container input-container-w-100"
-            elementType={FormElementType.TextArea}
-            labelText="Mahalle / Sokak"
-            inputName="address-detail"
-            inputPlaceholder="Açık Adres..."
+            useFormikField={true}
+            inputContainerClasses="user-birthdate-input-container input-container-w-50"
+            labelText="Doğum Tarihiniz*"
+            inputName="birthDate"
+            inputType={InputType.Date}
+            //inputValue={formattedDate}
           />
 
           <InputContainer
-            inputContainerClasses="user-about-me-input-container input-container-w-100"
-            elementType={FormElementType.TextArea}
-            labelText="Hakkımda"
-            inputName="about-me"
-            inputPlaceholder="Kendini kısaca tanıt..."
+            useFormikField={true}
+            inputContainerClasses="user-identity-number-input-container input-container-w-50"
+            labelText="TC Kimlik No*"
+            inputName="nationalIdentificationNumber"
+            inputPlaceholder="TC Kimlik No"
+            inputValue="1234567890"
+            disabled={true}
           />
-        </div>
-      </div>
-      <button type="submit" className="personal-information-save-button">
-        Kaydet
-      </button>
+
+          <InputContainer
+            useFormikField={true}
+            inputContainerClasses="user-email-input-container input-container-w-50"
+            labelText="E-Posta*"
+            inputName="email"
+            inputType={InputType.Email}
+            inputPlaceholder="E-Posta adresiniz"
+            //inputValue="ozgur@gmail.com"
+          />
+          <div className="user-address-section">
+            <InputContainer
+              useFormikField={true}
+              inputContainerClasses="user-address-country-input-container input-container-w-100"
+              elementType={FormElementType.Select}
+              labelText="Ülke*"
+              inputName="country"
+              defaultOptionText="Ülke"
+              optionData={countries}
+              optionDataFilters={countriesOptionDataFilters}
+              optionDataSort={sortByPriorityDesc}
+              //inputValue="Türkiye"
+            />
+
+            <InputContainer
+              useFormikField={true}
+              inputContainerClasses="user-address-city-input-container input-container-w-50"
+              elementType={FormElementType.Select}
+              labelText="İl*"
+              inputName="city"
+              defaultOptionText="İl"
+              optionData={cities}
+              optionDataFilters={citiesOptionDataFilters}
+              optionDataSort={sortByPriorityDesc}
+              //inputValue="Sinop"
+            />
+
+            <InputContainer
+              useFormikField={true}
+              inputContainerClasses="user-address-districts-input-container input-container-w-50"
+              elementType={FormElementType.Select}
+              labelText="İlçe*"
+              inputName="district"
+              defaultOptionText="İlçe"
+              optionData={districts}
+              optionDataFilters={districtsOptionDataFilters}
+              optionDataSort={sortByPriorityDesc}
+              //inputValue="Erfelek"
+            />
+
+            <InputContainer
+              useFormikField={true}
+              inputContainerClasses="user-address-detail-input-container input-container-w-100"
+              elementType={FormElementType.TextArea}
+              labelText="Mahalle / Sokak"
+              inputName="addressDetail"
+              inputPlaceholder="Açık Adres..."
+              //inputValue="sadasd mah. sadasd cad."
+            />
+
+            <InputContainer
+              useFormikField={true}
+              inputContainerClasses="user-about-me-input-container input-container-w-100"
+              elementType={FormElementType.TextArea}
+              labelText="Hakkımda"
+              inputName="aboutMe"
+              inputPlaceholder="Kendini kısaca tanıt..."
+              //inputValue="xD.... "
+            />
+          </div>
+          <button type="submit" className="personal-information-save-button">
+            Kaydet
+          </button>
+        </Form>
+      </Formik>
     </div>
   );
 };
