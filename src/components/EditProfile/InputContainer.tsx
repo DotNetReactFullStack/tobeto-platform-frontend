@@ -92,6 +92,8 @@ const InputContainer = ({
                       placeholder={inputPlaceholder}
                       value={inputValue}
                       disabled={disabled}
+                      inputType={inputType}
+                      labelText={labelText}
                     />
                   )
                 ) : (
