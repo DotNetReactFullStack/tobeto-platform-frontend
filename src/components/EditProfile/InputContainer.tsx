@@ -16,6 +16,7 @@ type Props = {
   inputValue?: string;
   defaultOptionValue?: string;
   defaultOptionText?: string;
+  disabled?: boolean;
   optionData?: any[];
   optionDataFilters?: any;
   optionDataSort?: any;
@@ -35,6 +36,7 @@ const InputContainer = ({
   inputValue,
   defaultOptionValue,
   defaultOptionText,
+  disabled,
   optionData,
   optionDataFilters,
   optionDataSort,
@@ -49,14 +51,49 @@ const InputContainer = ({
             return (
               <>
                 {useFormikField ? (
-                  <Field
-                    as={elementType}
-                    className={inputClasses}
-                    name={inputName}
-                    {...(elementType === "input" ? { type: inputType } : {})}
-                    placeholder={inputPlaceholder}
-                    value={inputValue}
-                  />
+                  elementType === "select" ? (
+                    <Field
+                      as={elementType}
+                      className={inputClasses}
+                      name={inputName}
+                      value={inputValue}
+                      disabled={disabled}
+                    >
+                      <option value={defaultOptionValue}>
+                        {inputValue !== undefined
+                          ? inputValue
+                          : defaultOptionText}
+                      </option>
+                      {optionData
+                        ?.filter(
+                          optionDataFilters
+                            ? (filter) =>
+                                optionDataFilters.every(
+                                  (filterFunction: (arg0: any) => any) =>
+                                    filterFunction(filter)
+                                )
+                            : (element) => {
+                                return element;
+                              }
+                        )
+                        .sort(optionDataSort)
+                        .map((optionValue, index) => (
+                          <option key={index} value={optionValue.id}>
+                            {optionValue.name}
+                          </option>
+                        ))}
+                    </Field>
+                  ) : (
+                    <Field
+                      as={elementType}
+                      className={inputClasses}
+                      name={inputName}
+                      {...(elementType === "input" ? { type: inputType } : {})}
+                      placeholder={inputPlaceholder}
+                      value={inputValue}
+                      disabled={disabled}
+                    />
+                  )
                 ) : (
                   <>
                     {(() => {
@@ -69,6 +106,7 @@ const InputContainer = ({
                               type={inputType}
                               placeholder={inputPlaceholder}
                               value={inputValue}
+                              disabled={disabled}
                             />
                           );
                         case FormElementType.Select:
@@ -107,6 +145,7 @@ const InputContainer = ({
                               name={inputName}
                               placeholder={inputPlaceholder}
                               value={inputValue}
+                              disabled={disabled}
                             ></textarea>
                           );
                       }
