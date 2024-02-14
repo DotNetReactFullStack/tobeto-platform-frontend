@@ -10,8 +10,17 @@ import InputContainer from "../EditProfile/InputContainer";
 import { InputType } from "../../models/inputType";
 import { useDispatch } from "react-redux";
 import { setToken } from "../../store/auth/authSlice";
+import { setAccount } from "../../store/account/accountSlice";
+import accountService from "../../services/accountService";
+import toastr from "toastr";
 
 type Props = {};
+
+export const getUserIdFromToken = (token: string) => {
+  const decodedToken = JSON.parse(atob(token.split('.')[1]))
+  const userId = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
+  return userId;
+}
 
 const handleLogin = async (
   values: LoginRequest,
@@ -19,11 +28,24 @@ const handleLogin = async (
   dispatch: any
 ) => {
   const response = authService.login(values);
-  const status = (await response).status;
+  const status = (await response).request.status;
 
-  if (status === HttpStatusCode.OK) {
-    dispatch(setToken(response));
-    navigate("/");
+  if (status !== HttpStatusCode.InternalServerError) {
+    const accessToken = (await response).data.accessToken;
+    const token = accessToken.token;
+    const expiration = accessToken.expiration;
+
+    const getByUserIdAccountResponse = accountService.getByUserId(getUserIdFromToken(token));
+    const account = (await getByUserIdAccountResponse).data;
+
+    if (status === HttpStatusCode.OK && account !== undefined) {
+      dispatch(setToken(response));
+      dispatch(setAccount(account))
+      navigate("/");
+      toastr.success("Giriş başarılı.")
+    }
+  } else {
+    toastr.error("Giriş işlemi başarısız.");
   }
 };
 

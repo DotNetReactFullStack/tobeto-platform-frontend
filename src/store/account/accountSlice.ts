@@ -15,13 +15,16 @@ const accountSlice = createSlice({
         error: null,
     },
     reducers: {
-        setAccount: (state, action: PayloadAction<string>) => {
-            state.currentAccount = action.payload;
+        setAccount: (state, account: any) => {
+            state.currentAccount = account;
             state.loading = false;
             state.error = null;
         },
+        logout: (state) => {
+            state.currentAccount = {}
+        }
     },
 });
 
 export const accountReducer = accountSlice.reducer;
-export const { setAccount } = accountSlice.actions;
+export const { setAccount, logout } = accountSlice.actions;
