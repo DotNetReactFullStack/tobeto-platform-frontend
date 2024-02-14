@@ -40,12 +40,12 @@
 .education-program-continue-input-container {
   display: flex !important;
   flex-direction: row !important;
-  width: 100% !important;
   margin: 5px 0px;
 }
 
 .education-program-continue-input-container label {
   margin-left: 5px;
+  margin-right: 5px;
 }
 
 /* Save Button*/
