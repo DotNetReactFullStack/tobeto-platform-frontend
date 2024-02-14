@@ -46,7 +46,10 @@ const initialValues: any = {
 };
 
 const validationSchema = yup.object({
-  accountType: yup.string().required("Sosyal medya tip alanı zorunludur"),
+  accountType: yup
+    .string()
+    .required("Sosyal medya tip alanı zorunludur")
+    .notOneOf(["default"], "Sosyal medya tip alanı zorunludur"),
   accountUrl: yup
     .string()
     .required("Sosyal medya link alanı zorunludur")

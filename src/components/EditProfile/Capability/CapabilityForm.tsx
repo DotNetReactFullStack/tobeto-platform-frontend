@@ -44,7 +44,10 @@ const initialValues: any = {
 };
 
 const validationSchema = yup.object({
-  capability: yup.string().required("Yetkinlik alanı zorunludur"),
+  capability: yup
+    .string()
+    .required("Yetkinlik alanı zorunludur")
+    .notOneOf(["default"], "Yetkinlik alanı zorunludur"),
 });
 
 const handleCapability = async (values: any) => {
