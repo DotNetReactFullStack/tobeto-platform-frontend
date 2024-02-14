@@ -12,6 +12,10 @@
   margin-bottom: 30px;
 }
 
+.account-settings-password-section div {
+  height: 120px;
+}
+
 .account-settings-previous-password-container label,
 .account-settings-new-password-container label,
 .account-settings-new-password-repeat-container label {
