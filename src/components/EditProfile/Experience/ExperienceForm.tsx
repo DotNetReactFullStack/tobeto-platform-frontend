@@ -82,7 +82,10 @@ const validationSchema = yup.object({
     .string()
     .required("Sektör alanı zorunludur")
     .max(30, "Sektör en fazla 30 karakter olmalıdır"),
-  city: yup.string().required("İl seçimi zorunludur"),
+  city: yup
+    .string()
+    .required("İl seçimi zorunludur")
+    .notOneOf(["default"], "İl seçimi zorunludur"),
   jobStartDate: yup.string().required("İş Başlangıç tarihi zorunludur"),
   jobDetail: yup
     .string()

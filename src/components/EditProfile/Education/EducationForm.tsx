@@ -97,9 +97,18 @@ const initialValues: any = {
 };
 
 const validationSchema = yup.object({
-  graduationStatus: yup.string().required("Eğitim durumu zorunludur"),
-  college: yup.string().required("Universite alanı zorunludur"),
-  educationProgram: yup.string().required("Bölüm alanı zorunludur"),
+  graduationStatus: yup
+    .string()
+    .required("Eğitim durumu zorunludur")
+    .notOneOf(["default"], "Eğitim durumu zorunludur"),
+  college: yup
+    .string()
+    .required("Universite alanı zorunludur")
+    .notOneOf(["default"], "Universite alanı zorunludur"),
+  educationProgram: yup
+    .string()
+    .required("Bölüm alanı zorunludur")
+    .notOneOf(["default"], "Bölüm alanı zorunludur"),
   educationProgramStartDate: yup.string().required("Başlangıç yılı zorunludur"),
 });
 

@@ -146,6 +146,18 @@ const validationSchema = yup.object({
     .string()
     .email("Geçerli bir e-posta adresi giriniz")
     .required("E-posta alanı zorunludur"),
+  country: yup
+    .string()
+    .required("Ülke seçimi zorunludur")
+    .notOneOf(["default"], "Ülke seçimi zorunludur"),
+  city: yup
+    .string()
+    .required("İl seçimi zorunludur")
+    .notOneOf(["default"], "İl seçimi zorunludur"),
+  district: yup
+    .string()
+    .required("İlçe seçimi zorunludur")
+    .notOneOf(["default"], "İlçe seçimi zorunludur"),
   addressDetail: yup
     .string()
     .max(200, "Adres detayı en fazla 200 karakter olabilir"),
