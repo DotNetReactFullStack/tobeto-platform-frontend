@@ -21,7 +21,7 @@
   margin-bottom: 15px;
 }
 
-.experience-input-section div:nth-last-child(-n+2) {
+.experience-input-section div:nth-last-child(-n + 2) {
   margin-bottom: 0px !important;
 }
 
@@ -49,6 +49,7 @@
 
 .job-continue-checkbox label {
   margin-left: 5px;
+  margin-right: 5px;
 }
 
 .job-detail-input,
@@ -87,7 +88,7 @@
     justify-content: center;
   }
 
-  .experience-input-section div:nth-last-child(-n+2) {
+  .experience-input-section div:nth-last-child(-n + 2) {
     margin-bottom: 15px !important;
   }
 
