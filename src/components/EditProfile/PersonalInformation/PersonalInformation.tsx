@@ -151,7 +151,7 @@ const validationSchema = yup.object({
     .max(200, "Adres detayı en fazla 200 karakter olabilir"),
   aboutMe: yup
     .string()
-    .max(200, "Hakkımda bölümü en fazla 1000 karakter olabilir"),
+    .max(1000, "Hakkımda bölümü en fazla 1000 karakter olabilir"),
 });
 
 const handlePersonalInformation = async (values: any) => {
