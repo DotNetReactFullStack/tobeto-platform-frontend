@@ -11,6 +11,8 @@ import { HttpStatusCode } from "../../models/auth/httpStatusCode";
 import { setToken } from "../../store/auth/authSlice";
 import { useDispatch } from "react-redux";
 import { Form, Formik } from "formik";
+import accountService from "../../services/accountService";
+import toastr from "toastr";
 
 type Props = {};
 
@@ -20,11 +22,17 @@ const handleRegister = async (
   dispatch: any
 ) => {
   const response = authService.register(values);
-  const status = (await response).status;
+  const status = (await response).request.status
 
-  if (status === HttpStatusCode.Created) {
-    dispatch(setToken(response));
-    navigate("/");
+  if (status !== HttpStatusCode.InternalServerError) {
+    if (status === HttpStatusCode.Created) {
+      // dispatch(setToken(response));
+      // navigate("/my-profile/edit-profile/my-personal-information");
+      navigate("/login");
+      toastr.success("Hesabınız başarıyla oluşturuldu, giriş yapabilirsiniz.")
+    }
+  } else {
+    toastr.error("Kayıt işlemi başarısız.");
   }
 };
 

@@ -19,6 +19,10 @@
     max-width: 1140px;
 }
 
+.toast-top-right {
+    margin-top: 96px;
+}
+
 .number-of-lines-1 {
     overflow: hidden;
     display: -webkit-box;

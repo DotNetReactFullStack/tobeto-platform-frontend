@@ -1,6 +1,8 @@
 import { BUSINESS_ERROR, VALIDATION_ERROR } from "./errorTypes";
 import toastr from "toastr";
 
+// toastr.options.positionClass = 'toast-bottom-right';
+
 export const handleError = (error: any) => {
     if (error.code && error.code == "ERR_NETWORK") {
         toastr.error("Sunucuya ulaşılamıyor..");
