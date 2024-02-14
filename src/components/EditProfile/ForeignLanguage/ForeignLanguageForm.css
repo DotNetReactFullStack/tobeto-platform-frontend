@@ -26,13 +26,15 @@
 
 .foreing-language-name-input-container,
 .foreing-language-level-input-container {
+  height: 100px;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-.foreing-language-level-input-container {
+/* .foreing-language-level-input-container {
   justify-content: flex-end;
-}
+} */
 
 /* Save Button*/
 .foreing-language-save-button {
@@ -58,15 +60,17 @@
     align-items: center;
   }
 
+  .foreing-language .foreign-language-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   .foreing-language-input-section {
     justify-content: center;
   }
 
-  .foreing-language-name-input-container select {
-    margin-bottom: 25px;
-  }
-
   .foreing-language-save-button {
-    min-width: 285px;
+    min-width: 255px;
   }
 }
