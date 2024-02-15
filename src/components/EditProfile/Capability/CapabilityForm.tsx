@@ -4,39 +4,17 @@ import InputContainer from "../InputContainer";
 import { FormElementType } from "../../../models/formElementType";
 import * as yup from "yup";
 import { Form, Formik } from "formik";
+import capabilityService from "../../../services/capabilityService";
 
 type Props = {};
 
 const ifVisibilityIsTrue = (value: any) => value.visibility === true;
+const ifVisibilityIsFalse = (value: any) => value.visibility === false;
 let capabilitiesOptionDataFilters = [ifVisibilityIsTrue];
 const sortByPriorityDesc = (a: any, b: any) => b.priority - a.priority;
 
-const capabilities = [
-  {
-    id: "1",
-    name: "CSS",
-    priority: 4,
-    visibility: true,
-  },
-  {
-    id: "2",
-    name: "JavaScript",
-    priority: 3,
-    visibility: true,
-  },
-  {
-    id: "3",
-    name: "TypeScript",
-    priority: 2,
-    visibility: true,
-  },
-  {
-    id: "4",
-    name: "React",
-    priority: 1,
-    visibility: true,
-  },
-];
+const capabilitiesResponse = capabilityService.getAll();
+const capabilities = (await capabilitiesResponse).data.items;
 
 //Formik, Yup
 const initialValues: any = {
