@@ -26,7 +26,6 @@ function UserSection({ }: Props) {
 
   return (
     <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-
       <div className="user-and-tobeto">
         {
           (isAuthenticated)
@@ -79,13 +78,13 @@ function UserSection({ }: Props) {
             </>
             :
             <li className="nav-item dropdown">
-              <Link className="nav-link navbar-user-section-border" to="/login">
+              <Link className="nav-link navbar-user-section-border login-link" to="/login">
                 <span className="user-full-name ms-3 me-3 fw-bold text-success">Giriş Yap</span>
               </Link>
             </li>
         }
       </div>
-    </ul>
+    </ul >
   );
 }
 

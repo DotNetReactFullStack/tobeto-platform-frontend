@@ -98,7 +98,7 @@ const ForeignLanguageForm = (props: Props) => {
         }}
         validationSchema={validationSchema}
       >
-        <Form className=" input-container-w-100">
+        <Form className="foreign-language-form input-container-w-100">
           <div className="foreing-language-input-section input-container-w-100">
             <InputContainer
               useFormikField={true}
