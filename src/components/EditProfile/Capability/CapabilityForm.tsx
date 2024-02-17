@@ -5,6 +5,11 @@ import { FormElementType } from "../../../models/formElementType";
 import * as yup from "yup";
 import { Form, Formik } from "formik";
 import capabilityService from "../../../services/capabilityService";
+import { useDispatch, useSelector } from "react-redux";
+import { GetListCapabilityListItemDto } from "../../../models/capability/getListCapabilityListItemDto";
+import { setCapabilities } from "../../../store/capability/capabilitySlice";
+import { RootState } from "../../../store/configureStore";
+import { setCapabilityToAccount } from "../../../store/accountCapability/accountCapabilitySlice";
 
 type Props = {};
 
@@ -15,39 +20,56 @@ const sortByPriorityDesc = (a: any, b: any) => b.priority - a.priority;
 
 //Formik, Yup
 const initialValues: any = {
-  capability: "",
+  capabilityId: "",
 };
 
 const validationSchema = yup.object({
-  capability: yup
+  capabilityId: yup
     .string()
     .required("Yetkinlik alanı zorunludur")
     .notOneOf(["default"], "Yetkinlik alanı zorunludur"),
 });
 
-const handleCapability = async (values: any) => {
-  console.log(values);
+const handleAddCapability = async (values: any, accountId: number, dispatch: any) => {
+  dispatch(setCapabilityToAccount({
+    accountId: accountId,
+    capabilityId: Number(values.capabilityId),
+    priority: 1
+  }));
 };
 
 const CapabilityForm = (props: Props) => {
-  const [capabilities, setCapabilities] = useState<any[]>([]);
+
+  const dispatch = useDispatch();
+
+  const accountId = useSelector((state: any) => state.account.currentAccount.payload.id);
+
+  async function fetchData() {
+    try {
+      const capabilitiesResponse = await capabilityService.getAll();
+      const data = capabilitiesResponse.data.items;
+      console.log(data)
+      dispatch(setCapabilities(data));
+    } catch (error) {
+      console.error("Veri alınamadı:", error);
+    }
+  }
 
   useEffect(() => {
-    const fetchData = async () => {
-      const capabilitiesResponse = await capabilityService.getAll();
-      const capabilitiesData = capabilitiesResponse.data.items;
-      setCapabilities(capabilitiesData);
-    };
     fetchData();
-  }, []);
+  }, [])
+
+  const capabilities: GetListCapabilityListItemDto[] = useSelector((state: RootState) => state.capability.capabilities);
+
+
   return (
     <div className="capability-form">
       <Formik
         initialValues={initialValues}
-        onSubmit={(values): any => {
-          handleCapability(values);
-        }}
         validationSchema={validationSchema}
+        onSubmit={(values): any => {
+          handleAddCapability(values, accountId, dispatch);
+        }}
       >
         <Form className="input-container-w-100">
           <div className="capability-input-container input-container-w-100">
@@ -56,7 +78,7 @@ const CapabilityForm = (props: Props) => {
               inputContainerClasses="capability-input-container input-container-w-100"
               elementType={FormElementType.Select}
               labelText="Yetkinlik"
-              inputName="capability"
+              inputName="capabilityId"
               defaultOptionText="Yetkinlik Seçiniz"
               optionData={capabilities}
               optionDataFilters={capabilitiesOptionDataFilters}

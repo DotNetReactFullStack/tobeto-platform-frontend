@@ -1,4 +1,3 @@
-import { an } from "@fullcalendar/core/internal-common";
 import { BaseService } from "../core/services/baseService";
 import { BASE_API_URL } from "../environment/environment";
 
