@@ -21,15 +21,6 @@ type Props = {};
 
 const aboutMeFakeData: string = "Kendini kısaca anlat";
 
-const capabilitiesFakeData: any[] = [
-  "CSS",
-  "Backend",
-  "JavaScript",
-  ".Net",
-  "React",
-  "Frontend",
-];
-
 const foreignLanguagesFakeData: any[] = [
   { name: "İngilizce", level: "Orta Seviye (B1, B2)" },
   { name: "Korece", level: "Temel Seviye (A1, A2)" },
@@ -170,7 +161,7 @@ const Profile = (props: Props) => {
           </ProfileDefaultCard>
 
           <ProfileDefaultCard title="Yetkinliklerim">
-            <Capabilities data={capabilitiesFakeData} />
+            <Capabilities />
           </ProfileDefaultCard>
 
           <ProfileDefaultCard title="Yabancı Dillerim">

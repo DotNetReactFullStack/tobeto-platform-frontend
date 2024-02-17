@@ -1,10 +1,15 @@
 import React from "react";
 import "./DeleteModal.css";
+import accountCapabilityService from "../../../services/accountCapabilityService";
 
 type Props = {
   deleteModalId: string;
   deleteModalTitle: string;
 };
+
+const handleDeleteAcccountCapability = (id: number) => {
+  accountCapabilityService.delete(id)
+}
 
 const DeleteModal = ({ deleteModalId, deleteModalTitle }: Props) => {
   return (
@@ -49,7 +54,9 @@ const DeleteModal = ({ deleteModalId, deleteModalTitle }: Props) => {
               <i className="bi bi-x-lg"></i>
               Hayır
             </button>
-            <button type="button" className="btn btn-primary">
+            <button type="button"
+              data-bs-dismiss="modal"
+              onClick={() => handleDeleteAcccountCapability(Number(deleteModalId.replace("accountCapabilityId", "")))} className="btn btn-primary">
               <i className="bi bi-check-lg"></i>
               Evet
             </button>
