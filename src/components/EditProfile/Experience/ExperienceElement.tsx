@@ -4,32 +4,32 @@ import DeleteModal from "../Modals/DeleteModal";
 import DetailModal from "../Modals/DetailModal";
 
 type Props = {
-  experienceId: string;
-  jobStartDate: string;
-  jobEndDate: string;
+  id: string;
+  startingDate: string;
+  endingDate: string;
   companyName: string;
-  job: string;
-  sector: string;
-  experienceCity: string;
-  jobDetail: string;
+  jobTitle: string;
+  industry: string;
+  cityName: string;
+  description: string;
 };
 
 const ExperienceElement = ({
-  experienceId,
-  jobStartDate,
-  jobEndDate,
+  id,
+  startingDate,
+  endingDate,
   companyName,
-  job,
-  sector,
-  experienceCity,
-  jobDetail,
+  jobTitle,
+  industry,
+  cityName,
+  description,
 }: Props) => {
   return (
     <div className="experience-element">
       <div className="experience-element-content">
         <div className="experience-element-header">
           <i className="bi bi-calendar2-range"></i>
-          <span>{jobStartDate + " - " + jobEndDate}</span>
+          <span>{startingDate + " - " + endingDate}</span>
         </div>
         <div className="experience-element-body">
           <div className="experience-element-company-name">
@@ -38,15 +38,15 @@ const ExperienceElement = ({
           </div>
           <div className="experience-element-job">
             <span>Pozisyon</span>
-            <span>{job}</span>
+            <span>{jobTitle}</span>
           </div>
           <div className="experience-element-sector">
             <span>Sektör</span>
-            <span>{sector}</span>
+            <span>{industry}</span>
           </div>
           <div className="experience-element-city">
             <span>Şehir</span>
-            <span>{experienceCity}</span>
+            <span>{cityName}</span>
           </div>
         </div>
       </div>
@@ -54,23 +54,23 @@ const ExperienceElement = ({
         <button
           className="experience-element-detail-button"
           data-bs-toggle="modal"
-          data-bs-target={"#detail-" + experienceId}
+          data-bs-target={"#detail-" + id}
         >
           <i className="bi bi-three-dots experience-element-detail-button-icon"></i>
         </button>
         <DetailModal
-          detailModalId={experienceId}
+          detailModalId={id}
           detailModalTitle="İş Açıklaması"
-          detailModalContent={jobDetail}
+          detailModalContent={description}
         />
         <button
           className="experience-element-delete-button"
           data-bs-toggle="modal"
-          data-bs-target={"#" + experienceId}
+          data-bs-target={"#accountExperienceId" + id}
         >
           <i className="bi bi-trash experience-element-delete-button-icon"></i>
         </button>
-        <DeleteModal deleteModalId={experienceId} deleteModalTitle="deneyimi" />
+        <DeleteModal deleteModalId={"accountExperienceId" + id} deleteModalTitle="deneyimi" />
       </div>
     </div>
   );
