@@ -1,21 +1,26 @@
 import React from "react";
 import "./DeleteModal.css";
-import accountCapabilityService from "../../../services/accountCapabilityService";
+import { BaseService } from "../../../core/services/baseService";
 
 type Props = {
-  deleteModalId: string;
+  entityService: BaseService<any, any, any, any, any, any>;
+  entityId: string;
   deleteModalTitle: string;
 };
 
-const handleDeleteAcccountCapability = (id: number) => {
-  accountCapabilityService.delete(id)
+const handleDeleteEntity = (entityService: BaseService<any, any, any, any, any, any>, id: number) => {
+  entityService.delete(id);
 }
 
-const DeleteModal = ({ deleteModalId, deleteModalTitle }: Props) => {
+// const handleDeleteAcccountCapability = (id: number) => {
+//   accountCapabilityService.delete(id)
+// }
+
+const DeleteModal = ({ entityService, entityId, deleteModalTitle }: Props) => {
   return (
     <div
       className="modal fade"
-      id={deleteModalId}
+      id={entityId}
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
     >
@@ -56,7 +61,7 @@ const DeleteModal = ({ deleteModalId, deleteModalTitle }: Props) => {
             </button>
             <button type="button"
               data-bs-dismiss="modal"
-              onClick={() => handleDeleteAcccountCapability(Number(deleteModalId.replace("accountCapabilityId", "")))} className="btn btn-primary">
+              onClick={() => handleDeleteEntity(entityService, Number(entityId.replace("id-", "")))} className="btn btn-primary">
               <i className="bi bi-check-lg"></i>
               Evet
             </button>
