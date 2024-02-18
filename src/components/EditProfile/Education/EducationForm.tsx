@@ -10,6 +10,9 @@ import graduationStatusService from "../../../services/graduationStatusService";
 import { setGraduationStatuses } from "../../../store/graduationStatus/graduationStatusSlice";
 import { GetListGraduationStatusListItemDto } from "../../../models/graduationStatuses/getListGraduationStatusListItemDto";
 import { RootState } from "../../../store/configureStore";
+import collegeService from "../../../services/collegeService";
+import { setColleges } from "../../../store/college/collegeSlice";
+import { GetListCollegeListItemDto } from "../../../models/colleges/getListCollegeListItemDto";
 
 type Props = {};
 
@@ -46,26 +49,26 @@ const sortByPriorityDesc = (a: any, b: any) => b.priority - a.priority;
 //   // },
 // ];
 
-const colleges = [
-  {
-    id: 1,
-    name: "Sinop Üniversite",
-    priority: 3,
-    visibility: true,
-  },
-  {
-    id: 2,
-    name: "Düzce Üniversitesi",
-    priority: 2,
-    visibility: true,
-  },
-  {
-    id: 3,
-    name: "Uludağ Üniversitesi",
-    priority: 1,
-    visibility: true,
-  },
-];
+// const colleges = [
+//   {
+//     id: 1,
+//     name: "Sinop Üniversite",
+//     priority: 3,
+//     visibility: true,
+//   },
+//   {
+//     id: 2,
+//     name: "Düzce Üniversitesi",
+//     priority: 2,
+//     visibility: true,
+//   },
+//   {
+//     id: 3,
+//     name: "Uludağ Üniversitesi",
+//     priority: 1,
+//     visibility: true,
+//   },
+// ];
 
 const educationPrograms = [
   {
@@ -129,6 +132,10 @@ const EducationForm = (props: Props) => {
       const graduationStatusResponse = await graduationStatusService.getAll();
       const graduationStatusData = graduationStatusResponse.data.items;
       dispatch(setGraduationStatuses(graduationStatusData));
+
+      const collegeResponse = await collegeService.getAll();
+      const collegeData = collegeResponse.data.items;
+      dispatch(setColleges(collegeData));
     } catch (error) {
       console.error("Veri alınamadı:", error);
     }
@@ -141,6 +148,11 @@ const EducationForm = (props: Props) => {
   const graduationStatuses: GetListGraduationStatusListItemDto[] = useSelector(
     (state: RootState) => state.graduationStatus.graduationStatuses
   );
+
+  const colleges: GetListCollegeListItemDto[] = useSelector(
+    (state: RootState) => state.college.colleges
+  );
+
   return (
     <div className="education-form">
       <Formik

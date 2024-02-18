@@ -7,6 +7,7 @@ import { persistReducer } from "redux-persist";
 import { accountCapabilityReducer } from "./accountCapability/accountCapabilitySlice";
 import { capabilityReducer } from "./capability/capabilitySlice";
 import { graduationStatusReducer } from "./graduationStatus/graduationStatusSlice";
+import { collegeReducer } from "./college/collegeSlice";
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   capability: capabilityReducer,
   accountCapability: accountCapabilityReducer,
   graduationStatus: graduationStatusReducer,
+  college: collegeReducer,
 });
 
 const persistConfig = {
