@@ -5,39 +5,18 @@ import { FormElementType } from "../../../models/formElementType";
 import { InputType } from "../../../models/inputType";
 import * as yup from "yup";
 import { Form, Formik } from "formik";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setSocialMediaPlatforms } from "../../../store/socialMediaPlatform/socialMediaPlatformSlice"; // Import the appropriate action
+import socialMediaPlatformService from "../../../services/socialMediaPlatformService"; // Import the service for fetching data
+import { GetListSocialMediaPlatformListItemDto } from "../../../models/socialMediaPlatforms/getListSocialMediaPlatformListItemDto";
+import { RootState } from "../../../store/configureStore";
 
 type Props = {};
 
 const ifVisibilityIsTrue = (value: any) => value.visibility === true;
-let socialMediaPlatformsOptionDataFilters = [ifVisibilityIsTrue];
+let socialMediaPlatformOptionDataFilters = [ifVisibilityIsTrue];
 const sortByPriorityDesc = (a: any, b: any) => b.priority - a.priority;
-
-const socialMediaPlatforms = [
-  {
-    id: "1",
-    name: "GitHub",
-    priority: 4,
-    visibility: true,
-  },
-  {
-    id: "2",
-    name: "LinkedIn",
-    priority: 3,
-    visibility: true,
-  },
-  {
-    id: "3",
-    name: "Instagram",
-    priority: 2,
-    visibility: true,
-  },
-  {
-    id: "4",
-    name: "Twitter",
-    priority: 1,
-    visibility: true,
-  },
-];
 
 //Formik, Yup
 const initialValues: any = {
@@ -90,7 +69,33 @@ const handleSocialMediaAccount = async (values: any) => {
   console.log(values);
 };
 
-const SocialMediaAccountsFrom = (props: Props) => {
+const SocialMediaAccountForm = (props: Props) => {
+  const dispatch = useDispatch();
+
+  const [selectedSocialMediaPlatformId, setSelectedSocialMediaPlatformId] =
+    useState<number | null>(null);
+
+  async function fetchSocialMediaInputData() {
+    try {
+      const socialMediaPlatformResponse =
+        await socialMediaPlatformService.getAll();
+      const socialMediaPlatformData = socialMediaPlatformResponse.data.items;
+      dispatch(setSocialMediaPlatforms(socialMediaPlatformData));
+    } catch (error) {
+      dispatch(setSocialMediaPlatforms([]));
+      console.error("Veri alınamadı:", error);
+    }
+  }
+
+  useEffect(() => {
+    fetchSocialMediaInputData();
+  }, []);
+
+  const socialMediaPlatforms: GetListSocialMediaPlatformListItemDto[] =
+    useSelector(
+      (state: RootState) => state.socialMediaPlatform.socialMediaPlatforms
+    );
+
   return (
     <div className="social-media-account-form">
       <Formik
@@ -100,34 +105,40 @@ const SocialMediaAccountsFrom = (props: Props) => {
         }}
         validationSchema={validationSchema}
       >
-        <Form className="input-container-w-100">
-          <div className="social-media-account-input-section">
-            <InputContainer
-              useFormikField={true}
-              inputContainerClasses="social-media-account-type-input-container input-container-w-30"
-              elementType={FormElementType.Select}
-              inputName="accountType"
-              defaultOptionText="Seçiniz"
-              optionData={socialMediaPlatforms}
-              optionDataFilters={socialMediaPlatformsOptionDataFilters}
-              optionDataSort={sortByPriorityDesc}
-            />
+        {(formikProps) => (
+          <Form className="input-container-w-100">
+            <div className="social-media-account-input-section">
+              <InputContainer
+                useFormikField={true}
+                inputContainerClasses="social-media-account-type-input-container input-container-w-30"
+                elementType={FormElementType.Select}
+                inputName="accountType"
+                defaultOptionText="Seçiniz"
+                optionData={socialMediaPlatforms}
+                optionDataFilters={socialMediaPlatformOptionDataFilters}
+                optionDataSort={sortByPriorityDesc}
+                onChange={(e) => {
+                  formikProps.handleChange(e);
+                  setSelectedSocialMediaPlatformId(parseInt(e.target.value));
+                }}
+              />
 
-            <InputContainer
-              useFormikField={true}
-              inputContainerClasses="social-media-account-link-input-container input-container-w-70"
-              inputType={InputType.URL}
-              inputName="accountUrl"
-              inputPlaceholder="http://"
-            />
-          </div>
-          <button type="submit" className="social-media-account-save-button">
-            Kaydet
-          </button>
-        </Form>
+              <InputContainer
+                useFormikField={true}
+                inputContainerClasses="social-media-account-link-input-container input-container-w-70"
+                inputType={InputType.URL}
+                inputName="accountUrl"
+                inputPlaceholder="http://"
+              />
+            </div>
+            <button type="submit" className="social-media-account-save-button">
+              Kaydet
+            </button>
+          </Form>
+        )}
       </Formik>
     </div>
   );
 };
 
-export default SocialMediaAccountsFrom;
+export default SocialMediaAccountForm;
