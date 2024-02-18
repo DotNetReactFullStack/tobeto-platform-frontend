@@ -68,7 +68,7 @@ const EducationForm = (props: Props) => {
     number | null
   >(null);
 
-  async function fetchData(collegeId: number) {
+  async function fetchEducationInputData(collegeId: number) {
     try {
       const graduationStatusResponse = await graduationStatusService.getAll();
       const graduationStatusData = graduationStatusResponse.data.items;
@@ -90,7 +90,7 @@ const EducationForm = (props: Props) => {
 
   useEffect(() => {
     if (selectedCollegeId !== null) {
-      fetchData(selectedCollegeId);
+      fetchEducationInputData(selectedCollegeId);
     }
   }, [selectedCollegeId]);
 
