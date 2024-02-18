@@ -8,6 +8,7 @@ import { accountCapabilityReducer } from "./accountCapability/accountCapabilityS
 import { capabilityReducer } from "./capability/capabilitySlice";
 import { graduationStatusReducer } from "./graduationStatus/graduationStatusSlice";
 import { collegeReducer } from "./college/collegeSlice";
+import { educationProgramReducer } from "./educationProgram/educationProgramSlice";
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   accountCapability: accountCapabilityReducer,
   graduationStatus: graduationStatusReducer,
   college: collegeReducer,
+  educationProgram: educationProgramReducer,
 });
 
 const persistConfig = {
