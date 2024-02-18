@@ -2,6 +2,7 @@ import React from "react";
 import "./SocialMediaAccountElement.css";
 import DeleteModal from "../Modals/DeleteModal";
 import EditSocialMediaAccountModal from "./EditSocialMediaAccountModal";
+import { BaseService } from "../../../core/services/baseService";
 
 type Props = {
   socialMediaId: string;
@@ -35,18 +36,19 @@ const SocialMediaAccountElement = ({
           <button
             className="social-media-account-element-delete-button"
             data-bs-toggle="modal"
-            data-bs-target={"#" + socialMediaId}
+            data-bs-target={"#id:" + socialMediaId}
           >
             <i className="bi bi-trash social-media-account-element-delete-button-icon"></i>
           </button>
           <DeleteModal
-            deleteModalId={socialMediaId}
+            entityService={new BaseService()}
+            entityId={"id-" + socialMediaId}
             deleteModalTitle="sosyal medya hesabını"
           />
           <button
             className="social-media-account-element-edit-button"
             data-bs-toggle="modal"
-            data-bs-target={"#edit-" + socialMediaId}
+            data-bs-target={"#id-" + socialMediaId}
           >
             <i className="bi bi-pencil-fill social-media-account-element-edit-button-icon"></i>
           </button>

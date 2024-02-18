@@ -2,6 +2,7 @@ import React from "react";
 import "./ExperienceElement.css";
 import DeleteModal from "../Modals/DeleteModal";
 import DetailModal from "../Modals/DetailModal";
+import experienceService from "../../../services/experienceService";
 
 type Props = {
   id: string;
@@ -66,11 +67,14 @@ const ExperienceElement = ({
         <button
           className="experience-element-delete-button"
           data-bs-toggle="modal"
-          data-bs-target={"#accountExperienceId" + id}
+          data-bs-target={"#id-" + id}
         >
           <i className="bi bi-trash experience-element-delete-button-icon"></i>
         </button>
-        <DeleteModal deleteModalId={"accountExperienceId" + id} deleteModalTitle="deneyimi" />
+        <DeleteModal
+          entityService={experienceService}
+          entityId={"id-" + id}
+          deleteModalTitle="deneyimi" />
       </div>
     </div>
   );
