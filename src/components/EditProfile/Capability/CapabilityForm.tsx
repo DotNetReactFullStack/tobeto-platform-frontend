@@ -30,25 +30,36 @@ const validationSchema = yup.object({
     .notOneOf(["default"], "Yetkinlik alanı zorunludur"),
 });
 
-const handleAddCapability = async (values: any, accountId: number, dispatch: any) => {
-  dispatch(setCapabilityToAccount({
-    accountId: accountId,
-    capabilityId: Number(values.capabilityId),
-    priority: 1
-  }));
+const handleAddCapability = async (
+  values: any,
+  accountId: number,
+  dispatch: any
+) => {
+  dispatch(
+    setCapabilityToAccount({
+      accountId: accountId,
+      capabilityId: Number(values.capabilityId),
+      priority: 1,
+    })
+  );
 };
 
 const CapabilityForm = (props: Props) => {
+  const [selectedCapabilityId, setSelectedCapabilityId] = useState<
+    number | null
+  >(null);
 
   const dispatch = useDispatch();
 
-  const accountId = useSelector((state: any) => state.account.currentAccount.payload.id);
+  const accountId = useSelector(
+    (state: any) => state.account.currentAccount.payload.id
+  );
 
   async function fetchData() {
     try {
       const capabilitiesResponse = await capabilityService.getAll();
       const data = capabilitiesResponse.data.items;
-      console.log(data)
+      console.log(data);
       dispatch(setCapabilities(data));
     } catch (error) {
       console.error("Veri alınamadı:", error);
@@ -57,10 +68,11 @@ const CapabilityForm = (props: Props) => {
 
   useEffect(() => {
     fetchData();
-  }, [])
+  }, []);
 
-  const capabilities: GetListCapabilityListItemDto[] = useSelector((state: RootState) => state.capability.capabilities);
-
+  const capabilities: GetListCapabilityListItemDto[] = useSelector(
+    (state: RootState) => state.capability.capabilities
+  );
 
   return (
     <div className="capability-form">
@@ -71,24 +83,30 @@ const CapabilityForm = (props: Props) => {
           handleAddCapability(values, accountId, dispatch);
         }}
       >
-        <Form className="input-container-w-100">
-          <div className="capability-input-container input-container-w-100">
-            <InputContainer
-              useFormikField={true}
-              inputContainerClasses="capability-input-container input-container-w-100"
-              elementType={FormElementType.Select}
-              labelText="Yetkinlik"
-              inputName="capabilityId"
-              defaultOptionText="Yetkinlik Seçiniz"
-              optionData={capabilities}
-              optionDataFilters={capabilitiesOptionDataFilters}
-              optionDataSort={sortByPriorityDesc}
-            />
-          </div>
-          <button type="submit" className="capability-save-button">
-            Kaydet
-          </button>
-        </Form>
+        {(formikProps) => (
+          <Form className="input-container-w-100">
+            <div className="capability-input-container input-container-w-100">
+              <InputContainer
+                useFormikField={true}
+                inputContainerClasses="capability-input-container input-container-w-100"
+                elementType={FormElementType.Select}
+                labelText="Yetkinlik"
+                inputName="capabilityId"
+                defaultOptionText="Yetkinlik Seçiniz"
+                optionData={capabilities}
+                optionDataFilters={capabilitiesOptionDataFilters}
+                optionDataSort={sortByPriorityDesc}
+                onChange={(e) => {
+                  formikProps.handleChange(e);
+                  setSelectedCapabilityId(parseInt(e.target.value));
+                }}
+              />
+            </div>
+            <button type="submit" className="capability-save-button">
+              Kaydet
+            </button>
+          </Form>
+        )}
       </Formik>
     </div>
   );
