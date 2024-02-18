@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./EducationForm.css";
 import InputContainer from "../InputContainer";
 import { FormElementType } from "../../../models/formElementType";
 import { InputType } from "../../../models/inputType";
 import * as yup from "yup";
 import { Form, Formik } from "formik";
+import { useDispatch, useSelector } from "react-redux";
+import graduationStatusService from "../../../services/graduationStatusService";
+import { setGraduationStatuses } from "../../../store/graduationStatus/graduationStatusSlice";
+import { GetListGraduationStatusListItemDto } from "../../../models/graduationStatuses/getListGraduationStatusListItemDto";
+import { RootState } from "../../../store/configureStore";
 
 type Props = {};
 
@@ -14,32 +19,32 @@ let collegeOptionDataFilters = [ifVisibilityIsTrue];
 let educationProgramOptionDataFilters = [ifVisibilityIsTrue];
 const sortByPriorityDesc = (a: any, b: any) => b.priority - a.priority;
 
-const graduationStatus = [
-  {
-    id: 1,
-    name: "Lisans",
-    priority: 4,
-    visibility: true,
-  },
-  {
-    id: 2,
-    name: "Ön Lisans",
-    priority: 3,
-    visibility: true,
-  },
-  {
-    id: 3,
-    name: "Yüksek Lisans",
-    priority: 2,
-    visibility: true,
-  },
-  {
-    id: 4,
-    name: "Doktora",
-    priority: 1,
-    visibility: true,
-  },
-];
+// const graduationStatus = [
+//   {
+//     id: 1,
+//     name: "Lisans",
+//     priority: 4,
+//     visibility: true,
+//   },
+//   // {
+//   //   id: 2,
+//   //   name: "Ön Lisans",
+//   //   priority: 3,
+//   //   visibility: true,
+//   // },
+//   // {
+//   //   id: 3,
+//   //   name: "Yüksek Lisans",
+//   //   priority: 2,
+//   //   visibility: true,
+//   // },
+//   // {
+//   //   id: 4,
+//   //   name: "Doktora",
+//   //   priority: 1,
+//   //   visibility: true,
+//   // },
+// ];
 
 const colleges = [
   {
@@ -117,6 +122,25 @@ const handleEducation = async (values: any) => {
 };
 
 const EducationForm = (props: Props) => {
+  const dispatch = useDispatch();
+
+  async function fetchData() {
+    try {
+      const graduationStatusResponse = await graduationStatusService.getAll();
+      const graduationStatusData = graduationStatusResponse.data.items;
+      dispatch(setGraduationStatuses(graduationStatusData));
+    } catch (error) {
+      console.error("Veri alınamadı:", error);
+    }
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const graduationStatuses: GetListGraduationStatusListItemDto[] = useSelector(
+    (state: RootState) => state.graduationStatus.graduationStatuses
+  );
   return (
     <div className="education-form">
       <Formik
@@ -135,7 +159,7 @@ const EducationForm = (props: Props) => {
               labelText="Eğitim Durumu*"
               inputName="graduationStatus"
               defaultOptionText="Seviye Seçiniz"
-              optionData={graduationStatus}
+              optionData={graduationStatuses}
               optionDataFilters={graduationStatusOptionDataFilters}
               optionDataSort={sortByPriorityDesc}
             />
