@@ -2,10 +2,13 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { videoReducer } from "./video/videoSlice";
 import { authReducer } from "./auth/authSlice";
 import { accountReducer } from "./account/accountSlice";
-import storage from 'redux-persist/lib/storage'
-import { persistReducer } from 'redux-persist'
+import storage from "redux-persist/lib/storage";
+import { persistReducer } from "redux-persist";
 import { accountCapabilityReducer } from "./accountCapability/accountCapabilitySlice";
 import { capabilityReducer } from "./capability/capabilitySlice";
+import { graduationStatusReducer } from "./graduationStatus/graduationStatusSlice";
+import { collegeReducer } from "./college/collegeSlice";
+import { educationProgramReducer } from "./educationProgram/educationProgramSlice";
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -13,16 +16,19 @@ const rootReducer = combineReducers({
   account: accountReducer,
   capability: capabilityReducer,
   accountCapability: accountCapabilityReducer,
+  graduationStatus: graduationStatusReducer,
+  college: collegeReducer,
+  educationProgram: educationProgramReducer,
 });
 
 const persistConfig = {
-  key: 'root',
-  storage
+  key: "root",
+  storage,
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 export const store = configureStore({ reducer: persistedReducer });
 
-export type RootState = ReturnType<typeof store.getState>
+export type RootState = ReturnType<typeof store.getState>;
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
-export type AppDispatch = typeof store.dispatch
+export type AppDispatch = typeof store.dispatch;

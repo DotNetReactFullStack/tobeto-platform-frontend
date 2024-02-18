@@ -21,6 +21,7 @@ type Props = {
   optionDataFilters?: any;
   optionDataSort?: any;
   children?: React.ReactNode;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 const InputContainer = ({
@@ -41,6 +42,7 @@ const InputContainer = ({
   optionDataFilters,
   optionDataSort,
   children,
+  onChange,
 }: Props) => {
   return (
     <div className={inputContainerClasses}>
@@ -58,6 +60,7 @@ const InputContainer = ({
                       name={inputName}
                       value={inputValue}
                       disabled={disabled}
+                      onChange={onChange}
                     >
                       <option value={defaultOptionValue}>
                         {inputValue !== undefined

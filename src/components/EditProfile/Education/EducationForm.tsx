@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./EducationForm.css";
 import InputContainer from "../InputContainer";
 import { FormElementType } from "../../../models/formElementType";
 import { InputType } from "../../../models/inputType";
 import * as yup from "yup";
 import { Form, Formik } from "formik";
+import { useDispatch, useSelector } from "react-redux";
+import graduationStatusService from "../../../services/graduationStatusService";
+import { setGraduationStatuses } from "../../../store/graduationStatus/graduationStatusSlice";
+import { GetListGraduationStatusListItemDto } from "../../../models/graduationStatuses/getListGraduationStatusListItemDto";
+import { RootState } from "../../../store/configureStore";
+import collegeService from "../../../services/collegeService";
+import { setColleges } from "../../../store/college/collegeSlice";
+import { GetListCollegeListItemDto } from "../../../models/colleges/getListCollegeListItemDto";
+import educationProgramService from "../../../services/educationProgramService";
+import { setEducationPrograms } from "../../../store/educationProgram/educationProgramSlice";
+import { GetListByCollegeIdEducationProgramListItemDto } from "../../../models/educationPrograms/getListByCollegeIdEducationProgramListItemDto";
 
 type Props = {};
 
@@ -13,78 +24,6 @@ let graduationStatusOptionDataFilters = [ifVisibilityIsTrue];
 let collegeOptionDataFilters = [ifVisibilityIsTrue];
 let educationProgramOptionDataFilters = [ifVisibilityIsTrue];
 const sortByPriorityDesc = (a: any, b: any) => b.priority - a.priority;
-
-const graduationStatus = [
-  {
-    id: 1,
-    name: "Lisans",
-    priority: 4,
-    visibility: true,
-  },
-  {
-    id: 2,
-    name: "Ön Lisans",
-    priority: 3,
-    visibility: true,
-  },
-  {
-    id: 3,
-    name: "Yüksek Lisans",
-    priority: 2,
-    visibility: true,
-  },
-  {
-    id: 4,
-    name: "Doktora",
-    priority: 1,
-    visibility: true,
-  },
-];
-
-const colleges = [
-  {
-    id: 1,
-    name: "Sinop Üniversite",
-    priority: 3,
-    visibility: true,
-  },
-  {
-    id: 2,
-    name: "Düzce Üniversitesi",
-    priority: 2,
-    visibility: true,
-  },
-  {
-    id: 3,
-    name: "Uludağ Üniversitesi",
-    priority: 1,
-    visibility: true,
-  },
-];
-
-const educationPrograms = [
-  {
-    id: 1,
-    collegeId: 1,
-    name: "Makine Mühendisliği",
-    priority: 3,
-    visibility: true,
-  },
-  {
-    id: 2,
-    collegeId: 2,
-    name: "Elektrik Elektronik Mühendisliği",
-    priority: 2,
-    visibility: true,
-  },
-  {
-    id: 3,
-    collegeId: 3,
-    name: "Peyzaj Mimarlığı",
-    priority: 1,
-    visibility: true,
-  },
-];
 
 //Formik, Yup
 const initialValues: any = {
@@ -117,6 +56,55 @@ const handleEducation = async (values: any) => {
 };
 
 const EducationForm = (props: Props) => {
+  const dispatch = useDispatch();
+
+  const [selectedGraduationStatusId, setSelectedGraduationStatusId] = useState<
+    number | null
+  >(null);
+  const [selectedCollegeId, setSelectedCollegeId] = useState<number | null>(
+    null
+  );
+  const [selectedEducationProgramId, setSelectedEducationProgramId] = useState<
+    number | null
+  >(null);
+
+  async function fetchData(collegeId: number) {
+    try {
+      const graduationStatusResponse = await graduationStatusService.getAll();
+      const graduationStatusData = graduationStatusResponse.data.items;
+      dispatch(setGraduationStatuses(graduationStatusData));
+
+      const collegeResponse = await collegeService.getAll();
+      const collegeData = collegeResponse.data.items;
+      dispatch(setColleges(collegeData));
+
+      const educationProgramResponse =
+        await educationProgramService.getByCollegeId(collegeId);
+      const educationProgramData = educationProgramResponse.data.items;
+      dispatch(setEducationPrograms(educationProgramData));
+    } catch (error) {
+      dispatch(setEducationPrograms([]));
+      console.error("Veri alınamadı:", error);
+    }
+  }
+
+  useEffect(() => {
+    if (selectedCollegeId !== null) {
+      fetchData(selectedCollegeId);
+    }
+  }, [selectedCollegeId]);
+
+  const graduationStatuses: GetListGraduationStatusListItemDto[] = useSelector(
+    (state: RootState) => state.graduationStatus.graduationStatuses
+  );
+
+  const colleges: GetListCollegeListItemDto[] = useSelector(
+    (state: RootState) => state.college.colleges
+  );
+
+  const educationPrograms: GetListByCollegeIdEducationProgramListItemDto[] =
+    useSelector((state: RootState) => state.educationProgram.educationPrograms);
+
   return (
     <div className="education-form">
       <Formik
@@ -135,9 +123,13 @@ const EducationForm = (props: Props) => {
               labelText="Eğitim Durumu*"
               inputName="graduationStatus"
               defaultOptionText="Seviye Seçiniz"
-              optionData={graduationStatus}
+              optionData={graduationStatuses}
               optionDataFilters={graduationStatusOptionDataFilters}
               optionDataSort={sortByPriorityDesc}
+              onChange={(e) => {
+                formikProps.handleChange(e);
+                setSelectedGraduationStatusId(parseInt(e.target.value));
+              }}
             />
 
             <InputContainer
@@ -150,6 +142,10 @@ const EducationForm = (props: Props) => {
               optionData={colleges}
               optionDataFilters={collegeOptionDataFilters}
               optionDataSort={sortByPriorityDesc}
+              onChange={(e) => {
+                formikProps.handleChange(e);
+                setSelectedCollegeId(parseInt(e.target.value));
+              }}
             />
 
             <InputContainer
@@ -162,6 +158,10 @@ const EducationForm = (props: Props) => {
               optionData={educationPrograms}
               optionDataFilters={educationProgramOptionDataFilters}
               optionDataSort={sortByPriorityDesc}
+              onChange={(e) => {
+                formikProps.handleChange(e);
+                setSelectedEducationProgramId(parseInt(e.target.value));
+              }}
             />
 
             <InputContainer
