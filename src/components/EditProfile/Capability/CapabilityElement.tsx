@@ -1,6 +1,7 @@
 import React from "react";
 import "./CapabilityElement.css";
 import DeleteModal from "../Modals/DeleteModal";
+import accountCapabilityService from "../../../services/accountCapabilityService";
 
 type Props = {
   id: string;
@@ -17,12 +18,13 @@ function CapabilityElement({ id, capabilityName }: Props) {
         <button
           className="capability-element-delete-button"
           data-bs-toggle="modal"
-          data-bs-target={"#accountCapabilityId" + id}
+          data-bs-target={"#id-" + id}
         >
           <i className="bi bi-trash capability-element-delete-button-icon"></i>
         </button>
         <DeleteModal
-          deleteModalId={"accountCapabilityId" + id}
+          entityService={accountCapabilityService}
+          entityId={"id-" + id}
           deleteModalTitle="yetkinliği"
         />
       </div>

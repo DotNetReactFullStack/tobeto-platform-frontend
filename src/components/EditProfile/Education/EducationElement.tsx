@@ -1,6 +1,7 @@
 import React from "react";
 import "./EducationElement.css";
 import DeleteModal from "../Modals/DeleteModal";
+import { BaseService } from "../../../core/services/baseService";
 
 type Props = {
   educationId: string;
@@ -46,11 +47,14 @@ const EducationElement = ({
         <button
           className="education-element-delete-button"
           data-bs-toggle="modal"
-          data-bs-target={"#" + educationId}
+          data-bs-target={"#id-" + educationId}
         >
           <i className="bi bi-trash education-element-delete-button-icon"></i>
         </button>
-        <DeleteModal deleteModalId={educationId} deleteModalTitle="eğitimi" />
+        <DeleteModal
+          entityService={new BaseService()}
+          entityId={"id-" + educationId}
+          deleteModalTitle="eğitimi" />
       </div>
     </div>
   );

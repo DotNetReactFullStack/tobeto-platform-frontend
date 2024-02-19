@@ -10,6 +10,7 @@ import { capabilityReducer } from "./capability/capabilitySlice";
 import { graduationStatusReducer } from "./graduationStatus/graduationStatusSlice";
 import { collegeReducer } from "./college/collegeSlice";
 import { educationProgramReducer } from "./educationProgram/educationProgramSlice";
+import { accountExperienceReducer } from "./experience/experienceSlice";
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -19,7 +20,8 @@ const rootReducer = combineReducers({
   accountCapability: accountCapabilityReducer,
   graduationStatus: graduationStatusReducer,
   college: collegeReducer,
-  educationProgram: educationProgramReducer,
+  educationProgram: educationProgramReducer,  
+  accountExperience: accountExperienceReducer,
   accountCollegeMetadata: accountCollegeMetadataReducer,
 });
 
