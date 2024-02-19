@@ -1,3 +1,4 @@
+import { accountCollegeMetadataReducer } from "./accountCollegeMetadata/accountCollegeMetadataSlice";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { videoReducer } from "./video/videoSlice";
 import { authReducer } from "./auth/authSlice";
@@ -19,8 +20,9 @@ const rootReducer = combineReducers({
   accountCapability: accountCapabilityReducer,
   graduationStatus: graduationStatusReducer,
   college: collegeReducer,
-  educationProgram: educationProgramReducer,
+  educationProgram: educationProgramReducer,  
   accountExperience: accountExperienceReducer,
+  accountCollegeMetadata: accountCollegeMetadataReducer,
 });
 
 const persistConfig = {
