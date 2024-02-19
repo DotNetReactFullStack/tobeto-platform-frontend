@@ -1,3 +1,4 @@
+import { accountForeignLanguageMetadataReducer } from './accountForeignLanguageMetadata/accountForeignLanguageMetadataSlice';
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { videoReducer } from "./video/videoSlice";
 import { authReducer } from "./auth/authSlice";
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   accountExperience: accountExperienceReducer,
   foreignLanguage: foreignLanguageReducer,
   foreignLanguageLevel: foreignLanguageLevelReducer,
+  accountForeignLanguageMetadata: accountForeignLanguageMetadataReducer,
 });
 
 const persistConfig = {
