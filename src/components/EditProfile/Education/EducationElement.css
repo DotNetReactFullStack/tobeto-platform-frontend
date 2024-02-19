@@ -72,11 +72,11 @@
 }
 
 .education-element-college {
-  width: 30%;
+  width: 35%;
 }
 
 .education-element-program {
-  width: 30%;
+  width: 55%;
 }
 
 .education-element-body span:nth-child(odd) {
@@ -102,7 +102,6 @@
     width: 45%;
   }
 }
-
 
 @media (max-width: 767.98px) {
   .education-element {
