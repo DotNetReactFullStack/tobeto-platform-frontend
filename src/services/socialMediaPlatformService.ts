@@ -12,7 +12,7 @@ class SocialMediaPlatformService extends BaseService<
   constructor() {
     super();
     this.apiUrl =
-      BASE_API_URL + "SocialMediaPlatforms?PageIndex=0&PageSize=2000";
+      BASE_API_URL + "SocialMediaPlatforms?PageIndex=0&PageSize=1000";
   }
 
   getByFilter() {}

@@ -10,6 +10,7 @@ import { graduationStatusReducer } from "./graduationStatus/graduationStatusSlic
 import { collegeReducer } from "./college/collegeSlice";
 import { educationProgramReducer } from "./educationProgram/educationProgramSlice";
 import { socialMediaPlatformReducer } from "./socialMediaPlatform/socialMediaPlatformSlice";
+import { accountSocialMediaPlatformReducer } from "./accountSocialMediaPlatform/accountSocialMediaPlatformSlice";
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   college: collegeReducer,
   educationProgram: educationProgramReducer,
   socialMediaPlatform: socialMediaPlatformReducer,
+  accountSocialMediaPlatform: accountSocialMediaPlatformReducer,
 });
 
 const persistConfig = {

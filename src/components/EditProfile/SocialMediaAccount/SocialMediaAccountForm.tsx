@@ -11,6 +11,7 @@ import { setSocialMediaPlatforms } from "../../../store/socialMediaPlatform/soci
 import socialMediaPlatformService from "../../../services/socialMediaPlatformService"; // Import the service for fetching data
 import { GetListSocialMediaPlatformListItemDto } from "../../../models/socialMediaPlatforms/getListSocialMediaPlatformListItemDto";
 import { RootState } from "../../../store/configureStore";
+import { setSocialMediaPlatformToAccount } from "../../../store/accountSocialMediaPlatform/accountSocialMediaPlatformSlice";
 
 type Props = {};
 
@@ -20,27 +21,30 @@ const sortByPriorityDesc = (a: any, b: any) => b.priority - a.priority;
 
 //Formik, Yup
 const initialValues: any = {
-  accountType: "",
-  accountUrl: "",
+  socialMediaPlatformId: "",
+  link: "",
 };
 
 const validationSchema = yup.object({
-  accountType: yup
+  socialMediaPlatformId: yup
     .string()
     .required("Sosyal medya tip alanı zorunludur")
     .notOneOf(["default"], "Sosyal medya tip alanı zorunludur"),
-  accountUrl: yup
+  link: yup
     .string()
     .required("Sosyal medya link alanı zorunludur")
     .test("is-url-correct", "Geçersiz URL", function (value, context) {
-      const accountType = context.parent.accountType;
-      if (accountType === "1" && !value.startsWith("https://github.com/")) {
+      const socialMediaPlatformId = context.parent.socialMediaPlatformId;
+      if (
+        socialMediaPlatformId === "1" &&
+        !value.startsWith("https://github.com/")
+      ) {
         throw this.createError({
           message: `GitHub link "https://github.com/" ile başlamalıdır`,
         });
       }
       if (
-        accountType === "2" &&
+        socialMediaPlatformId === "2" &&
         !value.startsWith("https://www.linkedin.com/")
       ) {
         throw this.createError({
@@ -48,14 +52,17 @@ const validationSchema = yup.object({
         });
       }
       if (
-        accountType === "3" &&
+        socialMediaPlatformId === "3" &&
         !value.startsWith("https://www.instagram.com/")
       ) {
         throw this.createError({
           message: `Instagram linki "https://www.instagram.com/" ile başlamalıdır`,
         });
       }
-      if (accountType === "4" && !value.startsWith("https://twitter.com/")) {
+      if (
+        socialMediaPlatformId === "4" &&
+        !value.startsWith("https://twitter.com/")
+      ) {
         throw this.createError({
           message: `Twitter linki "https://twitter.com/" ile başlamalıdır`,
         });
@@ -65,15 +72,27 @@ const validationSchema = yup.object({
     }),
 });
 
-const handleSocialMediaAccount = async (values: any) => {
-  console.log(values);
+const handleAddSocialMediaPlatform = async (
+  values: any,
+  accountId: number,
+  dispatch: any
+) => {
+  dispatch(
+    setSocialMediaPlatformToAccount({
+      accountId: accountId,
+      socialMediaPlatformId: Number(values.socialMediaPlatformId),
+      priority: 1,
+      link: String(values.link),
+    })
+  );
 };
 
 const SocialMediaAccountForm = (props: Props) => {
   const dispatch = useDispatch();
 
-  const [selectedSocialMediaPlatformId, setSelectedSocialMediaPlatformId] =
-    useState<number | null>(null);
+  const accountId = useSelector(
+    (state: any) => state.account.currentAccount.payload.id
+  );
 
   async function fetchSocialMediaInputData() {
     try {
@@ -101,7 +120,7 @@ const SocialMediaAccountForm = (props: Props) => {
       <Formik
         initialValues={initialValues}
         onSubmit={(values): any => {
-          handleSocialMediaAccount(values);
+          handleAddSocialMediaPlatform(values, accountId, dispatch);
         }}
         validationSchema={validationSchema}
       >
@@ -112,14 +131,13 @@ const SocialMediaAccountForm = (props: Props) => {
                 useFormikField={true}
                 inputContainerClasses="social-media-account-type-input-container input-container-w-30"
                 elementType={FormElementType.Select}
-                inputName="accountType"
+                inputName="socialMediaPlatformId"
                 defaultOptionText="Seçiniz"
                 optionData={socialMediaPlatforms}
                 optionDataFilters={socialMediaPlatformOptionDataFilters}
                 optionDataSort={sortByPriorityDesc}
                 onChange={(e) => {
                   formikProps.handleChange(e);
-                  setSelectedSocialMediaPlatformId(parseInt(e.target.value));
                 }}
               />
 
@@ -127,7 +145,7 @@ const SocialMediaAccountForm = (props: Props) => {
                 useFormikField={true}
                 inputContainerClasses="social-media-account-link-input-container input-container-w-70"
                 inputType={InputType.URL}
-                inputName="accountUrl"
+                inputName="link"
                 inputPlaceholder="http://"
               />
             </div>
