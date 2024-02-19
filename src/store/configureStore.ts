@@ -10,6 +10,8 @@ import { graduationStatusReducer } from "./graduationStatus/graduationStatusSlic
 import { collegeReducer } from "./college/collegeSlice";
 import { educationProgramReducer } from "./educationProgram/educationProgramSlice";
 import { accountExperienceReducer } from "./experience/experienceSlice";
+import { foreignLanguageReducer } from "./foreignLanguage/foreignLanguageSlice";
+import { foreignLanguageLevelReducer } from "./foreignLanguageLevel/foreignLanguageLevelSlice";
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -21,6 +23,8 @@ const rootReducer = combineReducers({
   college: collegeReducer,
   educationProgram: educationProgramReducer,
   accountExperience: accountExperienceReducer,
+  foreignLanguage: foreignLanguageReducer,
+  foreignLanguageLevel: foreignLanguageLevelReducer,
 });
 
 const persistConfig = {
