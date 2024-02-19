@@ -16,6 +16,7 @@ import { GetListCollegeListItemDto } from "../../../models/colleges/getListColle
 import educationProgramService from "../../../services/educationProgramService";
 import { setEducationPrograms } from "../../../store/educationProgram/educationProgramSlice";
 import { GetListByCollegeIdEducationProgramListItemDto } from "../../../models/educationPrograms/getListByCollegeIdEducationProgramListItemDto";
+import { setCollegeMetadataToAccount } from "../../../store/accountCollegeMetadata/accountCollegeMetadataSlice";
 
 type Props = {};
 
@@ -27,46 +28,61 @@ const sortByPriorityDesc = (a: any, b: any) => b.priority - a.priority;
 
 //Formik, Yup
 const initialValues: any = {
-  graduationStatus: "",
-  college: "",
-  educationProgram: "",
-  educationProgramStartDate: "",
-  educationProgramEndDate: "",
-  isEducationProgramContinue: false,
+  graduationStatusId: "",
+  collegeId: "",
+  educationProgramId: "",
+  startingYear: "",
+  graduationYear: "",
+  programOnGoing: false,
 };
 
 const validationSchema = yup.object({
-  graduationStatus: yup
+  graduationStatusId: yup
     .string()
     .required("Eğitim durumu zorunludur")
     .notOneOf(["default"], "Eğitim durumu zorunludur"),
-  college: yup
+  collegeId: yup
     .string()
     .required("Universite alanı zorunludur")
     .notOneOf(["default"], "Universite alanı zorunludur"),
-  educationProgram: yup
+  educationProgramId: yup
     .string()
     .required("Bölüm alanı zorunludur")
     .notOneOf(["default"], "Bölüm alanı zorunludur"),
-  educationProgramStartDate: yup.string().required("Başlangıç yılı zorunludur"),
+  startingYear: yup.string().required("Başlangıç yılı zorunludur"),
 });
 
-const handleEducation = async (values: any) => {
-  console.log(values);
+const handleAddCollegeMetadata = async (
+  values: any,
+  accountId: number,
+  dispatch: any
+) => {
+  dispatch(
+    setCollegeMetadataToAccount({
+      accountId: accountId,
+      graduationStatusId: Number(values.graduationStatusId),
+      collegeId: Number(values.collegeId),
+      educationProgramId: Number(values.educationProgramId),
+      visibility: true,
+      startingYear: new Date(values.startingYear).toISOString(),
+      graduationYear: values.programOnGoing
+        ? null
+        : new Date(values.graduationYear).toISOString(),
+      programOnGoing: values.programOnGoing,
+    })
+  );
 };
 
 const EducationForm = (props: Props) => {
   const dispatch = useDispatch();
 
-  const [selectedGraduationStatusId, setSelectedGraduationStatusId] = useState<
-    number | null
-  >(null);
+  const accountId = useSelector(
+    (state: any) => state.account.currentAccount.payload.id
+  );
+
   const [selectedCollegeId, setSelectedCollegeId] = useState<number | null>(
     null
   );
-  const [selectedEducationProgramId, setSelectedEducationProgramId] = useState<
-    number | null
-  >(null);
 
   async function fetchEducationInputData(collegeId: number) {
     try {
@@ -110,7 +126,7 @@ const EducationForm = (props: Props) => {
       <Formik
         initialValues={initialValues}
         onSubmit={(values): any => {
-          handleEducation(values);
+          handleAddCollegeMetadata(values, accountId, dispatch);
         }}
         validationSchema={validationSchema}
       >
@@ -121,14 +137,13 @@ const EducationForm = (props: Props) => {
               inputContainerClasses="graduation-status-input-container input-container-w-50"
               elementType={FormElementType.Select}
               labelText="Eğitim Durumu*"
-              inputName="graduationStatus"
+              inputName="graduationStatusId"
               defaultOptionText="Seviye Seçiniz"
               optionData={graduationStatuses}
               optionDataFilters={graduationStatusOptionDataFilters}
               optionDataSort={sortByPriorityDesc}
               onChange={(e) => {
                 formikProps.handleChange(e);
-                setSelectedGraduationStatusId(parseInt(e.target.value));
               }}
             />
 
@@ -137,7 +152,7 @@ const EducationForm = (props: Props) => {
               inputContainerClasses="college-input-container input-container-w-50"
               elementType={FormElementType.Select}
               labelText="Üniversite*"
-              inputName="college"
+              inputName="collegeId"
               defaultOptionText="Üniversite Seçiniz"
               optionData={colleges}
               optionDataFilters={collegeOptionDataFilters}
@@ -153,14 +168,13 @@ const EducationForm = (props: Props) => {
               inputContainerClasses="education-program-input-container input-container-w-100"
               elementType={FormElementType.Select}
               labelText="Bölüm*"
-              inputName="educationProgram"
+              inputName="educationProgramId"
               defaultOptionText="Bölüm Seçiniz"
               optionData={educationPrograms}
               optionDataFilters={educationProgramOptionDataFilters}
               optionDataSort={sortByPriorityDesc}
               onChange={(e) => {
                 formikProps.handleChange(e);
-                setSelectedEducationProgramId(parseInt(e.target.value));
               }}
             />
 
@@ -168,7 +182,7 @@ const EducationForm = (props: Props) => {
               useFormikField={true}
               inputContainerClasses="education-program-start-date-input-container input-container-w-50"
               labelText="Başlangıç Yılı*"
-              inputName="educationProgramStartDate"
+              inputName="startingYear"
               inputType={InputType.Month}
             />
 
@@ -176,13 +190,13 @@ const EducationForm = (props: Props) => {
               useFormikField={true}
               inputContainerClasses="education-program-end-date-input-container input-container-w-50"
               labelText="Mezuniyet Yılı"
-              inputName="educationProgramEndDate"
+              inputName="graduationYear"
               inputType={InputType.Month}
-              disabled={formikProps.values.isEducationProgramContinue}
+              disabled={formikProps.values.programOnGoing}
               inputValue={
-                formikProps.values.isEducationProgramContinue
+                formikProps.values.programOnGoing
                   ? ""
-                  : formikProps.values.educationProgramEndDate
+                  : formikProps.values.graduationYear
               }
             >
               <div className="education-program-continue-input-container">
@@ -191,7 +205,7 @@ const EducationForm = (props: Props) => {
                   inputContainerClasses="education-program-continue-input-container"
                   elementType={FormElementType.Input}
                   inputType={InputType.Checkbox}
-                  inputName="isEducationProgramContinue"
+                  inputName="programOnGoing"
                   labelText="Devam Ediyorum"
                 />
               </div>
