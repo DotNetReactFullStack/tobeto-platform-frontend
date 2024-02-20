@@ -1,10 +1,11 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { CreateAccountForeignLanguageMetadataRequest } from "../../models/accountForeignLanguageMetadatas/createAccountForeignLanguageMetadataRequest";
 import accountForeignLanguageMetadataService from "../../services/accountForeignLanguageMetadataService";
+import { GetListByAccountIdAccountForeignLanguageMetaDataListItemDto } from "../../models/accountForeignLanguageMetadatas/getListByAccountIdAccountForeignLanguageMetaDataListItemDto";
 
 
 interface AccountForeignLanguageMetadataState {
-    accountForeignLanguageMetadatas: any[];
+    accountForeignLanguageMetadatas: GetListByAccountIdAccountForeignLanguageMetaDataListItemDto[];
     loading: boolean;
     error: string | null;
 }
@@ -15,7 +16,7 @@ const initialState: AccountForeignLanguageMetadataState = {
     error: null,
 };
 
-const accountForeignLanguageMetadatasSlice = createSlice({
+const accountForeignLanguageMetadataSlice = createSlice({
     name: "accountForeignLanguageMetadata",
     initialState,
     reducers: {
@@ -25,10 +26,22 @@ const accountForeignLanguageMetadatasSlice = createSlice({
         ) => {
             accountForeignLanguageMetadataService.add(action.payload);
         },
+
+
+        setAccountForeignLanguageMetadatas: (
+            state,
+            action: PayloadAction<
+                GetListByAccountIdAccountForeignLanguageMetaDataListItemDto[]
+            >
+        ) => {
+            state.accountForeignLanguageMetadatas = action.payload;
+        },
     },
 });
 
 export const accountForeignLanguageMetadataReducer =
-    accountForeignLanguageMetadatasSlice.reducer;
-export const { setForeignLanguageMetadataToAccount } =
-    accountForeignLanguageMetadatasSlice.actions;
+    accountForeignLanguageMetadataSlice.reducer;
+export const { setForeignLanguageMetadataToAccount, setAccountForeignLanguageMetadatas } =
+    accountForeignLanguageMetadataSlice.actions;
+
+
