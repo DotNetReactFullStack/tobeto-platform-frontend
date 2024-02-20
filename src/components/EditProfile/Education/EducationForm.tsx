@@ -50,6 +50,13 @@ const validationSchema = yup.object({
     .required("Bölüm alanı zorunludur")
     .notOneOf(["default"], "Bölüm alanı zorunludur"),
   startingYear: yup.string().required("Başlangıç yılı zorunludur"),
+  graduationYear: yup.string().test('required-if-not-ongoing', 'Mezuniyet yılı zorunludur', function (value) {
+    const programOnGoing = this.resolve(yup.ref('programOnGoing'));
+    if (!programOnGoing) {
+      return !!value;
+    }
+    return true;
+  })
 });
 
 const handleAddCollegeMetadata = async (

@@ -12,6 +12,7 @@ import socialMediaPlatformService from "../../../services/socialMediaPlatformSer
 import { GetListSocialMediaPlatformListItemDto } from "../../../models/socialMediaPlatforms/getListSocialMediaPlatformListItemDto";
 import { RootState } from "../../../store/configureStore";
 import { setSocialMediaPlatformToAccount } from "../../../store/accountSocialMediaPlatform/accountSocialMediaPlatformSlice";
+import { SocialMediaPlatformType } from "../../../models/socialMediaPlatforms/socialMediaPlatformType";
 
 type Props = {};
 
@@ -36,7 +37,7 @@ const validationSchema = yup.object({
     .test("is-url-correct", "Geçersiz URL", function (value, context) {
       const socialMediaPlatformId = context.parent.socialMediaPlatformId;
       if (
-        socialMediaPlatformId === "1" &&
+        socialMediaPlatformId === SocialMediaPlatformType.GitHub &&
         !value.startsWith("https://github.com/")
       ) {
         throw this.createError({
@@ -44,7 +45,7 @@ const validationSchema = yup.object({
         });
       }
       if (
-        socialMediaPlatformId === "2" &&
+        socialMediaPlatformId === SocialMediaPlatformType.Linkedin &&
         !value.startsWith("https://www.linkedin.com/")
       ) {
         throw this.createError({
@@ -52,7 +53,7 @@ const validationSchema = yup.object({
         });
       }
       if (
-        socialMediaPlatformId === "3" &&
+        socialMediaPlatformId === SocialMediaPlatformType.Instagram &&
         !value.startsWith("https://www.instagram.com/")
       ) {
         throw this.createError({
@@ -60,7 +61,7 @@ const validationSchema = yup.object({
         });
       }
       if (
-        socialMediaPlatformId === "4" &&
+        socialMediaPlatformId === SocialMediaPlatformType.Twitter &&
         !value.startsWith("https://twitter.com/")
       ) {
         throw this.createError({
