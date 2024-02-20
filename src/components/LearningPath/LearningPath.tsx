@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./LearningPath.css";
 import ShowMoreButton from "../ShowMoreButton/ShowMoreButton";
 import LearningPathElement from "./LearningPathElement";
+import { useDispatch, useSelector } from "react-redux";
+import accountLearningPathService from "../../services/accountLearningPathService";
+import { setAccountLearningPaths } from "../../store/accountLearningPath/accountLearningPathSlice";
+import { GetListByAccountIdAccountLearningPathListItemDto } from "../../models/accountLearningPath/getListByAccountIdAccountLearningPathListItemDto";
+import { RootState } from "../../store/configureStore";
 
 type Props = {};
 
@@ -51,6 +56,30 @@ const learningPathElementFakeData: any[] = [
 ];
 
 const LearningPath = (props: Props) => {
+  const dispatch = useDispatch();
+
+  async function fetchAccountLearningPathData() {
+    try {
+      const accountLearningPathResponse =
+        await accountLearningPathService.getAll();
+      const accountLearningPathData = accountLearningPathResponse.data.items;
+      dispatch(setAccountLearningPaths(accountLearningPathData));
+    } catch (error) {
+      dispatch(setAccountLearningPaths([]));
+      console.error("Veri alınamadı:", error);
+    }
+  }
+
+  useEffect(() => {
+    fetchAccountLearningPathData();
+  }, []);
+
+  const accountLearningPaths: GetListByAccountIdAccountLearningPathListItemDto[] =
+    useSelector(
+      (state: RootState) => state.accountLearningPath.accountLearningPaths
+    );
+
+  console.log(accountLearningPaths);
   return (
     <>
       <div className="learning-path-component">
@@ -63,11 +92,11 @@ const LearningPath = (props: Props) => {
           />
         ))}
       </div>
-      {
-        (learningPathElementFakeData.length > 4)
-          ? <ShowMoreButton redirectUrl="/my-learning-paths" />
-          : <></>
-      }
+      {learningPathElementFakeData.length > 4 ? (
+        <ShowMoreButton redirectUrl="/my-learning-paths" />
+      ) : (
+        <></>
+      )}
     </>
   );
 };
