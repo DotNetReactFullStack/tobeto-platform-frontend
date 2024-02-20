@@ -1,4 +1,4 @@
-.foreing-language {
+.foreign-language {
   margin-bottom: 20px;
   width: 100%;
   display: flex;
@@ -6,7 +6,7 @@
   align-items: flex-start;
 }
 
-.foreing-language-input-section {
+.foreign-language-input-section {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -15,7 +15,7 @@
   margin-bottom: 20px;
 }
 
-.foreing-language-input-section select {
+.foreign-language-input-section select {
   width: 100%;
   border: 2px solid #b3a6c0;
   border-radius: 8px;
@@ -24,20 +24,20 @@
   font-weight: 400;
 }
 
-.foreing-language-name-input-container,
-.foreing-language-level-input-container {
+.foreign-language-name-input-container,
+.foreign-language-level-input-container {
   height: 100px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-/* .foreing-language-level-input-container {
+/* .foreign-language-level-input-container {
   justify-content: flex-end;
 } */
 
 /* Save Button*/
-.foreing-language-save-button {
+.foreign-language-save-button {
   min-width: 150px;
   padding: 8px 16px;
   border: none;
@@ -50,27 +50,27 @@
   opacity: 0.9;
 }
 
-.foreing-language-save-button:hover {
+.foreign-language-save-button:hover {
   transform: scale(1.025);
   opacity: 1;
 }
 
 @media (max-width: 767.98px) {
-  .foreing-language {
+  .foreign-language {
     align-items: center;
   }
 
-  .foreing-language .foreign-language-form {
+  .foreign-language .foreign-language-form {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-  .foreing-language-input-section {
+  .foreign-language-input-section {
     justify-content: center;
   }
 
-  .foreing-language-save-button {
+  .foreign-language-save-button {
     min-width: 255px;
   }
 }
