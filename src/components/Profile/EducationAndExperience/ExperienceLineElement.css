@@ -10,10 +10,11 @@
   position: absolute;
   right: 16px;
   top: 45px;
+  transform: translateX(95%);
 }
 
 .experience-content-list {
   display: flex;
   flex-direction: column;
-  align-items: end;
+  align-items: start;
 }

@@ -3,13 +3,14 @@ import "./EducationAndExperienceElement.css";
 import "./EducationLineElement.css";
 
 type Props = {
-  startYear: string;
-  endYear: string;
-  name: string;
-  content: string;
+  startingYear: string;
+  graduationYear: string;
+  educationProgramName: string;
+  graduationStatusName: string;
+  collegeName: string;
 };
 
-const EducationLineElement = ({ startYear, endYear, name, content }: Props) => {
+const EducationLineElement = ({ startingYear, graduationYear, educationProgramName, graduationStatusName, collegeName }: Props) => {
   return (
     <div className="education-and-experience-line-element education-line-element">
       <div
@@ -18,9 +19,17 @@ const EducationLineElement = ({ startYear, endYear, name, content }: Props) => {
       >
         <div className="education-and-experience-content education-line-content">
           <ul className="education-and-experience-content-list">
-            <li>{startYear + "/" + endYear}</li>
-            <li>{name}</li>
-            <li>{content}</li>
+            <li>
+              {new Date(startingYear).getFullYear() + " - " +
+                ((graduationYear !== null)
+                  ?
+                  new Date(graduationYear).getFullYear()
+                  : "Devam ediyor")
+              }
+            </li>
+            <li>{collegeName}</li>
+            <li>{educationProgramName}</li>
+            <li>{graduationStatusName}</li>
           </ul>
         </div>
       </div>

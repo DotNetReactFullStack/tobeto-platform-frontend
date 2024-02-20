@@ -1,4 +1,5 @@
 import { accountForeignLanguageMetadataReducer } from './accountForeignLanguageMetadata/accountForeignLanguageMetadataSlice';
+import { accountCollegeMetadataReducer } from "./accountCollegeMetadata/accountCollegeMetadataSlice";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { videoReducer } from "./video/videoSlice";
 import { authReducer } from "./auth/authSlice";
@@ -10,9 +11,12 @@ import { capabilityReducer } from "./capability/capabilitySlice";
 import { graduationStatusReducer } from "./graduationStatus/graduationStatusSlice";
 import { collegeReducer } from "./college/collegeSlice";
 import { educationProgramReducer } from "./educationProgram/educationProgramSlice";
+import { socialMediaPlatformReducer } from "./socialMediaPlatform/socialMediaPlatformSlice";
+import { accountSocialMediaPlatformReducer } from "./accountSocialMediaPlatform/accountSocialMediaPlatformSlice";
 import { accountExperienceReducer } from "./experience/experienceSlice";
 import { foreignLanguageReducer } from "./foreignLanguage/foreignLanguageSlice";
 import { foreignLanguageLevelReducer } from "./foreignLanguageLevel/foreignLanguageLevelSlice";
+
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -23,10 +27,13 @@ const rootReducer = combineReducers({
   graduationStatus: graduationStatusReducer,
   college: collegeReducer,
   educationProgram: educationProgramReducer,
+  socialMediaPlatform: socialMediaPlatformReducer,
+  accountSocialMediaPlatform: accountSocialMediaPlatformReducer,
   accountExperience: accountExperienceReducer,
   foreignLanguage: foreignLanguageReducer,
   foreignLanguageLevel: foreignLanguageLevelReducer,
   accountForeignLanguageMetadata: accountForeignLanguageMetadataReducer,
+  accountCollegeMetadata: accountCollegeMetadataReducer,
 });
 
 const persistConfig = {
