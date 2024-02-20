@@ -66,8 +66,8 @@ const initialValues: any = {
   jobTitle: "",
   industry: "",
   cityId: "",
-  startingDate: null,
-  endingDate: null,
+  startingDate: "",
+  endingDate: "",
   isCurrentlyWorking: false,
   description: "",
 };
@@ -90,6 +90,13 @@ const validationSchema = yup.object({
     .required("İl seçimi zorunludur")
     .notOneOf(["default"], "İl seçimi zorunludur"),
   startingDate: yup.string().required("İş Başlangıç tarihi zorunludur"),
+  endingDate: yup.string().test('required-if-not-working', 'İş bitiş tarihi girilmesi zorunludur', function (value) {
+    const isCurrentlyWorking = this.resolve(yup.ref('isCurrentlyWorking'));
+    if (!isCurrentlyWorking) {
+      return !!value;
+    }
+    return true;
+  }),
   description: yup
     .string()
     .max(300, "Detaylı bilgi bölümü en fazla 300 karakter olabilir"),
@@ -102,8 +109,10 @@ const handleExperience = (values: any, accountId: number, dispatch: any) => {
     companyName: values.companyName,
     jobTitle: values.jobTitle,
     industry: values.industry,
-    startingDate: values.startingDate,
-    endingDate: values.endingDate,
+    startingDate: new Date(values.startingDate).toISOString(),
+    endingDate: values.isCurrentlyWorking
+      ? null
+      : new Date(values.endingDate).toISOString(),
     isCurrentlyWorking: values.isCurrentlyWorking,
     description: values.description,
     isActive: true
@@ -186,11 +195,11 @@ const ExperienceForm = (props: Props) => {
               labelText="İş Bitiş"
               inputName="endingDate"
               inputType={InputType.Date}
-              disabled={formikProps.values.isJobContinue}
+              disabled={formikProps.values.isCurrentlyWorking}
               inputValue={
-                formikProps.values.isJobContinue
+                formikProps.values.isCurrentlyWorking
                   ? ""
-                  : formikProps.values.jobEndDate
+                  : formikProps.values.endingDate
               }
             >
               <div className="job-continue-checkbox">
