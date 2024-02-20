@@ -5,56 +5,57 @@ import EditSocialMediaAccountModal from "./EditSocialMediaAccountModal";
 import { BaseService } from "../../../core/services/baseService";
 
 type Props = {
-  socialMediaId: string;
-  label: string;
-  iconClass: string;
+  id: number;
+  socialMediaPlatformName: string;
+  iconPath: string;
   iconColor: string;
-  url: string;
+  link: string;
 };
 
 const SocialMediaAccountElement = ({
-  socialMediaId,
-  label,
-  iconClass,
+  id,
+  socialMediaPlatformName,
+  iconPath,
   iconColor,
-  url,
+  link,
 }: Props) => {
   return (
     <div className="social-media-account-element">
       <div className="social-media-account-header">
-        <label>{label}</label>
+        <label>{socialMediaPlatformName}</label>
       </div>
       <div className="social-media-account-body">
         <div className="social-media-account-content">
           <i
-            className={"social-media-account-icon " + iconClass}
+            className={"social-media-account-icon " + iconPath}
             style={{ color: iconColor }}
           ></i>
-          <span className="social-media-account-url-text">{url}</span>
+          <span className="social-media-account-url-text">{link}</span>
         </div>
         <div className="social-media-account-element-buttons">
           <button
             className="social-media-account-element-delete-button"
             data-bs-toggle="modal"
-            data-bs-target={"#id:" + socialMediaId}
+
+            data-bs-target={"#" + id}
           >
             <i className="bi bi-trash social-media-account-element-delete-button-icon"></i>
           </button>
-          <DeleteModal
-            entityService={new BaseService()}
-            entityId={"id-" + socialMediaId}
+          {/* <DeleteModal
+            deleteModalId={id}
+
             deleteModalTitle="sosyal medya hesabını"
-          />
+          /> */}
           <button
             className="social-media-account-element-edit-button"
             data-bs-toggle="modal"
-            data-bs-target={"#id-" + socialMediaId}
+
+            data-bs-target={"#edit-" + id}
+
           >
             <i className="bi bi-pencil-fill social-media-account-element-edit-button-icon"></i>
           </button>
-          <EditSocialMediaAccountModal
-            editSocialMediaAccountModalId={socialMediaId}
-          />
+          {/* <EditSocialMediaAccountModal editSocialMediaAccountModalId={id} /> */}
         </div>
       </div>
     </div>
