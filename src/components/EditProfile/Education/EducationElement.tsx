@@ -1,23 +1,27 @@
 import React from "react";
 import "./EducationElement.css";
 import DeleteModal from "../Modals/DeleteModal";
+import { BaseService } from "../../../core/services/baseService";
+import accountCollegeMetadataService from "../../../services/accountCollegeMetadataService";
 
 type Props = {
-  educationId: string;
-  programStartDate: string;
-  programEndDate: string;
-  graduationStatus: string;
-  college: string;
-  program: string;
+  id: number;
+  graduationStatusName: string;
+  collegeName: string;
+  educationProgramName: string;
+  startingYear: string;
+  graduationYear: string;
+  programOnGoing: boolean;
 };
 
 const EducationElement = ({
-  educationId,
-  programStartDate,
-  programEndDate,
-  graduationStatus,
-  college,
-  program,
+  id,
+  graduationStatusName,
+  collegeName,
+  educationProgramName,
+  startingYear,
+  graduationYear,
+  programOnGoing,
 }: Props) => {
   return (
     <div className="education-element">
@@ -25,20 +29,20 @@ const EducationElement = ({
         <div className="education-element-header">
           <div className="education-element-header-left-side">
             <i className="bi bi-calendar2-range"></i>
-            <span>{programStartDate + " - " + programEndDate}</span>
+            <span>{startingYear + " - " + graduationYear}</span>
           </div>
           <div className="education-element-header-right-side">
-            <span>{graduationStatus}</span>
+            <span>{graduationStatusName}</span>
           </div>
         </div>
         <div className="education-element-body">
           <div className="education-element-college">
             <span>Üniversite</span>
-            <span>{college}</span>
+            <span>{collegeName}</span>
           </div>
           <div className="education-element-program">
             <span>Bölüm</span>
-            <span>{program}</span>
+            <span>{educationProgramName}</span>
           </div>
         </div>
       </div>
@@ -46,11 +50,15 @@ const EducationElement = ({
         <button
           className="education-element-delete-button"
           data-bs-toggle="modal"
-          data-bs-target={"#" + educationId}
+          data-bs-target={"#id-" + id}
         >
           <i className="bi bi-trash education-element-delete-button-icon"></i>
         </button>
-        <DeleteModal deleteModalId={educationId} deleteModalTitle="eğitimi" />
+        <DeleteModal
+          entityService={accountCollegeMetadataService}
+          entityId={"id-" + id}
+          deleteModalTitle="eğitimi"
+        />
       </div>
     </div>
   );

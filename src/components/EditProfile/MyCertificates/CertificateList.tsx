@@ -1,6 +1,7 @@
 import React from "react";
 import "./CertificateList.css";
 import DeleteModal from "../Modals/DeleteModal";
+import { BaseService } from "../../../core/services/baseService";
 
 type Props = {};
 
@@ -57,12 +58,13 @@ const CertificateList = (props: Props) => {
                   <button
                     className="certificate-delete-button"
                     data-bs-toggle="modal"
-                    data-bs-target={"#" + value.certificateId}
+                    data-bs-target={"#id-" + value.certificateId}
                   >
                     <i className="bi bi-trash3 certificate-delete-button-icon"></i>
                   </button>
                   <DeleteModal
-                    deleteModalId={value.certificateId}
+                    entityService={new BaseService()}
+                    entityId={"id-" + value.certificateId}
                     deleteModalTitle="sertifikayı"
                   />
                 </div>
