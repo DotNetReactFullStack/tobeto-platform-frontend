@@ -16,7 +16,12 @@ import { GetListCollegeListItemDto } from "../../../models/colleges/getListColle
 import educationProgramService from "../../../services/educationProgramService";
 import { setEducationPrograms } from "../../../store/educationProgram/educationProgramSlice";
 import { GetListByCollegeIdEducationProgramListItemDto } from "../../../models/educationPrograms/getListByCollegeIdEducationProgramListItemDto";
-import { setCollegeMetadataToAccount } from "../../../store/accountCollegeMetadata/accountCollegeMetadataSlice";
+import {
+  clearAccountCollegeMetadataToAdd,
+  setAccountCollegeMetadataToAdd,
+} from "../../../store/accountCollegeMetadata/accountCollegeMetadataSlice";
+import { CreateAccountCollegeMetadataRequest } from "../../../models/accountCollegeMetadatas/createAccountCollegeMetadataRequest";
+import accountCollegeMetadataService from "../../../services/accountCollegeMetadataService";
 
 type Props = {};
 
@@ -50,35 +55,20 @@ const validationSchema = yup.object({
     .required("Bölüm alanı zorunludur")
     .notOneOf(["default"], "Bölüm alanı zorunludur"),
   startingYear: yup.string().required("Başlangıç yılı zorunludur"),
-  graduationYear: yup.string().test('required-if-not-ongoing', 'Mezuniyet yılı zorunludur', function (value) {
-    const programOnGoing = this.resolve(yup.ref('programOnGoing'));
-    if (!programOnGoing) {
-      return !!value;
-    }
-    return true;
-  })
+  graduationYear: yup
+    .string()
+    .test(
+      "required-if-not-ongoing",
+      "Mezuniyet durumu zorunludur",
+      function (value) {
+        const programOnGoing = this.resolve(yup.ref("programOnGoing"));
+        if (!programOnGoing) {
+          return !!value;
+        }
+        return true;
+      }
+    ),
 });
-
-const handleAddCollegeMetadata = async (
-  values: any,
-  accountId: number,
-  dispatch: any
-) => {
-  dispatch(
-    setCollegeMetadataToAccount({
-      accountId: accountId,
-      graduationStatusId: Number(values.graduationStatusId),
-      collegeId: Number(values.collegeId),
-      educationProgramId: Number(values.educationProgramId),
-      visibility: true,
-      startingYear: new Date(values.startingYear).toISOString(),
-      graduationYear: values.programOnGoing
-        ? null
-        : new Date(values.graduationYear).toISOString(),
-      programOnGoing: values.programOnGoing,
-    })
-  );
-};
 
 const EducationForm = (props: Props) => {
   const dispatch = useDispatch();
@@ -127,6 +117,57 @@ const EducationForm = (props: Props) => {
 
   const educationPrograms: GetListByCollegeIdEducationProgramListItemDto[] =
     useSelector((state: RootState) => state.educationProgram.educationPrograms);
+
+  //---------------AccountCollegeMetadataToAdd----------------------
+
+  const accountCollegeMetadataToAdd: CreateAccountCollegeMetadataRequest | null =
+    useSelector(
+      (state: RootState) =>
+        state.accountCollegeMetadata.accountCollegeMetadataToAdd
+    );
+
+  const handleAddCollegeMetadata = async (
+    values: any,
+    accountId: number,
+    dispatch: any
+  ) => {
+    dispatch(
+      setAccountCollegeMetadataToAdd({
+        accountId: accountId,
+        graduationStatusId: Number(values.graduationStatusId),
+        collegeId: Number(values.collegeId),
+        educationProgramId: Number(values.educationProgramId),
+        visibility: true,
+        startingYear: new Date(values.startingYear).toISOString(),
+        graduationYear: values.programOnGoing
+          ? null
+          : new Date(values.graduationYear).toISOString(),
+        programOnGoing: values.programOnGoing,
+      })
+    );
+  };
+
+  useEffect(() => {
+    if (accountCollegeMetadataToAdd) {
+      addAccountCollegeMetadata(accountCollegeMetadataToAdd)
+        .then(() => {
+          dispatch(clearAccountCollegeMetadataToAdd());
+        })
+        .catch((error) => {
+          console.error("Hata oluştu:", error);
+        });
+    }
+  }, [accountCollegeMetadataToAdd]);
+
+  const addAccountCollegeMetadata = async (
+    accountCollegeMetadataToAdd: CreateAccountCollegeMetadataRequest
+  ) => {
+    try {
+      await accountCollegeMetadataService.add(accountCollegeMetadataToAdd);
+    } catch (error) {
+      console.error("Eğitim bilgisi eklenirken bir hata oluştu:", error);
+    }
+  };
 
   return (
     <div className="education-form">

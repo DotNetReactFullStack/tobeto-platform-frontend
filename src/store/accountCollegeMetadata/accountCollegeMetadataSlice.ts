@@ -5,12 +5,14 @@ import { GetListByAccountIdAccountCollegeMetadataListItemDto } from "../../model
 
 interface AccountCollegeMetadataState {
   accountCollegeMetadatas: GetListByAccountIdAccountCollegeMetadataListItemDto[];
+  accountCollegeMetadataToAdd: CreateAccountCollegeMetadataRequest | null;
   loading: boolean;
   error: string | null;
 }
 
 const initialState: AccountCollegeMetadataState = {
   accountCollegeMetadatas: [],
+  accountCollegeMetadataToAdd: null,
   loading: false,
   error: null,
 };
@@ -19,12 +21,6 @@ const accountCollegeMetadataSlice = createSlice({
   name: "accountCollegeMetadata",
   initialState,
   reducers: {
-    setCollegeMetadataToAccount: (
-      state,
-      action: PayloadAction<CreateAccountCollegeMetadataRequest>
-    ) => {
-      accountCollegeMetadataService.add(action.payload);
-    },
     setAccountCollegeMetadatas: (
       state,
       action: PayloadAction<
@@ -33,10 +29,22 @@ const accountCollegeMetadataSlice = createSlice({
     ) => {
       state.accountCollegeMetadatas = action.payload;
     },
+    setAccountCollegeMetadataToAdd: (
+      state,
+      action: PayloadAction<CreateAccountCollegeMetadataRequest>
+    ) => {
+      state.accountCollegeMetadataToAdd = action.payload;
+    },
+    clearAccountCollegeMetadataToAdd: (state) => {
+      state.accountCollegeMetadataToAdd = null;
+    },
   },
 });
 
 export const accountCollegeMetadataReducer =
   accountCollegeMetadataSlice.reducer;
-export const { setCollegeMetadataToAccount, setAccountCollegeMetadatas } =
-  accountCollegeMetadataSlice.actions;
+export const {
+  setAccountCollegeMetadatas,
+  setAccountCollegeMetadataToAdd,
+  clearAccountCollegeMetadataToAdd,
+} = accountCollegeMetadataSlice.actions;
