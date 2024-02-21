@@ -35,7 +35,7 @@ const rootReducer = combineReducers({
   educationProgram: educationProgramReducer,
   socialMediaPlatform: socialMediaPlatformReducer,
   accountSocialMediaPlatform: accountSocialMediaPlatformReducer,
-  accountExperience: accountExperienceReducer,
+  experience: accountExperienceReducer,
   foreignLanguage: foreignLanguageReducer,
   foreignLanguageLevel: foreignLanguageLevelReducer,
   accountForeignLanguageMetadata: accountForeignLanguageMetadataReducer,

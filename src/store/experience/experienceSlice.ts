@@ -16,7 +16,7 @@ const initialState: ExperienceState = {
 };
 
 const accountExperienceSlice = createSlice({
-    name: "accountExperience",
+    name: "experience",
     initialState,
     reducers: {
         setAccountExperiences: (state, action: PayloadAction<GetListByAccountIdExperienceListItemDto[]>) => {

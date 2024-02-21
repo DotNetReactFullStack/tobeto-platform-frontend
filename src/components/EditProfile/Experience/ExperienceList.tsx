@@ -15,7 +15,7 @@ const ExperienceList = (props: Props) => {
 
   const accountId = useSelector((state: any) => state.account.currentAccount.payload.id);
 
-  const accountExperiences: GetListByAccountIdExperienceListItemDto[] = useSelector((state: RootState) => state.accountExperience.accountExperiences);
+  const accountExperiences: GetListByAccountIdExperienceListItemDto[] = useSelector((state: RootState) => state.experience.accountExperiences);
 
   const formatDateString = (date: string) => {
     const inputDate = new Date(date);
