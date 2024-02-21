@@ -61,8 +61,7 @@ const validationSchema = yup.object().shape({
     //.required("Soyad alanı zorunludur")
     .min(2, "Soyad en az 2 karakter olmalıdır")
     .max(30, "Soyad en fazla 30 karakter olmalıdır"),
-  phoneNumber: yup
-    .string(),
+  phoneNumber: yup.string(),
   //.matches(
   ///^\d{3}-\d{3}-\d{4}$/,
   // "Telefon numarası formatı geçerli değil. Doğru format: 555-555-8899")
@@ -73,9 +72,7 @@ const validationSchema = yup.object().shape({
     .date()
     //.required("Doğum tarihi gereklidir")
     .max(new Date(), "Geçerli bir doğum tarihi girin"),
-  email: yup
-    .string()
-    .email("Geçerli bir e-posta adresi giriniz"),
+  email: yup.string().email("Geçerli bir e-posta adresi giriniz"),
   //.required("E-posta alanı zorunludur"),
   country: yup
     .string()
@@ -108,7 +105,8 @@ const PersonalInformation = (props: Props) => {
   const lastName = accountData.payload?.lastName;
   const phoneNumber = accountData.payload?.phoneNumber;
   const email = accountData.payload?.email;
-  const nationalIdentificationNumber = accountData.payload?.nationalIdentificationNumber;
+  const nationalIdentificationNumber =
+    accountData.payload?.nationalIdentificationNumber;
   const birthDate = accountData.payload?.birthDate;
   //user bilgileri
   //country-city-district
@@ -116,16 +114,20 @@ const PersonalInformation = (props: Props) => {
   const [selectedCountryId, setSelectedCountryId] = useState<number | null>(
     null
   );
-  const [selectedCityId, setSelectedCityId] = useState<number | null>(
-    null
-  );
+  const [selectedCityId, setSelectedCityId] = useState<number | null>(null);
 
-  async function fetchAddressInputData(countryId: number) {
+  async function fetchCountryInputData() {
     try {
       const countryResponse = await countryService.getAll();
       const countryData = countryResponse.data.items;
       dispatch(setCountries(countryData));
+    } catch (error) {
+      console.error("Veri alınamadı:", error);
+    }
+  }
 
+  async function fetchCityInputData(countryId: number) {
+    try {
       const cityResponse = await cityService.getByCountryId(countryId);
       const cityData = cityResponse.data.items;
       dispatch(setCities(cityData));
@@ -133,6 +135,7 @@ const PersonalInformation = (props: Props) => {
       console.error("Veri alınamadı:", error);
     }
   }
+
   async function fetchDistrictInputData(cityId: number) {
     try {
       const districtsResponse = await districtService.getByCityId(cityId);
@@ -144,8 +147,13 @@ const PersonalInformation = (props: Props) => {
   }
 
   useEffect(() => {
+    fetchCountryInputData();
+  }, []);
+
+  useEffect(() => {
+    console.log(selectedCountryId);
     if (selectedCountryId !== null) {
-      fetchAddressInputData(selectedCountryId);
+      fetchCityInputData(selectedCountryId);
     }
   }, [selectedCountryId]);
 
@@ -154,7 +162,6 @@ const PersonalInformation = (props: Props) => {
       fetchDistrictInputData(selectedCityId);
     }
   }, [selectedCityId]);
-
 
   const countries: GetListCountryListItemDto[] = useSelector(
     (state: RootState) => state.country.countries
@@ -212,23 +219,19 @@ const PersonalInformation = (props: Props) => {
       </div>
       <Formik
         initialValues={initialValues} // kontrol!
-        onSubmit={
-          handlePersonalInformation
-        }
+        onSubmit={handlePersonalInformation}
         validationSchema={validationSchema}
-
       >
         {(formikProps) => (
           <Form className="personal-information-input-section">
-
             <InputContainer
               useFormikField={true}
               inputContainerClasses="user-name-input-container input-container-w-50"
               labelText="Adınız*"
               inputName="firstName"
               inputValue={firstName}
-            //inputPlaceholder={firstName}
-            //inputValue="özgür"
+              //inputPlaceholder={firstName}
+              //inputValue="özgür"
             />
 
             <InputContainer
@@ -237,8 +240,8 @@ const PersonalInformation = (props: Props) => {
               labelText="Soyadınız*"
               inputName="lastName"
               inputValue={lastName}
-            //inputPlaceholder="Soyadınız"
-            //inputValue="sönmez"
+              //inputPlaceholder="Soyadınız"
+              //inputValue="sönmez"
             />
 
             <InputContainer
@@ -252,7 +255,7 @@ const PersonalInformation = (props: Props) => {
               onChange={(e) => {
                 formikProps.handleChange(e);
               }}
-            //inputValue="5554443322"
+              //inputValue="5554443322"
             />
 
             <InputContainer
@@ -265,7 +268,7 @@ const PersonalInformation = (props: Props) => {
               onChange={(e) => {
                 formikProps.handleChange(e);
               }}
-            //inputValue={formattedDate}
+              //inputValue={formattedDate}
             />
 
             <InputContainer
@@ -301,8 +304,9 @@ const PersonalInformation = (props: Props) => {
                 optionDataSort={sortByPriorityDesc}
                 onChange={(e) => {
                   formikProps.handleChange(e);
+                  setSelectedCountryId(Number(e.target.value));
                 }}
-              //inputValue="Türkiye"
+                //inputValue="Türkiye"
               />
 
               <InputContainer
@@ -317,8 +321,9 @@ const PersonalInformation = (props: Props) => {
                 optionDataSort={sortByPriorityDesc}
                 onChange={(e) => {
                   formikProps.handleChange(e);
+                  setSelectedCityId(Number(e.target.value));
                 }}
-              //inputValue="Sinop"
+                //inputValue="Sinop"
               />
 
               <InputContainer
@@ -334,7 +339,7 @@ const PersonalInformation = (props: Props) => {
                 onChange={(e) => {
                   formikProps.handleChange(e);
                 }}
-              //inputValue="Erfelek"
+                //inputValue="Erfelek"
               />
 
               <InputContainer
@@ -344,7 +349,7 @@ const PersonalInformation = (props: Props) => {
                 labelText="Mahalle / Sokak"
                 inputName="addressDetail"
                 inputPlaceholder="Açık Adres..."
-              //inputValue="sadasd mah. sadasd cad."
+                //inputValue="sadasd mah. sadasd cad."
               />
 
               <InputContainer
@@ -354,7 +359,7 @@ const PersonalInformation = (props: Props) => {
                 labelText="Hakkımda"
                 inputName="aboutMe"
                 inputPlaceholder="Kendini kısaca tanıt..."
-              //inputValue="xD.... "
+                //inputValue="xD.... "
               />
             </div>
             <button type="submit" className="personal-information-save-button">
@@ -365,6 +370,5 @@ const PersonalInformation = (props: Props) => {
       </Formik>
     </div>
   );
-
 };
 export default PersonalInformation;
