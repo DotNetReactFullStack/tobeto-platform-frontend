@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "./ForeignLanguageForm.css";
 import InputContainer from "../InputContainer";
 import { FormElementType } from "../../../models/formElementType";
@@ -13,8 +13,8 @@ import foreignLanguageLevelService from "../../../services/foreignLanguageLevelS
 import { setForeignLanguageLevels } from "../../../store/foreignLanguageLevel/foreignLanguageLevelSlice";
 import { GetListForeignLanguageLevelListItemDto } from "../../../models/foreignLanguageLevels/getListForeignLanguageLevelListItemDto";
 import { RootState } from "../../../store/configureStore";
-import { setForeignLanguageMetadataToAccount } from "../../../store/accountForeignLanguageMetadata/accountForeignLanguageMetadataSlice";
 import accountForeignLanguageMetadataService from "../../../services/accountForeignLanguageMetadataService";
+import { clearAccountForeignLanguageMetadataToAdd, setAccountForeignLanguageMetadataToAdd } from "../../../store/accountForeignLanguageMetadata/accountForeignLanguageMetadataSlice";
 import { CreateAccountForeignLanguageMetadataRequest } from "../../../models/accountForeignLanguageMetadatas/createAccountForeignLanguageMetadataRequest";
 
 type Props = {};
@@ -42,34 +42,36 @@ const validationSchema = yup.object({
     .notOneOf(["default"], "Seviye alanı zorunludur"),
 });
 
-const createObjectToAdd = (initialObject: any, additionalProps: any) => {
-  const keys = Object.keys(additionalProps);
-  const values = Object.values(additionalProps);
+// for second way
+// const createObjectToAdd = (initialObject: any, additionalProps: any) => {
+//   const keys = Object.keys(additionalProps);
+//   const values = Object.values(additionalProps);
 
-  for (let index = 0; index < keys.length; index++) {
-    initialObject[keys[index]] = values[index];
-  }
+//   for (let index = 0; index < keys.length; index++) {
+//     initialObject[keys[index]] = values[index];
+//   }
 
-  return initialObject;
-}
+//   return initialObject;
+// }
 
 const ForeignLanguageForm = (props: Props) => {
 
+  // for second way
+  // const handleAddForeignLanguageMetadata = (values: any) => {
+  //   const additionalProps: any = {}
+  //   additionalProps["accountId"] = accountId;
+  //   additionalProps["priority"] = 1;
 
-  const handleAddForeignLanguageMetadata = (values: any) => {
-    const additionalProps: any = {}
-    additionalProps["accountId"] = accountId;
-    additionalProps["priority"] = 1;
-
-    const foreignLanguageToAdd = createObjectToAdd(values, additionalProps);
-    accountForeignLanguageMetadataService.add(foreignLanguageToAdd);
-  }
+  //   const foreignLanguageToAdd = createObjectToAdd(values, additionalProps);
+  //   accountForeignLanguageMetadataService.add(foreignLanguageToAdd);
+  // }
 
   const dispatch = useDispatch();
 
   const accountId = useSelector(
     (state: any) => state.account.currentAccount.payload.id
   );
+
 
   async function fetchLanguageInputData() {
     try {
@@ -97,12 +99,48 @@ const ForeignLanguageForm = (props: Props) => {
     (state: RootState) => state.foreignLanguageLevel.foreignLanguageLevels
   );
 
+  const accountForeignLanguageMetadataToAdd: CreateAccountForeignLanguageMetadataRequest | null =
+    useSelector((state: RootState) =>
+      state.accountForeignLanguageMetadata.accountForeignLanguageMetadataToAdd
+    );
+
+  const handleAddForeignLanguageMetadata = async (values: any, accountId: number, dispatch: any) => {
+    dispatch(setAccountForeignLanguageMetadataToAdd({
+      accountId: accountId,
+      foreignLanguageId: Number(values.foreignLanguageId),
+      foreignLanguageLevelId: Number(values.foreignLanguageLevelId),
+      priority: 1
+    }))
+  }
+
+  const addAccountForeignLanguageMetadata = async (accountForeignLanguageMetadataToAdd: CreateAccountForeignLanguageMetadataRequest) => {
+    try {
+      await accountForeignLanguageMetadataService.add(accountForeignLanguageMetadataToAdd);
+    } catch (error) {
+      console.log("Yabancı dil bilgisi eklenirken bir hata oluştu:", error);
+    }
+  }
+
+  useEffect(() => {
+    if (accountForeignLanguageMetadataToAdd) {
+      addAccountForeignLanguageMetadata(accountForeignLanguageMetadataToAdd)
+        .then(() => {
+          dispatch(clearAccountForeignLanguageMetadataToAdd());
+        })
+        .catch((error) => {
+          console.log("Hata oluştu:", error)
+        });
+    }
+  }, [accountForeignLanguageMetadataToAdd])
+
+
   return (
     <div className="foreign-language">
       <Formik
         initialValues={initialValues}
         onSubmit={(values): any => {
-          handleAddForeignLanguageMetadata(values)
+          // handleAddForeignLanguageMetadata(values) // for second way
+          handleAddForeignLanguageMetadata(values, accountId, dispatch)
         }}
         validationSchema={validationSchema}
       >
