@@ -19,6 +19,7 @@ import { accountSocialMediaPlatformReducer } from "./accountSocialMediaPlatform/
 import { accountExperienceReducer } from "./experience/experienceSlice";
 import { foreignLanguageReducer } from "./foreignLanguage/foreignLanguageSlice";
 import { foreignLanguageLevelReducer } from "./foreignLanguageLevel/foreignLanguageLevelSlice";
+import { addressReducer } from './address/addressSlice';
 import { accountLearningPathReducer } from "./accountLearningPath/accountLearningPathSlice";
 
 const rootReducer = combineReducers({
@@ -40,6 +41,7 @@ const rootReducer = combineReducers({
   foreignLanguageLevel: foreignLanguageLevelReducer,
   accountForeignLanguageMetadata: accountForeignLanguageMetadataReducer,
   accountCollegeMetadata: accountCollegeMetadataReducer,
+  address: addressReducer,
   accountLearningPath: accountLearningPathReducer,
 });
 
