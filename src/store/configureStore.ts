@@ -8,6 +8,9 @@ import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
 import { accountCapabilityReducer } from "./accountCapability/accountCapabilitySlice";
 import { capabilityReducer } from "./capability/capabilitySlice";
+import { countryReducer } from "./country/countrySlice";
+import { cityReducer } from "./city/citySlice";
+import { districtReducer } from "./district/districtSlice";
 import { graduationStatusReducer } from "./graduationStatus/graduationStatusSlice";
 import { collegeReducer } from "./college/collegeSlice";
 import { educationProgramReducer } from "./educationProgram/educationProgramSlice";
@@ -24,6 +27,9 @@ const rootReducer = combineReducers({
   account: accountReducer,
   capability: capabilityReducer,
   accountCapability: accountCapabilityReducer,
+  country: countryReducer,
+  city: cityReducer,
+  district: districtReducer,
   graduationStatus: graduationStatusReducer,
   college: collegeReducer,
   educationProgram: educationProgramReducer,

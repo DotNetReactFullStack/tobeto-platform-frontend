@@ -1,4 +1,3 @@
-import { an } from "@fullcalendar/core/internal-common";
 import { BaseService } from "../core/services/baseService";
 import { BASE_API_URL } from "../environment/environment";
 
@@ -13,7 +12,7 @@ class CountryService extends BaseService
     > {
     constructor() {
         super();
-        this.apiUrl = BASE_API_URL + "Video";
+        this.apiUrl = BASE_API_URL + "Countries?PageIndex=0&PageSize=1907";
     }
 
     getByFilter() { }
