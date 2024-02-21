@@ -38,7 +38,7 @@
   flex-wrap: wrap;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1199.98px) {
   .learning-paths-nav-tabs .tab-content>.active {
     justify-content: center;
   }

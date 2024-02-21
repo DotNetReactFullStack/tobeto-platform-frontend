@@ -40,7 +40,7 @@
 
 /* -------- Media Query --------  */
 
-@media (max-width: 1200px) {
+@media (max-width: 1199.98px) {
   .learning-path-filter-element {
     display: flex;
     justify-content: center;

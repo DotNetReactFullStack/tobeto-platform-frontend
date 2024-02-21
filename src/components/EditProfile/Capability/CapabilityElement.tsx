@@ -18,13 +18,13 @@ function CapabilityElement({ id, capabilityName }: Props) {
         <button
           className="capability-element-delete-button"
           data-bs-toggle="modal"
-          data-bs-target={"#id-" + id}
+          data-bs-target={"#capabilityId-" + id}
         >
           <i className="bi bi-trash capability-element-delete-button-icon"></i>
         </button>
         <DeleteModal
           entityService={accountCapabilityService}
-          entityId={"id-" + id}
+          entityId={"capabilityId-" + id}
           deleteModalTitle="yetkinliği"
         />
       </div>

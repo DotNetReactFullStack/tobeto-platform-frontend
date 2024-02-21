@@ -2,6 +2,7 @@ import React from "react";
 import "./ForeignLanguageElement.css";
 import DeleteModal from "../Modals/DeleteModal";
 import { BaseService } from "../../../core/services/baseService";
+import accountForeignLanguageMetadataService from "../../../services/accountForeignLanguageMetadataService";
 
 type Props = {
   id: number;
@@ -33,13 +34,13 @@ const ForeignLanguageElement = ({
         <button
           className="foreing-language-element-delete-button"
           data-bs-toggle="modal"
-          data-bs-target={"#id-" + id}
+          data-bs-target={"#foreignLanguageElementId-" + id}
         >
           <i className="bi bi-trash foreing-language-element-delete-button-icon"></i>
         </button>
         <DeleteModal
-          entityService={new BaseService()}
-          entityId={"id-" + id}
+          entityService={accountForeignLanguageMetadataService}
+          entityId={"foreignLanguageElementId-" + id}
           deleteModalTitle="yabancı dili"
         />
       </div>

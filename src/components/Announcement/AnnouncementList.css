@@ -7,10 +7,11 @@
   padding: 5px 5px;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1199.98px) {
   .announcement-list-container {
     justify-content: center;
   }
+
   .announcement-list-announcement-element {
     max-width: 50%;
     display: flex;
