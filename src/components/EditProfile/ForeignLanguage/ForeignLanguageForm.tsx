@@ -14,8 +14,8 @@ import { setForeignLanguageLevels } from "../../../store/foreignLanguageLevel/fo
 import { GetListForeignLanguageLevelListItemDto } from "../../../models/foreignLanguageLevels/getListForeignLanguageLevelListItemDto";
 import { RootState } from "../../../store/configureStore";
 import { setForeignLanguageMetadataToAccount } from "../../../store/accountForeignLanguageMetadata/accountForeignLanguageMetadataSlice";
-
-
+import accountForeignLanguageMetadataService from "../../../services/accountForeignLanguageMetadataService";
+import { CreateAccountForeignLanguageMetadataRequest } from "../../../models/accountForeignLanguageMetadatas/createAccountForeignLanguageMetadataRequest";
 
 type Props = {};
 
@@ -24,8 +24,6 @@ let languagesOptionDataFilters = [ifVisibilityIsTrue];
 let languageLevelsOptionDataFilters = [ifVisibilityIsTrue];
 const sortByPriorityDesc = (a: any, b: any) => b.priority - a.priority;
 
-
-//Formik, Yup
 const initialValues: any = {
   foreignLanguageId: "",
   foreignLanguageLevelId: "",
@@ -44,32 +42,30 @@ const validationSchema = yup.object({
     .notOneOf(["default"], "Seviye alanı zorunludur"),
 });
 
+const createObjectToAdd = (initialObject: any, additionalProps: any) => {
+  const keys = Object.keys(additionalProps);
+  const values = Object.values(additionalProps);
 
-const handleAddForeignLanguageMetadata = async (
-  values: any,
-  accountId: number,
-  dispatch: any
-) => {
-  console.log(values)
-  console.log(accountId)
-  dispatch(
-    setForeignLanguageMetadataToAccount({
-      accountId: accountId,
-      foreignLanguageId: Number(values.foreignLanguageId),
-      foreignLanguageLevelId: Number(values.foreignLanguageLevelId),
-      priority: 1,
+  for (let index = 0; index < keys.length; index++) {
+    initialObject[keys[index]] = values[index];
+  }
 
-
-    })
-  );
-};
-
+  return initialObject;
+}
 
 const ForeignLanguageForm = (props: Props) => {
 
-  const dispatch = useDispatch();
 
-  //  const [selectedForeignLanguageId, setSelectedForeignLanguageId] = useState<number | null>(null);
+  const handleAddForeignLanguageMetadata = (values: any) => {
+    const additionalProps: any = {}
+    additionalProps["accountId"] = accountId;
+    additionalProps["priority"] = 1;
+
+    const foreignLanguageToAdd = createObjectToAdd(values, additionalProps);
+    accountForeignLanguageMetadataService.add(foreignLanguageToAdd);
+  }
+
+  const dispatch = useDispatch();
 
   const accountId = useSelector(
     (state: any) => state.account.currentAccount.payload.id
@@ -101,14 +97,12 @@ const ForeignLanguageForm = (props: Props) => {
     (state: RootState) => state.foreignLanguageLevel.foreignLanguageLevels
   );
 
-
-
   return (
     <div className="foreign-language">
       <Formik
         initialValues={initialValues}
         onSubmit={(values): any => {
-          handleAddForeignLanguageMetadata(values, accountId, dispatch);
+          handleAddForeignLanguageMetadata(values)
         }}
         validationSchema={validationSchema}
       >
@@ -126,7 +120,6 @@ const ForeignLanguageForm = (props: Props) => {
                 optionDataSort={sortByPriorityDesc}
                 onChange={(e) => {
                   formikProps.handleChange(e);
-
                 }}
               />
 
@@ -141,7 +134,6 @@ const ForeignLanguageForm = (props: Props) => {
                 optionDataSort={sortByPriorityDesc}
                 onChange={(e) => {
                   formikProps.handleChange(e);
-
                 }}
               />
             </div>
