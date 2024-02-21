@@ -1,16 +1,17 @@
+import { CreateExperienceCommand } from './../../models/experiences/createExperienceCommand';
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { GetListByAccountIdExperienceListItemDto } from "../../models/experiences/getListByAccountIdExperienceListItemDto";
-import { CreateExperienceCommand } from "../../models/experiences/createExperienceCommand";
-import experienceService from "../../services/experienceService";
 
 interface ExperienceState {
     accountExperiences: GetListByAccountIdExperienceListItemDto[];
+    accountExperienceToAdd: CreateExperienceCommand | null,
     loading: boolean;
     error: string | null;
 }
 
 const initialState: ExperienceState = {
     accountExperiences: [],
+    accountExperienceToAdd: null,
     loading: false,
     error: null,
 };
@@ -22,11 +23,14 @@ const accountExperienceSlice = createSlice({
         setAccountExperiences: (state, action: PayloadAction<GetListByAccountIdExperienceListItemDto[]>) => {
             state.accountExperiences = action.payload;
         },
-        setExperienceToAccount: (state, action: PayloadAction<CreateExperienceCommand>) => {
-            experienceService.add(action.payload)
+        setAccountExperienceToAdd: (state, action: PayloadAction<CreateExperienceCommand>) => {
+            state.accountExperienceToAdd = action.payload;
+        },
+        clearAccountExperienceToAdd: (state) => {
+            state.accountExperienceToAdd = null;
         }
     },
 });
 
 export const accountExperienceReducer = accountExperienceSlice.reducer;
-export const { setAccountExperiences, setExperienceToAccount } = accountExperienceSlice.actions;
+export const { setAccountExperiences, setAccountExperienceToAdd, clearAccountExperienceToAdd } = accountExperienceSlice.actions;
