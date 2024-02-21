@@ -22,6 +22,17 @@ class AccountLearningPathService extends BaseService<
       this.apiUrl + "/getByAccountId/" + accountId + "?PageIndex=0&PageSize=100"
     );
   }
+
+  getListByLearningPathId(
+    learningPathId: number
+  ): Promise<AxiosResponse<any, any>> {
+    return axiosInstance.get<any>(
+      this.apiUrl +
+        "/getByLearningPathId/" +
+        learningPathId +
+        "?PageIndex=0&PageSize=100"
+    );
+  }
 }
 
 export default new AccountLearningPathService();
