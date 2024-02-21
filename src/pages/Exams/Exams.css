@@ -9,7 +9,7 @@
     margin-left: auto;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1199.98px) {
     .exams-page .exam-element {
         width: 55% !important;
     }

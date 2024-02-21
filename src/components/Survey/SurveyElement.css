@@ -68,7 +68,7 @@
   letter-spacing: 0px;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1199.98px) {
   .survey-element {
     width: 65% !important;
   }

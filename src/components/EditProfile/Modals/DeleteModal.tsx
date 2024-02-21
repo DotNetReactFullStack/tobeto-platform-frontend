@@ -1,6 +1,7 @@
 import React from "react";
 import "./DeleteModal.css";
 import { BaseService } from "../../../core/services/baseService";
+import toastr from "toastr";
 
 type Props = {
   entityService: BaseService<any, any, any, any, any, any>;
@@ -8,8 +9,13 @@ type Props = {
   deleteModalTitle: string;
 };
 
-const handleDeleteEntity = (entityService: BaseService<any, any, any, any, any, any>, id: number) => {
-  entityService.delete(id);
+const handleDeleteEntity = async (entityService: BaseService<any, any, any, any, any, any>, id: number) => {
+  try {
+    const response = await entityService.delete(id);
+    toastr.success("Kayıt başarıyla silindi.");
+  } catch (error: any) {
+    toastr.error(error.response.data.message);
+  }
 }
 
 // const handleDeleteAcccountCapability = (id: number) => {
@@ -61,7 +67,7 @@ const DeleteModal = ({ entityService, entityId, deleteModalTitle }: Props) => {
             </button>
             <button type="button"
               data-bs-dismiss="modal"
-              onClick={() => handleDeleteEntity(entityService, Number(entityId.replace("id-", "")))} className="btn btn-primary">
+              onClick={() => handleDeleteEntity(entityService, Number(entityId.replace(/.*-/, "")))} className="btn btn-primary">
               <i className="bi bi-check-lg"></i>
               Evet
             </button>

@@ -12,15 +12,17 @@
   width: 60%;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1199.98px) {
   .learning-path-content-tab {
     display: flex;
     flex-direction: column;
   }
+
   .learning-path-content-tab-right-col {
     order: 1;
     margin-bottom: 20px;
   }
+
   .learning-path-content-tab-left-col {
     order: 2;
   }

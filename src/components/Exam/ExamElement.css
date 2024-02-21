@@ -59,7 +59,7 @@
     letter-spacing: 0.5px;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1199.98px) {
     .exam-element {
         width: 65% !important;
     }

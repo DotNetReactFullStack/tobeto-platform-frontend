@@ -87,11 +87,11 @@
 }
 
 .filter-by-announcement-type-menu-checkbox:checked {
-  background-color: #93f !important; /* değişmedi */
+  background-color: #93f !important;
+  /* değişmedi */
 }
 
-.filter-by-announcement-type-menu-checkbox:checked
-  ~ .filter-by-announcement-type-menu-content {
+.filter-by-announcement-type-menu-checkbox:checked~.filter-by-announcement-type-menu-content {
   font-weight: 700;
 }
 
@@ -223,6 +223,7 @@
   height: 100%;
   padding: 0px 7px;
 }
+
 .read-toggle-button i {
   font-size: 25px;
   color: #8015ea;
@@ -230,7 +231,7 @@
 
 /* -------- Media Query --------  */
 
-@media (max-width: 1200px) {
+@media (max-width: 1199.98px) {
   .announcement-filter-element {
     display: flex;
     justify-content: center;
@@ -259,6 +260,7 @@
 }
 
 @media (max-width: 576px) {
+
   .announcement-filter-search-box,
   .filter-by-announcement-type,
   .filter-by-organization-type,
