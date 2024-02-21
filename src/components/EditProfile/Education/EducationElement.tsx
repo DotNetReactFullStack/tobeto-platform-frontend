@@ -50,13 +50,13 @@ const EducationElement = ({
         <button
           className="education-element-delete-button"
           data-bs-toggle="modal"
-          data-bs-target={"#id-" + id}
+          data-bs-target={"#educationElementId-" + id}
         >
           <i className="bi bi-trash education-element-delete-button-icon"></i>
         </button>
         <DeleteModal
           entityService={accountCollegeMetadataService}
-          entityId={"id-" + id}
+          entityId={"educationElementId-" + id}
           deleteModalTitle="eğitimi"
         />
       </div>

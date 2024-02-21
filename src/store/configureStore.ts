@@ -1,4 +1,4 @@
-import { accountForeignLanguageMetadataReducer } from './accountForeignLanguageMetadata/accountForeignLanguageMetadataSlice';
+import { accountForeignLanguageMetadataReducer } from "./accountForeignLanguageMetadata/accountForeignLanguageMetadataSlice";
 import { accountCollegeMetadataReducer } from "./accountCollegeMetadata/accountCollegeMetadataSlice";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { videoReducer } from "./video/videoSlice";
@@ -20,7 +20,7 @@ import { accountExperienceReducer } from "./experience/experienceSlice";
 import { foreignLanguageReducer } from "./foreignLanguage/foreignLanguageSlice";
 import { foreignLanguageLevelReducer } from "./foreignLanguageLevel/foreignLanguageLevelSlice";
 import { addressReducer } from './address/addressSlice';
-
+import { accountLearningPathReducer } from "./accountLearningPath/accountLearningPathSlice";
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -36,12 +36,13 @@ const rootReducer = combineReducers({
   educationProgram: educationProgramReducer,
   socialMediaPlatform: socialMediaPlatformReducer,
   accountSocialMediaPlatform: accountSocialMediaPlatformReducer,
-  accountExperience: accountExperienceReducer,
+  experience: accountExperienceReducer,
   foreignLanguage: foreignLanguageReducer,
   foreignLanguageLevel: foreignLanguageLevelReducer,
   accountForeignLanguageMetadata: accountForeignLanguageMetadataReducer,
   accountCollegeMetadata: accountCollegeMetadataReducer,
   address: addressReducer,
+  accountLearningPath: accountLearningPathReducer,
 });
 
 const persistConfig = {

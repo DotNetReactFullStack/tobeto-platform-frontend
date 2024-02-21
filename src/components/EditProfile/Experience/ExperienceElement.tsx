@@ -67,13 +67,13 @@ const ExperienceElement = ({
         <button
           className="experience-element-delete-button"
           data-bs-toggle="modal"
-          data-bs-target={"#id-" + id}
+          data-bs-target={"#experienceElementId-" + id}
         >
           <i className="bi bi-trash experience-element-delete-button-icon"></i>
         </button>
         <DeleteModal
           entityService={experienceService}
-          entityId={"id-" + id}
+          entityId={"experienceElementId-" + id}
           deleteModalTitle="deneyimi" />
       </div>
     </div>

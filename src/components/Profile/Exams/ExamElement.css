@@ -37,7 +37,7 @@
     font-weight: 500;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1199.98px) {
     .profile-exam-element {
         width: 75%;
     }

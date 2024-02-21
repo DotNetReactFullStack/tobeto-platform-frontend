@@ -162,7 +162,7 @@ const Profile = (props: Props) => {
   const dispatch = useDispatch();
 
   const accountId = useSelector((state: any) => state.account.currentAccount.payload.id);
-  const accountExperiences: GetListByAccountIdExperienceListItemDto[] = useSelector((state: RootState) => state.accountExperience.accountExperiences);
+  const accountExperiences: GetListByAccountIdExperienceListItemDto[] = useSelector((state: RootState) => state.experience.accountExperiences);
   const accountCollegeMetadatas: GetListByAccountIdAccountCollegeMetadataListItemDto[] =
     useSelector(
       (state: RootState) =>
