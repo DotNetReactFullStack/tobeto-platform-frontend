@@ -3,12 +3,33 @@ import "./LearningPathElement.css";
 import { Link } from "react-router-dom";
 
 type Props = {
+  learningPathId: number;
+  learningPathName: string;
+  startingTime: string;
   imageUrl: string;
-  name: string;
-  datetime: string;
 };
 
-const LearningPathElement = ({ imageUrl, name, datetime }: Props) => {
+const LearningPathElement = ({
+  learningPathId,
+  learningPathName,
+  startingTime,
+  imageUrl,
+}: Props) => {
+  function formatDateString(dateString: string): string {
+    const date = new Date(dateString);
+    const options: Intl.DateTimeFormatOptions = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    };
+    const formattedDate = date.toLocaleString("tr-TR", options);
+    return formattedDate.replace(".", ""); // Remove the dot after the month name
+  }
+
+  const formattedStartingTime = formatDateString(startingTime);
+
   return (
     <div className="learning-path-element">
       <div className="learning-path-cover-photo">
@@ -18,8 +39,10 @@ const LearningPathElement = ({ imageUrl, name, datetime }: Props) => {
         />
       </div>
       <div className="learning-path-body">
-        <div className="learning-path-title">{name}</div>
-        <div className="learning-path-publish-datetime">{datetime}</div>
+        <div className="learning-path-title">{learningPathName}</div>
+        <div className="learning-path-publish-datetime">
+          {formattedStartingTime}
+        </div>
       </div>
       <div className="learning-path-footer">
         <Link to={"/my-learning-paths/net-react-fullstack"}>
