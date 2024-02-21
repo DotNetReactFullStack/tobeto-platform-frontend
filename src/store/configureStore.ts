@@ -2,10 +2,13 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { videoReducer } from "./video/videoSlice";
 import { authReducer } from "./auth/authSlice";
 import { accountReducer } from "./account/accountSlice";
-import storage from 'redux-persist/lib/storage'
-import { persistReducer } from 'redux-persist'
+import storage from "redux-persist/lib/storage";
+import { persistReducer } from "redux-persist";
 import { accountCapabilityReducer } from "./accountCapability/accountCapabilitySlice";
 import { capabilityReducer } from "./capability/capabilitySlice";
+import { countryReducer } from "./country/countrySlice";
+import { cityReducer } from "./city/citySlice";
+import { districtReducer } from "./district/districtSlice";
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -13,6 +16,9 @@ const rootReducer = combineReducers({
   account: accountReducer,
   capability: capabilityReducer,
   accountCapability: accountCapabilityReducer,
+  country: countryReducer,
+  city: cityReducer,
+  district: districtReducer,
 });
 
 const persistConfig = {
