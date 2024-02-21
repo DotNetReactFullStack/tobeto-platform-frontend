@@ -1,10 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./ExperienceForm.css";
 import InputContainer from "../InputContainer";
 import { FormElementType } from "../../../models/formElementType";
 import { InputType } from "../../../models/inputType";
 import * as yup from "yup";
 import { Form, Formik, useFormikContext } from "formik";
+import { setExperienceToAccount } from "../../../store/experience/experienceSlice";
+import { CreateExperienceCommand } from "../../../models/experiences/createExperienceCommand";
+import { useDispatch, useSelector } from "react-redux";
 
 type Props = {};
 
@@ -60,13 +63,13 @@ const cities = [
 //Formik, Yup
 const initialValues: any = {
   companyName: "",
-  job: "",
+  jobTitle: "",
   industry: "",
-  city: "",
-  jobStartDate: "",
-  jobEndDate: "",
-  isJobContinue: false,
-  jobDetail: "",
+  cityId: "",
+  startingDate: "",
+  endingDate: "",
+  isCurrentlyWorking: false,
+  description: "",
 };
 
 const validationSchema = yup.object({
@@ -74,7 +77,7 @@ const validationSchema = yup.object({
     .string()
     .required("Kurum adı zorunludur")
     .max(30, "Kurum adı en fazla 30 karakter olmalıdır"),
-  job: yup
+  jobTitle: yup
     .string()
     .required("Pozisyon alanı zorunludur")
     .max(40, "Pozisyon en fazla 40 karakter olmalıdır"),
@@ -82,27 +85,57 @@ const validationSchema = yup.object({
     .string()
     .required("Sektör alanı zorunludur")
     .max(30, "Sektör en fazla 30 karakter olmalıdır"),
-  city: yup
+  cityId: yup
     .string()
     .required("İl seçimi zorunludur")
     .notOneOf(["default"], "İl seçimi zorunludur"),
-  jobStartDate: yup.string().required("İş Başlangıç tarihi zorunludur"),
-  jobDetail: yup
+  startingDate: yup.string().required("İş Başlangıç tarihi zorunludur"),
+  endingDate: yup.string().test('required-if-not-working', 'İş bitiş tarihi girilmesi zorunludur', function (value) {
+    const isCurrentlyWorking = this.resolve(yup.ref('isCurrentlyWorking'));
+    if (!isCurrentlyWorking) {
+      return !!value;
+    }
+    return true;
+  }),
+  description: yup
     .string()
     .max(300, "Detaylı bilgi bölümü en fazla 300 karakter olabilir"),
 });
 
-const handleExperience = async (values: any) => {
-  console.log(values);
+const handleExperience = (values: any, accountId: number, dispatch: any) => {
+  const experienceToAdd: CreateExperienceCommand = {
+    accountId: accountId,
+    cityId: Number(values.cityId),
+    companyName: values.companyName,
+    jobTitle: values.jobTitle,
+    industry: values.industry,
+    startingDate: new Date(values.startingDate).toISOString(),
+    endingDate: values.isCurrentlyWorking
+      ? null
+      : new Date(values.endingDate).toISOString(),
+    isCurrentlyWorking: values.isCurrentlyWorking,
+    description: values.description,
+    isActive: true
+  }
+
+  dispatch(setExperienceToAccount(experienceToAdd));
+  console.log(experienceToAdd);
 };
 
 const ExperienceForm = (props: Props) => {
+
+  const dispatch = useDispatch();
+
+  const accountId = useSelector((state: any) => state.account.currentAccount.payload.id);
+
+  const [selectedCityId, setSelectedCityId] = useState<number | null>(null);
+
   return (
     <div className="experience-form">
       <Formik
         initialValues={initialValues}
         onSubmit={(values): any => {
-          handleExperience(values);
+          handleExperience(values, accountId, dispatch);
         }}
         validationSchema={validationSchema}
       >
@@ -120,7 +153,7 @@ const ExperienceForm = (props: Props) => {
               useFormikField={true}
               inputContainerClasses="job-input-container input-container-w-50"
               labelText="Pozisyon*"
-              inputName="job"
+              inputName="jobTitle"
               inputPlaceholder="Full Stack Developer"
             />
 
@@ -137,18 +170,22 @@ const ExperienceForm = (props: Props) => {
               inputContainerClasses="user-address-city-input-container input-container-w-50"
               elementType={FormElementType.Select}
               labelText="İl Seçiniz*"
-              inputName="city"
+              inputName="cityId"
               defaultOptionText="İl Seçiniz"
               optionData={cities}
               optionDataFilters={citiesOptionDataFilters}
               optionDataSort={sortByPriorityDesc}
+              onChange={(e) => {
+                formikProps.handleChange(e);
+                setSelectedCityId(parseInt(e.target.value));
+              }}
             />
 
             <InputContainer
               useFormikField={true}
               inputContainerClasses="job-start-date-input-container input-container-w-50"
               labelText="İş Başlangıcı*"
-              inputName="jobStartDate"
+              inputName="startingDate"
               inputType={InputType.Date}
             />
 
@@ -156,13 +193,13 @@ const ExperienceForm = (props: Props) => {
               useFormikField={true}
               inputContainerClasses="job-end-date-input-container input-container-w-50"
               labelText="İş Bitiş"
-              inputName="jobEndDate"
+              inputName="endingDate"
               inputType={InputType.Date}
-              disabled={formikProps.values.isJobContinue}
+              disabled={formikProps.values.isCurrentlyWorking}
               inputValue={
-                formikProps.values.isJobContinue
+                formikProps.values.isCurrentlyWorking
                   ? ""
-                  : formikProps.values.jobEndDate
+                  : formikProps.values.endingDate
               }
             >
               <div className="job-continue-checkbox">
@@ -171,7 +208,7 @@ const ExperienceForm = (props: Props) => {
                   inputContainerClasses="job-continue-checkbox"
                   elementType={FormElementType.Input}
                   inputType={InputType.Checkbox}
-                  inputName="isJobContinue"
+                  inputName="isCurrentlyWorking"
                   labelText="Çalışmaya Devam Ediyorum"
                 />
               </div>
@@ -182,7 +219,7 @@ const ExperienceForm = (props: Props) => {
               inputContainerClasses="job-detail-input-container input-container-w-100"
               elementType={FormElementType.TextArea}
               labelText="Detaylı Bilgi"
-              inputName="jobDetail"
+              inputName="description"
             />
             <button type="submit" className="experience-save-button">
               Kaydet

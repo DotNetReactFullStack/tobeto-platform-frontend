@@ -1,3 +1,5 @@
+import { accountForeignLanguageMetadataReducer } from './accountForeignLanguageMetadata/accountForeignLanguageMetadataSlice';
+import { accountCollegeMetadataReducer } from "./accountCollegeMetadata/accountCollegeMetadataSlice";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { videoReducer } from "./video/videoSlice";
 import { authReducer } from "./auth/authSlice";
@@ -9,6 +11,15 @@ import { capabilityReducer } from "./capability/capabilitySlice";
 import { countryReducer } from "./country/countrySlice";
 import { cityReducer } from "./city/citySlice";
 import { districtReducer } from "./district/districtSlice";
+import { graduationStatusReducer } from "./graduationStatus/graduationStatusSlice";
+import { collegeReducer } from "./college/collegeSlice";
+import { educationProgramReducer } from "./educationProgram/educationProgramSlice";
+import { socialMediaPlatformReducer } from "./socialMediaPlatform/socialMediaPlatformSlice";
+import { accountSocialMediaPlatformReducer } from "./accountSocialMediaPlatform/accountSocialMediaPlatformSlice";
+import { accountExperienceReducer } from "./experience/experienceSlice";
+import { foreignLanguageReducer } from "./foreignLanguage/foreignLanguageSlice";
+import { foreignLanguageLevelReducer } from "./foreignLanguageLevel/foreignLanguageLevelSlice";
+
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -19,16 +30,26 @@ const rootReducer = combineReducers({
   country: countryReducer,
   city: cityReducer,
   district: districtReducer,
+  graduationStatus: graduationStatusReducer,
+  college: collegeReducer,
+  educationProgram: educationProgramReducer,
+  socialMediaPlatform: socialMediaPlatformReducer,
+  accountSocialMediaPlatform: accountSocialMediaPlatformReducer,
+  accountExperience: accountExperienceReducer,
+  foreignLanguage: foreignLanguageReducer,
+  foreignLanguageLevel: foreignLanguageLevelReducer,
+  accountForeignLanguageMetadata: accountForeignLanguageMetadataReducer,
+  accountCollegeMetadata: accountCollegeMetadataReducer,
 });
 
 const persistConfig = {
-  key: 'root',
-  storage
+  key: "root",
+  storage,
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 export const store = configureStore({ reducer: persistedReducer });
 
-export type RootState = ReturnType<typeof store.getState>
+export type RootState = ReturnType<typeof store.getState>;
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
-export type AppDispatch = typeof store.dispatch
+export type AppDispatch = typeof store.dispatch;
