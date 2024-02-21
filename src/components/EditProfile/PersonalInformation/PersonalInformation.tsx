@@ -21,8 +21,6 @@ import districtService from "../../../services/districtService";
 import { setDistricts } from "../../../store/district/districtSlice";
 import { GetListByCityIdDistrictListItemDto } from "../../../models/district/getListByCityIdDistrictListItemDto";
 
-
-
 type Props = {};
 
 const ifVisibilityIsTrue = (value: any) => value.visibility === true;
