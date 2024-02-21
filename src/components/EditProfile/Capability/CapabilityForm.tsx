@@ -85,7 +85,7 @@ const CapabilityForm = (props: Props) => {
     if (accountCapabilityToAdd) {
       addAccountCapability(accountCapabilityToAdd)
         .then(() => {
-          clearAccountCapabilityToAdd();
+          dispatch(clearAccountCapabilityToAdd());
         })
         .catch((error) => {
           console.error("Hata oluştu:", error);
@@ -98,7 +98,6 @@ const CapabilityForm = (props: Props) => {
   ) => {
     try {
       await accountCapabilityService.add(accountCapabilityToAdd);
-      dispatch(clearAccountCapabilityToAdd());
     } catch (error) {
       console.error("Yetenek eklenirken bir hata oluştu:", error);
     }

@@ -11,8 +11,13 @@ import { setSocialMediaPlatforms } from "../../../store/socialMediaPlatform/soci
 import socialMediaPlatformService from "../../../services/socialMediaPlatformService"; // Import the service for fetching data
 import { GetListSocialMediaPlatformListItemDto } from "../../../models/socialMediaPlatforms/getListSocialMediaPlatformListItemDto";
 import { RootState } from "../../../store/configureStore";
-import { setSocialMediaPlatformToAccount } from "../../../store/accountSocialMediaPlatform/accountSocialMediaPlatformSlice";
+import {
+  clearAccountSocialMediaPlatformToAdd,
+  setAccountSocialMediaPlatformToAdd,
+} from "../../../store/accountSocialMediaPlatform/accountSocialMediaPlatformSlice";
 import { SocialMediaPlatformType } from "../../../models/socialMediaPlatforms/socialMediaPlatformType";
+import { CreateAccountSocialMediaPlatformRequest } from "../../../models/accountSocialMediaPlatforms/createAccountSocialMediaPlatformRequest";
+import accountSocialMediaPlatformService from "../../../services/accountSocialMediaPlatformService";
 
 type Props = {};
 
@@ -35,7 +40,9 @@ const validationSchema = yup.object({
     .string()
     .required("Sosyal medya link alanı zorunludur")
     .test("is-url-correct", "Geçersiz URL", function (value, context) {
-      const socialMediaPlatformId = context.parent.socialMediaPlatformId;
+      const socialMediaPlatformId = Number(
+        context.parent.socialMediaPlatformId
+      );
       if (
         socialMediaPlatformId === SocialMediaPlatformType.GitHub &&
         !value.startsWith("https://github.com/")
@@ -73,21 +80,6 @@ const validationSchema = yup.object({
     }),
 });
 
-const handleAddSocialMediaPlatform = async (
-  values: any,
-  accountId: number,
-  dispatch: any
-) => {
-  dispatch(
-    setSocialMediaPlatformToAccount({
-      accountId: accountId,
-      socialMediaPlatformId: Number(values.socialMediaPlatformId),
-      priority: 1,
-      link: String(values.link),
-    })
-  );
-};
-
 const SocialMediaAccountForm = (props: Props) => {
   const dispatch = useDispatch();
 
@@ -116,6 +108,52 @@ const SocialMediaAccountForm = (props: Props) => {
       (state: RootState) => state.socialMediaPlatform.socialMediaPlatforms
     );
 
+  //------------------AccountSocialMediaPlatformToAdd------------------
+
+  const accountSocialMediaPlatformToAdd: CreateAccountSocialMediaPlatformRequest | null =
+    useSelector(
+      (state: RootState) =>
+        state.accountSocialMediaPlatform.accountSocialMediaPlatformToAdd
+    );
+
+  const handleAddSocialMediaPlatform = async (
+    values: any,
+    accountId: number,
+    dispatch: any
+  ) => {
+    dispatch(
+      setAccountSocialMediaPlatformToAdd({
+        accountId: accountId,
+        socialMediaPlatformId: Number(values.socialMediaPlatformId),
+        priority: 1,
+        link: String(values.link),
+      })
+    );
+  };
+
+  useEffect(() => {
+    if (accountSocialMediaPlatformToAdd) {
+      addAccountSocialMediaPlatform(accountSocialMediaPlatformToAdd)
+        .then(() => {
+          dispatch(clearAccountSocialMediaPlatformToAdd());
+        })
+        .catch((error) => {
+          console.error("Hata oluştu:", error);
+        });
+    }
+  }, [accountSocialMediaPlatformToAdd]);
+
+  const addAccountSocialMediaPlatform = async (
+    accountSocialMediaPlatformToAdd: CreateAccountSocialMediaPlatformRequest
+  ) => {
+    try {
+      await accountSocialMediaPlatformService.add(
+        accountSocialMediaPlatformToAdd
+      );
+    } catch (error) {
+      console.error("Sosyal medya hesabı eklenirken bir hata oluştu:", error);
+    }
+  };
   return (
     <div className="social-media-account-form">
       <Formik

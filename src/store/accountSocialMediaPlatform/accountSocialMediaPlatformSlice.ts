@@ -5,12 +5,14 @@ import { GetListByAccountIdAccountSocialMediaPlatformListItemDto } from "../../m
 
 interface AccountSocialMediaPlatformState {
   accountSocialMediaPlatforms: GetListByAccountIdAccountSocialMediaPlatformListItemDto[];
+  accountSocialMediaPlatformToAdd: CreateAccountSocialMediaPlatformRequest | null;
   loading: boolean;
   error: string | null;
 }
 
 const initialState: AccountSocialMediaPlatformState = {
   accountSocialMediaPlatforms: [],
+  accountSocialMediaPlatformToAdd: null,
   loading: false,
   error: null,
 };
@@ -19,13 +21,6 @@ const accountSocialMediaPlatformSlice = createSlice({
   name: "accountSocialMediaPlatform",
   initialState,
   reducers: {
-    setSocialMediaPlatformToAccount: (
-      state,
-      action: PayloadAction<CreateAccountSocialMediaPlatformRequest>
-    ) => {
-      accountSocialMediaPlatformService.add(action.payload);
-    },
-
     setAccountSocialMediaPlatforms: (
       state,
       action: PayloadAction<
@@ -34,12 +29,22 @@ const accountSocialMediaPlatformSlice = createSlice({
     ) => {
       state.accountSocialMediaPlatforms = action.payload;
     },
+    setAccountSocialMediaPlatformToAdd: (
+      state,
+      action: PayloadAction<CreateAccountSocialMediaPlatformRequest>
+    ) => {
+      state.accountSocialMediaPlatformToAdd = action.payload;
+    },
+    clearAccountSocialMediaPlatformToAdd: (state) => {
+      state.accountSocialMediaPlatformToAdd = null;
+    },
   },
 });
 
 export const accountSocialMediaPlatformReducer =
   accountSocialMediaPlatformSlice.reducer;
 export const {
-  setSocialMediaPlatformToAccount,
   setAccountSocialMediaPlatforms,
+  setAccountSocialMediaPlatformToAdd,
+  clearAccountSocialMediaPlatformToAdd,
 } = accountSocialMediaPlatformSlice.actions;
