@@ -17,7 +17,7 @@ const CapabilityList = (props: Props) => {
 
   const accountCapabilities: GetListByAccountIdAccountCapabilityListItemDto[] = useSelector((state: RootState) => state.accountCapability.accountCapabilities);
 
-  async function fetchData() {
+  async function fetchAccountCapabilityData() {
     try {
       const accountCapabilitiesResponse = await accountCapabilityService.getListByAccountId(accountId);
       const data = accountCapabilitiesResponse.data.items;
@@ -27,9 +27,11 @@ const CapabilityList = (props: Props) => {
     }
   }
 
+  const refreshData = useSelector((state: any) => state.capability.refreshData);
+
   useEffect(() => {
-    fetchData();
-  }, [])
+    fetchAccountCapabilityData();
+  }, [refreshData])
 
   return (
     <div className="capability-list">
