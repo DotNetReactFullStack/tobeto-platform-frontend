@@ -5,12 +5,14 @@ interface CapabilityState {
     capabilities: GetListCapabilityListItemDto[];
     loading: boolean;
     error: string | null;
+    refreshData: boolean;
 }
 
 const initialState: CapabilityState = {
     capabilities: [],
     loading: false,
     error: null,
+    refreshData: false,
 };
 
 const capabilitySlice = createSlice({
@@ -20,8 +22,11 @@ const capabilitySlice = createSlice({
         setCapabilities: (state, action: PayloadAction<GetListCapabilityListItemDto[]>) => {
             state.capabilities = action.payload;
         },
+        refreshData: (state) => {
+            state.refreshData = !state.refreshData;
+        },
     },
 });
 
 export const capabilityReducer = capabilitySlice.reducer;
-export const { setCapabilities } = capabilitySlice.actions;
+export const { setCapabilities, refreshData } = capabilitySlice.actions;

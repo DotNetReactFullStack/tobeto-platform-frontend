@@ -2,6 +2,8 @@ import React from "react";
 import "./CapabilityElement.css";
 import DeleteModal from "../Modals/DeleteModal";
 import accountCapabilityService from "../../../services/accountCapabilityService";
+import { capabilityReducer, refreshData } from "../../../store/capability/capabilitySlice";
+import { useDispatch } from "react-redux";
 
 type Props = {
   id: string;
@@ -9,6 +11,9 @@ type Props = {
 };
 
 function CapabilityElement({ id, capabilityName }: Props) {
+
+  const dispatch = useDispatch();
+
   return (
     <div className="capability-element">
       <div className="capability-element-content">
@@ -24,6 +29,7 @@ function CapabilityElement({ id, capabilityName }: Props) {
         </button>
         <DeleteModal
           entityService={accountCapabilityService}
+          refreshData={refreshData}
           entityId={"capabilityId-" + id}
           deleteModalTitle="yetkinliği"
         />

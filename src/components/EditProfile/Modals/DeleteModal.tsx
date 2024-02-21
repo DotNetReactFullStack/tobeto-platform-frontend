@@ -2,27 +2,29 @@ import React from "react";
 import "./DeleteModal.css";
 import { BaseService } from "../../../core/services/baseService";
 import toastr from "toastr";
+import { useDispatch } from "react-redux";
 
 type Props = {
   entityService: BaseService<any, any, any, any, any, any>;
+  refreshData: any | null;
   entityId: string;
   deleteModalTitle: string;
 };
 
-const handleDeleteEntity = async (entityService: BaseService<any, any, any, any, any, any>, id: number) => {
-  try {
-    const response = await entityService.delete(id);
-    toastr.success("Kayıt başarıyla silindi.");
-  } catch (error: any) {
-    toastr.error(error.response.data.message);
+const DeleteModal = ({ entityService, refreshData, entityId, deleteModalTitle }: Props) => {
+
+  const dispatch = useDispatch();
+
+  const handleDeleteEntity = async (entityService: BaseService<any, any, any, any, any, any>, refreshData: any | null, id: number) => {
+    try {
+      const response = await entityService.delete(id);
+      toastr.success("Kayıt başarıyla silindi.");
+      dispatch(refreshData())
+    } catch (error: any) {
+      toastr.error(error.response.data.message);
+    }
   }
-}
 
-// const handleDeleteAcccountCapability = (id: number) => {
-//   accountCapabilityService.delete(id)
-// }
-
-const DeleteModal = ({ entityService, entityId, deleteModalTitle }: Props) => {
   return (
     <div
       className="modal fade"
@@ -67,7 +69,7 @@ const DeleteModal = ({ entityService, entityId, deleteModalTitle }: Props) => {
             </button>
             <button type="button"
               data-bs-dismiss="modal"
-              onClick={() => handleDeleteEntity(entityService, Number(entityId.replace(/.*-/, "")))} className="btn btn-primary">
+              onClick={() => handleDeleteEntity(entityService, refreshData, Number(entityId.replace(/.*-/, "")))} className="btn btn-primary">
               <i className="bi bi-check-lg"></i>
               Evet
             </button>

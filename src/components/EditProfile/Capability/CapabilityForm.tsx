@@ -7,7 +7,7 @@ import { Form, Formik } from "formik";
 import capabilityService from "../../../services/capabilityService";
 import { useDispatch, useSelector } from "react-redux";
 import { GetListCapabilityListItemDto } from "../../../models/capability/getListCapabilityListItemDto";
-import { setCapabilities } from "../../../store/capability/capabilitySlice";
+import { setCapabilities, refreshData } from "../../../store/capability/capabilitySlice";
 import { RootState } from "../../../store/configureStore";
 import {
   clearAccountCapabilityToAdd,
@@ -46,7 +46,6 @@ const CapabilityForm = (props: Props) => {
     try {
       const capabilitiesResponse = await capabilityService.getAll();
       const data = capabilitiesResponse.data.items;
-      console.log(data);
       dispatch(setCapabilities(data));
     } catch (error) {
       console.error("Veri alınamadı:", error);
@@ -98,6 +97,7 @@ const CapabilityForm = (props: Props) => {
   ) => {
     try {
       await accountCapabilityService.add(accountCapabilityToAdd);
+      dispatch(refreshData())
     } catch (error) {
       console.error("Yetenek eklenirken bir hata oluştu:", error);
     }
