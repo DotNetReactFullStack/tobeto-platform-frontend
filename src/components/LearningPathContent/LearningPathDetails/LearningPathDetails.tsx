@@ -10,9 +10,13 @@ import { RootState } from "../../../store/configureStore";
 import courseLearningPathService from "../../../services/courseLearningPathService";
 import { setCourseLearningPathsBySelectedLearningPathId } from "../../../store/courseLearningPath/courseLearningPathSlice";
 import { GetListByLearningPathIdCourseLearningPathListItemDto } from "../../../models/courseLearningPaths/GetListByLearningPathIdCourseLearningPathListItemDto";
-import { setLessonsBySelectedCourseId } from "../../../store/lesson/lessonSlice";
+import {
+  setLessonBySelectedId,
+  setLessonsBySelectedCourseId,
+} from "../../../store/lesson/lessonSlice";
 import lessonService from "../../../services/lessonService";
 import { GetListByCourseIdLessonListItemDto } from "../../../models/lesson/getListByCourseIdLessonListItemDto";
+import { GetByIdLessonResponse } from "../../../models/lesson/getByIdLessonResponse";
 
 type Props = {};
 
@@ -23,9 +27,10 @@ const LearningPathDetails = (props: Props) => {
     (state: any) => state.account.currentAccount.payload.id
   );
 
-  const selectedLearningPathIdFakeData: number = 1;
-  const selectedCourseIdFakeData: number = 1;
   // ----------------- accountLearningPathDataBySelectedLearningPathId ---------------------------
+
+  const selectedLearningPathIdFakeData: number = 1;
+
   async function accountLearningPathDataBySelectedLearningPathId(
     selectedLearningPathId: number
   ) {
@@ -94,6 +99,8 @@ const LearningPathDetails = (props: Props) => {
 
   // ----------------- lessonDataBySelectedCourseId ---------------------------
 
+  const selectedCourseIdFakeData: number = 1;
+
   async function lessonDataBySelectedCourseId(selectedCourseId: number) {
     try {
       const lessonsResponse = await lessonService.getListByCourseId(
@@ -114,6 +121,30 @@ const LearningPathDetails = (props: Props) => {
     useSelector((state: RootState) => state.lesson.lessonsBySelectedCourseId);
 
   console.log("lessonsBySelectedCourseId", lessonsBySelectedCourseId);
+
+  // ----------------- lessonDataBySelectedId ---------------------------
+
+  const selectedLessonIdFakeData: number = 1;
+
+  async function lessonDataBySelectedId(selectedId: number) {
+    try {
+      const lessonResponse = await lessonService.getById(selectedId);
+      const data = lessonResponse.data;
+      dispatch(setLessonBySelectedId(data));
+    } catch (error) {
+      console.error("Veri alınamadı:", error);
+    }
+  }
+
+  useEffect(() => {
+    lessonDataBySelectedId(selectedLessonIdFakeData);
+  }, []);
+
+  const lessonBySelectedId: GetByIdLessonResponse | null = useSelector(
+    (state: RootState) => state.lesson.lessonBySelectedId
+  );
+
+  console.log("lessonBySelectedId", lessonBySelectedId);
 
   return (
     <div className="learning-path-details">
