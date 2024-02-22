@@ -31,12 +31,11 @@ const ForeignLanguageList = (props: Props) => {
     }
   }
 
+  const refreshData = useSelector((state: any) => state.accountForeignLanguageMetadata.refreshData);
+
   useEffect(() => {
     fetchAccountForeignLanguageMetadata();
-  }, []);
-
-
-
+  }, [refreshData]);
 
   return (
     <div className="foreing-language-list">

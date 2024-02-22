@@ -3,6 +3,7 @@ import "./ForeignLanguageElement.css";
 import DeleteModal from "../Modals/DeleteModal";
 import { BaseService } from "../../../core/services/baseService";
 import accountForeignLanguageMetadataService from "../../../services/accountForeignLanguageMetadataService";
+import { refreshData } from "../../../store/accountForeignLanguageMetadata/accountForeignLanguageMetadataSlice";
 
 type Props = {
   id: number;
@@ -40,6 +41,7 @@ const ForeignLanguageElement = ({
         </button>
         <DeleteModal
           entityService={accountForeignLanguageMetadataService}
+          refreshData={refreshData}
           entityId={"foreignLanguageElementId-" + id}
           deleteModalTitle="yabancı dili"
         />
