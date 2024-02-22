@@ -4,6 +4,7 @@ import DeleteModal from "../Modals/DeleteModal";
 import EditSocialMediaAccountModal from "./EditSocialMediaAccountModal";
 import { BaseService } from "../../../core/services/baseService";
 import accountSocialMediaPlatformService from "../../../services/accountSocialMediaPlatformService";
+import { refreshData } from "../../../store/accountSocialMediaPlatform/accountSocialMediaPlatformSlice";
 
 type Props = {
   id: number;
@@ -44,6 +45,7 @@ const SocialMediaAccountElement = ({
           </button>
           <DeleteModal
             entityService={accountSocialMediaPlatformService}
+            refreshData={refreshData}
             entityId={"socialMediaPlatformElement-" + id}
             deleteModalTitle="sosyal medya hesabını"
           />
