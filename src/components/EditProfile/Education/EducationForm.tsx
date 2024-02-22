@@ -18,6 +18,7 @@ import { setEducationPrograms } from "../../../store/educationProgram/educationP
 import { GetListByCollegeIdEducationProgramListItemDto } from "../../../models/educationPrograms/getListByCollegeIdEducationProgramListItemDto";
 import {
   clearAccountCollegeMetadataToAdd,
+  refreshData,
   setAccountCollegeMetadataToAdd,
 } from "../../../store/accountCollegeMetadata/accountCollegeMetadataSlice";
 import { CreateAccountCollegeMetadataRequest } from "../../../models/accountCollegeMetadatas/createAccountCollegeMetadataRequest";
@@ -164,6 +165,7 @@ const EducationForm = (props: Props) => {
   ) => {
     try {
       await accountCollegeMetadataService.add(accountCollegeMetadataToAdd);
+      dispatch(refreshData());
     } catch (error) {
       console.error("Eğitim bilgisi eklenirken bir hata oluştu:", error);
     }
