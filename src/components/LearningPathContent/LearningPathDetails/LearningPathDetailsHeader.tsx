@@ -70,10 +70,10 @@ const LearningPathDetailsHeader = (props: Props) => {
           .accountLearningPathBySelectedAccountIdAndLearningPathId
     );
 
-  console.log(
-    "accountLearningPathBySelectedAccountIdAndLearningPathId",
-    accountLearningPathBySelectedAccountIdAndLearningPathId
-  );
+  // console.log(
+  //   "accountLearningPathBySelectedAccountIdAndLearningPathId",
+  //   accountLearningPathBySelectedAccountIdAndLearningPathId
+  // );
 
   function formatDateToLocaleString(dateString?: string): string {
     if (!dateString) {

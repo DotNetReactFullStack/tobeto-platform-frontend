@@ -5,6 +5,7 @@ import { GetByIdLessonResponse } from "../../models/lesson/getByIdLessonResponse
 interface LessonState {
   lessonsBySelectedCourseId: GetListByCourseIdLessonListItemDto[];
   lessonBySelectedId: GetByIdLessonResponse | null;
+  selectedLessonId: number;
   loading: boolean;
   error: string | null;
 }
@@ -12,6 +13,7 @@ interface LessonState {
 const initialState: LessonState = {
   lessonsBySelectedCourseId: [],
   lessonBySelectedId: null,
+  selectedLessonId: 1,
   loading: false,
   error: null,
 };
@@ -32,9 +34,15 @@ const lessonSlice = createSlice({
     ) => {
       state.lessonBySelectedId = action.payload;
     },
+    setSelectedLessonId: (state, action: PayloadAction<number>) => {
+      state.selectedLessonId = action.payload;
+    },
   },
 });
 
 export const lessonReducer = lessonSlice.reducer;
-export const { setLessonsBySelectedCourseId, setLessonBySelectedId } =
-  lessonSlice.actions;
+export const {
+  setLessonsBySelectedCourseId,
+  setLessonBySelectedId,
+  setSelectedLessonId,
+} = lessonSlice.actions;
