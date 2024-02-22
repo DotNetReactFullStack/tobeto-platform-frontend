@@ -15,7 +15,7 @@ const ForeignLanguageList = (props: Props) => {
   const accountId = useSelector(
     (state: any) => state.account.currentAccount.payload.id
   );
-  const accountForeignLanguageMetadatas: GetListByAccountIdAccountForeignLanguageMetaDataListItemDto[] =
+  const accountForeignLanguageMetadata: GetListByAccountIdAccountForeignLanguageMetaDataListItemDto[] =
     useSelector(
       (state: RootState) => state.accountForeignLanguageMetadata.accountForeignLanguageMetadatas
     );
@@ -38,16 +38,23 @@ const ForeignLanguageList = (props: Props) => {
   }, [refreshData]);
 
   return (
-    <div className="foreing-language-list">
-      {accountForeignLanguageMetadatas.map((value, index) => (
-        <ForeignLanguagesElement
-          key={index}
-          id={value.id}
-          foreignLanguageName={value.foreignLanguageName}
-          foreignLanguageLevelName={value.foreignLanguageLevelName}
-        />
-      ))}
-    </div>
+    <>
+      {
+        accountForeignLanguageMetadata.length !== 0
+          ?
+          <div className="foreing-language-list">
+            {accountForeignLanguageMetadata.map((value, index) => (
+              <ForeignLanguagesElement
+                key={index}
+                id={value.id}
+                foreignLanguageName={value.foreignLanguageName}
+                foreignLanguageLevelName={value.foreignLanguageLevelName}
+              />
+            ))}
+          </div>
+          : <></>
+      }
+    </>
   );
 };
 

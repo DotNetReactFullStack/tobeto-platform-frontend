@@ -38,13 +38,20 @@ const ForeignLanguages = (props: Props) => {
 
   return (
     <div className="foreign-languages">
-      {accountForeignLanguageMetadata.map((foreignLanguage, index) => (
-        <ForeignLanguagesElement
-          key={index}
-          languageName={foreignLanguage.foreignLanguageName}
-          languageLevel={foreignLanguage.foreignLanguageLevelName}
-        />
-      ))}
+      {
+        accountForeignLanguageMetadata.length === 0
+          ? <span className="color-gray-fs-15">Lütfen yabancı dil bilgilerinizi ekleyiniz.</span>
+          : <></>
+      }
+      {
+        accountForeignLanguageMetadata.map((foreignLanguage, index) => (
+          <ForeignLanguagesElement
+            key={index}
+            languageName={foreignLanguage.foreignLanguageName}
+            languageLevel={foreignLanguage.foreignLanguageLevelName}
+          />
+        ))
+      }
     </div>
   );
 };
