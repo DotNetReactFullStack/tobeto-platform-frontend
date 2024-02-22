@@ -3,7 +3,7 @@ import { BaseService } from "../core/services/baseService";
 import { BASE_API_URL } from "../environment/environment";
 import axiosInstance from "../core/interceptors/axiosInterceptor";
 
-class AccountLearningPathService extends BaseService<
+class CourseLearningPathService extends BaseService<
   any,
   any,
   any,
@@ -13,16 +13,10 @@ class AccountLearningPathService extends BaseService<
 > {
   constructor() {
     super();
-    this.apiUrl = BASE_API_URL + "AccountLearningPaths";
+    this.apiUrl = BASE_API_URL + "CourseLearningPaths";
   }
 
   // getByFilter() {}
-  getListByAccountId(accountId: number): Promise<AxiosResponse<any, any>> {
-    return axiosInstance.get<any>(
-      this.apiUrl + "/getByAccountId/" + accountId + "?PageIndex=0&PageSize=100"
-    );
-  }
-
   getListByLearningPathId(
     learningPathId: number
   ): Promise<AxiosResponse<any, any>> {
@@ -30,9 +24,9 @@ class AccountLearningPathService extends BaseService<
       this.apiUrl +
         "/getByLearningPathId/" +
         learningPathId +
-        "?PageIndex=0&PageSize=100"
+        "?PageIndex=0&PageSize=1000"
     );
   }
 }
 
-export default new AccountLearningPathService();
+export default new CourseLearningPathService();
