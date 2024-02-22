@@ -10,6 +10,9 @@ import { RootState } from "../../../store/configureStore";
 import courseLearningPathService from "../../../services/courseLearningPathService";
 import { setCourseLearningPathsBySelectedLearningPathId } from "../../../store/courseLearningPath/courseLearningPathSlice";
 import { GetListByLearningPathIdCourseLearningPathListItemDto } from "../../../models/courseLearningPaths/GetListByLearningPathIdCourseLearningPathListItemDto";
+import { setLessonsBySelectedCourseId } from "../../../store/lesson/lessonSlice";
+import lessonService from "../../../services/lessonService";
+import { GetListByCourseIdLessonListItemDto } from "../../../models/lesson/getListByCourseIdLessonListItemDto";
 
 type Props = {};
 
@@ -21,6 +24,7 @@ const LearningPathDetails = (props: Props) => {
   );
 
   const selectedLearningPathIdFakeData: number = 1;
+  const selectedCourseIdFakeData: number = 1;
   // ----------------- accountLearningPathDataBySelectedLearningPathId ---------------------------
   async function accountLearningPathDataBySelectedLearningPathId(
     selectedLearningPathId: number
@@ -87,6 +91,29 @@ const LearningPathDetails = (props: Props) => {
     "courseLearningPathsBySelectedLearningPathId",
     courseLearningPathsBySelectedLearningPathId
   );
+
+  // ----------------- lessonDataBySelectedCourseId ---------------------------
+
+  async function lessonDataBySelectedCourseId(selectedCourseId: number) {
+    try {
+      const lessonsResponse = await lessonService.getListByCourseId(
+        selectedCourseId
+      );
+      const data = lessonsResponse.data.items;
+      dispatch(setLessonsBySelectedCourseId(data));
+    } catch (error) {
+      console.error("Veri alınamadı:", error);
+    }
+  }
+
+  useEffect(() => {
+    lessonDataBySelectedCourseId(selectedCourseIdFakeData);
+  }, []);
+
+  const lessonsBySelectedCourseId: GetListByCourseIdLessonListItemDto[] =
+    useSelector((state: RootState) => state.lesson.lessonsBySelectedCourseId);
+
+  console.log("lessonsBySelectedCourseId", lessonsBySelectedCourseId);
 
   return (
     <div className="learning-path-details">

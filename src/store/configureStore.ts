@@ -22,6 +22,7 @@ import { foreignLanguageLevelReducer } from "./foreignLanguageLevel/foreignLangu
 import { addressReducer } from "./address/addressSlice";
 import { accountLearningPathReducer } from "./accountLearningPath/accountLearningPathSlice";
 import { courseLearningPathReducer } from "./courseLearningPath/courseLearningPathSlice";
+import { lessonReducer } from "./lesson/lessonSlice";
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -45,6 +46,7 @@ const rootReducer = combineReducers({
   address: addressReducer,
   accountLearningPath: accountLearningPathReducer,
   courseLearningPath: courseLearningPathReducer,
+  lesson: lessonReducer,
 });
 
 const persistConfig = {
