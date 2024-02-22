@@ -11,7 +11,6 @@ import Exams from "../../components/Profile/Exams/Exams";
 import AccountCertificates from "../../components/Profile/AccountCertificates/AccountCertificates";
 import ActivityMap from "../../components/Profile/ActivityMap/ActivityMap";
 import EducationAndExperienceList from "../../components/Profile/EducationAndExperience/EducationAndExperienceList";
-import { ProfileHistoryElementModel } from "../../models/profileHistoryElement/profileHistoryElementModel";
 import experienceService from "../../services/experienceService";
 import { setAccountExperiences } from "../../store/experience/experienceSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -30,14 +29,6 @@ type DayData = {
 };
 
 type Props = {};
-
-const aboutMeFakeData: string = "Kendini kısaca anlat";
-
-const foreignLanguagesFakeData: any[] = [
-  { name: "İngilizce", level: "Orta Seviye (B1, B2)" },
-  { name: "Korece", level: "Temel Seviye (A1, A2)" },
-  { name: "Japonca", level: "Anadil" },
-];
 
 const accountCertificatesFakeData: any[] = [
   { name: "CSS sertifika" },
@@ -93,7 +84,6 @@ const examsFakeData: any[] = [
   },
 ];
 
-// Aktivite haritası için
 
 const generateActivityData = () => {
   const today = new Date();
@@ -118,51 +108,15 @@ const generateActivityData = () => {
 // generateActivityData fonksiyonu ile rastgele veri oluşturduk.
 const activityData = generateActivityData();
 
-// Eğitim Hayatım ve Deneyimlerim
-// const EducationAndExperienceFakeData: any[] = [
-//   {
-//     type: "Education",
-//     startYear: "2014",
-//     endYear: "2019",
-//     name: "Sinop Universitesi",
-//     content: "Yazılım Mühendisliği",
-//   },
-//   {
-//     type: "Experience",
-//     startYear: "2019",
-//     endYear: "2020",
-//     name: "Amazon",
-//     content: "Back-End Developer",
-//   },
-//   {
-//     type: "Education",
-//     startYear: "2019",
-//     endYear: "2022",
-//     name: "Uludağ Universitesi",
-//     content: "Yazılım Mühendisliği",
-//   },
-//   {
-//     type: "Experience",
-//     startYear: "2020",
-//     endYear: "2021",
-//     name: "Google",
-//     content: "Front-End Developer",
-//   },
-//   {
-//     type: "Experience",
-//     startYear: "2021",
-//     endYear: "...",
-//     name: "Microsoft",
-//     content: "Full-Stack Developer",
-//   },
-// ];
-
 const Profile = (props: Props) => {
 
   const dispatch = useDispatch();
 
-  const accountId = useSelector((state: any) => state.account.currentAccount.payload.id);
+  const currentAccount = useSelector((state: any) => state.account.currentAccount.payload);
+  const accountId = currentAccount.id;
+
   const accountExperiences: GetListByAccountIdExperienceListItemDto[] = useSelector((state: RootState) => state.experience.accountExperiences);
+
   const accountCollegeMetadatas: GetListByAccountIdAccountCollegeMetadataListItemDto[] =
     useSelector(
       (state: RootState) =>
@@ -198,22 +152,6 @@ const Profile = (props: Props) => {
 
     historyEducationData = accountCollegeMetadatas.map((education) => { return { elementType: ProfileHistoryElementType.Education, educationData: education } })
 
-    // historyExperienceData.sort(function (a: any, b: any) {
-    //   // String olarak verilen tarihleri Date nesnelerine dönüştürüyoruz
-    //   var dateA: any = new Date(a.experienceData.startingDate);
-    //   var dateB: any = new Date(b.experienceData.startingDate);
-    //   // Diziyi startingDate özelliğine göre azalan sırada sıralıyoruz
-    //   return dateB - dateA;
-    // })
-
-    // historyEducationData.sort(function (a: any, b: any) {
-    //   // String olarak verilen tarihleri Date nesnelerine dönüştürüyoruz
-    //   var dateA: any = new Date(a.educationData.startingYear);
-    //   var dateB: any = new Date(b.educationData.startingYear);
-    //   // Diziyi startingDate özelliğine göre azalan sırada sıralıyoruz
-    //   return dateB - dateA;
-    // })
-
     return [...historyExperienceData, ...historyEducationData];
   }
 
@@ -229,7 +167,7 @@ const Profile = (props: Props) => {
   });
 
   // Başlangıç tarihlerine göre diziyi karmaşık bir şekilde sıralama
-  educationAndExperienceData.sort((a: any, b: any) => {
+  educationAndExperienceData.sort((a: any, b: any) => { // refactor
     const dateA = a.elementType === 'education' ? a.educationData.startingYear : a.experienceData.startingDate;
     const dateB = b.elementType === 'education' ? b.educationData.startingYear : b.experienceData.startingDate;
     // Başlangıç tarihlerine göre sıralama
@@ -242,15 +180,10 @@ const Profile = (props: Props) => {
     }
   });
 
-
-
-  console.log(educationAndExperienceData)
-
   useEffect(() => {
     fetchAccountExperienceData();
     fetchAccountCollegeMetadata();
   }, []);
-
 
   return (
     <div className="container main-section d-flex flex-column">
@@ -262,7 +195,7 @@ const Profile = (props: Props) => {
           <UserInformationCard />
 
           <ProfileDefaultCard title="Hakkımda">
-            <AboutMe data={aboutMeFakeData} />
+            <AboutMe />
           </ProfileDefaultCard>
 
           <ProfileDefaultCard title="Yetkinliklerim">
@@ -270,7 +203,7 @@ const Profile = (props: Props) => {
           </ProfileDefaultCard>
 
           <ProfileDefaultCard title="Yabancı Dillerim">
-            <ForeignLanguages data={foreignLanguagesFakeData} />
+            <ForeignLanguages />
           </ProfileDefaultCard>
 
           <ProfileDefaultCard title="Sertifikalarım">
