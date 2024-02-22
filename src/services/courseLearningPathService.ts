@@ -3,7 +3,7 @@ import { BaseService } from "../core/services/baseService";
 import { BASE_API_URL } from "../environment/environment";
 import axiosInstance from "../core/interceptors/axiosInterceptor";
 
-class AccountLearningPathService extends BaseService<
+class CourseLearningPathService extends BaseService<
   any,
   any,
   any,
@@ -29,4 +29,4 @@ class AccountLearningPathService extends BaseService<
   }
 }
 
-export default new AccountLearningPathService();
+export default new CourseLearningPathService();
