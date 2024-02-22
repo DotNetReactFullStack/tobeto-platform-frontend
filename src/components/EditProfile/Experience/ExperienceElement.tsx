@@ -3,6 +3,7 @@ import "./ExperienceElement.css";
 import DeleteModal from "../Modals/DeleteModal";
 import DetailModal from "../Modals/DetailModal";
 import experienceService from "../../../services/experienceService";
+import { refreshData } from "../../../store/experience/experienceSlice";
 
 type Props = {
   id: string;
@@ -73,6 +74,7 @@ const ExperienceElement = ({
         </button>
         <DeleteModal
           entityService={experienceService}
+          refreshData={refreshData}
           entityId={"experienceElementId-" + id}
           deleteModalTitle="deneyimi" />
       </div>

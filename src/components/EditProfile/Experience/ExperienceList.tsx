@@ -38,9 +38,11 @@ const ExperienceList = (props: Props) => {
     }
   }
 
+  const refreshData = useSelector((state: any) => state.experience.refreshData);
+
   useEffect(() => {
     fetchData();
-  }, [])
+  }, [refreshData])
 
   console.log(accountExperiences)
 

@@ -7,6 +7,7 @@ interface ExperienceState {
     accountExperienceToAdd: CreateExperienceCommand | null,
     loading: boolean;
     error: string | null;
+    refreshData: boolean;
 }
 
 const initialState: ExperienceState = {
@@ -14,6 +15,7 @@ const initialState: ExperienceState = {
     accountExperienceToAdd: null,
     loading: false,
     error: null,
+    refreshData: false,
 };
 
 const accountExperienceSlice = createSlice({
@@ -28,9 +30,12 @@ const accountExperienceSlice = createSlice({
         },
         clearAccountExperienceToAdd: (state) => {
             state.accountExperienceToAdd = null;
+        },
+        refreshData: (state) => {
+            state.refreshData = !state.refreshData;
         }
     },
 });
 
 export const accountExperienceReducer = accountExperienceSlice.reducer;
-export const { setAccountExperiences, setAccountExperienceToAdd, clearAccountExperienceToAdd } = accountExperienceSlice.actions;
+export const { setAccountExperiences, setAccountExperienceToAdd, clearAccountExperienceToAdd, refreshData } = accountExperienceSlice.actions;
