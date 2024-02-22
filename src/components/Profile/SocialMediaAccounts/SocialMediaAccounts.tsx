@@ -55,6 +55,11 @@ const SocialMediaAccounts = (props: Props) => {
     return (
         <div className='social-media-accounts'>
             {
+                accountSocialMediaPlatforms.length === 0
+                    ? <span className="color-gray-fs-15">Lütfen sosyal medya hesaplarınızı ekleyiniz.</span>
+                    : <></>
+            }
+            {
                 accountSocialMediaPlatforms.map((account: any, index) => (
                     <SocialMediaAccountElement key={index} iconClass={account.iconPath} iconColor={account.iconColor} link={account.link} />
                 ))

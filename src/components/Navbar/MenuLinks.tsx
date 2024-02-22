@@ -1,34 +1,37 @@
 import React from "react";
 import "../Navbar/MenuLinks.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 type Props = {};
 
 const MenuLinks = (props: Props) => {
+
+  const location = useLocation();
+
   return (
     <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
       <li className="nav-item">
-        <Link className="nav-link active" aria-current="page" to="/">
+        <Link className={`nav-link ${location.pathname === "/" ? 'active' : ''}`} aria-current="page" to="/">
           Ana Sayfa
         </Link>
       </li>
       <li className="nav-item">
-        <Link className="nav-link" to="/my-profile">
+        <Link className={`nav-link ${location.pathname === "/my-profile" ? 'active' : ''}`} to="/my-profile">
           Profilim
         </Link>
       </li>
       <li className="nav-item">
-        <Link className="nav-link" to="/my-assessments">
+        <Link className={`nav-link ${location.pathname === "/my-assessments" ? 'active' : ''}`} to="/my-assessments">
           Değerlendirmeler
         </Link>
       </li>
       <li className="nav-item">
-        <Link className="nav-link" to="/catalog">
+        <Link className={`nav-link ${location.pathname === "/catalog" ? 'active' : ''}`} to="/catalog">
           Katalog
         </Link>
       </li>
       <li className="nav-item">
-        <Link className="nav-link" to="/calendar">
+        <Link className={`nav-link ${location.pathname === "/calendar" ? 'active' : ''}`} to="/calendar">
           Takvim
         </Link>
       </li>

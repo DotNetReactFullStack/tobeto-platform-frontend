@@ -10,7 +10,13 @@ const AboutMe = (props: Props) => {
 
   return (
     <div className="about-me">
-      <div className="about-me-content">{currentAccount.aboutMe}</div>
+      <div className="about-me-content">
+        {
+          currentAccount.aboutMe !== ""
+            ? currentAccount.aboutMe
+            : <span className="color-gray-fs-15">Kendinizden bahsedebilirsiniz.</span>
+        }
+      </div>
     </div>
   );
 };
