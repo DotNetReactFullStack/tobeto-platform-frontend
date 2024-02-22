@@ -5,6 +5,7 @@ import { setAccountLearningPathBySelectedAccountIdAndLearningPathId } from "../.
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store/configureStore";
 import { GetByAccountIdAndLearningPathIdAccountLearningPathResponse } from "../../../models/accountLearningPaths/getByAccountIdAndLearningPathIdAccountLearningPathResponse";
+import { useParams } from "react-router-dom";
 
 type Props = {};
 
@@ -35,7 +36,11 @@ const LearningPathDetailsHeader = (props: Props) => {
     (state: any) => state.account.currentAccount.payload.id
   );
 
-  const selectedLearningPathIdFakeData: number = 1;
+  const params = useParams<{ learningPathId: string }>();
+  const selectedLearningPathIdByParams = parseInt(
+    params.learningPathId || "0",
+    10
+  );
 
   async function accountLearningPathDataBySelectedAccountIdAndLearningPathId(
     accountId: number,
@@ -59,7 +64,7 @@ const LearningPathDetailsHeader = (props: Props) => {
   useEffect(() => {
     accountLearningPathDataBySelectedAccountIdAndLearningPathId(
       accountId,
-      selectedLearningPathIdFakeData
+      selectedLearningPathIdByParams
     );
   }, []);
 

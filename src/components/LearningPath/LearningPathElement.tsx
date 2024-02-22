@@ -45,7 +45,7 @@ const LearningPathElement = ({
         </div>
       </div>
       <div className="learning-path-footer">
-        <Link to={"/my-learning-paths/net-react-fullstack"}>
+        <Link to={`/learning-paths/learning-path/${learningPathId}`}>
           <button className="learning-path-button">Eğitime Git</button>
         </Link>
       </div>

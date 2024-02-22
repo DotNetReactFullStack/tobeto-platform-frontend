@@ -46,7 +46,7 @@ const LessonVideo = (props: Props) => {
     (state: any) => state.lesson.selectedLessonId
   );
 
-  console.log("seçilenId", selectedLessonId);
+  //console.log("seçilenId", selectedLessonId);
   async function lessonDataBySelectedId(selectedId: number) {
     try {
       const lessonResponse = await lessonService.getById(selectedId);

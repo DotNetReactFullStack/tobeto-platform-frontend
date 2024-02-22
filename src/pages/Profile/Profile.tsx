@@ -118,60 +118,23 @@ const generateActivityData = () => {
 // generateActivityData fonksiyonu ile rastgele veri oluşturduk.
 const activityData = generateActivityData();
 
-// Eğitim Hayatım ve Deneyimlerim
-// const EducationAndExperienceFakeData: any[] = [
-//   {
-//     type: "Education",
-//     startYear: "2014",
-//     endYear: "2019",
-//     name: "Sinop Universitesi",
-//     content: "Yazılım Mühendisliği",
-//   },
-//   {
-//     type: "Experience",
-//     startYear: "2019",
-//     endYear: "2020",
-//     name: "Amazon",
-//     content: "Back-End Developer",
-//   },
-//   {
-//     type: "Education",
-//     startYear: "2019",
-//     endYear: "2022",
-//     name: "Uludağ Universitesi",
-//     content: "Yazılım Mühendisliği",
-//   },
-//   {
-//     type: "Experience",
-//     startYear: "2020",
-//     endYear: "2021",
-//     name: "Google",
-//     content: "Front-End Developer",
-//   },
-//   {
-//     type: "Experience",
-//     startYear: "2021",
-//     endYear: "...",
-//     name: "Microsoft",
-//     content: "Full-Stack Developer",
-//   },
-// ];
-
 const Profile = (props: Props) => {
-
   const dispatch = useDispatch();
 
-  const accountId = useSelector((state: any) => state.account.currentAccount.payload.id);
-  const accountExperiences: GetListByAccountIdExperienceListItemDto[] = useSelector((state: RootState) => state.experience.accountExperiences);
+  const accountId = useSelector(
+    (state: any) => state.account.currentAccount.payload.id
+  );
+  const accountExperiences: GetListByAccountIdExperienceListItemDto[] =
+    useSelector((state: RootState) => state.experience.accountExperiences);
   const accountCollegeMetadatas: GetListByAccountIdAccountCollegeMetadataListItemDto[] =
     useSelector(
-      (state: RootState) =>
-        state.accountCollegeMetadata.accountCollegeMetadatas
+      (state: RootState) => state.accountCollegeMetadata.accountCollegeMetadatas
     );
 
   async function fetchAccountExperienceData() {
     try {
-      const accountExperiencesResponse = await experienceService.getListByAccountId(accountId);
+      const accountExperiencesResponse =
+        await experienceService.getListByAccountId(accountId);
       const data = accountExperiencesResponse.data.items;
       dispatch(setAccountExperiences(data));
     } catch (error) {
@@ -190,13 +153,26 @@ const Profile = (props: Props) => {
     }
   }
 
-  const mergeData = (accountExperiences: GetListByAccountIdExperienceListItemDto[], accountCollegeMetadatas: GetListByAccountIdAccountCollegeMetadataListItemDto[]) => {
+  const mergeData = (
+    accountExperiences: GetListByAccountIdExperienceListItemDto[],
+    accountCollegeMetadatas: GetListByAccountIdAccountCollegeMetadataListItemDto[]
+  ) => {
     let historyExperienceData: ProfileHistoryElementExperienceModel[] = [];
     let historyEducationData: ProfileHistoryElementEducationModel[] = [];
 
-    historyExperienceData = accountExperiences.map((experience) => { return { elementType: ProfileHistoryElementType.Experience, experienceData: experience } })
+    historyExperienceData = accountExperiences.map((experience) => {
+      return {
+        elementType: ProfileHistoryElementType.Experience,
+        experienceData: experience,
+      };
+    });
 
-    historyEducationData = accountCollegeMetadatas.map((education) => { return { elementType: ProfileHistoryElementType.Education, educationData: education } })
+    historyEducationData = accountCollegeMetadatas.map((education) => {
+      return {
+        elementType: ProfileHistoryElementType.Education,
+        educationData: education,
+      };
+    });
 
     // historyExperienceData.sort(function (a: any, b: any) {
     //   // String olarak verilen tarihleri Date nesnelerine dönüştürüyoruz
@@ -215,13 +191,16 @@ const Profile = (props: Props) => {
     // })
 
     return [...historyExperienceData, ...historyEducationData];
-  }
+  };
 
-  const educationAndExperienceData = mergeData(accountExperiences, accountCollegeMetadatas);
+  const educationAndExperienceData = mergeData(
+    accountExperiences,
+    accountCollegeMetadatas
+  );
 
   const allStartingDates: string[] = [];
   educationAndExperienceData.forEach((item: any) => {
-    if (item.elementType === 'education') {
+    if (item.elementType === "education") {
       allStartingDates.push(item.educationData.startingYear);
     } else {
       allStartingDates.push(item.experienceData.startingDate);
@@ -230,27 +209,30 @@ const Profile = (props: Props) => {
 
   // Başlangıç tarihlerine göre diziyi karmaşık bir şekilde sıralama
   educationAndExperienceData.sort((a: any, b: any) => {
-    const dateA = a.elementType === 'education' ? a.educationData.startingYear : a.experienceData.startingDate;
-    const dateB = b.elementType === 'education' ? b.educationData.startingYear : b.experienceData.startingDate;
+    const dateA =
+      a.elementType === "education"
+        ? a.educationData.startingYear
+        : a.experienceData.startingDate;
+    const dateB =
+      b.elementType === "education"
+        ? b.educationData.startingYear
+        : b.experienceData.startingDate;
     // Başlangıç tarihlerine göre sıralama
     if (dateA === dateB) {
       // Aynı başlangıç tarihine sahipler, elementType'e göre sıralama
-      return a.elementType === 'education' ? -1 : 1;
+      return a.elementType === "education" ? -1 : 1;
     } else {
       // Başlangıç tarihlerine göre sıralama
       return new Date(dateB).getTime() - new Date(dateA).getTime();
     }
   });
 
-
-
-  console.log(educationAndExperienceData)
+  //console.log(educationAndExperienceData)
 
   useEffect(() => {
     fetchAccountExperienceData();
     fetchAccountCollegeMetadata();
   }, []);
-
 
   return (
     <div className="container main-section d-flex flex-column">
