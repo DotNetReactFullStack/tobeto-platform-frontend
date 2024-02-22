@@ -11,7 +11,7 @@ import cityService from "../../../services/cityService";
 import { setCities } from "../../../store/city/citySlice";
 import { GetListByCountryIdCityListItemDto } from "../../../models/city/getListByCountryIdCityListItemDto";
 import { RootState } from "../../../store/configureStore";
-import { clearAccountExperienceToAdd, setAccountExperienceToAdd } from "../../../store/experience/experienceSlice";
+import { clearAccountExperienceToAdd, refreshData, setAccountExperienceToAdd } from "../../../store/experience/experienceSlice";
 import experienceService from "../../../services/experienceService";
 
 type Props = {};
@@ -110,6 +110,7 @@ const ExperienceForm = (props: Props) => {
   const addExperience = async (accountExperienceToAdd: CreateExperienceCommand) => {
     try {
       await experienceService.add(accountExperienceToAdd);
+      dispatch(refreshData());
     } catch (error) {
       console.log("Deneyim eklerken bir hata oluştu:", error);
     }
