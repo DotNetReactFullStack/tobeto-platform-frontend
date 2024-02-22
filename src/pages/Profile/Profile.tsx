@@ -38,29 +38,6 @@ const accountCertificatesFakeData: any[] = [
   { name: "İstanbul Kodluyor kurs sertifikası" },
 ];
 
-const socialMediaAccountsFakeData: any[] = [
-  {
-    iconClass: "bi bi-linkedin",
-    iconColor: "#0077b5",
-    link: "https://pair4.tobetoplatform.ersinkaya.dev",
-  },
-  {
-    iconClass: "bi bi-instagram",
-    iconColor: "#e03780",
-    link: "https://pair4.tobetoplatform.ersinkaya.dev",
-  },
-  {
-    iconClass: "bi bi-github",
-    iconColor: "#181717",
-    link: "https://pair4.tobetoplatform.ersinkaya.dev",
-  },
-  {
-    iconClass: "bi bi-twitter-x",
-    iconColor: "#181717",
-    link: "https://pair4.tobetoplatform.ersinkaya.dev",
-  },
-];
-
 const examsFakeData: any[] = [
   {
     name: "Frontend",
@@ -135,7 +112,7 @@ const Profile = (props: Props) => {
           </ProfileDefaultCard>
 
           <ProfileDefaultCard title="Medya Hesaplarım">
-            <SocialMediaAccounts data={socialMediaAccountsFakeData} />
+            <SocialMediaAccounts />
           </ProfileDefaultCard>
         </div>
 
