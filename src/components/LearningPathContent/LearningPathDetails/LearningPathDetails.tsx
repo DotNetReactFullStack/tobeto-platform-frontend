@@ -4,8 +4,8 @@ import LearningPathDetailsHeader from "./LearningPathDetailsHeader";
 import LearningPathDetailsNavTabs from "./LearningPathDetailsNavTabs";
 import { useDispatch, useSelector } from "react-redux";
 import accountLearningPathService from "../../../services/accountLearningPathService";
-import { setAccountLearningPathsBySelectedLearningPathId } from "../../../store/accountLearningPath/accountLearningPathSlice";
-import { GetListByLearningPathIdAccountLearningPathListItemDto } from "../../../models/accountLearningPaths/getListByLearningPathIdAccountLearningPathListItemDto";
+import { setAccountLearningPathBySelectedAccountIdAndLearningPathId } from "../../../store/accountLearningPath/accountLearningPathSlice";
+import { GetByAccountIdAndLearningPathIdAccountLearningPathResponse } from "../../../models/accountLearningPaths/getByAccountIdAndLearningPathIdAccountLearningPathResponse";
 import { RootState } from "../../../store/configureStore";
 import courseLearningPathService from "../../../services/courseLearningPathService";
 import { setCourseLearningPathsBySelectedLearningPathId } from "../../../store/courseLearningPath/courseLearningPathSlice";
@@ -30,43 +30,9 @@ const LearningPathDetails = (props: Props) => {
     (state: any) => state.account.currentAccount.payload.id
   );
 
-  // ----------------- accountLearningPathDataBySelectedLearningPathId ---------------------------
+  // ----------------- courseLearningPathDataBySelectedLearningPathId ---------------------------
 
   const selectedLearningPathIdFakeData: number = 1;
-
-  async function accountLearningPathDataBySelectedLearningPathId(
-    selectedLearningPathId: number
-  ) {
-    try {
-      const accountLearningPathsresponse =
-        await accountLearningPathService.getListByLearningPathId(
-          selectedLearningPathId
-        );
-      const data = accountLearningPathsresponse.data.items;
-      dispatch(setAccountLearningPathsBySelectedLearningPathId(data));
-    } catch (error) {
-      console.error("Veri alınamadı:", error);
-    }
-  }
-
-  useEffect(() => {
-    accountLearningPathDataBySelectedLearningPathId(
-      selectedLearningPathIdFakeData
-    );
-  }, []);
-
-  const accountLearningPathsBySelectedLearningPathId: GetListByLearningPathIdAccountLearningPathListItemDto[] =
-    useSelector(
-      (state: RootState) =>
-        state.accountLearningPath.accountLearningPathsBySelectedLearningPathId
-    );
-
-  console.log(
-    "accountLearningPathsBySelectedLearningPathId",
-    accountLearningPathsBySelectedLearningPathId
-  );
-
-  // ----------------- courseLearningPathDataBySelectedLearningPathId ---------------------------
 
   async function courseLearningPathDataBySelectedLearningPathId(
     selectedLearningPathId: number

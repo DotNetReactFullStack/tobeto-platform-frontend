@@ -23,14 +23,16 @@ class AccountLearningPathService extends BaseService<
     );
   }
 
-  getListByLearningPathId(
+  getListByAccountIdAndLearningPathId(
+    accountId: number,
     learningPathId: number
   ): Promise<AxiosResponse<any, any>> {
     return axiosInstance.get<any>(
       this.apiUrl +
-        "/getByLearningPathId/" +
-        learningPathId +
-        "?PageIndex=0&PageSize=100"
+        "/getByAccountId/" +
+        accountId +
+        "/LearningPathId/" +
+        learningPathId
     );
   }
 }

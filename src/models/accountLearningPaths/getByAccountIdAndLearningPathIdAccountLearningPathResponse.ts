@@ -1,4 +1,4 @@
-export interface GetListByLearningPathIdAccountLearningPathListItemDto {
+export interface GetByAccountIdAndLearningPathIdAccountLearningPathResponse {
   id: number;
   accountId: number;
   learningPathId: number;

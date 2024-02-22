@@ -1,17 +1,17 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { GetListByAccountIdAccountLearningPathListItemDto } from "../../models/accountLearningPaths/getListByAccountIdAccountLearningPathListItemDto";
-import { GetListByLearningPathIdAccountLearningPathListItemDto } from "../../models/accountLearningPaths/getListByLearningPathIdAccountLearningPathListItemDto";
+import { GetByAccountIdAndLearningPathIdAccountLearningPathResponse } from "../../models/accountLearningPaths/getByAccountIdAndLearningPathIdAccountLearningPathResponse";
 
 interface AccountLearningPathState {
   accountLearningPaths: GetListByAccountIdAccountLearningPathListItemDto[];
-  accountLearningPathsBySelectedLearningPathId: GetListByLearningPathIdAccountLearningPathListItemDto[];
+  accountLearningPathBySelectedAccountIdAndLearningPathId: GetByAccountIdAndLearningPathIdAccountLearningPathResponse | null;
   loading: boolean;
   error: string | null;
 }
 
 const initialState: AccountLearningPathState = {
   accountLearningPaths: [],
-  accountLearningPathsBySelectedLearningPathId: [],
+  accountLearningPathBySelectedAccountIdAndLearningPathId: null,
   loading: false,
   error: null,
 };
@@ -26,13 +26,12 @@ const accountLearningPathSlice = createSlice({
     ) => {
       state.accountLearningPaths = action.payload;
     },
-    setAccountLearningPathsBySelectedLearningPathId: (
+    setAccountLearningPathBySelectedAccountIdAndLearningPathId: (
       state,
-      action: PayloadAction<
-        GetListByLearningPathIdAccountLearningPathListItemDto[]
-      >
+      action: PayloadAction<GetByAccountIdAndLearningPathIdAccountLearningPathResponse>
     ) => {
-      state.accountLearningPathsBySelectedLearningPathId = action.payload;
+      state.accountLearningPathBySelectedAccountIdAndLearningPathId =
+        action.payload;
     },
   },
 });
@@ -40,5 +39,5 @@ const accountLearningPathSlice = createSlice({
 export const accountLearningPathReducer = accountLearningPathSlice.reducer;
 export const {
   setAccountLearningPaths,
-  setAccountLearningPathsBySelectedLearningPathId,
+  setAccountLearningPathBySelectedAccountIdAndLearningPathId,
 } = accountLearningPathSlice.actions;

@@ -1,5 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./LearningPathDetailsHeader.css";
+import accountLearningPathService from "../../../services/accountLearningPathService";
+import { setAccountLearningPathBySelectedAccountIdAndLearningPathId } from "../../../store/accountLearningPath/accountLearningPathSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../../store/configureStore";
+import { GetByAccountIdAndLearningPathIdAccountLearningPathResponse } from "../../../models/accountLearningPaths/getByAccountIdAndLearningPathIdAccountLearningPathResponse";
 
 type Props = {};
 
@@ -22,6 +27,68 @@ const LearningPathDetailsHeader = (props: Props) => {
     setIsFavorite(!isFavorite);
   };
 
+  // ----------------- accountLearningPathDataBySelectedAccountIdAndLearningPathId ---------------------------
+
+  const dispatch = useDispatch();
+
+  const accountId = useSelector(
+    (state: any) => state.account.currentAccount.payload.id
+  );
+
+  const selectedLearningPathIdFakeData: number = 1;
+
+  async function accountLearningPathDataBySelectedAccountIdAndLearningPathId(
+    accountId: number,
+    selectedLearningPathId: number
+  ) {
+    try {
+      const accountLearningPathResponse =
+        await accountLearningPathService.getListByAccountIdAndLearningPathId(
+          accountId,
+          selectedLearningPathId
+        );
+      const data = accountLearningPathResponse.data;
+      dispatch(
+        setAccountLearningPathBySelectedAccountIdAndLearningPathId(data)
+      );
+    } catch (error) {
+      console.error("Veri alınamadı:", error);
+    }
+  }
+
+  useEffect(() => {
+    accountLearningPathDataBySelectedAccountIdAndLearningPathId(
+      accountId,
+      selectedLearningPathIdFakeData
+    );
+  }, []);
+
+  const accountLearningPathBySelectedAccountIdAndLearningPathId: GetByAccountIdAndLearningPathIdAccountLearningPathResponse | null =
+    useSelector(
+      (state: RootState) =>
+        state.accountLearningPath
+          .accountLearningPathBySelectedAccountIdAndLearningPathId
+    );
+
+  console.log(
+    "accountLearningPathBySelectedAccountIdAndLearningPathId",
+    accountLearningPathBySelectedAccountIdAndLearningPathId
+  );
+
+  function formatDateToLocaleString(dateString?: string): string {
+    if (!dateString) {
+      return "";
+    }
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.toLocaleString("default", { month: "long" });
+    const year = date.getFullYear();
+    return `${day} ${month} ${year}`;
+  }
+  const formatedEndingTime: string = formatDateToLocaleString(
+    accountLearningPathBySelectedAccountIdAndLearningPathId?.endingTime
+  );
+
   return (
     <div className="learning-path-details-header">
       <div className="learning-path-details-header-left-col">
@@ -29,7 +96,7 @@ const LearningPathDetailsHeader = (props: Props) => {
           className="learning-path-details-header-img"
           src={
             process.env.PUBLIC_URL +
-            "/assets/images/dotnet-react-full-stack.png"
+            accountLearningPathBySelectedAccountIdAndLearningPathId?.imageUrl
           }
         />
       </div>
@@ -37,14 +104,19 @@ const LearningPathDetailsHeader = (props: Props) => {
         <div className="learning-path-details-header-right-col-body">
           <div className="learning-path-details-header-title-section">
             <h3 className="learning-path-details-header-title">
-              .Net & React FullStack | Öğrenme Yolculuğu
+              {
+                accountLearningPathBySelectedAccountIdAndLearningPathId?.learningPathName
+              }
             </h3>
             <span className="learning-path-details-date-info">
-              29 Şubat 2024 tarihine kadar bitirebilirsin
+              {formatedEndingTime + " tarihine kadar bitirebilirsin"}
             </span>
           </div>
           <div className="learning-path-details-header-activity-section">
-            <span className="activity-score">100 Puan</span>
+            <span className="activity-score">
+              {accountLearningPathBySelectedAccountIdAndLearningPathId?.totalNumberOfPoints +
+                " Puan"}
+            </span>
             <button
               className="activity-like-button"
               onClick={handleLikeButtonClick}
@@ -52,7 +124,11 @@ const LearningPathDetailsHeader = (props: Props) => {
               <i className={"bi activity-like-icon " + likeIcon}></i>
             </button>
             <button className="activity-like-count-button">
-              <span className="activity-like-count">50</span>
+              <span className="activity-like-count">
+                {
+                  accountLearningPathBySelectedAccountIdAndLearningPathId?.numberOfLikes
+                }
+              </span>
             </button>
             <button
               className="activity-favorite-button"
@@ -69,11 +145,18 @@ const LearningPathDetailsHeader = (props: Props) => {
               role="progressbar"
               aria-valuemin={0}
               aria-valuemax={100}
-              style={{ width: "75%" }}
+              style={{
+                width:
+                  accountLearningPathBySelectedAccountIdAndLearningPathId?.percentComplete +
+                  "%",
+              }}
             ></div>
           </div>
           <div className="learning-path-details-progress-bar-value-text">
-            <span>%75</span>
+            <span>
+              {"%" +
+                accountLearningPathBySelectedAccountIdAndLearningPathId?.percentComplete}
+            </span>
           </div>
         </div>
       </div>
