@@ -7,6 +7,7 @@ interface AccountForeignLanguageMetadataState {
     accountForeignLanguageMetadataToAdd: CreateAccountForeignLanguageMetadataRequest | null;
     loading: boolean;
     error: string | null;
+    refreshData: boolean;
 }
 
 const initialState: AccountForeignLanguageMetadataState = {
@@ -14,6 +15,7 @@ const initialState: AccountForeignLanguageMetadataState = {
     accountForeignLanguageMetadataToAdd: null,
     loading: false,
     error: null,
+    refreshData: false,
 };
 
 const accountForeignLanguageMetadataSlice = createSlice({
@@ -33,11 +35,14 @@ const accountForeignLanguageMetadataSlice = createSlice({
         },
         clearAccountForeignLanguageMetadataToAdd: (state) => {
             state.accountForeignLanguageMetadataToAdd = null;
+        },
+        refreshData: (state) => {
+            state.refreshData = !state.refreshData;
         }
     },
 });
 
 export const accountForeignLanguageMetadataReducer =
     accountForeignLanguageMetadataSlice.reducer;
-export const { setAccountForeignLanguageMetadatas, setAccountForeignLanguageMetadataToAdd, clearAccountForeignLanguageMetadataToAdd } =
+export const { setAccountForeignLanguageMetadatas, setAccountForeignLanguageMetadataToAdd, clearAccountForeignLanguageMetadataToAdd, refreshData } =
     accountForeignLanguageMetadataSlice.actions;
