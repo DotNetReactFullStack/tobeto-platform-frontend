@@ -1,9 +1,42 @@
 import React from "react";
 import "./LearningPathAboutTab.css";
+import { GetByAccountIdAndLearningPathIdAccountLearningPathResponse } from "../../../models/accountLearningPaths/getByAccountIdAndLearningPathIdAccountLearningPathResponse";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store/configureStore";
 
 type Props = {};
 
 const LearningPathInfo = (props: Props) => {
+  const accountLearningPathBySelectedAccountIdAndLearningPathId: GetByAccountIdAndLearningPathIdAccountLearningPathResponse | null =
+    useSelector(
+      (state: RootState) =>
+        state.accountLearningPath
+          .accountLearningPathBySelectedAccountIdAndLearningPathId
+    );
+
+  function formatDateToLocaleStringWithTime(dateString?: string): string {
+    if (!dateString) {
+      return "";
+    }
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.toLocaleString("default", { month: "long" });
+    const year = date.getFullYear();
+    const time = date.toLocaleTimeString("tr-TR", {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+    return `${day} ${month} ${year} ${time}`;
+  }
+
+  const formatedStatingTime: string = formatDateToLocaleStringWithTime(
+    accountLearningPathBySelectedAccountIdAndLearningPathId?.startingTime
+  );
+
+  const formatedEndingTime: string = formatDateToLocaleStringWithTime(
+    accountLearningPathBySelectedAccountIdAndLearningPathId?.endingTime
+  );
+
   return (
     <div className="learning-path-info">
       <div className="learning-path-times">
@@ -14,13 +47,13 @@ const LearningPathInfo = (props: Props) => {
           <div className="learning-path-info-subsection">
             <div className="learning-path-info-title-text">Başlangıç</div>
             <div className="learning-path-info-content-text">
-              27 EKİ 2023 14:52
+              {formatedStatingTime}
             </div>
           </div>
           <div className="learning-path-info-subsection">
             <div className="learning-path-info-title-text">Bitiş</div>
             <div className="learning-path-info-content-text">
-              28 ŞBT 2023 14:52
+              {formatedEndingTime}
             </div>
           </div>
         </div>
@@ -32,7 +65,10 @@ const LearningPathInfo = (props: Props) => {
         <div className="learning-path-info-section">
           <div className="learning-path-info-subsection">
             <div className="learning-path-info-title-text">Toplam Süre</div>
-            <div className="learning-path-info-content-text">30 Saat</div>
+            <div className="learning-path-info-content-text">
+              {accountLearningPathBySelectedAccountIdAndLearningPathId?.totalDuration +
+                " Saat"}
+            </div>
           </div>
         </div>
       </div>
