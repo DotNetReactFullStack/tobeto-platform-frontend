@@ -17,6 +17,9 @@ import {
 import lessonService from "../../../services/lessonService";
 import { GetListByCourseIdLessonListItemDto } from "../../../models/lesson/getListByCourseIdLessonListItemDto";
 import { GetByIdLessonResponse } from "../../../models/lesson/getByIdLessonResponse";
+import accountLessonService from "../../../services/accountLessonService";
+import { setAccountLessonBySelectedAccountIdAndLessonId } from "../../../store/accountLesson/accountLessonSlice";
+import { GetByAccountIdAndLessonIdAccountLessonResponse } from "../../../models/accountLesson/getByAccountIdAndLessonIdAccountLessonResponse";
 
 type Props = {};
 
@@ -145,6 +148,45 @@ const LearningPathDetails = (props: Props) => {
   );
 
   console.log("lessonBySelectedId", lessonBySelectedId);
+
+  // ----------------- accountLessonDataBySelectedAccountIdAndLessonId ---------------------------
+
+  //const selectedLessonIdFakeData: number = 1;
+
+  async function accountLessonDataBySelectedAccountIdAndLessonId(
+    selectedAccountId: number,
+    selectedLessontId: number
+  ) {
+    try {
+      const accountLessonResponse =
+        await accountLessonService.getListByAccountIdAndLessonId(
+          selectedAccountId,
+          selectedLessontId
+        );
+      const data = accountLessonResponse.data;
+      dispatch(setAccountLessonBySelectedAccountIdAndLessonId(data));
+    } catch (error) {
+      console.error("Veri alınamadı:", error);
+    }
+  }
+
+  useEffect(() => {
+    accountLessonDataBySelectedAccountIdAndLessonId(
+      accountId,
+      selectedLessonIdFakeData
+    );
+  }, []);
+
+  const accountLessonBySelectedAccountIdAndLessonId: GetByAccountIdAndLessonIdAccountLessonResponse | null =
+    useSelector(
+      (state: RootState) =>
+        state.accountLesson.accountLessonBySelectedAccountIdAndLessonId
+    );
+
+  console.log(
+    "accountLessonBySelectedAccountIdAndLessonId",
+    accountLessonBySelectedAccountIdAndLessonId
+  );
 
   return (
     <div className="learning-path-details">

@@ -23,6 +23,7 @@ import { addressReducer } from "./address/addressSlice";
 import { accountLearningPathReducer } from "./accountLearningPath/accountLearningPathSlice";
 import { courseLearningPathReducer } from "./courseLearningPath/courseLearningPathSlice";
 import { lessonReducer } from "./lesson/lessonSlice";
+import { accountLessonReducer } from "./accountLesson/accountLessonSlice";
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -47,6 +48,7 @@ const rootReducer = combineReducers({
   accountLearningPath: accountLearningPathReducer,
   courseLearningPath: courseLearningPathReducer,
   lesson: lessonReducer,
+  accountLesson: accountLessonReducer,
 });
 
 const persistConfig = {
