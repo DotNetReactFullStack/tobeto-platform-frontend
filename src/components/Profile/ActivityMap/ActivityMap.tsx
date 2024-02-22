@@ -7,14 +7,37 @@ type DayData = {
 };
 
 interface Props {
-  data: DayData[];
+  // data: DayData[];
 }
 
-const ActivityMap: React.FC<Props> = ({ data }) => {
+const generateActivityData = () => {
+  const today = new Date();
+
+  //Son 7*53=371 gün için başlangıç tarihi;
+  const StartDate = new Date(today);
+  StartDate.setDate(today.getDate() - 370);
+
+  const data: DayData[] = [];
+
+  //Tarih ve o tarihe ait aktivite sayısı üretildi;
+  while (StartDate <= today) {
+    const dateStr = StartDate.toISOString().split("T")[0];
+    const count = Math.floor(Math.random() * 40); //0-41 arası (4 dahil) bir tam sayı elde edildi.
+    data.push({ date: dateStr, count });
+    StartDate.setDate(StartDate.getDate() + 1);
+  }
+
+  return data;
+};
+
+// generateActivityData fonksiyonu ile rastgele veri oluşturduk.
+const activityData = generateActivityData();
+
+const ActivityMap: React.FC<Props> = () => {
   // Verileri haftalara göre gruplandırdık;
   const weeklyData: DayData[][] = [];
-  for (let i = 0; i < data.length; i += 7) {
-    weeklyData.push(data.slice(i, i + 7));
+  for (let i = 0; i < activityData.length; i += 7) {
+    weeklyData.push(activityData.slice(i, i + 7));
   }
 
   return (
