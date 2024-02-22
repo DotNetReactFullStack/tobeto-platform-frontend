@@ -7,6 +7,9 @@ import accountLearningPathService from "../../../services/accountLearningPathSer
 import { setAccountLearningPathsBySelectedLearningPathId } from "../../../store/accountLearningPath/accountLearningPathSlice";
 import { GetListByLearningPathIdAccountLearningPathListItemDto } from "../../../models/accountLearningPaths/getListByLearningPathIdAccountLearningPathListItemDto";
 import { RootState } from "../../../store/configureStore";
+import courseLearningPathService from "../../../services/courseLearningPathService";
+import { setCourseLearningPathsBySelectedLearningPathId } from "../../../store/courseLearningPath/courseLearningPathSlice";
+import { GetListByLearningPathIdCourseLearningPathListItemDto } from "../../../models/courseLearningPaths/GetListByLearningPathIdCourseLearningPathListItemDto";
 
 type Props = {};
 
@@ -17,6 +20,7 @@ const LearningPathDetails = (props: Props) => {
     (state: any) => state.account.currentAccount.payload.id
   );
 
+  const selectedLearningPathIdFakeData: number = 1;
   // ----------------- accountLearningPathDataBySelectedLearningPathId ---------------------------
   async function accountLearningPathDataBySelectedLearningPathId(
     selectedLearningPathId: number
@@ -34,7 +38,9 @@ const LearningPathDetails = (props: Props) => {
   }
 
   useEffect(() => {
-    accountLearningPathDataBySelectedLearningPathId(1);
+    accountLearningPathDataBySelectedLearningPathId(
+      selectedLearningPathIdFakeData
+    );
   }, []);
 
   const accountLearningPathsBySelectedLearningPathId: GetListByLearningPathIdAccountLearningPathListItemDto[] =
@@ -48,7 +54,40 @@ const LearningPathDetails = (props: Props) => {
     accountLearningPathsBySelectedLearningPathId
   );
 
-  // -------------------------------------------------------------------------------
+  // ----------------- courseLearningPathDataBySelectedLearningPathId ---------------------------
+
+  async function courseLearningPathDataBySelectedLearningPathId(
+    selectedLearningPathId: number
+  ) {
+    try {
+      const courseLearningPathsresponse =
+        await courseLearningPathService.getListByLearningPathId(
+          selectedLearningPathId
+        );
+      const data = courseLearningPathsresponse.data.items;
+      dispatch(setCourseLearningPathsBySelectedLearningPathId(data));
+    } catch (error) {
+      console.error("Veri alınamadı:", error);
+    }
+  }
+
+  useEffect(() => {
+    courseLearningPathDataBySelectedLearningPathId(
+      selectedLearningPathIdFakeData
+    );
+  }, []);
+
+  const courseLearningPathsBySelectedLearningPathId: GetListByLearningPathIdCourseLearningPathListItemDto[] =
+    useSelector(
+      (state: RootState) =>
+        state.courseLearningPath.courseLearningPathsBySelectedLearningPathId
+    );
+
+  console.log(
+    "courseLearningPathsBySelectedLearningPathId",
+    courseLearningPathsBySelectedLearningPathId
+  );
+
   return (
     <div className="learning-path-details">
       <LearningPathDetailsHeader />

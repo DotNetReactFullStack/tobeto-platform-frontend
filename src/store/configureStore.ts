@@ -19,8 +19,9 @@ import { accountSocialMediaPlatformReducer } from "./accountSocialMediaPlatform/
 import { accountExperienceReducer } from "./experience/experienceSlice";
 import { foreignLanguageReducer } from "./foreignLanguage/foreignLanguageSlice";
 import { foreignLanguageLevelReducer } from "./foreignLanguageLevel/foreignLanguageLevelSlice";
-import { addressReducer } from './address/addressSlice';
+import { addressReducer } from "./address/addressSlice";
 import { accountLearningPathReducer } from "./accountLearningPath/accountLearningPathSlice";
+import { courseLearningPathReducer } from "./courseLearningPath/courseLearningPathSlice";
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -43,6 +44,7 @@ const rootReducer = combineReducers({
   accountCollegeMetadata: accountCollegeMetadataReducer,
   address: addressReducer,
   accountLearningPath: accountLearningPathReducer,
+  courseLearningPath: courseLearningPathReducer,
 });
 
 const persistConfig = {
