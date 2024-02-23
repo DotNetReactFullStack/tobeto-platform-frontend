@@ -1,33 +1,30 @@
 import React, { useEffect, useState } from "react";
 import "./LearningPathDetailsHeader.css";
 import accountLearningPathService from "../../../services/accountLearningPathService";
-import { setAccountLearningPathBySelectedAccountIdAndLearningPathId } from "../../../store/accountLearningPath/accountLearningPathSlice";
+import {
+  decrementLearningPathLikeCount,
+  incrementLearningPathLikeCount,
+  setAccountLearningPathBySelectedAccountIdAndLearningPathId,
+  setAccountLearningPathBySelectedLearningPathId,
+  setLearningPathSaveStatus,
+  setLearningPathLikeCount,
+  setLearningPathLikeStatus,
+  toggleLearningPathSaveStatus,
+  toggleLearningPathLikeStatus,
+  setAccountLearningPathIsSavedRequest,
+  setAccountLearningPathIsLikedRequest,
+} from "../../../store/accountLearningPath/accountLearningPathSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store/configureStore";
 import { GetByAccountIdAndLearningPathIdAccountLearningPathResponse } from "../../../models/accountLearningPaths/getByAccountIdAndLearningPathIdAccountLearningPathResponse";
 import { useParams } from "react-router-dom";
+import { GetListByLearningPathIdAccountLearningPathListItemDto } from "../../../models/accountLearningPaths/getListByLearningPathIdAccountLearningPathListItemDto";
+import { UpdateAccountLearningPathIsSavedRequest } from "../../../models/accountLearningPaths/UpdateAccountLearningPathIsSavedRequest";
+import { UpdateAccountLearningPathIsLikedRequest } from "../../../models/accountLearningPaths/UpdateAccountLearningPathIsLikedRequest";
 
 type Props = {};
 
 const LearningPathDetailsHeader = (props: Props) => {
-  const [isLike, setIsLike] = useState(false);
-  const [likeIcon, setLikeIcon] = useState("bi-heart");
-
-  const handleLikeButtonClick = () => {
-    const newIcon = isLike ? "bi-heart" : "bi-heart-fill";
-    setLikeIcon(newIcon);
-    setIsLike(!isLike);
-  };
-
-  const [isFavorite, setIsFavorite] = useState(false);
-  const [favoriteIcon, setFavoriteIcon] = useState("bi-bookmark");
-
-  const handleFavoriteButtonClick = () => {
-    const newIcon = isFavorite ? "bi-bookmark" : "bi-bookmark-fill";
-    setFavoriteIcon(newIcon);
-    setIsFavorite(!isFavorite);
-  };
-
   // ----------------- accountLearningPathDataBySelectedAccountIdAndLearningPathId ---------------------------
 
   const dispatch = useDispatch();
@@ -66,7 +63,7 @@ const LearningPathDetailsHeader = (props: Props) => {
       accountId,
       selectedLearningPathIdByParams
     );
-  }, []);
+  }, [accountId, selectedLearningPathIdByParams]);
 
   const accountLearningPathBySelectedAccountIdAndLearningPathId: GetByAccountIdAndLearningPathIdAccountLearningPathResponse | null =
     useSelector(
@@ -93,6 +90,182 @@ const LearningPathDetailsHeader = (props: Props) => {
   const formatedEndingTime: string = formatDateToLocaleString(
     accountLearningPathBySelectedAccountIdAndLearningPathId?.endingTime
   );
+
+  // ----------------- accountLearningPathDataBySelectedAccountIdAndLearningPathId ---------------------------
+
+  async function accountLearningPathDataBySelectedLearningPathId(
+    selectedLearningPathId: number
+  ) {
+    try {
+      const accountLearningPathResponse =
+        await accountLearningPathService.getListByLearningPathId(
+          selectedLearningPathId
+        );
+      const data = accountLearningPathResponse.data.items;
+      dispatch(setAccountLearningPathBySelectedLearningPathId(data));
+    } catch (error) {
+      console.error("Veri alınamadı:", error);
+    }
+  }
+
+  useEffect(() => {
+    accountLearningPathDataBySelectedLearningPathId(
+      selectedLearningPathIdByParams
+    );
+  }, [selectedLearningPathIdByParams]);
+
+  const accountLearningPathBySelectedLearningPathId: GetListByLearningPathIdAccountLearningPathListItemDto[] =
+    useSelector(
+      (state: RootState) =>
+        state.accountLearningPath.accountLearningPathBySelectedLearningPathId
+    );
+
+  function countLikedValues(
+    obj: GetListByLearningPathIdAccountLearningPathListItemDto[]
+  ): number {
+    let count = 0;
+    Object.values(obj).forEach((value) => {
+      if (value.isLiked === true) {
+        count++;
+      }
+    });
+
+    return count;
+  }
+  useEffect(() => {
+    let likeCount = countLikedValues(
+      accountLearningPathBySelectedLearningPathId
+    );
+    dispatch(setLearningPathLikeCount(likeCount));
+    dispatch(
+      setLearningPathLikeStatus(
+        accountLearningPathBySelectedAccountIdAndLearningPathId?.isLiked ||
+          false
+      )
+    );
+    dispatch(
+      setLearningPathSaveStatus(
+        accountLearningPathBySelectedAccountIdAndLearningPathId?.isSaved ||
+          false
+      )
+    );
+  }, [accountLearningPathBySelectedLearningPathId]);
+
+  const learningPathLikeCount: number = useSelector(
+    (state: RootState) => state.accountLearningPath.learningPathLikeCount
+  );
+
+  //------------------------- Like status ---------------------------
+
+  const learningPathLikeStatus: boolean = useSelector(
+    (state: RootState) => state.accountLearningPath.learningPathLikeStatus
+  );
+
+  //console.log(learningPathLikeStatus);
+
+  const [likeIcon, setLikeIcon] = useState("");
+
+  const handleLikeButtonClick = () => {
+    learningPathLikeStatus
+      ? dispatch(decrementLearningPathLikeCount())
+      : dispatch(incrementLearningPathLikeCount());
+    dispatch(toggleLearningPathLikeStatus());
+  };
+
+  useEffect(() => {
+    const newIcon = learningPathLikeStatus ? "bi-heart-fill" : "bi-heart";
+    setLikeIcon(newIcon);
+    const accountLearningPathIsLikedRequest: UpdateAccountLearningPathIsLikedRequest =
+      {
+        accountId:
+          accountLearningPathBySelectedAccountIdAndLearningPathId?.accountId ??
+          0,
+        learningPathId:
+          accountLearningPathBySelectedAccountIdAndLearningPathId?.learningPathId ??
+          0,
+        isLiked: learningPathLikeStatus,
+      };
+    dispatch(
+      setAccountLearningPathIsLikedRequest(accountLearningPathIsLikedRequest)
+    );
+  }, [learningPathLikeStatus]);
+
+  const accountLearningPathIsLikedRequest: UpdateAccountLearningPathIsLikedRequest | null =
+    useSelector(
+      (state: RootState) =>
+        state.accountLearningPath.accountLearningPathIsLikedRequest
+    );
+
+  const sendIsLikedRequest = async () => {
+    try {
+      if (accountLearningPathIsLikedRequest !== null) {
+        await accountLearningPathService.updateIsLiked(
+          accountLearningPathIsLikedRequest
+        );
+      }
+    } catch (error) {
+      console.error("Hata: isLiked durumu güncellenemedi.", error);
+    }
+  };
+
+  useEffect(() => {
+    if (accountLearningPathIsLikedRequest !== null) {
+      sendIsLikedRequest();
+    }
+  }, [accountLearningPathIsLikedRequest]);
+
+  //------------------------- Save status ---------------------------
+
+  const [SaveIcon, setSaveIcon] = useState("bi-bookmark");
+
+  const learningPathSaveStatus: boolean = useSelector(
+    (state: RootState) => state.accountLearningPath.learningPathSaveStatus
+  );
+
+  const handleSaveButtonClick = () => {
+    dispatch(toggleLearningPathSaveStatus());
+  };
+
+  useEffect(() => {
+    const newIcon = learningPathSaveStatus ? "bi-bookmark-fill" : "bi-bookmark";
+    setSaveIcon(newIcon);
+    const accountLearningPathIsSavedRequest: UpdateAccountLearningPathIsSavedRequest =
+      {
+        accountId:
+          accountLearningPathBySelectedAccountIdAndLearningPathId?.accountId ??
+          0,
+        learningPathId:
+          accountLearningPathBySelectedAccountIdAndLearningPathId?.learningPathId ??
+          0,
+        isSaved: learningPathSaveStatus,
+      };
+    dispatch(
+      setAccountLearningPathIsSavedRequest(accountLearningPathIsSavedRequest)
+    );
+  }, [learningPathSaveStatus]);
+
+  const accountLearningPathIsSavedRequest: UpdateAccountLearningPathIsSavedRequest | null =
+    useSelector(
+      (state: RootState) =>
+        state.accountLearningPath.accountLearningPathIsSavedRequest
+    );
+
+  const sendIsSavedRequest = async () => {
+    try {
+      if (accountLearningPathIsSavedRequest) {
+        await accountLearningPathService.updateIsSaved(
+          accountLearningPathIsSavedRequest
+        );
+      }
+    } catch (error) {
+      console.error("Hata: isSaved durumu güncellenemedi.", error);
+    }
+  };
+  useEffect(() => {
+    if (accountLearningPathIsSavedRequest !== null) {
+      sendIsSavedRequest();
+    }
+  }, [accountLearningPathIsSavedRequest]);
 
   return (
     <div className="learning-path-details-header">
@@ -131,15 +304,16 @@ const LearningPathDetailsHeader = (props: Props) => {
             <button className="activity-like-count-button">
               <span className="activity-like-count">
                 {
-                  accountLearningPathBySelectedAccountIdAndLearningPathId?.numberOfLikes
+                  //accountLearningPathBySelectedAccountIdAndLearningPathId?.numberOfLikes
+                  learningPathLikeCount
                 }
               </span>
             </button>
             <button
               className="activity-favorite-button"
-              onClick={handleFavoriteButtonClick}
+              onClick={handleSaveButtonClick}
             >
-              <i className={"bi activity-favorite-icon " + favoriteIcon}></i>
+              <i className={"bi activity-favorite-icon " + SaveIcon}></i>
             </button>
           </div>
         </div>
