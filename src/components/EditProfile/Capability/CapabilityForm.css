@@ -5,6 +5,10 @@
   align-items: flex-start;
 }
 
+.capability-form form {
+  width: 100%;
+}
+
 .capability-input-container {
   display: flex;
   flex-direction: column;
@@ -48,6 +52,10 @@
 @media (max-width: 767.98px) {
   .capability-form {
     align-items: center;
+  }
+
+  .capability-input-container {
+    width: 100%;
   }
 
   .capability-save-button {
