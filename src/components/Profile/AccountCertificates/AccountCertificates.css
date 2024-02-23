@@ -1,7 +1,8 @@
-.account-certificates :hover {
+.account-certificates .certificates-element:hover {
   background-color: #9933ff;
   color: white;
 }
-.account-certificates :hover .certificates-file-type-icon {
+
+.account-certificates .certificates-element:hover .certificates-file-type-icon {
   color: white;
 }
