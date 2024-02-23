@@ -34,20 +34,60 @@ const RouteDefinitions = (props: Props) => {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
-      <Route path="/announcements" element={<PrivateRoute component={Announcements} />} />
-      <Route path="/my-learning-paths" element={<PrivateRoute component={LearningPaths} />} />
-      <Route path="/my-profile" element={<PrivateRoute component={Profile} />} />
-      <Route path="/my-profile/edit-profile/my-personal-information" element={<PrivateRoute component={PersonalInformation} />} />
-      <Route path="/my-profile/edit-profile/my-experience" element={<PrivateRoute component={Experience} />} />
-      <Route path="/my-profile/edit-profile/education" element={<PrivateRoute component={Education} />} />
-      <Route path="/my-profile/edit-profile/capabilities" element={<PrivateRoute component={Capabilities} />} />
-      <Route path="/my-profile/edit-profile/certificates" element={<PrivateRoute component={MyCertificates} />} />
-      <Route path="/my-profile/edit-profile/social-media-accounts" element={<PrivateRoute component={SocialMediaAccounts} />} />
-      <Route path="/my-profile/edit-profile/foreing-languages" element={<PrivateRoute component={ForeignLanguages} />} />
-      <Route path="/my-profile/edit-profile/settings" element={<PrivateRoute component={AccountSettings} />} />
-      <Route path="/my-learning-paths/net-react-fullstack" element={<PrivateRoute component={LearningPathContent} />} />
+      <Route
+        path="/announcements"
+        element={<PrivateRoute component={Announcements} />}
+      />
+      <Route
+        path="/my-learning-paths"
+        element={<PrivateRoute component={LearningPaths} />}
+      />
+      <Route
+        path="/my-profile"
+        element={<PrivateRoute component={Profile} />}
+      />
+      <Route
+        path="/my-profile/edit-profile/my-personal-information"
+        element={<PrivateRoute component={PersonalInformation} />}
+      />
+      <Route
+        path="/my-profile/edit-profile/my-experience"
+        element={<PrivateRoute component={Experience} />}
+      />
+      <Route
+        path="/my-profile/edit-profile/education"
+        element={<PrivateRoute component={Education} />}
+      />
+      <Route
+        path="/my-profile/edit-profile/capabilities"
+        element={<PrivateRoute component={Capabilities} />}
+      />
+      <Route
+        path="/my-profile/edit-profile/certificates"
+        element={<PrivateRoute component={MyCertificates} />}
+      />
+      <Route
+        path="/my-profile/edit-profile/social-media-accounts"
+        element={<PrivateRoute component={SocialMediaAccounts} />}
+      />
+      <Route
+        path="/my-profile/edit-profile/foreing-languages"
+        element={<PrivateRoute component={ForeignLanguages} />}
+      />
+      <Route
+        path="/my-profile/edit-profile/settings"
+        element={<PrivateRoute component={AccountSettings} />}
+      />
+      <Route
+        path="/learning-paths/learning-path/:learningPathId"
+        element={<PrivateRoute component={LearningPathContent} />}
+      />
+
       <Route path="/my-exams" element={<PrivateRoute component={Exams} />} />
-      <Route path="/my-assessments" element={<PrivateRoute component={Assessments} />} />
+      <Route
+        path="/my-assessments"
+        element={<PrivateRoute component={Assessments} />}
+      />
       <Route path="/calendar" element={<PrivateRoute component={Calendar} />} />
       <Route path="/catalog" element={<Catalog />} />
     </Routes>

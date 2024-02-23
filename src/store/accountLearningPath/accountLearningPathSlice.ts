@@ -1,17 +1,32 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { GetListByAccountIdAccountLearningPathListItemDto } from "../../models/accountLearningPaths/getListByAccountIdAccountLearningPathListItemDto";
+import { GetByAccountIdAndLearningPathIdAccountLearningPathResponse } from "../../models/accountLearningPaths/getByAccountIdAndLearningPathIdAccountLearningPathResponse";
 import { GetListByLearningPathIdAccountLearningPathListItemDto } from "../../models/accountLearningPaths/getListByLearningPathIdAccountLearningPathListItemDto";
+import { UpdateAccountLearningPathIsSavedRequest } from "../../models/accountLearningPaths/UpdateAccountLearningPathIsSavedRequest";
+import { UpdateAccountLearningPathIsLikedRequest } from "../../models/accountLearningPaths/UpdateAccountLearningPathIsLikedRequest";
 
 interface AccountLearningPathState {
   accountLearningPaths: GetListByAccountIdAccountLearningPathListItemDto[];
-  accountLearningPathsBySelectedLearningPathId: GetListByLearningPathIdAccountLearningPathListItemDto[];
+  accountLearningPathBySelectedAccountIdAndLearningPathId: GetByAccountIdAndLearningPathIdAccountLearningPathResponse | null;
+  accountLearningPathBySelectedLearningPathId: GetListByLearningPathIdAccountLearningPathListItemDto[];
+  learningPathLikeCount: number;
+  accountLearningPathIsLikedRequest: UpdateAccountLearningPathIsLikedRequest | null;
+  learningPathLikeStatus: boolean;
+  accountLearningPathIsSavedRequest: UpdateAccountLearningPathIsSavedRequest | null;
+  learningPathSaveStatus: boolean;
   loading: boolean;
   error: string | null;
 }
 
 const initialState: AccountLearningPathState = {
   accountLearningPaths: [],
-  accountLearningPathsBySelectedLearningPathId: [],
+  accountLearningPathBySelectedAccountIdAndLearningPathId: null,
+  accountLearningPathBySelectedLearningPathId: [],
+  learningPathLikeCount: 0,
+  accountLearningPathIsLikedRequest: null,
+  learningPathLikeStatus: false,
+  accountLearningPathIsSavedRequest: null,
+  learningPathSaveStatus: false,
   loading: false,
   error: null,
 };
@@ -26,13 +41,53 @@ const accountLearningPathSlice = createSlice({
     ) => {
       state.accountLearningPaths = action.payload;
     },
-    setAccountLearningPathsBySelectedLearningPathId: (
+    setAccountLearningPathBySelectedAccountIdAndLearningPathId: (
+      state,
+      action: PayloadAction<GetByAccountIdAndLearningPathIdAccountLearningPathResponse>
+    ) => {
+      state.accountLearningPathBySelectedAccountIdAndLearningPathId =
+        action.payload;
+    },
+    setAccountLearningPathBySelectedLearningPathId: (
       state,
       action: PayloadAction<
         GetListByLearningPathIdAccountLearningPathListItemDto[]
       >
     ) => {
-      state.accountLearningPathsBySelectedLearningPathId = action.payload;
+      state.accountLearningPathBySelectedLearningPathId = action.payload;
+    },
+    setLearningPathLikeCount: (state, action: PayloadAction<number>) => {
+      state.learningPathLikeCount = action.payload;
+    },
+    incrementLearningPathLikeCount: (state) => {
+      state.learningPathLikeCount = state.learningPathLikeCount + 1;
+    },
+    decrementLearningPathLikeCount: (state) => {
+      state.learningPathLikeCount = state.learningPathLikeCount - 1;
+    },
+    setAccountLearningPathIsLikedRequest: (
+      state,
+      action: PayloadAction<UpdateAccountLearningPathIsLikedRequest>
+    ) => {
+      state.accountLearningPathIsLikedRequest = action.payload;
+    },
+    setLearningPathLikeStatus: (state, action: PayloadAction<boolean>) => {
+      state.learningPathLikeStatus = action.payload;
+    },
+    toggleLearningPathLikeStatus: (state) => {
+      state.learningPathLikeStatus = !state.learningPathLikeStatus;
+    },
+    setAccountLearningPathIsSavedRequest: (
+      state,
+      action: PayloadAction<UpdateAccountLearningPathIsSavedRequest>
+    ) => {
+      state.accountLearningPathIsSavedRequest = action.payload;
+    },
+    setLearningPathSaveStatus: (state, action: PayloadAction<boolean>) => {
+      state.learningPathSaveStatus = action.payload;
+    },
+    toggleLearningPathSaveStatus: (state) => {
+      state.learningPathSaveStatus = !state.learningPathSaveStatus;
     },
   },
 });
@@ -40,5 +95,15 @@ const accountLearningPathSlice = createSlice({
 export const accountLearningPathReducer = accountLearningPathSlice.reducer;
 export const {
   setAccountLearningPaths,
-  setAccountLearningPathsBySelectedLearningPathId,
+  setAccountLearningPathBySelectedAccountIdAndLearningPathId,
+  setAccountLearningPathBySelectedLearningPathId,
+  setLearningPathLikeCount,
+  incrementLearningPathLikeCount,
+  decrementLearningPathLikeCount,
+  setAccountLearningPathIsLikedRequest,
+  setLearningPathLikeStatus,
+  toggleLearningPathLikeStatus,
+  setAccountLearningPathIsSavedRequest,
+  setLearningPathSaveStatus,
+  toggleLearningPathSaveStatus,
 } = accountLearningPathSlice.actions;

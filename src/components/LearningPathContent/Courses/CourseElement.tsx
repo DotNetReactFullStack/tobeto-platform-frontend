@@ -4,11 +4,11 @@ import LessonList from "../Lessons/LessonList";
 
 type Props = {
   collapseId: string;
+  courseId: number;
   courseName: string;
-  lessonListData: any[];
 };
 
-const CourseElement = ({ collapseId, courseName, lessonListData }: Props) => {
+const CourseElement = ({ collapseId, courseId, courseName }: Props) => {
   const [isCollapseOpen, setIsCollapseOpen] = useState(true);
   const [courseElementIcon, setCourseElementIcon] =
     useState("bi-chevron-right");
@@ -24,7 +24,7 @@ const CourseElement = ({ collapseId, courseName, lessonListData }: Props) => {
         className="course-element-collapse-button"
         type="button"
         data-bs-toggle="collapse"
-        data-bs-target={"#" + collapseId}
+        data-bs-target={"#course-" + collapseId}
         aria-expanded="false"
         aria-controls={collapseId}
         onClick={handleCourseElementClick}
@@ -33,9 +33,9 @@ const CourseElement = ({ collapseId, courseName, lessonListData }: Props) => {
         <span className="course-element-collapse-text">{courseName}</span>
       </button>
 
-      <div className="collapse" id={collapseId}>
+      <div className="collapse" id={"course-" + collapseId}>
         <div className="collapse-lesson-list">
-          <LessonList lessonListData={lessonListData} />
+          <LessonList selectedCourseId={courseId} />
         </div>
       </div>
     </div>
