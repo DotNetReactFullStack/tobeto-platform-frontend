@@ -34,7 +34,7 @@ const CapabilityList = (props: Props) => {
   }, [refreshData])
 
   return (
-    <div className="capability-list">
+    <div className="capability-list input-container-w-100">
       {accountCapabilities.map((value, index) => (
         <CapabilityElement
           key={index}

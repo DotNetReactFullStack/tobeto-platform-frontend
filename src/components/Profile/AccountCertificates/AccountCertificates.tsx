@@ -5,11 +5,7 @@ import CertificatesElement from "./CertificatesElement";
 type Props = {}
 
 const accountCertificatesFakeData: any[] = [
-  // { name: "CSS sertifika" },
-  // { name: "JavaScript sertifika" },
-  // { name: ".Net sertifika" },
-  // { name: "React sertifika" },
-  // { name: "İstanbul Kodluyor kurs sertifikası" },
+  { name: ".NET & React Full Stack | Codecademy" },
 ];
 
 const AccountCertificates = (props: Props) => {

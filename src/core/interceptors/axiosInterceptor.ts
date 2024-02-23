@@ -23,6 +23,7 @@ axiosInstance.interceptors.response.use(
         return response;
     },
     error => {
+        console.log(error)
         handleError(error);
         store.dispatch(removeRequest());
         return error;

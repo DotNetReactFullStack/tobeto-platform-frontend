@@ -66,6 +66,11 @@
     align-items: center;
   }
 
+  .foreign-language-name-input-container,
+  .foreign-language-level-input-container {
+    width: 100%;
+  }
+
   .foreign-language-input-section {
     justify-content: center;
   }

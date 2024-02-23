@@ -7,7 +7,7 @@ type Props = {
 
 function CapabilitiesElement({ content }: Props) {
   return (
-    <div className="capabilities-element">
+    <div className="capability-element">
       <span>{content}</span>
     </div>
   );

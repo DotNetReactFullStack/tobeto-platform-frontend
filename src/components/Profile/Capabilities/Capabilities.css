@@ -1,4 +1,4 @@
-.capabilities :hover {
+.capabilities .capability-element:hover {
   background-color: #9933ff;
   color: white;
 }

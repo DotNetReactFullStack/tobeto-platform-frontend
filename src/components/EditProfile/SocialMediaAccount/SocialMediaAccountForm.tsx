@@ -155,46 +155,44 @@ const SocialMediaAccountForm = (props: Props) => {
     }
   };
   return (
-    <div className="social-media-account-form">
-      <Formik
-        initialValues={initialValues}
-        onSubmit={(values): any => {
-          handleAddSocialMediaPlatform(values, accountId, dispatch);
-        }}
-        validationSchema={validationSchema}
-      >
-        {(formikProps) => (
-          <Form className="input-container-w-100">
-            <div className="social-media-account-input-section">
-              <InputContainer
-                useFormikField={true}
-                inputContainerClasses="social-media-account-type-input-container input-container-w-30"
-                elementType={FormElementType.Select}
-                inputName="socialMediaPlatformId"
-                defaultOptionText="Seçiniz"
-                optionData={socialMediaPlatforms}
-                optionDataFilters={socialMediaPlatformOptionDataFilters}
-                optionDataSort={sortByPriorityDesc}
-                onChange={(e) => {
-                  formikProps.handleChange(e);
-                }}
-              />
+    <Formik
+      initialValues={initialValues}
+      onSubmit={(values): any => {
+        handleAddSocialMediaPlatform(values, accountId, dispatch);
+      }}
+      validationSchema={validationSchema}
+    >
+      {(formikProps) => (
+        <Form className="social-media-account-form input-container-w-100">
+          <div className="social-media-account-input-section">
+            <InputContainer
+              useFormikField={true}
+              inputContainerClasses="social-media-account-type-input-container input-container-w-30"
+              elementType={FormElementType.Select}
+              inputName="socialMediaPlatformId"
+              defaultOptionText="Seçiniz"
+              optionData={socialMediaPlatforms}
+              optionDataFilters={socialMediaPlatformOptionDataFilters}
+              optionDataSort={sortByPriorityDesc}
+              onChange={(e) => {
+                formikProps.handleChange(e);
+              }}
+            />
 
-              <InputContainer
-                useFormikField={true}
-                inputContainerClasses="social-media-account-link-input-container input-container-w-70"
-                inputType={InputType.URL}
-                inputName="link"
-                inputPlaceholder="http://"
-              />
-            </div>
-            <button type="submit" className="social-media-account-save-button">
-              Kaydet
-            </button>
-          </Form>
-        )}
-      </Formik>
-    </div>
+            <InputContainer
+              useFormikField={true}
+              inputContainerClasses="social-media-account-link-input-container input-container-w-70"
+              inputType={InputType.URL}
+              inputName="link"
+              inputPlaceholder="http://"
+            />
+          </div>
+          <button type="submit" className="social-media-account-save-button">
+            Kaydet
+          </button>
+        </Form>
+      )}
+    </Formik>
   );
 };
 
