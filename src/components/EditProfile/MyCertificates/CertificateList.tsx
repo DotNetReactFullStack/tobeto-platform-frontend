@@ -62,11 +62,11 @@ const CertificateList = (props: Props) => {
                   >
                     <i className="bi bi-trash3 certificate-delete-button-icon"></i>
                   </button>
-                  <DeleteModal
+                  {/* <DeleteModal
                     entityService={new BaseService()}
                     entityId={"id-" + value.certificateId}
                     deleteModalTitle="sertifikayı"
-                  />
+                  /> */}
                 </div>
               </td>
             </tr>

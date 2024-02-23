@@ -34,9 +34,16 @@ const Capabilities = (props: Props) => {
   return (
     <>
       <div className="capabilities">
-        {accountCapabilities.slice(0, 6).map((accountCapability, index) => (
-          <CapabilitiesElement key={index} content={accountCapability.capabilityName} />
-        ))}
+        {
+          accountCapabilities.length === 0
+            ? <span className="color-gray-fs-15">Lütfen yetkinliklerinizi ekleyiniz.</span>
+            : <></>
+        }
+        {
+          accountCapabilities.slice(0, 6).map((accountCapability, index) => (
+            <CapabilitiesElement key={index} content={accountCapability.capabilityName} />
+          ))
+        }
       </div>
       {
         (accountCapabilities.length > 6)

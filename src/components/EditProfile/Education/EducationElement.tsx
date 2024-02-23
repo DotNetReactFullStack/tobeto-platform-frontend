@@ -3,6 +3,8 @@ import "./EducationElement.css";
 import DeleteModal from "../Modals/DeleteModal";
 import { BaseService } from "../../../core/services/baseService";
 import accountCollegeMetadataService from "../../../services/accountCollegeMetadataService";
+import { useDispatch } from "react-redux";
+import { refreshData } from "../../../store/accountCollegeMetadata/accountCollegeMetadataSlice";
 
 type Props = {
   id: number;
@@ -23,6 +25,9 @@ const EducationElement = ({
   graduationYear,
   programOnGoing,
 }: Props) => {
+
+  const dispatch = useDispatch();
+
   return (
     <div className="education-element">
       <div className="education-element-content">
@@ -56,6 +61,7 @@ const EducationElement = ({
         </button>
         <DeleteModal
           entityService={accountCollegeMetadataService}
+          refreshData={refreshData}
           entityId={"educationElementId-" + id}
           deleteModalTitle="eğitimi"
         />

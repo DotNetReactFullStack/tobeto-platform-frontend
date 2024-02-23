@@ -8,6 +8,7 @@ interface AccountSocialMediaPlatformState {
   accountSocialMediaPlatformToAdd: CreateAccountSocialMediaPlatformRequest | null;
   loading: boolean;
   error: string | null;
+  refreshData: boolean;
 }
 
 const initialState: AccountSocialMediaPlatformState = {
@@ -15,6 +16,7 @@ const initialState: AccountSocialMediaPlatformState = {
   accountSocialMediaPlatformToAdd: null,
   loading: false,
   error: null,
+  refreshData: false,
 };
 
 const accountSocialMediaPlatformSlice = createSlice({
@@ -38,6 +40,9 @@ const accountSocialMediaPlatformSlice = createSlice({
     clearAccountSocialMediaPlatformToAdd: (state) => {
       state.accountSocialMediaPlatformToAdd = null;
     },
+    refreshData: (state) => {
+      state.refreshData = !state.refreshData;
+    }
   },
 });
 
@@ -47,4 +52,5 @@ export const {
   setAccountSocialMediaPlatforms,
   setAccountSocialMediaPlatformToAdd,
   clearAccountSocialMediaPlatformToAdd,
+  refreshData,
 } = accountSocialMediaPlatformSlice.actions;

@@ -14,7 +14,7 @@ import { setForeignLanguageLevels } from "../../../store/foreignLanguageLevel/fo
 import { GetListForeignLanguageLevelListItemDto } from "../../../models/foreignLanguageLevels/getListForeignLanguageLevelListItemDto";
 import { RootState } from "../../../store/configureStore";
 import accountForeignLanguageMetadataService from "../../../services/accountForeignLanguageMetadataService";
-import { clearAccountForeignLanguageMetadataToAdd, setAccountForeignLanguageMetadataToAdd } from "../../../store/accountForeignLanguageMetadata/accountForeignLanguageMetadataSlice";
+import { clearAccountForeignLanguageMetadataToAdd, refreshData, setAccountForeignLanguageMetadataToAdd } from "../../../store/accountForeignLanguageMetadata/accountForeignLanguageMetadataSlice";
 import { CreateAccountForeignLanguageMetadataRequest } from "../../../models/accountForeignLanguageMetadatas/createAccountForeignLanguageMetadataRequest";
 
 type Props = {};
@@ -72,7 +72,6 @@ const ForeignLanguageForm = (props: Props) => {
     (state: any) => state.account.currentAccount.payload.id
   );
 
-
   async function fetchLanguageInputData() {
     try {
       const languageResponse = await foreignLanguageService.getAll();
@@ -116,6 +115,7 @@ const ForeignLanguageForm = (props: Props) => {
   const addAccountForeignLanguageMetadata = async (accountForeignLanguageMetadataToAdd: CreateAccountForeignLanguageMetadataRequest) => {
     try {
       await accountForeignLanguageMetadataService.add(accountForeignLanguageMetadataToAdd);
+      dispatch(refreshData())
     } catch (error) {
       console.log("Yabancı dil bilgisi eklenirken bir hata oluştu:", error);
     }
@@ -132,7 +132,6 @@ const ForeignLanguageForm = (props: Props) => {
         });
     }
   }, [accountForeignLanguageMetadataToAdd])
-
 
   return (
     <div className="foreign-language">

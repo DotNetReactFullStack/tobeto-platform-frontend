@@ -13,6 +13,7 @@ import { GetListSocialMediaPlatformListItemDto } from "../../../models/socialMed
 import { RootState } from "../../../store/configureStore";
 import {
   clearAccountSocialMediaPlatformToAdd,
+  refreshData,
   setAccountSocialMediaPlatformToAdd,
 } from "../../../store/accountSocialMediaPlatform/accountSocialMediaPlatformSlice";
 import { SocialMediaPlatformType } from "../../../models/socialMediaPlatforms/socialMediaPlatformType";
@@ -147,9 +148,8 @@ const SocialMediaAccountForm = (props: Props) => {
     accountSocialMediaPlatformToAdd: CreateAccountSocialMediaPlatformRequest
   ) => {
     try {
-      await accountSocialMediaPlatformService.add(
-        accountSocialMediaPlatformToAdd
-      );
+      await accountSocialMediaPlatformService.add(accountSocialMediaPlatformToAdd);
+      dispatch(refreshData())
     } catch (error) {
       console.error("Sosyal medya hesabı eklenirken bir hata oluştu:", error);
     }

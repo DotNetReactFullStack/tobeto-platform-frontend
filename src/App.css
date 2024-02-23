@@ -23,6 +23,11 @@
     margin-top: 96px;
 }
 
+.color-gray-fs-15 {
+    color: gray;
+    font-size: 15px;
+}
+
 .number-of-lines-1 {
     overflow: hidden;
     display: -webkit-box;

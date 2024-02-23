@@ -8,6 +8,7 @@ interface AccountCollegeMetadataState {
   accountCollegeMetadataToAdd: CreateAccountCollegeMetadataRequest | null;
   loading: boolean;
   error: string | null;
+  refreshData: boolean;
 }
 
 const initialState: AccountCollegeMetadataState = {
@@ -15,6 +16,7 @@ const initialState: AccountCollegeMetadataState = {
   accountCollegeMetadataToAdd: null,
   loading: false,
   error: null,
+  refreshData: false,
 };
 
 const accountCollegeMetadataSlice = createSlice({
@@ -38,6 +40,9 @@ const accountCollegeMetadataSlice = createSlice({
     clearAccountCollegeMetadataToAdd: (state) => {
       state.accountCollegeMetadataToAdd = null;
     },
+    refreshData: (state) => {
+      state.refreshData = !state.refreshData;
+    }
   },
 });
 
@@ -47,4 +52,5 @@ export const {
   setAccountCollegeMetadatas,
   setAccountCollegeMetadataToAdd,
   clearAccountCollegeMetadataToAdd,
+  refreshData
 } = accountCollegeMetadataSlice.actions;

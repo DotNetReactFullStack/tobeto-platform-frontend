@@ -31,9 +31,11 @@ const SocialMediaAccountList = (props: Props) => {
     }
   }
 
+  const refreshData = useSelector((state: any) => state.accountSocialMediaPlatform.refreshData);
+
   useEffect(() => {
     fetchAccountSocialMediaPlatform();
-  }, []);
+  }, [refreshData]);
 
   return (
     <div className="social-media-account-list">
