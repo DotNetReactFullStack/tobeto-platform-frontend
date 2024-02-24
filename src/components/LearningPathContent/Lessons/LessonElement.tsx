@@ -3,15 +3,23 @@ import "./LessonElement.css";
 import { useDispatch, useSelector } from "react-redux";
 import { setVideoId } from "../../../store/video/videoSlice";
 import { setSelectedLessonId } from "../../../store/lesson/lessonSlice";
+import { GetByAccountIdAndLessonIdAccountLessonResponse } from "../../../models/accountLesson/getByAccountIdAndLessonIdAccountLessonResponse";
 
 type Props = {
   lessonId: number;
   name: string;
   duration: number;
   videoId: string;
+  lessonElementIcon: string;
 };
 
-const LessonElement = ({ lessonId, name, duration, videoId }: Props) => {
+const LessonElement = ({
+  lessonId,
+  name,
+  duration,
+  videoId,
+  lessonElementIcon,
+}: Props) => {
   const dispatch = useDispatch();
 
   const handleLessonElementClick = () => {
@@ -30,7 +38,7 @@ const LessonElement = ({ lessonId, name, duration, videoId }: Props) => {
         </div>
       </div>
       <div className="lesson-element-right-col">
-        <i className="bi bi-check-circle-fill lesson-element-status-icon" />
+        <i className={"bi lesson-element-status-icon " + lessonElementIcon} />
       </div>
     </div>
   );
