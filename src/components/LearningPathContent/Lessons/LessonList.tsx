@@ -6,6 +6,9 @@ import lessonService from "../../../services/lessonService";
 import { setLessonsBySelectedCourseId } from "../../../store/lesson/lessonSlice";
 import { GetListByCourseIdLessonListItemDto } from "../../../models/lesson/getListByCourseIdLessonListItemDto";
 import { RootState } from "../../../store/configureStore";
+import { GetListByAccountIdAccountLessonListItemDto } from "../../../models/accountLesson/getListByAccountIdAccountLessonListItemDto";
+import accountLessonService from "../../../services/accountLessonService";
+import { setAccountLessonsBySelectedAccountId } from "../../../store/accountLesson/accountLessonSlice";
 
 type Props = {
   selectedCourseId: number;
@@ -14,6 +17,13 @@ type Props = {
 const LessonList = ({ selectedCourseId }: Props) => {
   const dispatch = useDispatch();
 
+  const accountId = useSelector(
+    (state: any) => state.account.currentAccount.payload.id
+  );
+
+  const selectedLessonId = useSelector(
+    (state: any) => state.lesson.selectedLessonId
+  );
   // ----------------- lessonDataBySelectedCourseId ---------------------------
 
   async function lessonDataBySelectedCourseId(selectedCourseId: number) {
@@ -30,25 +40,68 @@ const LessonList = ({ selectedCourseId }: Props) => {
 
   useEffect(() => {
     lessonDataBySelectedCourseId(selectedCourseId);
-  }, []);
+  }, [selectedCourseId]);
 
   const lessonsBySelectedCourseId: GetListByCourseIdLessonListItemDto[] =
     useSelector((state: RootState) => state.lesson.lessonsBySelectedCourseId);
 
-  //console.log("lessonsBySelectedCourseId", lessonsBySelectedCourseId);
+  // ----------------- AccountLessonDataByAccountId ---------------------------
+
+  async function fetchAccountLessonsDataByAccountId(accountId: number) {
+    try {
+      const accountLessonsResponse =
+        await accountLessonService.getListByAccountId(accountId);
+      const data = accountLessonsResponse.data.items;
+      dispatch(setAccountLessonsBySelectedAccountId(data));
+    } catch (error) {
+      console.error("Veri alınamadı:", error);
+    }
+  }
+
+  useEffect(() => {
+    fetchAccountLessonsDataByAccountId(accountId);
+  }, [selectedLessonId]);
+
+  const accountLessonsByAccountId: GetListByAccountIdAccountLessonListItemDto[] =
+    useSelector(
+      (state: RootState) =>
+        state.accountLesson.accountLessonsBySelectedAccountId
+    );
 
   return (
     <div>
       {lessonsBySelectedCourseId.length > 0 &&
-        lessonsBySelectedCourseId.map((value, index) => (
-          <LessonElement
-            key={index}
-            lessonId={value.id}
-            name={value.name}
-            duration={value.duration}
-            videoId={value.videoUrl}
-          />
-        ))}
+        lessonsBySelectedCourseId.map((lesson, index) => {
+          const matchingAccountLesson = accountLessonsByAccountId.find(
+            (accountLesson) => accountLesson.lessonId === lesson.id
+          );
+
+          let lessonElementIcon = "";
+          if (matchingAccountLesson) {
+            if (
+              matchingAccountLesson.points === 100 ||
+              matchingAccountLesson.isComplete
+            ) {
+              lessonElementIcon = "bi-check-circle-fill";
+            } else if (
+              matchingAccountLesson.points > 0 &&
+              !matchingAccountLesson.isComplete
+            ) {
+              lessonElementIcon = "bi-droplet-half";
+            }
+          }
+
+          return (
+            <LessonElement
+              key={index}
+              lessonId={lesson.id}
+              name={lesson.name}
+              duration={lesson.duration}
+              videoId={lesson.videoUrl}
+              lessonElementIcon={lessonElementIcon}
+            />
+          );
+        })}
     </div>
   );
 };
