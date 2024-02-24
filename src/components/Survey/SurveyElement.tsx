@@ -4,16 +4,16 @@ import "./SurveyElement.css";
 type Props = {
   id: string;
   title: string;
-  organization: string;
+  organizationName: string;
   surveyStatus: boolean;
 };
 
-const SurveyElement = ({ id, title, organization, surveyStatus }: Props) => {
+const SurveyElement = ({ id, title, organizationName, surveyStatus }: Props) => {
   return (
     <div
       className="survey-element"
       data-bs-toggle="modal"
-      data-bs-target={`#${id}`}
+      data-bs-target={`#surveyElement${id}`}
     >
       <div className="survey-element-header">
         <div className="survey-element-header-left-side">
@@ -31,7 +31,7 @@ const SurveyElement = ({ id, title, organization, surveyStatus }: Props) => {
       </div>
       <div className="survey-element-content">
         <span className="survey-element-organization">
-          {organization}
+          {organizationName}
         </span>
       </div>
       <div className="survey-element-footer">

@@ -5,16 +5,16 @@ type Props = {
   id: string;
   title: string;
   content: string;
-  organization: string;
+  organizationName: string;
   publishedDate: string;
-  surveyLink: string;
+  connectionLink: string;
 };
 
-const SurveyDetailModal = ({ id, title, content, organization, publishedDate, surveyLink }: Props) => {
+const SurveyDetailModal = ({ id, title, content, organizationName, publishedDate, connectionLink }: Props) => {
   return (
     <div
       className="modal modal-xl fade"
-      id={id}
+      id={`surveyElement${id}`}
       data-bs-backdrop="static"
       data-bs-keyboard="false"
       aria-labelledby="staticBackdropLabel"
@@ -37,7 +37,7 @@ const SurveyDetailModal = ({ id, title, content, organization, publishedDate, su
             {content}
           </div>
           <div className="modal-body survey-detail">
-            Organizasyon: <span>{organization}</span>
+            Organizasyon: <span>{organizationName}</span>
             <br />
             Yayınlanma tarihi: <span>{publishedDate}</span>
           </div>
@@ -49,7 +49,7 @@ const SurveyDetailModal = ({ id, title, content, organization, publishedDate, su
             >
               Kapat
             </button>
-            <a href={surveyLink} target="_blank">
+            <a href={connectionLink} target="_blank">
               <button
                 type="button"
                 className="exem-detail-modal-view-report-button"
