@@ -61,7 +61,7 @@ function UserSection({ }: Props) {
                 </a>
                 <ul className="dropdown-menu dropdown-menu-end">
                   <li>
-                    <Link className="dropdown-item" to="/my-profile">
+                    <Link to="/my-profile/edit-profile/my-personal-information" className="dropdown-item" >
                       Profil Bilgileri
                     </Link>
                   </li>
