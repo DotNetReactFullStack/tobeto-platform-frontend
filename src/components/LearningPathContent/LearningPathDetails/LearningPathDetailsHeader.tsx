@@ -133,22 +133,24 @@ const LearningPathDetailsHeader = (props: Props) => {
     return count;
   }
   useEffect(() => {
-    let likeCount = countLikedValues(
-      accountLearningPathBySelectedLearningPathId
-    );
-    dispatch(setLearningPathLikeCount(likeCount));
-    dispatch(
-      setLearningPathLikeStatus(
-        accountLearningPathBySelectedAccountIdAndLearningPathId?.isLiked ||
-          false
-      )
-    );
-    dispatch(
-      setLearningPathSaveStatus(
-        accountLearningPathBySelectedAccountIdAndLearningPathId?.isSaved ||
-          false
-      )
-    );
+    if (accountLearningPathBySelectedLearningPathId) {
+      let likeCount = countLikedValues(
+        accountLearningPathBySelectedLearningPathId
+      );
+      dispatch(setLearningPathLikeCount(likeCount));
+      dispatch(
+        setLearningPathLikeStatus(
+          accountLearningPathBySelectedAccountIdAndLearningPathId?.isLiked ||
+            false
+        )
+      );
+      dispatch(
+        setLearningPathSaveStatus(
+          accountLearningPathBySelectedAccountIdAndLearningPathId?.isSaved ||
+            false
+        )
+      );
+    }
   }, [accountLearningPathBySelectedLearningPathId]);
 
   const learningPathLikeCount: number = useSelector(
