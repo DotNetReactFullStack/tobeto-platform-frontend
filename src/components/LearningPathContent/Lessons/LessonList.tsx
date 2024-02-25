@@ -24,6 +24,11 @@ const LessonList = ({ selectedCourseId }: Props) => {
   const selectedLessonId = useSelector(
     (state: any) => state.lesson.selectedLessonId
   );
+
+  const lessonVideoPoint: number = useSelector(
+    (state: RootState) => state.accountLesson.lessonVideoPoint
+  );
+
   // ----------------- lessonDataBySelectedCourseId ---------------------------
 
   async function lessonDataBySelectedCourseId(selectedCourseId: number) {
@@ -40,7 +45,7 @@ const LessonList = ({ selectedCourseId }: Props) => {
 
   useEffect(() => {
     lessonDataBySelectedCourseId(selectedCourseId);
-  }, [selectedCourseId]);
+  }, [selectedCourseId, lessonVideoPoint]);
 
   const lessonsBySelectedCourseId: GetListByCourseIdLessonListItemDto[] =
     useSelector((state: RootState) => state.lesson.lessonsBySelectedCourseId);
@@ -60,7 +65,7 @@ const LessonList = ({ selectedCourseId }: Props) => {
 
   useEffect(() => {
     fetchAccountLessonsDataByAccountId(accountId);
-  }, [selectedLessonId]);
+  }, [selectedLessonId, lessonVideoPoint]);
 
   const accountLessonsByAccountId: GetListByAccountIdAccountLessonListItemDto[] =
     useSelector(
@@ -79,7 +84,7 @@ const LessonList = ({ selectedCourseId }: Props) => {
           let lessonElementIcon = "";
           if (matchingAccountLesson) {
             if (
-              matchingAccountLesson.points === 100 ||
+              matchingAccountLesson.points == 100 ||
               matchingAccountLesson.isComplete
             ) {
               lessonElementIcon = "bi-check-circle-fill";
@@ -90,7 +95,6 @@ const LessonList = ({ selectedCourseId }: Props) => {
               lessonElementIcon = "bi-droplet-half";
             }
           }
-
           return (
             <LessonElement
               key={index}
