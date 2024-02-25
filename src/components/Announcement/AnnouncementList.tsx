@@ -1,113 +1,57 @@
-import React from "react";
+import React, { useEffect } from "react";
 import AnnouncementElement from "./AnnouncementElement";
 import "./AnnouncementList.css";
 import AnnouncementDetailModal from "./AnnouncementDetailModal";
+import { useDispatch, useSelector } from "react-redux";
+import { GetListByAccountIdAccountAnnouncementListItemDto } from "../../models/accountAnnouncement/getListByAccountIdAccountAnnouncementListItemDto";
+import { RootState } from "../../store/configureStore";
+import { setAccountAnnouncements } from "../../store/accountAnnouncement/accountAnnouncementSlice";
+import accountAnnouncementService from "../../services/accountAnnouncementService";
 
 type Props = {};
 
-const announcementFakeData: any[] = [
-  {
-    id: "duyuru1",
-    announcementType: "Duyuru",
-    organizationType: "İstanbul Kodluyor",
-    title: "30 Ocak Online Hoşgeldin Buluşması-5",
-    publishDate: "06-01-2024",
-    content: "30 Ocak Online Hoşgeldin Buluşması-5 -> İçerik...",
-  },
-  {
-    id: "duyuru2",
-    announcementType: "Duyuru",
-    organizationType: "İstanbul Kodluyor",
-    title: "Ocak Ayı Tercih Formu Bilgilendirmesi",
-    publishDate: "12.01.2024",
-    content: "Ocak Ayı Tercih Formu Bilgilendirmesi -> İçerik...",
-  },
-  {
-    id: "duyuru3",
-    announcementType: "Duyuru",
-    organizationType: "Sinop Kodluyor",
-    title: "11 Ocak Kampüs Buluşması",
-    publishDate: "06-01-2024",
-    content: "11 Ocak Kampüs Buluşması -> İçerik...",
-  },
-  {
-    id: "duyuru4",
-    announcementType: "Duyuru",
-    organizationType: "Sinop Kodluyor",
-    title: "Yeni Grupların Discord'a Katılımı",
-    publishDate: "07.12.2023",
-    content: "Yeni Grupların Discord'a Katılımı -> İçerik...",
-  },
-  {
-    id: "duyuru5",
-    announcementType: "Duyuru",
-    organizationType: "İstanbul Kodluyor",
-    title: "4 Aralık Online Hoşgeldin Buluşması",
-    publishDate: "29.11.2023",
-    content: "4 Aralık Online Hoşgeldin Buluşması -> İçerik...",
-  },
-  {
-    id: "duyuru6",
-    announcementType: "Duyuru",
-    organizationType: "İstanbul Kodluyor",
-    title: "Önemli Bilgilendirme",
-    publishDate: "23.11.2023",
-    content: "Önemli Bilgilendirme -> İçerik...",
-  },
-  {
-    id: "duyuru7",
-    announcementType: "Duyuru",
-    organizationType: "İstanbul Kodluyor",
-    title: "Yeni Gelenler için Bilgilendirme",
-    publishDate: "17.11.2023",
-    content: "Yeni Gelenler için Bilgilendirme -> İçerik...",
-  },
-  {
-    id: "duyuru8",
-    announcementType: "Duyuru",
-    organizationType: "Sinop Kodluyor",
-    title: "25 Kasım Kampüs Buluşması",
-    publishDate: "04.11.2023",
-    content: "25 Kasım Kampüs Buluşması -> İçerik...",
-  },
-  {
-    id: "duyuru9",
-    announcementType: "Duyuru",
-    organizationType: "İstanbul Kodluyor",
-    title: "3. Gruplar için Bilgilendirme",
-    publishDate: "30.10.2023",
-    content: "3. Gruplar için Bilgilendirme -> İçerik...",
-  },
-  {
-    id: "duyuru10",
-    announcementType: "Duyuru",
-    organizationType: "İstanbul Kodluyor",
-    title: "İki Arada Bir Motivasyon :)",
-    publishDate: "05.10.2023",
-    content: "İki Arada Bir Motivasyon :) -> İçerik...",
-  },
-];
+function AnnouncementList({ }: Props) {
 
-function AnnouncementList({}: Props) {
+  const dispatch = useDispatch();
+
+  const accountId = useSelector((state: any) => state.account.currentAccount.payload.id);
+
+  const accountAnnouncements: GetListByAccountIdAccountAnnouncementListItemDto[] = useSelector((state: RootState) => state.accountAnnouncement.accountAnnouncements);
+
+  async function fetchAccountCapabilityData() {
+    try {
+      const accountCapabilitiesResponse = await accountAnnouncementService.getListByAccountId(accountId);
+      const data = accountCapabilitiesResponse.data.items;
+      dispatch(setAccountAnnouncements(data));
+    } catch (error) {
+      console.error("Veri alınamadı:", error);
+    }
+  }
+
+  useEffect(() => {
+    fetchAccountCapabilityData();
+    console.log(accountAnnouncements)
+  }, [])
+
   return (
     <div className="container main-section announcement-list-container">
-      {announcementFakeData.map((value, index) => (
+      {accountAnnouncements.map((value, index) => (
         <div className="announcement-list-announcement-element">
           <AnnouncementElement
             key={index}
-            id={value.id}
-            announcementType={value.announcementType}
-            organizationType={value.organizationType}
-            title={value.title}
-            publishDate={value.publishDate}
+            id={value.id.toString()}
+            announcementTypeName={value.announcementTypeName}
+            organizationName={value.organizationName}
+            name={value.name}
+            publishedDate={value.publishedDate}
           />
 
           <AnnouncementDetailModal
             key={index}
-            id={value.id}
-            title={value.title}
+            id={value.id.toString()}
+            name={value.name}
             content={value.content}
-            organization={value.organizationType}
+            organizationName={value.organizationName}
           />
         </div>
       ))}
