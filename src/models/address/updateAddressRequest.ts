@@ -1,4 +1,4 @@
-export interface CreateAddressRequest {
+export interface UpdateAddressRequest {
     accountId: number;
     countryId: number;
     cityId: number;

@@ -20,9 +20,14 @@ import { GetListByCountryIdCityListItemDto } from "../../../models/city/getListB
 import districtService from "../../../services/districtService";
 import { setDistricts } from "../../../store/district/districtSlice";
 import { GetListByCityIdDistrictListItemDto } from "../../../models/district/getListByCityIdDistrictListItemDto";
-import { clearAddressToAdd, setAddressToAdd } from "../../../store/address/addressSlice";
-import { CreateAddressRequest } from "../../../models/address/createAddressRequest";
+
+import { clearAddressToUpdate, setAddressToUpdate } from "../../../store/address/addressSlice";
 import addressService from "../../../services/addressService";
+import { UpdateAddressRequest } from "../../../models/address/updateAddressRequest";
+
+import { UpdateAccountRequest } from "../../../models/account/updateAccountRequest";
+import accountService from "../../../services/accountService";
+import { setAccountUpdate } from "../../../store/account/accountSlice";
 
 
 type Props = {};
@@ -112,7 +117,7 @@ const PersonalInformation = (props: Props) => {
   const accountId = useSelector((state: any) => state.account.currentAccount.payload.id);
   const firstName = accountData.payload?.firstName;
   const lastName = accountData.payload?.lastName;
-  const phoneNumber = accountData.payload?.phoneNumber;
+  const [phoneNumber, setPhoneNumber] = useState('');      //accountData.payload?.phoneNumber;
   const email = accountData.payload?.email;
   const nationalIdentificationNumber = accountData.payload?.nationalIdentificationNumber;
   const aboutMe = accountData.payload?.aboutMe;
@@ -200,40 +205,76 @@ const PersonalInformation = (props: Props) => {
     "0"
   )}`;
 
-  // ################## Account to UPDATE ##################
-  /////
-  // ################## Account to UPDATE ##################
-
-  // ################## Address to ADD ##################
-  const address: CreateAddressRequest | null = useSelector(
-    (state: RootState) => state.address.addressToAdd
+  // ################## Account to UPDATE -start ##################
+  const accountUpdate: UpdateAccountRequest | null = useSelector(
+    (state: RootState) => state.account.updateAccount
   );
 
-  const addAddress = async (
-    addressToAdd: CreateAddressRequest
+  const updateAccount = async (
+    accountToUpdate: UpdateAccountRequest
   ) => {
     try {
-      await addressService.add(addressToAdd);
+      await accountService.updateAccountInformation(accountToUpdate);
+    } catch (error) {
+      console.error("Hesap guncelleme bir hata oluştu:", error); // kontrol
+    }
+  };
+
+  useEffect(() => {
+    console.log("accountBilgileri>>>", accountUpdate);
+    if (accountUpdate) {
+      updateAccount(accountUpdate)
+        .then(() => {
+        })
+        .catch((error) => {
+          console.error("Hata oluştu:", error);
+        });
+    }
+  }, [accountUpdate]);
+
+  //console.log(accountUpdate);
+  const handlePersonalInformationUpdateAcoount = async (values: any, accountId: number) => {
+    dispatch(setAccountUpdate(
+      {
+        accountId: accountId,
+        aboutMe: values.aboutMe,
+        birthDate: values.birthDate,
+        phoneNumber: values.phoneNumber,
+      }
+    ))
+  };
+  // ################## Account to UPDATE -end ##################
+
+  // ################## Address to UPDATE -start ##################
+  const addressUpdate: UpdateAddressRequest | null = useSelector(
+    (state: RootState) => state.address.addresToUpdate
+  );
+
+  const updateAddress = async (
+    addresToUpdate: UpdateAddressRequest
+  ) => {
+    try {
+      await addressService.updateAddressInformation(addresToUpdate);
     } catch (error) {
       console.error("Adres eklenirken bir hata oluştu:", error);
     }
   };
 
   useEffect(() => {
-    if (address) {
-      addAddress(address)
+    if (addressUpdate) {
+      updateAddress(addressUpdate)
         .then(() => {
-          dispatch(clearAddressToAdd());
+          dispatch(clearAddressToUpdate());
         })
         .catch((error) => {
           console.error("Hata oluştu:", error);
         });
     }
-  }, [address]);
+  }, [addressUpdate]);
 
-  console.log(address);
-  const handlePersonalInformation = async (values: any, accountId: number) => {
-    dispatch(setAddressToAdd(
+  //console.log(addressUpdate);
+  const handlePersonalInformationUpdateAddress = async (values: any, accountId: number) => {
+    dispatch(setAddressToUpdate(
       {
         accountId: accountId,
         countryId: Number(values.countryId),
@@ -243,7 +284,7 @@ const PersonalInformation = (props: Props) => {
       }
     ))
   };
-
+  // ################## Address to UPDATE -end ##################
 
   return (
     <div className="personal-information">
@@ -273,7 +314,10 @@ const PersonalInformation = (props: Props) => {
       <Formik
         initialValues={initialValues}
         onSubmit={(values): any => {
-          handlePersonalInformation(values, accountId);
+          //handlePersonalInformation(values, accountId);
+          handlePersonalInformationUpdateAddress(values, accountId);
+          handlePersonalInformationUpdateAcoount(values, accountId);
+          //console.log(values)
         }}
         validationSchema={validationSchema}
       >
@@ -305,7 +349,7 @@ const PersonalInformation = (props: Props) => {
               labelText="Telefon Numaranız*"
               inputName="phoneNumber"
               inputType={InputType.Tel}
-              inputValue={phoneNumber}
+              inputValue={formikProps.values.phoneNumber}
               inputPlaceholder="Telefon Numaranız"
               onChange={(e) => {
                 formikProps.handleChange(e);
@@ -319,7 +363,7 @@ const PersonalInformation = (props: Props) => {
               labelText="Doğum Tarihiniz*"
               inputName="birthDate"
               inputType={InputType.Date}
-              //inputValue={birthDate}
+              inputValue={formikProps.values.birthDate}
               onChange={(e) => {
                 formikProps.handleChange(e);
               }}
@@ -414,7 +458,10 @@ const PersonalInformation = (props: Props) => {
                 labelText="Hakkımda"
                 inputName="aboutMe"
                 inputPlaceholder="Kendini kısaca tanıt..."
-              //inputValue="xD.... "
+              //inputValue={formikProps.values.aboutMe}
+              // onChange={(e) => {
+              //   formikProps.handleChange(e);
+              // }}
               />
             </div>
             <button type="submit" className="personal-information-save-button">

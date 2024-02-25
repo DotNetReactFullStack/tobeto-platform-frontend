@@ -1,8 +1,10 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { AccountModel } from "../../models/account/accountModel";
+import { UpdateAccountRequest } from "../../models/account/updateAccountRequest";
 
 interface AccountState {
     currentAccount: AccountModel | null;
+    updateAccount: UpdateAccountRequest | null;
     loading: boolean;
     error: string | null;
 }
@@ -11,6 +13,7 @@ const accountSlice = createSlice({
     name: "account",
     initialState: {
         currentAccount: {},
+        updateAccount: null as UpdateAccountRequest | null,
         loading: false,
         error: null,
     },
@@ -20,6 +23,9 @@ const accountSlice = createSlice({
             state.loading = false;
             state.error = null;
         },
+        setAccountUpdate: (state, action: PayloadAction<UpdateAccountRequest>) => {
+            state.updateAccount = action.payload;
+        },
         logout: (state) => {
             state.currentAccount = {}
         }
@@ -27,4 +33,4 @@ const accountSlice = createSlice({
 });
 
 export const accountReducer = accountSlice.reducer;
-export const { setAccount, logout } = accountSlice.actions;
+export const { setAccount, setAccountUpdate, logout } = accountSlice.actions;
