@@ -7,13 +7,13 @@ interface AccountLessonState {
   accountLessonsBySelectedAccountId: GetListByAccountIdAccountLessonListItemDto[];
   accountLessonBySelectedAccountIdAndLessonId: GetByAccountIdAndLessonIdAccountLessonResponse | null;
   accountLessonIsCompleteRequest: updateAccountLessonIsCompleteRequest | null;
-  lessonElementIcon: string;
-  lessonElementIconColor: string;
   lessonVideoPoint: number;
+  lessonVideoIsComplete: boolean;
   lessonVideoIcon: string;
   lessonVideoIconColor: string;
   lessonVideoStatusText: string;
   lessonVideoStatusTextColor: string;
+
   loading: boolean;
   error: string | null;
 }
@@ -22,13 +22,13 @@ const initialState: AccountLessonState = {
   accountLessonsBySelectedAccountId: [],
   accountLessonBySelectedAccountIdAndLessonId: null,
   accountLessonIsCompleteRequest: null,
-  lessonElementIcon: "",
-  lessonElementIconColor: "",
+  lessonVideoIsComplete: false,
   lessonVideoPoint: 0,
   lessonVideoIcon: "",
   lessonVideoIconColor: "",
   lessonVideoStatusText: "",
   lessonVideoStatusTextColor: "",
+
   loading: false,
   error: null,
 };
@@ -59,11 +59,8 @@ const accountLessonSlice = createSlice({
     setLessonVideoPoint: (state, action: PayloadAction<number>) => {
       state.lessonVideoPoint = action.payload;
     },
-    setLessonElementIcon: (state, action: PayloadAction<string>) => {
-      state.lessonElementIcon = action.payload;
-    },
-    setLessonElementIconColor: (state, action: PayloadAction<string>) => {
-      state.lessonElementIconColor = action.payload;
+    setLessonVideoIsComplete: (state, action: PayloadAction<boolean>) => {
+      state.lessonVideoIsComplete = action.payload;
     },
     setLessonVideoIcon: (state, action: PayloadAction<string>) => {
       state.lessonVideoIcon = action.payload;
@@ -85,9 +82,8 @@ export const {
   setAccountLessonsBySelectedAccountId,
   setAccountLessonBySelectedAccountIdAndLessonId,
   setAccountLessonIsCompleteRequest,
-  setLessonElementIcon,
-  setLessonElementIconColor,
   setLessonVideoPoint,
+  setLessonVideoIsComplete,
   setLessonVideoIcon,
   setLessonVideoIconColor,
   setLessonVideoStatusText,
