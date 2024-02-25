@@ -8,6 +8,10 @@
   background-color: #fdfdfd;
   padding: 2px;
   transition: all 0.25s ease;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .learning-path-element:hover {
@@ -47,6 +51,7 @@
 .learning-path-footer {
   display: flex;
   justify-content: center;
+  padding-bottom: 5px;
 }
 
 .learning-path-footer .learning-path-button {
@@ -57,7 +62,6 @@
   background-color: #d9d9d9;
   color: #282828;
   font-size: 14px;
-  margin-top: 20px;
   transition: 0.5s;
 }
 

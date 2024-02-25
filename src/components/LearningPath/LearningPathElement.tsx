@@ -37,13 +37,14 @@ const LearningPathElement = ({
           className="learning-path-img"
           src={process.env.PUBLIC_URL + imageUrl}
         />
-      </div>
-      <div className="learning-path-body">
-        <div className="learning-path-title">{learningPathName}</div>
-        <div className="learning-path-publish-datetime">
-          {formattedStartingTime}
+        <div className="learning-path-body">
+          <div className="learning-path-title">{learningPathName}</div>
+          <div className="learning-path-publish-datetime">
+            {formattedStartingTime}
+          </div>
         </div>
       </div>
+
       <div className="learning-path-footer">
         <Link to={`/learning-paths/learning-path/${learningPathId}`}>
           <button className="learning-path-button">Eğitime Git</button>
