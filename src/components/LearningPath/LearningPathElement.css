@@ -51,7 +51,7 @@
 .learning-path-footer {
   display: flex;
   justify-content: center;
-  padding-bottom: 5px;
+  padding-bottom: 10px;
 }
 
 .learning-path-footer .learning-path-button {
