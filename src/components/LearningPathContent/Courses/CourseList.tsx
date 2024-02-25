@@ -6,12 +6,11 @@ import courseLearningPathService from "../../../services/courseLearningPathServi
 import { setCourseLearningPathsBySelectedLearningPathId } from "../../../store/courseLearningPath/courseLearningPathSlice";
 import { GetListByLearningPathIdCourseLearningPathListItemDto } from "../../../models/courseLearningPaths/GetListByLearningPathIdCourseLearningPathListItemDto";
 import { RootState } from "../../../store/configureStore";
+import { useParams } from "react-router-dom";
 
-type Props = {
-  courseListData: any[];
-};
+type Props = {};
 
-const CourseList = ({ courseListData }: Props) => {
+const CourseList = (props: Props) => {
   // ----------------- courseLearningPathDataBySelectedLearningPathId ---------------------------
 
   const dispatch = useDispatch();
@@ -20,7 +19,11 @@ const CourseList = ({ courseListData }: Props) => {
     (state: any) => state.account.currentAccount.payload.id
   );
 
-  const selectedLearningPathIdFakeData: number = 1;
+  const params = useParams<{ learningPathId: string }>();
+  const selectedLearningPathIdByParams = parseInt(
+    params.learningPathId || "0",
+    10
+  );
 
   async function courseLearningPathDataBySelectedLearningPathId(
     selectedLearningPathId: number
@@ -39,7 +42,7 @@ const CourseList = ({ courseListData }: Props) => {
 
   useEffect(() => {
     courseLearningPathDataBySelectedLearningPathId(
-      selectedLearningPathIdFakeData
+      selectedLearningPathIdByParams
     );
   }, []);
 

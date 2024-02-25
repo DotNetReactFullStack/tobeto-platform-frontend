@@ -10,15 +10,16 @@ import { GetListByAccountIdAccountLessonListItemDto } from "../../../models/acco
 import accountLessonService from "../../../services/accountLessonService";
 import { setAccountLessonsBySelectedAccountId } from "../../../store/accountLesson/accountLessonSlice";
 
-type Props = {
-  selectedCourseId: number;
-};
+type Props = {};
 
-const LessonList = ({ selectedCourseId }: Props) => {
+const LessonList = (props: Props) => {
   const dispatch = useDispatch();
 
   const accountId = useSelector(
     (state: any) => state.account.currentAccount.payload.id
+  );
+  const selectedCourseId = useSelector(
+    (state: any) => state.course.selectedCourseId
   );
 
   const selectedLessonId = useSelector(
