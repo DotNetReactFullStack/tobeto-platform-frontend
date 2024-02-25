@@ -1,15 +1,15 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { CreateAddressRequest } from "../../models/address/createAddressRequest";
+import { UpdateAddressRequest } from "../../models/address/updateAddressRequest";
 
 
 interface AddressState {
-    addressToAdd: CreateAddressRequest | null;
+    addresToUpdate: UpdateAddressRequest | null;
     loading: boolean;
     error: string | null;
 }
 
 const initialState: AddressState = {
-    addressToAdd: null,
+    addresToUpdate: null,
     loading: false,
     error: null,
 };
@@ -18,14 +18,14 @@ const addressSlice = createSlice({
     name: "address",
     initialState,
     reducers: {
-        setAddressToAdd: (state, action: PayloadAction<CreateAddressRequest>) => {
-            state.addressToAdd = action.payload;
+        setAddressToUpdate: (state, action: PayloadAction<UpdateAddressRequest>) => {
+            state.addresToUpdate = action.payload;
         },
-        clearAddressToAdd: (state) => {
-            state.addressToAdd = null;
+        clearAddressToUpdate: (state) => {
+            state.addresToUpdate = null;
         },
     },
 });
 
 export const addressReducer = addressSlice.reducer;
-export const { setAddressToAdd, clearAddressToAdd } = addressSlice.actions;
+export const { setAddressToUpdate, clearAddressToUpdate } = addressSlice.actions;

@@ -3,6 +3,7 @@ import { BaseService } from "../core/services/baseService";
 import { BASE_API_URL } from "../environment/environment";
 import axiosInstance from "../core/interceptors/axiosInterceptor";
 import { AxiosResponse } from "axios";
+import { UpdateAccountRequest } from "../models/account/updateAccountRequest";
 
 class AccountService extends BaseService
     <
@@ -21,6 +22,13 @@ class AccountService extends BaseService
     getByUserId(id: number): Promise<AxiosResponse<any, any>> {
         return axiosInstance.get<any>(this.apiUrl + "/getByUserId/" + id);
     }
+
+    updateAccountInformation(
+        request: UpdateAccountRequest,
+    ): Promise<AxiosResponse<UpdateAccountRequest, any>> {
+        return axiosInstance.put<UpdateAccountRequest>(this.apiUrl + "/updateAccountInformation", request);
+    }
+
 }
 
 export default new AccountService();
