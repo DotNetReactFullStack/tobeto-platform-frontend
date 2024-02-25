@@ -26,6 +26,7 @@ import { lessonReducer } from "./lesson/lessonSlice";
 import { accountLessonReducer } from "./accountLesson/accountLessonSlice";
 import { surveyReducer } from "./survey/surveySlice";
 import { accountAnnouncementReducer } from "./accountAnnouncement/accountAnnouncementSlice";
+import { courseReducer } from "./course/courseSlice";
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -53,6 +54,7 @@ const rootReducer = combineReducers({
   accountLesson: accountLessonReducer,
   survey: surveyReducer,
   accountAnnouncement: accountAnnouncementReducer,
+  course: courseReducer,
 });
 
 const persistConfig = {
