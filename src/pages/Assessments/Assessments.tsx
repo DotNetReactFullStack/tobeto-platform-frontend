@@ -9,7 +9,6 @@ type Props = {};
 const Assessments = (props: Props) => {
   return (
     <>
-      <Banner bannerTitle="Değerlendirmeler" />
       <div className="container main-section">
         <div className="container assessments-font-properties">
           <h1 className="text-center">
