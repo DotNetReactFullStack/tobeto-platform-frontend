@@ -4,7 +4,10 @@ import "./LessonVideo.css";
 import YouTube from "react-youtube";
 import { useDispatch, useSelector } from "react-redux";
 import lessonService from "../../../services/lessonService";
-import { setLessonBySelectedId } from "../../../store/lesson/lessonSlice";
+import {
+  setLessonBySelectedId,
+  setUpdateLessonDuration,
+} from "../../../store/lesson/lessonSlice";
 import { GetByIdLessonResponse } from "../../../models/lesson/getByIdLessonResponse";
 import { RootState } from "../../../store/configureStore";
 import accountLessonService from "../../../services/accountLessonService";
@@ -24,6 +27,7 @@ import {
   setLessonVideoDuration,
 } from "../../../store/video/videoSlice";
 import { updateAccountLessonIsCompleteRequest } from "../../../models/accountLesson/updateAccountLessonIsCompleteRequest";
+import { UpdateLessonDurationRequest } from "../../../models/lesson/updateLessonDurationRequest";
 
 type Props = {};
 
@@ -125,6 +129,10 @@ const LessonVideo = (props: Props) => {
     (state: any) => state.video.lessonVideoCurrentDuration
   );
 
+  const updateLessonDuration = useSelector(
+    (state: any) => state.lesson.updateLessonDuration
+  );
+
   const opts = {
     height: "390",
     width: "640",
@@ -134,6 +142,7 @@ const LessonVideo = (props: Props) => {
   };
 
   const youtubePlayerRef = useRef<any>(null); // useRef ile youtubePlayerRef tanımlaması
+
   const onReady = (event: any) => {
     event.target.playVideo();
 
@@ -143,6 +152,11 @@ const LessonVideo = (props: Props) => {
     //console.log("uzunluk", durationInMinutes);
 
     youtubePlayerRef.current = event.target; // youtubePlayerRef'i video oynatıcısına atama
+    const updateLessonDurationData: UpdateLessonDurationRequest = {
+      id: Number(selectedLessonId),
+      duration: Number(durationInMinutes),
+    };
+    dispatch(setUpdateLessonDuration(updateLessonDurationData));
   };
 
   const onEnd = () => {
@@ -153,6 +167,27 @@ const LessonVideo = (props: Props) => {
   const onStateChange = (event: any) => {
     //console.log("Current time:", event.target.getCurrentTime());
   };
+
+  const sendUpdateLessonDurationRequest = async (
+    updateLessonDurationData: UpdateLessonDurationRequest
+  ) => {
+    try {
+      if (
+        updateLessonDurationData !== null &&
+        updateLessonDurationData !== undefined
+      ) {
+        await lessonService.updateLessonDuration(updateLessonDurationData);
+      }
+    } catch (error) {
+      console.error("Hata: Duration durumu güncellenemedi.", error);
+    }
+  };
+
+  useEffect(() => {
+    if (updateLessonDuration !== null && updateLessonDuration !== undefined) {
+      sendUpdateLessonDurationRequest(updateLessonDuration);
+    }
+  }, [updateLessonDuration]);
 
   useEffect(() => {
     const interval = setInterval(() => {
