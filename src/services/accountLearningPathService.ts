@@ -4,6 +4,7 @@ import { BASE_API_URL } from "../environment/environment";
 import axiosInstance from "../core/interceptors/axiosInterceptor";
 import { UpdateAccountLearningPathIsSavedRequest } from "../models/accountLearningPaths/UpdateAccountLearningPathIsSavedRequest";
 import { UpdateAccountLearningPathIsLikedRequest } from "../models/accountLearningPaths/UpdateAccountLearningPathIsLikedRequest";
+import { updateAccountLearningPathPercentCompleteRequest } from "../models/accountLearningPaths/updateAccountLearningPathPercentCompleteRequest";
 
 class AccountLearningPathService extends BaseService<
   any,
@@ -62,6 +63,16 @@ class AccountLearningPathService extends BaseService<
   ): Promise<AxiosResponse<UpdateAccountLearningPathIsSavedRequest, any>> {
     return axiosInstance.put<UpdateAccountLearningPathIsSavedRequest>(
       this.apiUrl + "/IsSaved",
+      request
+    );
+  }
+  updatePercentComplete(
+    request: updateAccountLearningPathPercentCompleteRequest
+  ): Promise<
+    AxiosResponse<updateAccountLearningPathPercentCompleteRequest, any>
+  > {
+    return axiosInstance.put<updateAccountLearningPathPercentCompleteRequest>(
+      this.apiUrl + "/PercentComplete",
       request
     );
   }

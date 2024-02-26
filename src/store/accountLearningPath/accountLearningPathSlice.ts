@@ -4,6 +4,7 @@ import { GetByAccountIdAndLearningPathIdAccountLearningPathResponse } from "../.
 import { GetListByLearningPathIdAccountLearningPathListItemDto } from "../../models/accountLearningPaths/getListByLearningPathIdAccountLearningPathListItemDto";
 import { UpdateAccountLearningPathIsSavedRequest } from "../../models/accountLearningPaths/UpdateAccountLearningPathIsSavedRequest";
 import { UpdateAccountLearningPathIsLikedRequest } from "../../models/accountLearningPaths/UpdateAccountLearningPathIsLikedRequest";
+import { updateAccountLearningPathPercentCompleteRequest } from "../../models/accountLearningPaths/updateAccountLearningPathPercentCompleteRequest";
 
 interface AccountLearningPathState {
   accountLearningPaths: GetListByAccountIdAccountLearningPathListItemDto[];
@@ -14,6 +15,9 @@ interface AccountLearningPathState {
   learningPathLikeStatus: boolean;
   accountLearningPathIsSavedRequest: UpdateAccountLearningPathIsSavedRequest | null;
   learningPathSaveStatus: boolean;
+  accountLearningPathPercentCompleteRequest: updateAccountLearningPathPercentCompleteRequest | null;
+  learningPathActivityScore: number;
+  learningPathPercentComplete: number;
   loading: boolean;
   error: string | null;
 }
@@ -27,6 +31,9 @@ const initialState: AccountLearningPathState = {
   learningPathLikeStatus: false,
   accountLearningPathIsSavedRequest: null,
   learningPathSaveStatus: false,
+  accountLearningPathPercentCompleteRequest: null,
+  learningPathActivityScore: 0,
+  learningPathPercentComplete: 0,
   loading: false,
   error: null,
 };
@@ -89,6 +96,18 @@ const accountLearningPathSlice = createSlice({
     toggleLearningPathSaveStatus: (state) => {
       state.learningPathSaveStatus = !state.learningPathSaveStatus;
     },
+    setAccountLearningPathPercentCompleteRequest: (
+      state,
+      action: PayloadAction<updateAccountLearningPathPercentCompleteRequest>
+    ) => {
+      state.accountLearningPathPercentCompleteRequest = action.payload;
+    },
+    setLearningPathActivityScore: (state, action: PayloadAction<number>) => {
+      state.learningPathActivityScore = action.payload;
+    },
+    setLearningPathPercentComplete: (state, action: PayloadAction<number>) => {
+      state.learningPathPercentComplete = action.payload;
+    },
   },
 });
 
@@ -106,4 +125,7 @@ export const {
   setAccountLearningPathIsSavedRequest,
   setLearningPathSaveStatus,
   toggleLearningPathSaveStatus,
+  setAccountLearningPathPercentCompleteRequest,
+  setLearningPathActivityScore,
+  setLearningPathPercentComplete,
 } = accountLearningPathSlice.actions;

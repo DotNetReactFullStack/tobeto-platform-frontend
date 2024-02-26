@@ -2,11 +2,13 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { GetByAccountIdAndLessonIdAccountLessonResponse } from "../../models/accountLesson/getByAccountIdAndLessonIdAccountLessonResponse";
 import { updateAccountLessonIsCompleteRequest } from "../../models/accountLesson/updateAccountLessonIsCompleteRequest";
 import { GetListByAccountIdAccountLessonListItemDto } from "../../models/accountLesson/getListByAccountIdAccountLessonListItemDto";
+import { GetListByAccountIdLearningPathAccountLessonListItemDto } from "../../models/accountLesson/getListByAccountIdLearningPathAccountLessonListItemDto";
 
 interface AccountLessonState {
   accountLessonsBySelectedAccountId: GetListByAccountIdAccountLessonListItemDto[];
   accountLessonBySelectedAccountIdAndLessonId: GetByAccountIdAndLessonIdAccountLessonResponse | null;
   accountLessonIsCompleteRequest: updateAccountLessonIsCompleteRequest | null;
+  accountLessonLearningPathDtosByAccountId: GetListByAccountIdLearningPathAccountLessonListItemDto[];
   lessonVideoPoint: number;
   lessonVideoIsComplete: boolean;
   lessonVideoIcon: string;
@@ -23,6 +25,7 @@ const initialState: AccountLessonState = {
   accountLessonBySelectedAccountIdAndLessonId: null,
   accountLessonIsCompleteRequest: null,
   lessonVideoIsComplete: false,
+  accountLessonLearningPathDtosByAccountId: [],
   lessonVideoPoint: 0,
   lessonVideoIcon: "",
   lessonVideoIconColor: "",
@@ -56,6 +59,14 @@ const accountLessonSlice = createSlice({
     ) => {
       state.accountLessonIsCompleteRequest = action.payload;
     },
+    setAccountLessonLearningPathDtoBySelectedAccountId: (
+      state,
+      action: PayloadAction<
+        GetListByAccountIdLearningPathAccountLessonListItemDto[]
+      >
+    ) => {
+      state.accountLessonLearningPathDtosByAccountId = action.payload;
+    },
     setLessonVideoPoint: (state, action: PayloadAction<number>) => {
       state.lessonVideoPoint = action.payload;
     },
@@ -82,6 +93,7 @@ export const {
   setAccountLessonsBySelectedAccountId,
   setAccountLessonBySelectedAccountIdAndLessonId,
   setAccountLessonIsCompleteRequest,
+  setAccountLessonLearningPathDtoBySelectedAccountId,
   setLessonVideoPoint,
   setLessonVideoIsComplete,
   setLessonVideoIcon,

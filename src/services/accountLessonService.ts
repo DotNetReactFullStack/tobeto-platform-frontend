@@ -5,6 +5,7 @@ import axiosInstance from "../core/interceptors/axiosInterceptor";
 import { updateAccountLessonIsCompleteRequest } from "../models/accountLesson/updateAccountLessonIsCompleteRequest";
 import { GetListByAccountIdAccountLessonListItemDto } from "../models/accountLesson/getListByAccountIdAccountLessonListItemDto";
 import { GetByAccountIdAndLessonIdAccountLessonResponse } from "../models/accountLesson/getByAccountIdAndLessonIdAccountLessonResponse";
+import { GetListByAccountIdLearningPathAccountLessonListItemDto } from "../models/accountLesson/getListByAccountIdLearningPathAccountLessonListItemDto";
 
 class AccountLessonService extends BaseService<any, any, any, any, any, any> {
   constructor() {
@@ -39,6 +40,17 @@ class AccountLessonService extends BaseService<any, any, any, any, any, any> {
     return axiosInstance.put<updateAccountLessonIsCompleteRequest>(
       this.apiUrl + "/IsComplete",
       request
+    );
+  }
+
+  getListByAccountIdLearningPathDto(
+    accountId: number
+  ): Promise<AxiosResponse<any, any>> {
+    return axiosInstance.get<any>(
+      this.apiUrl +
+        "/getListByAccountIdLearningPathDto/" +
+        accountId +
+        "?PageIndex=0&PageSize=10000"
     );
   }
 }

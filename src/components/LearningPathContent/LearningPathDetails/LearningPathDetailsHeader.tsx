@@ -13,6 +13,9 @@ import {
   toggleLearningPathLikeStatus,
   setAccountLearningPathIsSavedRequest,
   setAccountLearningPathIsLikedRequest,
+  setLearningPathActivityScore,
+  setLearningPathPercentComplete,
+  setAccountLearningPathPercentCompleteRequest,
 } from "../../../store/accountLearningPath/accountLearningPathSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store/configureStore";
@@ -21,6 +24,13 @@ import { useParams } from "react-router-dom";
 import { GetListByLearningPathIdAccountLearningPathListItemDto } from "../../../models/accountLearningPaths/getListByLearningPathIdAccountLearningPathListItemDto";
 import { UpdateAccountLearningPathIsSavedRequest } from "../../../models/accountLearningPaths/UpdateAccountLearningPathIsSavedRequest";
 import { UpdateAccountLearningPathIsLikedRequest } from "../../../models/accountLearningPaths/UpdateAccountLearningPathIsLikedRequest";
+import accountLessonService from "../../../services/accountLessonService";
+import { setAccountLessonLearningPathDtoBySelectedAccountId } from "../../../store/accountLesson/accountLessonSlice";
+import {
+  setLessonCount,
+  setTotalDuration,
+} from "../../../store/learningPath/learningPathSlice";
+import toastr from "toastr";
 
 type Props = {};
 
@@ -171,6 +181,9 @@ const LearningPathDetailsHeader = (props: Props) => {
     learningPathLikeStatus
       ? dispatch(decrementLearningPathLikeCount())
       : dispatch(incrementLearningPathLikeCount());
+    learningPathLikeStatus
+      ? toastr.info("Beğeni geri çekildi.")
+      : toastr.success("Eğitim beğenildi");
     dispatch(toggleLearningPathLikeStatus());
   };
 
@@ -226,10 +239,14 @@ const LearningPathDetailsHeader = (props: Props) => {
 
   const handleSaveButtonClick = () => {
     dispatch(toggleLearningPathSaveStatus());
+    learningPathSaveStatus
+      ? toastr.info("Favoriden kaldırıldı.")
+      : toastr.success("Favoriye eklendi.");
   };
 
   useEffect(() => {
     const newIcon = learningPathSaveStatus ? "bi-bookmark-fill" : "bi-bookmark";
+
     setSaveIcon(newIcon);
     const accountLearningPathIsSavedRequest: UpdateAccountLearningPathIsSavedRequest =
       {
@@ -269,6 +286,131 @@ const LearningPathDetailsHeader = (props: Props) => {
     }
   }, [accountLearningPathIsSavedRequest]);
 
+  //-------------Percent Complete Calculator---------------------
+
+  const accountLessonLearningPathDtos = useSelector(
+    (state: any) => state.accountLesson.accountLessonLearningPathDtosByAccountId
+  );
+
+  const learningPathActivityScore = useSelector(
+    (state: any) => state.accountLearningPath.learningPathActivityScore
+  );
+
+  const learningPathPercentComplete = useSelector(
+    (state: any) => state.accountLearningPath.learningPathPercentComplete
+  );
+
+  const lessonVideoPoint = useSelector(
+    (state: any) => state.accountLesson.lessonVideoPoint
+  );
+
+  async function accountLessonLearningPathDtoDataBydAccountId(
+    accountId: number
+  ) {
+    try {
+      const accountLessonLearningPathDtoResponse =
+        await accountLessonService.getListByAccountIdLearningPathDto(accountId);
+      const data = accountLessonLearningPathDtoResponse.data.items;
+      dispatch(setAccountLessonLearningPathDtoBySelectedAccountId(data));
+    } catch (error) {
+      console.error("Veri alınamadı:", error);
+    }
+  }
+
+  useEffect(() => {
+    accountLessonLearningPathDtoDataBydAccountId(accountId);
+  }, [accountId, selectedLearningPathIdByParams, lessonVideoPoint]);
+
+  async function calculateTotalProgressByLearningPathId(
+    id: number
+  ): Promise<any[]> {
+    const filteredDtos = accountLessonLearningPathDtos.filter(
+      (dto: any) => dto.learningPathId === id
+    );
+    const filteredDtosCount = filteredDtos.length;
+    dispatch(setLessonCount(filteredDtosCount));
+
+    const totalDurationData: number = filteredDtos.reduce(
+      (total: number, dto: any) => total + dto.lessonDuration,
+      0
+    );
+    dispatch(setTotalDuration(totalDurationData));
+
+    const totalPointsDuration = filteredDtos.reduce(
+      (total: number, dto: any) =>
+        total + (dto.lessonDuration * dto.points) / 100,
+      0
+    );
+    const totalProgress = parseFloat(
+      ((totalPointsDuration / totalDurationData) * 100).toFixed(1)
+    );
+
+    dispatch(setLearningPathActivityScore(totalProgress));
+
+    const ceiledTotalProgress = Math.ceil(totalProgress);
+    dispatch(setLearningPathPercentComplete(ceiledTotalProgress));
+
+    const isCompleteData = ceiledTotalProgress === 100;
+    const isContinueData = ceiledTotalProgress > 0 && ceiledTotalProgress < 100;
+    await dispatch(
+      setAccountLearningPathPercentCompleteRequest({
+        accountId: accountId,
+        learningPathId: id,
+        totalNumberOfPoints: ceiledTotalProgress,
+        percentComplete: ceiledTotalProgress,
+        isContinue: isContinueData,
+        isComplete: isCompleteData,
+      })
+    );
+
+    return [totalDurationData, totalPointsDuration, totalProgress];
+  }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (
+          accountLessonLearningPathDtos &&
+          accountLessonLearningPathDtos.length > 0
+        ) {
+          await calculateTotalProgressByLearningPathId(
+            selectedLearningPathIdByParams
+          );
+        }
+      } catch (error) {
+        console.error("Hata:", error);
+      }
+    };
+
+    fetchData();
+  }, [accountLessonLearningPathDtos, lessonVideoPoint]);
+
+  //-- updateAccountLearningPathPercentCompleteRequest
+
+  const updateAccountLearningPathPercentCompleteRequest = useSelector(
+    (state: any) =>
+      state.accountLearningPath.accountLearningPathPercentCompleteRequest
+  );
+
+  const sendIsPercentCompleteRequest = async () => {
+    try {
+      //console.log(updateAccountLearningPathPercentCompleteRequest);
+      if (updateAccountLearningPathPercentCompleteRequest) {
+        await accountLearningPathService.updatePercentComplete(
+          updateAccountLearningPathPercentCompleteRequest
+        );
+      }
+    } catch (error) {
+      console.error("Hata: PercentComplete durumu güncellenemedi.", error);
+    }
+  };
+
+  useEffect(() => {
+    if (updateAccountLearningPathPercentCompleteRequest) {
+      sendIsPercentCompleteRequest();
+    }
+  }, [updateAccountLearningPathPercentCompleteRequest]);
+
   return (
     <div className="learning-path-details-header">
       <div className="learning-path-details-header-left-col">
@@ -294,8 +436,7 @@ const LearningPathDetailsHeader = (props: Props) => {
           </div>
           <div className="learning-path-details-header-activity-section">
             <span className="activity-score">
-              {accountLearningPathBySelectedAccountIdAndLearningPathId?.totalNumberOfPoints +
-                " Puan"}
+              {learningPathActivityScore + " Puan"}
             </span>
             <button
               className="activity-like-button"
@@ -327,17 +468,12 @@ const LearningPathDetailsHeader = (props: Props) => {
               aria-valuemin={0}
               aria-valuemax={100}
               style={{
-                width:
-                  accountLearningPathBySelectedAccountIdAndLearningPathId?.percentComplete +
-                  "%",
+                width: learningPathPercentComplete + "%",
               }}
             ></div>
           </div>
           <div className="learning-path-details-progress-bar-value-text">
-            <span>
-              {"%" +
-                accountLearningPathBySelectedAccountIdAndLearningPathId?.percentComplete}
-            </span>
+            <span>{"%" + learningPathPercentComplete}</span>
           </div>
         </div>
       </div>
