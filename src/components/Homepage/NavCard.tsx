@@ -5,8 +5,11 @@ import NavCardElement from "./NavCardElement";
 type Props = {};
 
 const navCardFakeData: any[] = [
-  { title: "Profilini Oluştur", redirectUrl: "/my-profile" },
-  { title: "Kendini değerlendir", redirectUrl: "/my-profile" },
+  {
+    title: "Profilini Oluştur",
+    redirectUrl: "/my-profile/edit-profile/my-personal-information",
+  },
+  { title: "Kendini değerlendir", redirectUrl: "/my-exams" },
   { title: "Öğrenmeye başla", redirectUrl: "/my-learning-paths" },
 ];
 
