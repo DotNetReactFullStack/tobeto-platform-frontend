@@ -2,7 +2,7 @@ import React from "react";
 import "./AnnouncementDetailModal.css";
 
 type Props = {
-  id: string;
+  id: number;
   name: string;
   content: string;
   organizationName: string;

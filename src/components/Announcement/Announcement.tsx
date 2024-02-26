@@ -45,23 +45,27 @@ const Announcement = (props: Props) => {
   return (
     <>
       <div className="announcement-component">
-        {accountAnnouncements.slice(0, 3).map((value, index) => (
-          <div key={index}>
-            <AnnouncementElement
-              id={value.id.toString()}
-              announcementTypeName={value.announcementTypeName}
-              organizationName={value.organizationName}
-              name={value.name}
-              publishedDate={value.publishedDate}
-            />
-            <AnnouncementDetailModal
-              id={value.id.toString()}
-              name={value.name}
-              content={value.content}
-              organizationName={value.organizationName}
-            />
-          </div>
-        ))}
+        {
+          (accountAnnouncements.length > 0)
+            ? accountAnnouncements.slice(0, 3).map((value, index) => (
+              <div key={index}>
+                <AnnouncementElement
+                  id={value.id}
+                  announcementTypeName={value.announcementTypeName}
+                  organizationName={value.organizationName}
+                  name={value.name}
+                  publishedDate={value.publishedDate}
+                />
+                <AnnouncementDetailModal
+                  id={value.id}
+                  name={value.name}
+                  content={value.content}
+                  organizationName={value.organizationName}
+                />
+              </div>
+            ))
+            : <></>
+        }
       </div>
       {accountAnnouncements.length > 3 ? (
         <ShowMoreButton redirectUrl="/announcements" />
