@@ -419,7 +419,6 @@ const LearningPathDetailsHeader = (props: Props) => {
 
   useEffect(() => {
     if (learningPathPercentComplete == 100) {
-      console.log("çalıştı.");
       setLearningPathDetailsInfo(" Tebrikler. Başardın!");
       setLearningPathDetailsInfoColor("green");
     } else {
