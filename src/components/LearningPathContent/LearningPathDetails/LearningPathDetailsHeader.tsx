@@ -411,6 +411,25 @@ const LearningPathDetailsHeader = (props: Props) => {
     }
   }, [updateAccountLearningPathPercentCompleteRequest]);
 
+  // --------------------- learning-path-details-date-info----------------------
+
+  const [learningPathDetailsInfo, setLearningPathDetailsInfo] = useState("");
+  const [learningPathDetailsInfoColor, setLearningPathDetailsInfoColor] =
+    useState("");
+
+  useEffect(() => {
+    if (learningPathPercentComplete == 100) {
+      console.log("çalıştı.");
+      setLearningPathDetailsInfo(" Tebrikler. Başardın!");
+      setLearningPathDetailsInfoColor("green");
+    } else {
+      setLearningPathDetailsInfo(
+        formatedEndingTime + " tarihine kadar bitirebilirsin"
+      );
+      setLearningPathDetailsInfoColor("");
+    }
+  }, [learningPathPercentComplete]);
+
   return (
     <div className="learning-path-details-header">
       <div className="learning-path-details-header-left-col">
@@ -430,8 +449,14 @@ const LearningPathDetailsHeader = (props: Props) => {
                 accountLearningPathBySelectedAccountIdAndLearningPathId?.learningPathName
               }
             </h3>
-            <span className="learning-path-details-date-info">
-              {formatedEndingTime + " tarihine kadar bitirebilirsin"}
+            <span
+              className="learning-path-details-date-info"
+              style={{ color: learningPathDetailsInfoColor }}
+            >
+              {learningPathPercentComplete == 100 && (
+                <i className="bi bi-award-fill"></i>
+              )}
+              {learningPathDetailsInfo}
             </span>
           </div>
           <div className="learning-path-details-header-activity-section">
