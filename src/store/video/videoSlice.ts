@@ -1,18 +1,28 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
+export interface LastWatchedVideo {
+  learningPathId: string;
+  videoId: string;
+  lessonId: number;
+}
+
 interface VideoState {
   videoId: string;
   lessonVideoDuration: number;
   lessonVideoCurrentDuration: number;
+  lastWatchedVideos: LastWatchedVideo[];
 }
+
+const initialState: VideoState = {
+  videoId: "",
+  lessonVideoDuration: 0,
+  lessonVideoCurrentDuration: 0,
+  lastWatchedVideos: [],
+};
 
 const videoSlice = createSlice({
   name: "video",
-  initialState: {
-    videoId: "S_A_VVSQdpU",
-    lessonVideoDuration: 0,
-    lessonVideoCurrentDuration: 0,
-  },
+  initialState,
   reducers: {
     setVideoId: (state, action: PayloadAction<string>) => {
       state.videoId = action.payload;
@@ -23,6 +33,26 @@ const videoSlice = createSlice({
     setLessonVideoCurrentDuration: (state, action: PayloadAction<number>) => {
       state.lessonVideoCurrentDuration = action.payload;
     },
+    setLastWatchedVideoForLearningPath: (
+      state,
+      action: PayloadAction<{
+        learningPathId: string;
+        videoId: string;
+        lessonId: number;
+      }>
+    ) => {
+      const { learningPathId, videoId, lessonId } = action.payload;
+      const existingVideoIndex = state.lastWatchedVideos.findIndex(
+        (video) => video.learningPathId === learningPathId
+      );
+
+      if (existingVideoIndex !== -1) {
+        state.lastWatchedVideos[existingVideoIndex].videoId = videoId;
+        state.lastWatchedVideos[existingVideoIndex].lessonId = lessonId;
+      } else {
+        state.lastWatchedVideos.push({ learningPathId, videoId, lessonId });
+      }
+    },
   },
 });
 
@@ -31,4 +61,5 @@ export const {
   setVideoId,
   setLessonVideoDuration,
   setLessonVideoCurrentDuration,
+  setLastWatchedVideoForLearningPath,
 } = videoSlice.actions;
