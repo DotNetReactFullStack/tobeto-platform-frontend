@@ -45,7 +45,7 @@ function AnnouncementList({ }: Props) {
         <div className="announcement-list-announcement-element">
           <AnnouncementElement
             key={index}
-            id={value.id.toString()}
+            id={value.id}
             announcementTypeName={value.announcementTypeName}
             organizationName={value.organizationName}
             name={value.name}
@@ -54,7 +54,7 @@ function AnnouncementList({ }: Props) {
 
           <AnnouncementDetailModal
             key={index}
-            id={value.id.toString()}
+            id={value.id}
             name={value.name}
             content={value.content}
             organizationName={value.organizationName}
