@@ -37,6 +37,17 @@ const LearningPathInfo = (props: Props) => {
     accountLearningPathBySelectedAccountIdAndLearningPathId?.endingTime
   );
 
+  const totalDuration = useSelector(
+    (state: any) => state.learningPath.totalDuration
+  );
+
+  const totalDurationHours = Math.floor(totalDuration / 60);
+  const totalMinutes = totalDuration % 60;
+
+  const lessonCount = useSelector(
+    (state: any) => state.learningPath.lessonCount
+  );
+
   return (
     <div className="learning-path-info">
       <div className="learning-path-times">
@@ -66,8 +77,7 @@ const LearningPathInfo = (props: Props) => {
           <div className="learning-path-info-subsection">
             <div className="learning-path-info-title-text">Toplam Süre</div>
             <div className="learning-path-info-content-text">
-              {accountLearningPathBySelectedAccountIdAndLearningPathId?.totalDuration +
-                " Saat"}
+              {totalDurationHours + " Saat " + totalMinutes + " Daika"}
             </div>
           </div>
         </div>
@@ -79,7 +89,7 @@ const LearningPathInfo = (props: Props) => {
         <div className="learning-path-info-section">
           <div className="learning-path-info-subsection">
             <div className="learning-path-info-title-text">Toplam Video</div>
-            <div className="learning-path-info-content-text">20</div>
+            <div className="learning-path-info-content-text">{lessonCount}</div>
           </div>
         </div>
       </div>

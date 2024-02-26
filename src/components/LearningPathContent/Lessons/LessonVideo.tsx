@@ -315,7 +315,7 @@ const LessonVideo = (props: Props) => {
           </div>
           <div className="lesson-video-information">
             <span className="lesson-video-information-duration">
-              {"Video - " + lessonBySelectedId?.duration}
+              {"Video - " + lessonBySelectedId?.duration + " dk"}
             </span>
             <span className="lesson-video-information-account-point">
               {lessonVideoPoint + " Puan"}
