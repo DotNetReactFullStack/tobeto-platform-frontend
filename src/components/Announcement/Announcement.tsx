@@ -23,6 +23,13 @@ const Announcement = (props: Props) => {
     try {
       const accountCapabilitiesResponse = await accountAnnouncementService.getListByAccountId(accountId);
       const data = accountCapabilitiesResponse.data.items;
+
+      // refactor
+      for (let index = 0; index < data.length; index++) {
+        const originalDate = new Date(data[index]["publishedDate"]);
+        data[index]["publishedDate"] = `${originalDate.getDate().toString().padStart(2, '0')}-${(originalDate.getMonth() + 1).toString().padStart(2, '0')}-${originalDate.getFullYear().toString().padStart(4, '0')}`;
+      }
+
       dispatch(setAccountAnnouncements(data));
     } catch (error) {
       console.error("Veri alınamadı:", error);
