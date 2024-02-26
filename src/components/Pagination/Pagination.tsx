@@ -13,12 +13,12 @@ const Pagination = (props: Props) => {
               <i className="bi bi-chevron-left"></i>
             </a>
           </li>
-          <li className="page-item ">
+          <li className="page-item active">
             <a className="page-link" href="#">
               1
             </a>
           </li>
-          <li className="page-item active" aria-current="page">
+          <li className="page-item" aria-current="page">
             <a className="page-link" href="#">
               2
             </a>
