@@ -117,11 +117,12 @@ const PersonalInformation = (props: Props) => {
   const accountId = useSelector((state: any) => state.account.currentAccount.payload.id);
   const firstName = accountData.payload?.firstName;
   const lastName = accountData.payload?.lastName;
-  const [phoneNumber, setPhoneNumber] = useState('');      //accountData.payload?.phoneNumber;
+  const phoneNumberDb = accountData.payload?.phoneNumber;
   const email = accountData.payload?.email;
   const nationalIdentificationNumber = accountData.payload?.nationalIdentificationNumber;
-  const aboutMe = accountData.payload?.aboutMe;
-  const birthDate = accountData.payload?.birthDate;
+  const aboutMeDb = accountData.payload?.aboutMe;
+  const birthDateDb = accountData.payload?.birthDate;
+  const formattedDateDB = new Date(birthDateDb).toISOString().split('T')[0];
   //user bilgileri
 
   //country-city-district
@@ -350,7 +351,7 @@ const PersonalInformation = (props: Props) => {
               inputName="phoneNumber"
               inputType={InputType.Tel}
               inputValue={formikProps.values.phoneNumber}
-              inputPlaceholder="Telefon Numaranız"
+              inputPlaceholder={phoneNumberDb}
               onChange={(e) => {
                 formikProps.handleChange(e);
               }}
@@ -363,7 +364,9 @@ const PersonalInformation = (props: Props) => {
               labelText="Doğum Tarihiniz*"
               inputName="birthDate"
               inputType={InputType.Date}
-              inputValue={formikProps.values.birthDate}
+              //inputValue={formikProps.values.birthDate}
+              inputValue={formattedDateDB}
+              inputPlaceholder={formattedDateDB}
               onChange={(e) => {
                 formikProps.handleChange(e);
               }}
@@ -457,7 +460,7 @@ const PersonalInformation = (props: Props) => {
                 elementType={FormElementType.TextArea}
                 labelText="Hakkımda"
                 inputName="aboutMe"
-                inputPlaceholder="Kendini kısaca tanıt..."
+                inputPlaceholder={aboutMeDb}
               //inputValue={formikProps.values.aboutMe}
               // onChange={(e) => {
               //   formikProps.handleChange(e);
