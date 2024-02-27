@@ -76,6 +76,18 @@ const LearningPathNav = (props: Props) => {
           >
             Tamamladıklarım
           </button>
+          <button
+            className="nav-link learning-paths-nav-tab"
+            id="nav-saved-learning-paths-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#nav-saved-learning-paths"
+            type="button"
+            role="tab"
+            aria-controls="nav-saved-learning-paths"
+            aria-selected="false"
+          >
+            Favorilerim
+          </button>
         </div>
       </nav>
       <div className="tab-content" id="nav-tabContent">
@@ -126,6 +138,25 @@ const LearningPathNav = (props: Props) => {
           {accountLearningPaths.length > 0 &&
             accountLearningPaths
               .filter((value) => value.isComplete == true)
+              .map((value, index) => (
+                <LearningPathElement
+                  key={index}
+                  learningPathId={value.learningPathId}
+                  learningPathName={value.learningPathName}
+                  startingTime={value.startingTime}
+                  imageUrl={value.imageUrl}
+                />
+              ))}
+        </div>
+        <div
+          className="tab-pane fade"
+          id="nav-saved-learning-paths"
+          role="tabpanel"
+          aria-labelledby="nav-saved-learning-paths-tab"
+        >
+          {accountLearningPaths.length > 0 &&
+            accountLearningPaths
+              .filter((value) => value.isSaved == true)
               .map((value, index) => (
                 <LearningPathElement
                   key={index}
