@@ -24,13 +24,16 @@
 }
 
 @media (max-width: 1199.98px) {
-
   .exam-component-header {
     display: flex;
     justify-content: center;
   }
 
   .exam-component-body {
+    justify-content: center;
+  }
+  .exam-component-body-elements {
+    display: flex;
     justify-content: center;
   }
 
