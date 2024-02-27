@@ -3,12 +3,12 @@ import "./LessonList.css";
 import LessonElement from "./LessonElement";
 import { useDispatch, useSelector } from "react-redux";
 import lessonService from "../../../services/lessonService";
-import { setLessonsBySelectedCourseId } from "../../../store/lesson/lessonSlice";
-import { GetListByCourseIdLessonListItemDto } from "../../../models/lesson/getListByCourseIdLessonListItemDto";
+import { setLessonList } from "../../../store/lesson/lessonSlice";
 import { RootState } from "../../../store/configureStore";
 import { GetListByAccountIdAccountLessonListItemDto } from "../../../models/accountLesson/getListByAccountIdAccountLessonListItemDto";
 import accountLessonService from "../../../services/accountLessonService";
 import { setAccountLessonsBySelectedAccountId } from "../../../store/accountLesson/accountLessonSlice";
+import { GetListLessonListItemDto } from "../../../models/lesson/getListLessonListItemDto";
 
 type Props = {};
 
@@ -30,26 +30,25 @@ const LessonList = (props: Props) => {
     (state: RootState) => state.accountLesson.lessonVideoPoint
   );
 
-  // ----------------- lessonDataBySelectedCourseId ---------------------------
+  const lessonList: GetListLessonListItemDto[] = useSelector(
+    (state: RootState) => state.lesson.lessonList
+  );
 
-  async function lessonDataBySelectedCourseId(selectedCourseId: number) {
+  //----------------- lessonListData ---------------------------
+
+  async function lessonListData() {
     try {
-      const lessonsResponse = await lessonService.getListByCourseId(
-        selectedCourseId
-      );
-      const data = lessonsResponse.data.items;
-      dispatch(setLessonsBySelectedCourseId(data));
+      const lessonListResponse = await lessonService.getListAll();
+      const data = lessonListResponse.data.items;
+      dispatch(setLessonList(data));
     } catch (error) {
       console.error("Veri alınamadı:", error);
     }
   }
 
   useEffect(() => {
-    lessonDataBySelectedCourseId(selectedCourseId);
-  }, [selectedCourseId, lessonVideoPoint]);
-
-  const lessonsBySelectedCourseId: GetListByCourseIdLessonListItemDto[] =
-    useSelector((state: RootState) => state.lesson.lessonsBySelectedCourseId);
+    lessonListData();
+  }, []);
 
   // ----------------- AccountLessonDataByAccountId ---------------------------
 
@@ -76,37 +75,40 @@ const LessonList = (props: Props) => {
 
   return (
     <div>
-      {lessonsBySelectedCourseId.length > 0 &&
-        lessonsBySelectedCourseId.map((lesson, index) => {
-          const matchingAccountLesson = accountLessonsByAccountId.find(
-            (accountLesson) => accountLesson.lessonId === lesson.id
-          );
+      {lessonList &&
+        lessonList.length > 0 &&
+        lessonList
+          .filter((lesson) => lesson.courseId === selectedCourseId)
+          .map((lesson, index) => {
+            const matchingAccountLesson = accountLessonsByAccountId.find(
+              (accountLesson) => accountLesson.lessonId === lesson.id
+            );
 
-          let lessonElementIcon = "";
-          if (matchingAccountLesson) {
-            if (
-              matchingAccountLesson.points == 100 ||
-              matchingAccountLesson.isComplete
-            ) {
-              lessonElementIcon = "bi-check-circle-fill";
-            } else if (
-              matchingAccountLesson.points > 0 &&
-              !matchingAccountLesson.isComplete
-            ) {
-              lessonElementIcon = "bi-droplet-half";
+            let lessonElementIcon = "";
+            if (matchingAccountLesson) {
+              if (
+                matchingAccountLesson.points == 100 ||
+                matchingAccountLesson.isComplete
+              ) {
+                lessonElementIcon = "bi-check-circle-fill";
+              } else if (
+                matchingAccountLesson.points > 0 &&
+                !matchingAccountLesson.isComplete
+              ) {
+                lessonElementIcon = "bi-droplet-half";
+              }
             }
-          }
-          return (
-            <LessonElement
-              key={index}
-              lessonId={lesson.id}
-              name={lesson.name}
-              duration={lesson.duration}
-              videoId={lesson.videoUrl}
-              lessonElementIcon={lessonElementIcon}
-            />
-          );
-        })}
+            return (
+              <LessonElement
+                key={index}
+                lessonId={lesson.id}
+                name={lesson.name}
+                duration={lesson.duration}
+                videoId={lesson.videoUrl}
+                lessonElementIcon={lessonElementIcon}
+              />
+            );
+          })}
     </div>
   );
 };

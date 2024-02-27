@@ -23,6 +23,10 @@ class LessonService extends BaseService<any, any, any, any, any, any> {
       this.apiUrl + "/getByCourseId/" + courseId + "?PageIndex=0&PageSize=1000"
     );
   }
+
+  getListAll(): Promise<AxiosResponse<any, any>> {
+    return axiosInstance.get<any>(this.apiUrl + "?PageIndex=0&PageSize=10000");
+  }
 }
 
 export default new LessonService();
