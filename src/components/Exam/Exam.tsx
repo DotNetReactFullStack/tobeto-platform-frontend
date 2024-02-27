@@ -72,7 +72,7 @@ const Exam = (props: Props) => {
         </div>
         <div className="exam-component-body">
           {examFakeData.slice(0, 2).map((value, index) => (
-            <div key={index}>
+            <div className="exam-component-body-elements" key={index}>
               <ExamElement
                 id={value.id}
                 title={value.title}
