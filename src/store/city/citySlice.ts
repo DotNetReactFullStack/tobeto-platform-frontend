@@ -2,26 +2,34 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { GetListByCountryIdCityListItemDto } from "../../models/city/getListByCountryIdCityListItemDto";
 
 interface CityState {
-    cities: GetListByCountryIdCityListItemDto[];
-    loading: boolean;
-    error: string | null;
+  cities: GetListByCountryIdCityListItemDto[];
+  cityList: any[];
+  loading: boolean;
+  error: string | null;
 }
 
 const initialState: CityState = {
-    cities: [],
-    loading: false,
-    error: null,
+  cities: [],
+  cityList: [],
+  loading: false,
+  error: null,
 };
 
 const citySlice = createSlice({
-    name: "city",
-    initialState,
-    reducers: {
-        setCities: (state, action: PayloadAction<GetListByCountryIdCityListItemDto[]>) => {
-            state.cities = action.payload;
-        },
+  name: "city",
+  initialState,
+  reducers: {
+    setCities: (
+      state,
+      action: PayloadAction<GetListByCountryIdCityListItemDto[]>
+    ) => {
+      state.cities = action.payload;
     },
+    setCityList: (state, action: PayloadAction<any[]>) => {
+      state.cityList = action.payload;
+    },
+  },
 });
 
 export const cityReducer = citySlice.reducer;
-export const { setCities } = citySlice.actions;
+export const { setCities, setCityList } = citySlice.actions;
