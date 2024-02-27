@@ -8,10 +8,14 @@ import { Form, Formik, useFormikContext } from "formik";
 import { CreateExperienceCommand } from "../../../models/experiences/createExperienceCommand";
 import { useDispatch, useSelector } from "react-redux";
 import cityService from "../../../services/cityService";
-import { setCities } from "../../../store/city/citySlice";
+import { setCities, setCityList } from "../../../store/city/citySlice";
 import { GetListByCountryIdCityListItemDto } from "../../../models/city/getListByCountryIdCityListItemDto";
 import { RootState } from "../../../store/configureStore";
-import { clearAccountExperienceToAdd, refreshData, setAccountExperienceToAdd } from "../../../store/experience/experienceSlice";
+import {
+  clearAccountExperienceToAdd,
+  refreshData,
+  setAccountExperienceToAdd,
+} from "../../../store/experience/experienceSlice";
 import experienceService from "../../../services/experienceService";
 
 type Props = {};
@@ -50,42 +54,50 @@ const validationSchema = yup.object({
     .required("İl seçimi zorunludur")
     .notOneOf(["default"], "İl seçimi zorunludur"),
   startingDate: yup.string().required("İş Başlangıç tarihi zorunludur"),
-  endingDate: yup.string().test('required-if-not-working', 'İş bitiş tarihi girilmesi zorunludur', function (value) {
-    const isCurrentlyWorking = this.resolve(yup.ref('isCurrentlyWorking'));
-    if (!isCurrentlyWorking) {
-      return !!value;
-    }
-    return true;
-  }),
+  endingDate: yup
+    .string()
+    .test(
+      "required-if-not-working",
+      "İş bitiş tarihi girilmesi zorunludur",
+      function (value) {
+        const isCurrentlyWorking = this.resolve(yup.ref("isCurrentlyWorking"));
+        if (!isCurrentlyWorking) {
+          return !!value;
+        }
+        return true;
+      }
+    ),
   description: yup
     .string()
     .max(300, "Detaylı bilgi bölümü en fazla 300 karakter olabilir"),
 });
 
-
 const ExperienceForm = (props: Props) => {
-
   const dispatch = useDispatch();
 
-  const accountId = useSelector((state: any) => state.account.currentAccount.payload.id);
+  const accountId = useSelector(
+    (state: any) => state.account.currentAccount.payload.id
+  );
 
   const fetchCities = async () => {
     try {
       const cityResponse = await cityService.getAll();
       const cityData = cityResponse.data.items;
-      dispatch(setCities(cityData));
+      dispatch(setCityList(cityData));
     } catch (error) {
-      console.log("Veri alınamadı:", error)
+      console.log("Veri alınamadı:", error);
     }
-  }
+  };
 
   useEffect(() => {
     fetchCities();
-  }, [])
+  }, []);
 
-  const cities: GetListByCountryIdCityListItemDto[] = useSelector((state: RootState) => state.city.cities);
+  const cities: any[] = useSelector((state: RootState) => state.city.cityList);
 
-  const accountExperienceToAdd: CreateExperienceCommand | null = useSelector((state: RootState) => state.experience.accountExperienceToAdd);
+  const accountExperienceToAdd: CreateExperienceCommand | null = useSelector(
+    (state: RootState) => state.experience.accountExperienceToAdd
+  );
 
   const handleExperience = (values: any, accountId: number, dispatch: any) => {
     const accountExperienceToAdd: CreateExperienceCommand = {
@@ -100,21 +112,22 @@ const ExperienceForm = (props: Props) => {
         : new Date(values.endingDate).toISOString(),
       isCurrentlyWorking: values.isCurrentlyWorking,
       description: values.description,
-      isActive: true
-    }
+      isActive: true,
+    };
 
     dispatch(setAccountExperienceToAdd(accountExperienceToAdd));
   };
 
-
-  const addExperience = async (accountExperienceToAdd: CreateExperienceCommand) => {
+  const addExperience = async (
+    accountExperienceToAdd: CreateExperienceCommand
+  ) => {
     try {
       await experienceService.add(accountExperienceToAdd);
       dispatch(refreshData());
     } catch (error) {
       console.log("Deneyim eklerken bir hata oluştu:", error);
     }
-  }
+  };
 
   useEffect(() => {
     if (accountExperienceToAdd) {
@@ -123,10 +136,10 @@ const ExperienceForm = (props: Props) => {
           dispatch(clearAccountExperienceToAdd());
         })
         .catch((error) => {
-          console.log("Hata oluştu:", error)
+          console.log("Hata oluştu:", error);
         });
     }
-  }, [accountExperienceToAdd])
+  }, [accountExperienceToAdd]);
 
   return (
     <div className="experience-form">
@@ -169,10 +182,9 @@ const ExperienceForm = (props: Props) => {
               elementType={FormElementType.Select}
               labelText="İl Seçiniz*"
               inputName="cityId"
-              defaultOptionText="İl Seçiniz"
-              optionData={cities}
-              optionDataFilters={citiesOptionDataFilters}
-              optionDataSort={sortByPriorityDesc}
+              defaultOptionText={cities[0].name}
+              optionData={cities.slice(1)}
+              optionDataFilters={[ifVisibilityIsTrue]}
               onChange={(e) => {
                 formikProps.handleChange(e);
               }}
