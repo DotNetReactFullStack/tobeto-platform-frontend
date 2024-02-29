@@ -2,36 +2,13 @@ import React, { useEffect } from "react";
 import "./LearningPath.css";
 import ShowMoreButton from "../ShowMoreButton/ShowMoreButton";
 import LearningPathElement from "./LearningPathElement";
-import { useDispatch, useSelector } from "react-redux";
-import accountLearningPathService from "../../services/accountLearningPathService";
-import { setAccountLearningPaths } from "../../store/accountLearningPath/accountLearningPathSlice";
+import { useSelector } from "react-redux";
 import { GetListByAccountIdAccountLearningPathListItemDto } from "../../models/accountLearningPaths/getListByAccountIdAccountLearningPathListItemDto";
 import { RootState } from "../../store/configureStore";
 
 type Props = {};
 
 const LearningPath = (props: Props) => {
-  const dispatch = useDispatch();
-
-  const accountId = useSelector(
-    (state: any) => state.account.currentAccount.payload.id
-  );
-
-  async function fetchAccountLearningPathData(accountId: number) {
-    try {
-      const accountLearningResponse =
-        await accountLearningPathService.getListByAccountId(accountId);
-      const data = accountLearningResponse.data.items;
-      dispatch(setAccountLearningPaths(data));
-    } catch (error) {
-      console.error("Veri alınamadı:", error);
-    }
-  }
-
-  useEffect(() => {
-    fetchAccountLearningPathData(accountId);
-  }, []);
-
   const accountLearningPaths: GetListByAccountIdAccountLearningPathListItemDto[] =
     useSelector(
       (state: RootState) => state.accountLearningPath.accountLearningPaths
