@@ -55,7 +55,7 @@ const LearningPathDetailsHeader = (props: Props) => {
   ) {
     try {
       const accountLearningPathResponse =
-        await accountLearningPathService.getListByAccountIdAndLearningPathId(
+        await accountLearningPathService.getByAccountIdAndLearningPathId(
           accountId,
           selectedLearningPathId
         );

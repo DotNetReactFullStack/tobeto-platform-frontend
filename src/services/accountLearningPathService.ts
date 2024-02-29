@@ -19,14 +19,16 @@ class AccountLearningPathService extends BaseService<
     this.apiUrl = BASE_API_URL + "AccountLearningPaths";
   }
 
-  // getByFilter() {}
   getListByAccountId(accountId: number): Promise<AxiosResponse<any, any>> {
     return axiosInstance.get<any>(
-      this.apiUrl + "/getByAccountId/" + accountId + "?PageIndex=0&PageSize=100"
+      this.apiUrl +
+        "/getListByAccountId/" +
+        accountId +
+        "?PageIndex=0&PageSize=100"
     );
   }
 
-  getListByAccountIdAndLearningPathId(
+  getByAccountIdAndLearningPathId(
     accountId: number,
     learningPathId: number
   ): Promise<AxiosResponse<any, any>> {

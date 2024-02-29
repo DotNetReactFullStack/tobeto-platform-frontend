@@ -1,13 +1,40 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Recourse from "../Recourse/Recourse";
 import "./UserContentNav.css";
 import Announcement from "../Announcement/Announcement";
 import LearningPath from "../LearningPath/LearningPath";
 import Survey from "../Survey/Survey";
+import { useDispatch, useSelector } from "react-redux";
+import { setAccountLearningPaths } from "../../store/accountLearningPath/accountLearningPathSlice";
+import accountLearningPathService from "../../services/accountLearningPathService";
 
 type Props = {};
 
 const UserContentNav = (props: Props) => {
+  const dispatch = useDispatch();
+
+  const accountId = useSelector(
+    (state: any) => state.account.currentAccount.payload.id
+  );
+
+  async function fetchAccountLearningPathData(accountId: number) {
+    try {
+      const accountLearningResponse =
+        await accountLearningPathService.getListByAccountId(accountId);
+      const data = accountLearningResponse.data.items;
+      dispatch(setAccountLearningPaths(data));
+    } catch (error) {
+      console.error("Veri alınamadı:", error);
+    }
+  }
+
+  //fetchAccountLearningPathData
+  // "id", "learningPathId", learningPathName", "startingTime","imageUrl", "totalNumberOfPoints", "percentComplete", "isContinue",  "isComplete", "isLiked", "isSaved", "isActive"
+
+  useEffect(() => {
+    fetchAccountLearningPathData(accountId);
+  }, []);
+
   return (
     <div className="user-content-nav-tabs">
       <nav>
