@@ -182,8 +182,8 @@ const ExperienceForm = (props: Props) => {
               elementType={FormElementType.Select}
               labelText="İl Seçiniz*"
               inputName="cityId"
-              defaultOptionText={cities[0].name}
-              optionData={cities.slice(1)}
+              defaultOptionText="İl"
+              optionData={cities}
               optionDataFilters={[ifVisibilityIsTrue]}
               onChange={(e) => {
                 formikProps.handleChange(e);

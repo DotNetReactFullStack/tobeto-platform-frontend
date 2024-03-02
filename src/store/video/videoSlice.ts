@@ -42,15 +42,24 @@ const videoSlice = createSlice({
       }>
     ) => {
       const { learningPathId, videoId, lessonId } = action.payload;
-      const existingVideoIndex = state.lastWatchedVideos.findIndex(
-        (video) => video.learningPathId === learningPathId
-      );
+      // const existingVideoIndex = state.lastWatchedVideos.findIndex(
+      //   (video : LastWatchedVideo) => video.learningPathId === learningPathId
+      // );
+      if (!state.lastWatchedVideos) {
+        state.lastWatchedVideos = [];
+      }
+      const existingVideoIndex = state.lastWatchedVideos
+        ? state.lastWatchedVideos.findIndex(
+          (video: LastWatchedVideo) => video.learningPathId === learningPathId
+        )
+        : -1;
 
       if (existingVideoIndex !== -1) {
         state.lastWatchedVideos[existingVideoIndex].videoId = videoId;
         state.lastWatchedVideos[existingVideoIndex].lessonId = lessonId;
       } else {
         state.lastWatchedVideos.push({ learningPathId, videoId, lessonId });
+
       }
     },
   },

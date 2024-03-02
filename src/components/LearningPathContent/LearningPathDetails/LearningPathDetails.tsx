@@ -39,14 +39,25 @@ const LearningPathDetails = (props: Props) => {
   }, [youtubeVideoId]);
 
   useEffect(() => {
+    // const watchedVideo = lastWatchedVideos.find(
+    //   (video: LastWatchedVideo) =>
+    //     video.learningPathId === selectedLearningPathIdByParams
+    // );
+    // if (watchedVideo) {
+    //   dispatch(setVideoId(watchedVideo.videoId));
+    //   dispatch(setSelectedLessonId(watchedVideo.lessonId));
+    // }
+
     const watchedVideo = lastWatchedVideos.find(
       (video: LastWatchedVideo) =>
         video.learningPathId === selectedLearningPathIdByParams
     );
-    if (watchedVideo) {
+    if (watchedVideo !== undefined) {
       dispatch(setVideoId(watchedVideo.videoId));
       dispatch(setSelectedLessonId(watchedVideo.lessonId));
+    } else {
     }
+
   }, [selectedLearningPathIdByParams]);
 
   return (
