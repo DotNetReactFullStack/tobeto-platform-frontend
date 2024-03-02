@@ -5,8 +5,14 @@ import Announcement from "../Announcement/Announcement";
 import LearningPath from "../LearningPath/LearningPath";
 import Survey from "../Survey/Survey";
 import { useDispatch, useSelector } from "react-redux";
-import { setAccountLearningPaths } from "../../store/accountLearningPath/accountLearningPathSlice";
+import {
+  setAccountLearningPathListByAccountId,
+  setAccountLearningPaths,
+} from "../../store/accountLearningPath/accountLearningPathSlice";
 import accountLearningPathService from "../../services/accountLearningPathService";
+import { RootState } from "../../store/configureStore";
+import courseLearningPathService from "../../services/courseLearningPathService";
+import { setCourseLearningPaths } from "../../store/courseLearningPath/courseLearningPathSlice";
 
 type Props = {};
 
@@ -17,22 +23,54 @@ const UserContentNav = (props: Props) => {
     (state: any) => state.account.currentAccount.payload.id
   );
 
-  async function fetchAccountLearningPathData(accountId: number) {
+  //getListByAccountId AccountLearningPath
+  async function fetchAccountLearningPathDataByAccountId(accountId: number) {
     try {
       const accountLearningResponse =
         await accountLearningPathService.getListByAccountId(accountId);
       const data = accountLearningResponse.data.items;
+      dispatch(setAccountLearningPathListByAccountId(data));
+    } catch (error) {
+      console.error("Veri alınamadı:", error);
+    }
+  }
+
+  useEffect(() => {
+    fetchAccountLearningPathDataByAccountId(accountId);
+  }, []);
+
+  //GetListByLearningPathIdAccountLearningPathListItemDto[];
+
+  async function fetchAccountLearningPathsData() {
+    try {
+      const accountLearningPathResponse =
+        await accountLearningPathService.getListAll();
+      const data = accountLearningPathResponse.data.items;
       dispatch(setAccountLearningPaths(data));
     } catch (error) {
       console.error("Veri alınamadı:", error);
     }
   }
 
-  //fetchAccountLearningPathData
-  // "id", "learningPathId", learningPathName", "startingTime","imageUrl", "totalNumberOfPoints", "percentComplete", "isContinue",  "isComplete", "isLiked", "isSaved", "isActive"
+  useEffect(() => {
+    fetchAccountLearningPathsData();
+  }, []);
+
+  // getList CourseLearningPaths
+
+  async function fetchCourseLearningPathsData() {
+    try {
+      const courseLearningPathsResponse =
+        await courseLearningPathService.getListAll();
+      const data = courseLearningPathsResponse.data.items;
+      dispatch(setCourseLearningPaths(data));
+    } catch (error) {
+      console.error("Veri alınamadı:", error);
+    }
+  }
 
   useEffect(() => {
-    fetchAccountLearningPathData(accountId);
+    fetchCourseLearningPathsData();
   }, []);
 
   return (

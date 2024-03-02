@@ -6,8 +6,8 @@ import { GetListLessonListItemDto } from "../../models/lesson/getListLessonListI
 
 interface LessonState {
   lessonList: GetListLessonListItemDto[];
-  lessonsBySelectedCourseId: GetListByCourseIdLessonListItemDto[];
-  lessonBySelectedId: GetByIdLessonResponse | null;
+  filteredByCourseIdlessons: GetListByCourseIdLessonListItemDto[];
+  filteredByIdlesson: GetByIdLessonResponse | null;
   selectedLessonId: number;
   updateLessonDuration: UpdateLessonDurationRequest | null;
   loading: boolean;
@@ -16,8 +16,8 @@ interface LessonState {
 
 const initialState: LessonState = {
   lessonList: [],
-  lessonsBySelectedCourseId: [],
-  lessonBySelectedId: null,
+  filteredByCourseIdlessons: [],
+  filteredByIdlesson: null,
   selectedLessonId: 1,
   updateLessonDuration: null,
   loading: false,
@@ -34,20 +34,20 @@ const lessonSlice = createSlice({
     ) => {
       state.lessonList = action.payload;
     },
-    setLessonsBySelectedCourseId: (
+    setFilteredByCourseIdlessons: (
       state,
       action: PayloadAction<GetListByCourseIdLessonListItemDto[]>
     ) => {
-      state.lessonsBySelectedCourseId = action.payload;
+      state.filteredByCourseIdlessons = action.payload;
     },
-    clearLessonsBySelectedCourseId: (state) => {
-      state.lessonsBySelectedCourseId = [];
+    clearFilteredByCourseIdlessons: (state) => {
+      state.filteredByCourseIdlessons = [];
     },
-    setLessonBySelectedId: (
+    setFilteredByIdlesson: (
       state,
       action: PayloadAction<GetByIdLessonResponse>
     ) => {
-      state.lessonBySelectedId = action.payload;
+      state.filteredByIdlesson = action.payload;
     },
     setSelectedLessonId: (state, action: PayloadAction<number>) => {
       state.selectedLessonId = action.payload;
@@ -64,9 +64,9 @@ const lessonSlice = createSlice({
 export const lessonReducer = lessonSlice.reducer;
 export const {
   setLessonList,
-  setLessonsBySelectedCourseId,
-  setLessonBySelectedId,
+  setFilteredByCourseIdlessons,
+  clearFilteredByCourseIdlessons,
+  setFilteredByIdlesson,
   setSelectedLessonId,
   setUpdateLessonDuration,
-  clearLessonsBySelectedCourseId,
 } = lessonSlice.actions;

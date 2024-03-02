@@ -1,14 +1,17 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { GetListByLearningPathIdCourseLearningPathListItemDto } from "../../models/courseLearningPaths/GetListByLearningPathIdCourseLearningPathListItemDto";
+import { GetListCourseLearningPathListItemDto } from "../../models/courseLearningPaths/getListCourseLearningPathListItemDto";
 
 interface CourseLearningPathState {
-  courseLearningPathsBySelectedLearningPathId: GetListByLearningPathIdCourseLearningPathListItemDto[];
+  courseLearningPaths: GetListCourseLearningPathListItemDto[];
+  filteredByLearningPathIdCourseLearningPaths: GetListByLearningPathIdCourseLearningPathListItemDto[];
   loading: boolean;
   error: string | null;
 }
 
 const initialState: CourseLearningPathState = {
-  courseLearningPathsBySelectedLearningPathId: [],
+  courseLearningPaths: [],
+  filteredByLearningPathIdCourseLearningPaths: [],
   loading: false,
   error: null,
 };
@@ -17,17 +20,26 @@ const courseLearningPathSlice = createSlice({
   name: "courseLearningPath",
   initialState,
   reducers: {
-    setCourseLearningPathsBySelectedLearningPathId: (
+    setCourseLearningPaths: (
+      state,
+      action: PayloadAction<GetListCourseLearningPathListItemDto[]>
+    ) => {
+      state.courseLearningPaths = action.payload;
+    },
+
+    setFilteredByLearningPathIdCourseLearningPaths: (
       state,
       action: PayloadAction<
         GetListByLearningPathIdCourseLearningPathListItemDto[]
       >
     ) => {
-      state.courseLearningPathsBySelectedLearningPathId = action.payload;
+      state.filteredByLearningPathIdCourseLearningPaths = action.payload;
     },
   },
 });
 
 export const courseLearningPathReducer = courseLearningPathSlice.reducer;
-export const { setCourseLearningPathsBySelectedLearningPathId } =
-  courseLearningPathSlice.actions;
+export const {
+  setCourseLearningPaths,
+  setFilteredByLearningPathIdCourseLearningPaths,
+} = courseLearningPathSlice.actions;

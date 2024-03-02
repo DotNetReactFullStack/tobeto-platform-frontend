@@ -3,17 +3,11 @@ import "./LearningPathAboutTab.css";
 import { GetByAccountIdAndLearningPathIdAccountLearningPathResponse } from "../../../models/accountLearningPaths/getByAccountIdAndLearningPathIdAccountLearningPathResponse";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/configureStore";
+import { GetListByAccountIdAccountLearningPathListItemDto } from "../../../models/accountLearningPaths/getListByAccountIdAccountLearningPathListItemDto";
 
 type Props = {};
 
 const LearningPathInfo = (props: Props) => {
-  const accountLearningPathBySelectedAccountIdAndLearningPathId: GetByAccountIdAndLearningPathIdAccountLearningPathResponse | null =
-    useSelector(
-      (state: RootState) =>
-        state.accountLearningPath
-          .accountLearningPathBySelectedAccountIdAndLearningPathId
-    );
-
   function formatDateToLocaleStringWithTime(dateString?: string): string {
     if (!dateString) {
       return "";
@@ -28,13 +22,18 @@ const LearningPathInfo = (props: Props) => {
     });
     return `${day} ${month} ${year} ${time}`;
   }
+  const filteredByLearningPathIdAccountLearningPath: GetListByAccountIdAccountLearningPathListItemDto | null =
+    useSelector(
+      (state: RootState) =>
+        state.accountLearningPath.filteredByLearningPathIdAccountLearningPath
+    );
 
   const formatedStatingTime: string = formatDateToLocaleStringWithTime(
-    accountLearningPathBySelectedAccountIdAndLearningPathId?.startingTime
+    filteredByLearningPathIdAccountLearningPath?.startingTime
   );
 
   const formatedEndingTime: string = formatDateToLocaleStringWithTime(
-    accountLearningPathBySelectedAccountIdAndLearningPathId?.endingTime
+    filteredByLearningPathIdAccountLearningPath?.endingTime
   );
 
   const totalDuration = useSelector(

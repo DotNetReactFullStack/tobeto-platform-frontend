@@ -6,7 +6,7 @@ import { GetListByAccountIdLearningPathAccountLessonListItemDto } from "../../mo
 
 interface AccountLessonState {
   accountLessonsBySelectedAccountId: GetListByAccountIdAccountLessonListItemDto[];
-  accountLessonBySelectedAccountIdAndLessonId: GetByAccountIdAndLessonIdAccountLessonResponse | null;
+  filteredByLessonIdAccountLessonsBySelectedAccountId: GetByAccountIdAndLessonIdAccountLessonResponse | null;
   accountLessonIsCompleteRequest: updateAccountLessonIsCompleteRequest | null;
   accountLessonLearningPathDtosByAccountId: GetListByAccountIdLearningPathAccountLessonListItemDto[];
   lessonVideoPoint: number;
@@ -22,7 +22,7 @@ interface AccountLessonState {
 
 const initialState: AccountLessonState = {
   accountLessonsBySelectedAccountId: [],
-  accountLessonBySelectedAccountIdAndLessonId: null,
+  filteredByLessonIdAccountLessonsBySelectedAccountId: null,
   accountLessonIsCompleteRequest: null,
   lessonVideoIsComplete: false,
   accountLessonLearningPathDtosByAccountId: [],
@@ -47,11 +47,12 @@ const accountLessonSlice = createSlice({
       state.accountLessonsBySelectedAccountId = action.payload;
     },
 
-    setAccountLessonBySelectedAccountIdAndLessonId: (
+    setFilteredByLessonIdAccountLessonsBySelectedAccountId: (
       state,
       action: PayloadAction<GetByAccountIdAndLessonIdAccountLessonResponse>
     ) => {
-      state.accountLessonBySelectedAccountIdAndLessonId = action.payload;
+      state.filteredByLessonIdAccountLessonsBySelectedAccountId =
+        action.payload;
     },
     setAccountLessonIsCompleteRequest: (
       state,
@@ -91,7 +92,7 @@ const accountLessonSlice = createSlice({
 export const accountLessonReducer = accountLessonSlice.reducer;
 export const {
   setAccountLessonsBySelectedAccountId,
-  setAccountLessonBySelectedAccountIdAndLessonId,
+  setFilteredByLessonIdAccountLessonsBySelectedAccountId,
   setAccountLessonIsCompleteRequest,
   setAccountLessonLearningPathDtoBySelectedAccountId,
   setLessonVideoPoint,

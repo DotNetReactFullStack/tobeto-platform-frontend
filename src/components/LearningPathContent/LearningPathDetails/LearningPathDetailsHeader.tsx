@@ -4,8 +4,6 @@ import accountLearningPathService from "../../../services/accountLearningPathSer
 import {
   decrementLearningPathLikeCount,
   incrementLearningPathLikeCount,
-  setAccountLearningPathBySelectedAccountIdAndLearningPathId,
-  setAccountLearningPathBySelectedLearningPathId,
   setLearningPathSaveStatus,
   setLearningPathLikeCount,
   setLearningPathLikeStatus,
@@ -16,12 +14,13 @@ import {
   setLearningPathActivityScore,
   setLearningPathPercentComplete,
   setAccountLearningPathPercentCompleteRequest,
+  setFilteredByLearningPathIdAccountLearningPath,
+  setFilteredByLearningPathIdAccountLearningPaths,
 } from "../../../store/accountLearningPath/accountLearningPathSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store/configureStore";
-import { GetByAccountIdAndLearningPathIdAccountLearningPathResponse } from "../../../models/accountLearningPaths/getByAccountIdAndLearningPathIdAccountLearningPathResponse";
 import { useParams } from "react-router-dom";
-import { GetListByLearningPathIdAccountLearningPathListItemDto } from "../../../models/accountLearningPaths/getListByLearningPathIdAccountLearningPathListItemDto";
+import { GetListAccountLearningPathListItemDto } from "../../../models/accountLearningPaths/getListByLearningPathIdAccountLearningPathListItemDto";
 import { UpdateAccountLearningPathIsSavedRequest } from "../../../models/accountLearningPaths/UpdateAccountLearningPathIsSavedRequest";
 import { UpdateAccountLearningPathIsLikedRequest } from "../../../models/accountLearningPaths/UpdateAccountLearningPathIsLikedRequest";
 import accountLessonService from "../../../services/accountLessonService";
@@ -31,6 +30,7 @@ import {
   setTotalDuration,
 } from "../../../store/learningPath/learningPathSlice";
 import toastr from "toastr";
+import { GetListByAccountIdAccountLearningPathListItemDto } from "../../../models/accountLearningPaths/getListByAccountIdAccountLearningPathListItemDto";
 
 type Props = {};
 
@@ -49,43 +49,32 @@ const LearningPathDetailsHeader = (props: Props) => {
     10
   );
 
-  async function accountLearningPathDataBySelectedAccountIdAndLearningPathId(
-    accountId: number,
-    selectedLearningPathId: number
-  ) {
-    try {
-      const accountLearningPathResponse =
-        await accountLearningPathService.getByAccountIdAndLearningPathId(
-          accountId,
-          selectedLearningPathId
-        );
-      const data = accountLearningPathResponse.data;
-      dispatch(
-        setAccountLearningPathBySelectedAccountIdAndLearningPathId(data)
-      );
-    } catch (error) {
-      console.error("Veri alınamadı:", error);
-    }
-  }
-
-  useEffect(() => {
-    accountLearningPathDataBySelectedAccountIdAndLearningPathId(
-      accountId,
-      selectedLearningPathIdByParams
-    );
-  }, [accountId, selectedLearningPathIdByParams]);
-
-  const accountLearningPathBySelectedAccountIdAndLearningPathId: GetByAccountIdAndLearningPathIdAccountLearningPathResponse | null =
+  const accountLearningPathByAccountId: GetListByAccountIdAccountLearningPathListItemDto[] =
     useSelector(
       (state: RootState) =>
-        state.accountLearningPath
-          .accountLearningPathBySelectedAccountIdAndLearningPathId
+        state.accountLearningPath.accountLearningPathListByAccountId
     );
 
-  // console.log(
-  //   "accountLearningPathBySelectedAccountIdAndLearningPathId",
-  //   accountLearningPathBySelectedAccountIdAndLearningPathId
-  // );
+  //GetListByAccountIdAccountLearningPath -> filtered LearningPathId
+
+  const filteredByLearningPathIdAccountLearningPath: GetListByAccountIdAccountLearningPathListItemDto | null =
+    useSelector(
+      (state: RootState) =>
+        state.accountLearningPath.filteredByLearningPathIdAccountLearningPath
+    );
+
+  useEffect(() => {
+    const filteredPaths: any = accountLearningPathByAccountId.filter(
+      (path) => path.learningPathId === selectedLearningPathIdByParams
+    );
+    dispatch(
+      setFilteredByLearningPathIdAccountLearningPath(
+        filteredPaths.length > 0 ? filteredPaths[0] : null
+      )
+    );
+  }, [selectedLearningPathIdByParams]);
+
+  //-----------------------Ok---------------------------------
 
   function formatDateToLocaleString(dateString?: string): string {
     if (!dateString) {
@@ -98,40 +87,37 @@ const LearningPathDetailsHeader = (props: Props) => {
     return `${day} ${month} ${year}`;
   }
   const formatedEndingTime: string = formatDateToLocaleString(
-    accountLearningPathBySelectedAccountIdAndLearningPathId?.endingTime
+    filteredByLearningPathIdAccountLearningPath?.endingTime
   );
 
-  // ----------------- accountLearningPathDataBySelectedAccountIdAndLearningPathId ---------------------------
+  // -------filteredByLearningPathIdAccountLearningPaths ------------
 
-  async function accountLearningPathDataBySelectedLearningPathId(
-    selectedLearningPathId: number
-  ) {
-    try {
-      const accountLearningPathResponse =
-        await accountLearningPathService.getListByLearningPathId(
-          selectedLearningPathId
-        );
-      const data = accountLearningPathResponse.data.items;
-      dispatch(setAccountLearningPathBySelectedLearningPathId(data));
-    } catch (error) {
-      console.error("Veri alınamadı:", error);
-    }
-  }
+  const accountLearningPaths: GetListAccountLearningPathListItemDto[] =
+    useSelector(
+      (state: RootState) => state.accountLearningPath.accountLearningPaths
+    );
+
+  const filteredByLearningPathIdAccountLearningPaths: GetListAccountLearningPathListItemDto[] =
+    useSelector(
+      (state: RootState) =>
+        state.accountLearningPath.filteredByLearningPathIdAccountLearningPaths
+    );
 
   useEffect(() => {
-    accountLearningPathDataBySelectedLearningPathId(
-      selectedLearningPathIdByParams
+    const filteredPaths: any[] = accountLearningPaths.filter(
+      (path) => path.learningPathId === selectedLearningPathIdByParams
+    );
+    dispatch(
+      setFilteredByLearningPathIdAccountLearningPaths(
+        filteredPaths.length > 0 ? filteredPaths : []
+      )
     );
   }, [selectedLearningPathIdByParams]);
 
-  const accountLearningPathBySelectedLearningPathId: GetListByLearningPathIdAccountLearningPathListItemDto[] =
-    useSelector(
-      (state: RootState) =>
-        state.accountLearningPath.accountLearningPathBySelectedLearningPathId
-    );
+  //--------------------- like count ----------------------
 
   function countLikedValues(
-    obj: GetListByLearningPathIdAccountLearningPathListItemDto[]
+    obj: GetListAccountLearningPathListItemDto[]
   ): number {
     let count = 0;
     Object.values(obj).forEach((value) => {
@@ -142,30 +128,37 @@ const LearningPathDetailsHeader = (props: Props) => {
 
     return count;
   }
+
   useEffect(() => {
-    if (accountLearningPathBySelectedLearningPathId) {
+    if (filteredByLearningPathIdAccountLearningPaths) {
       let likeCount = countLikedValues(
-        accountLearningPathBySelectedLearningPathId
+        filteredByLearningPathIdAccountLearningPaths
       );
+      console.log("likeee", likeCount);
       dispatch(setLearningPathLikeCount(likeCount));
-      dispatch(
-        setLearningPathLikeStatus(
-          accountLearningPathBySelectedAccountIdAndLearningPathId?.isLiked ||
-            false
-        )
-      );
-      dispatch(
-        setLearningPathSaveStatus(
-          accountLearningPathBySelectedAccountIdAndLearningPathId?.isSaved ||
-            false
-        )
-      );
     }
-  }, [accountLearningPathBySelectedLearningPathId]);
+  }, [filteredByLearningPathIdAccountLearningPaths]);
 
   const learningPathLikeCount: number = useSelector(
     (state: RootState) => state.accountLearningPath.learningPathLikeCount
   );
+
+  //------------------- set Like - Save status -------------------------
+
+  useEffect(() => {
+    if (filteredByLearningPathIdAccountLearningPath) {
+      dispatch(
+        setLearningPathLikeStatus(
+          filteredByLearningPathIdAccountLearningPath?.isLiked || false
+        )
+      );
+      dispatch(
+        setLearningPathSaveStatus(
+          filteredByLearningPathIdAccountLearningPath?.isSaved || false
+        )
+      );
+    }
+  }, [filteredByLearningPathIdAccountLearningPath]);
 
   //------------------------- Like status ---------------------------
 
@@ -192,12 +185,8 @@ const LearningPathDetailsHeader = (props: Props) => {
     setLikeIcon(newIcon);
     const accountLearningPathIsLikedRequest: UpdateAccountLearningPathIsLikedRequest =
       {
-        accountId:
-          accountLearningPathBySelectedAccountIdAndLearningPathId?.accountId ??
-          0,
-        learningPathId:
-          accountLearningPathBySelectedAccountIdAndLearningPathId?.learningPathId ??
-          0,
+        accountId: accountId ?? 0,
+        learningPathId: selectedLearningPathIdByParams ?? 0,
         isLiked: learningPathLikeStatus,
       };
     dispatch(
@@ -250,12 +239,8 @@ const LearningPathDetailsHeader = (props: Props) => {
     setSaveIcon(newIcon);
     const accountLearningPathIsSavedRequest: UpdateAccountLearningPathIsSavedRequest =
       {
-        accountId:
-          accountLearningPathBySelectedAccountIdAndLearningPathId?.accountId ??
-          0,
-        learningPathId:
-          accountLearningPathBySelectedAccountIdAndLearningPathId?.learningPathId ??
-          0,
+        accountId: accountId ?? 0,
+        learningPathId: selectedLearningPathIdByParams ?? 0,
         isSaved: learningPathSaveStatus,
       };
     dispatch(
@@ -436,7 +421,7 @@ const LearningPathDetailsHeader = (props: Props) => {
           className="learning-path-details-header-img"
           src={
             process.env.PUBLIC_URL +
-            accountLearningPathBySelectedAccountIdAndLearningPathId?.imageUrl
+            filteredByLearningPathIdAccountLearningPath?.imageUrl
           }
         />
       </div>
@@ -444,9 +429,7 @@ const LearningPathDetailsHeader = (props: Props) => {
         <div className="learning-path-details-header-right-col-body">
           <div className="learning-path-details-header-title-section">
             <h3 className="learning-path-details-header-title">
-              {
-                accountLearningPathBySelectedAccountIdAndLearningPathId?.learningPathName
-              }
+              {filteredByLearningPathIdAccountLearningPath?.learningPathName}
             </h3>
             <span
               className="learning-path-details-date-info"
