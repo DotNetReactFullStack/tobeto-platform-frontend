@@ -16,7 +16,10 @@ class CourseLearningPathService extends BaseService<
     this.apiUrl = BASE_API_URL + "CourseLearningPaths";
   }
 
-  // getByFilter() {}
+  getListAll(): Promise<AxiosResponse<any, any>> {
+    return axiosInstance.get<any>(this.apiUrl + "?PageIndex=0&PageSize=10000");
+  }
+
   getListByLearningPathId(
     learningPathId: number
   ): Promise<AxiosResponse<any, any>> {

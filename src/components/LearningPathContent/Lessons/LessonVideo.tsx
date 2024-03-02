@@ -5,14 +5,13 @@ import YouTube from "react-youtube";
 import { useDispatch, useSelector } from "react-redux";
 import lessonService from "../../../services/lessonService";
 import {
-  setLessonBySelectedId,
+  setFilteredByIdlesson,
   setUpdateLessonDuration,
 } from "../../../store/lesson/lessonSlice";
 import { GetByIdLessonResponse } from "../../../models/lesson/getByIdLessonResponse";
 import { RootState } from "../../../store/configureStore";
 import accountLessonService from "../../../services/accountLessonService";
 import {
-  setAccountLessonBySelectedAccountIdAndLessonId,
   setLessonVideoIconColor,
   setLessonVideoIcon,
   setLessonVideoStatusTextColor,
@@ -20,6 +19,7 @@ import {
   setLessonVideoPoint,
   setAccountLessonIsCompleteRequest,
   setLessonVideoIsComplete,
+  setFilteredByLessonIdAccountLessonsBySelectedAccountId,
 } from "../../../store/accountLesson/accountLessonSlice";
 import { GetByAccountIdAndLessonIdAccountLessonResponse } from "../../../models/accountLesson/getByAccountIdAndLessonIdAccountLessonResponse";
 import {
@@ -28,6 +28,8 @@ import {
 } from "../../../store/video/videoSlice";
 import { updateAccountLessonIsCompleteRequest } from "../../../models/accountLesson/updateAccountLessonIsCompleteRequest";
 import { UpdateLessonDurationRequest } from "../../../models/lesson/updateLessonDurationRequest";
+import { GetListLessonListItemDto } from "../../../models/lesson/getListLessonListItemDto";
+import { GetListByAccountIdAccountLessonListItemDto } from "../../../models/accountLesson/getListByAccountIdAccountLessonListItemDto";
 
 type Props = {};
 
@@ -38,34 +40,30 @@ const LessonVideo = (props: Props) => {
     (state: any) => state.account.currentAccount.payload.id
   );
 
+  const lessonList: GetListLessonListItemDto[] = useSelector(
+    (state: RootState) => state.lesson.lessonList
+  );
+
   //lessonBySelectedId
 
   const selectedLessonId = useSelector(
     (state: any) => state.lesson.selectedLessonId
   );
 
-  //console.log("seçilenId", selectedLessonId);
-  async function lessonDataBySelectedId(selectedId: number) {
-    try {
-      const lessonResponse = await lessonService.getById(selectedId);
-      const data = lessonResponse.data;
-      dispatch(setLessonBySelectedId(data));
-    } catch (error) {
-      console.error("Veri alınamadı:", error);
-    }
-  }
-
-  useEffect(() => {
-    lessonDataBySelectedId(selectedLessonId);
-  }, [selectedLessonId]);
-
-  const lessonBySelectedId: GetByIdLessonResponse | null = useSelector(
-    (state: RootState) => state.lesson.lessonBySelectedId
+  const filteredByIdlesson: GetByIdLessonResponse | null = useSelector(
+    (state: RootState) => state.lesson.filteredByIdlesson
   );
 
-  // console.log("lessonBySelectedId", lessonBySelectedId);
+  useEffect(() => {
+    const filteredPaths: any[] = lessonList.filter(
+      (path) => path.id === selectedLessonId
+    );
+    dispatch(
+      setFilteredByIdlesson(filteredPaths.length > 0 ? filteredPaths[0] : null)
+    );
+  }, [selectedLessonId]);
 
-  // ----------------- accountLessonDataBySelectedAccountIdAndLessonId ---------------------------
+  // -------- filteredByLessonId AccountLessonsBySelectedAccountId--------------------
 
   const lessonVideoPoint: number = useSelector(
     (state: RootState) => state.accountLesson.lessonVideoPoint
@@ -74,39 +72,36 @@ const LessonVideo = (props: Props) => {
   const lessonVideoIsComplete: boolean = useSelector(
     (state: RootState) => state.accountLesson.lessonVideoIsComplete
   );
-  async function accountLessonDataBySelectedAccountIdAndLessonId(
-    selectedAccountId: number,
-    selectedLessonId: number
-  ) {
-    try {
-      const accountLessonResponse =
-        await accountLessonService.getByAccountIdAndLessonId(
-          selectedAccountId,
-          selectedLessonId
-        );
-      const data = accountLessonResponse.data;
-      dispatch(setAccountLessonBySelectedAccountIdAndLessonId(data));
-    } catch (error) {
-      console.error("Veri alınamadı:", error);
-    }
-  }
+
+  const accountLessonsBySelectedAccountId: GetListByAccountIdAccountLessonListItemDto[] =
+    useSelector(
+      (state: RootState) =>
+        state.accountLesson.accountLessonsBySelectedAccountId
+    );
+
+  const filteredByLessonIdAccountLessonsBySelectedAccountId: GetByAccountIdAndLessonIdAccountLessonResponse | null =
+    useSelector(
+      (state: RootState) =>
+        state.accountLesson.filteredByLessonIdAccountLessonsBySelectedAccountId
+    );
 
   useEffect(() => {
-    accountLessonDataBySelectedAccountIdAndLessonId(
-      accountId,
-      selectedLessonId
+    const filteredPaths: any[] = accountLessonsBySelectedAccountId.filter(
+      (path) => path.lessonId === selectedLessonId
+    );
+    dispatch(
+      setFilteredByLessonIdAccountLessonsBySelectedAccountId(
+        filteredPaths.length > 0 ? filteredPaths[0] : null
+      )
     );
   }, [selectedLessonId]);
 
-  const accountLessonBySelectedAccountIdAndLessonId: GetByAccountIdAndLessonIdAccountLessonResponse | null =
-    useSelector(
-      (state: RootState) =>
-        state.accountLesson.accountLessonBySelectedAccountIdAndLessonId
-    );
+  //---------------SetLessonVideoPoint , SetLessonVideoIsComplete--------------
 
   useEffect(() => {
-    const points = accountLessonBySelectedAccountIdAndLessonId?.points;
-    const isComplete = accountLessonBySelectedAccountIdAndLessonId?.isComplete;
+    const points = filteredByLessonIdAccountLessonsBySelectedAccountId?.points;
+    const isComplete =
+      filteredByLessonIdAccountLessonsBySelectedAccountId?.isComplete;
 
     if (points !== undefined) {
       dispatch(setLessonVideoPoint(points));
@@ -115,7 +110,7 @@ const LessonVideo = (props: Props) => {
     if (isComplete !== undefined) {
       dispatch(setLessonVideoIsComplete(isComplete));
     }
-  }, [accountLessonBySelectedAccountIdAndLessonId]);
+  }, [filteredByLessonIdAccountLessonsBySelectedAccountId]);
 
   // ------------------- Youtube -------------------------------------------
 
@@ -144,7 +139,7 @@ const LessonVideo = (props: Props) => {
   const youtubePlayerRef = useRef<any>(null); // useRef ile youtubePlayerRef tanımlaması
 
   const onReady = (event: any) => {
-    event.target.playVideo();
+    event.target.pauseVideo(); // Videoyu duraklat
 
     const durationInSeconds = event.target.getDuration();
     dispatch(setLessonVideoDuration(durationInSeconds));
@@ -311,11 +306,11 @@ const LessonVideo = (props: Props) => {
       <div className="lesson-video-body">
         <div className="lesson-video-content">
           <div className="lesson-video-title">
-            <span>{lessonBySelectedId?.name}</span>
+            <span>{filteredByIdlesson?.name}</span>
           </div>
           <div className="lesson-video-information">
             <span className="lesson-video-information-duration">
-              {"Video - " + lessonBySelectedId?.duration + " dk"}
+              {"Video - " + filteredByIdlesson?.duration + " dk"}
             </span>
             <span className="lesson-video-information-account-point">
               {lessonVideoPoint + " Puan"}

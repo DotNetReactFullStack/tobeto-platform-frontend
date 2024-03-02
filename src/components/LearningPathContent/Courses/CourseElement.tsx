@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { setSelectedCourseId } from "../../../store/course/courseSlice";
 import { RootState } from "../../../store/configureStore";
 import { useLocation } from "react-router-dom";
-import { clearLessonsBySelectedCourseId } from "../../../store/lesson/lessonSlice";
 
 type Props = {
   collapseId: string;

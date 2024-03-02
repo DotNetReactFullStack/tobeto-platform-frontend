@@ -3,10 +3,11 @@ import "./CourseList.css";
 import CourseElement from "./CourseElement";
 import { useDispatch, useSelector } from "react-redux";
 import courseLearningPathService from "../../../services/courseLearningPathService";
-import { setCourseLearningPathsBySelectedLearningPathId } from "../../../store/courseLearningPath/courseLearningPathSlice";
+import { setFilteredByLearningPathIdCourseLearningPaths } from "../../../store/courseLearningPath/courseLearningPathSlice";
 import { GetListByLearningPathIdCourseLearningPathListItemDto } from "../../../models/courseLearningPaths/GetListByLearningPathIdCourseLearningPathListItemDto";
 import { RootState } from "../../../store/configureStore";
 import { useParams } from "react-router-dom";
+import { GetListCourseLearningPathListItemDto } from "../../../models/courseLearningPaths/getListCourseLearningPathListItemDto";
 
 type Props = {};
 
@@ -25,42 +26,35 @@ const CourseList = (props: Props) => {
     10
   );
 
-  async function courseLearningPathDataBySelectedLearningPathId(
-    selectedLearningPathId: number
-  ) {
-    try {
-      const courseLearningPathsresponse =
-        await courseLearningPathService.getListByLearningPathId(
-          selectedLearningPathId
-        );
-      const data = courseLearningPathsresponse.data.items;
-      dispatch(setCourseLearningPathsBySelectedLearningPathId(data));
-    } catch (error) {
-      console.error("Veri alınamadı:", error);
-    }
-  }
-
-  useEffect(() => {
-    courseLearningPathDataBySelectedLearningPathId(
-      selectedLearningPathIdByParams
+  const courseLearningPaths: GetListCourseLearningPathListItemDto[] =
+    useSelector(
+      (state: RootState) => state.courseLearningPath.courseLearningPaths
     );
-  }, []);
 
-  const courseLearningPathsBySelectedLearningPathId: GetListByLearningPathIdCourseLearningPathListItemDto[] =
+  // GetListCourseLearningPaths -> filteredLearningPathId
+
+  const filteredByLearningPathIdCourseLearningPaths: GetListByLearningPathIdCourseLearningPathListItemDto[] =
     useSelector(
       (state: RootState) =>
-        state.courseLearningPath.courseLearningPathsBySelectedLearningPathId
+        state.courseLearningPath.filteredByLearningPathIdCourseLearningPaths
     );
 
-  // console.log(
-  //   "courseLearningPathsBySelectedLearningPathId",
-  //   courseLearningPathsBySelectedLearningPathId
-  // );
+  useEffect(() => {
+    const filteredPaths: any = courseLearningPaths.filter(
+      (path) => path.learningPathId === selectedLearningPathIdByParams
+    );
+    dispatch(
+      setFilteredByLearningPathIdCourseLearningPaths(
+        filteredPaths.length > 0 ? filteredPaths : []
+      )
+    );
+  }, [selectedLearningPathIdByParams]);
 
   return (
     <div className="course-list">
-      {courseLearningPathsBySelectedLearningPathId.length > 0 &&
-        courseLearningPathsBySelectedLearningPathId.map((value, index) => (
+      {filteredByLearningPathIdCourseLearningPaths &&
+        filteredByLearningPathIdCourseLearningPaths.length > 0 &&
+        filteredByLearningPathIdCourseLearningPaths.map((value, index) => (
           <CourseElement
             key={index}
             collapseId={"collapse-course" + value.id}

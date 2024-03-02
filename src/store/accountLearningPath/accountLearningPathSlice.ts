@@ -1,15 +1,17 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { GetListByAccountIdAccountLearningPathListItemDto } from "../../models/accountLearningPaths/getListByAccountIdAccountLearningPathListItemDto";
 import { GetByAccountIdAndLearningPathIdAccountLearningPathResponse } from "../../models/accountLearningPaths/getByAccountIdAndLearningPathIdAccountLearningPathResponse";
-import { GetListByLearningPathIdAccountLearningPathListItemDto } from "../../models/accountLearningPaths/getListByLearningPathIdAccountLearningPathListItemDto";
+import { GetListAccountLearningPathListItemDto } from "../../models/accountLearningPaths/getListByLearningPathIdAccountLearningPathListItemDto";
 import { UpdateAccountLearningPathIsSavedRequest } from "../../models/accountLearningPaths/UpdateAccountLearningPathIsSavedRequest";
 import { UpdateAccountLearningPathIsLikedRequest } from "../../models/accountLearningPaths/UpdateAccountLearningPathIsLikedRequest";
 import { updateAccountLearningPathPercentCompleteRequest } from "../../models/accountLearningPaths/updateAccountLearningPathPercentCompleteRequest";
 
 interface AccountLearningPathState {
-  accountLearningPaths: GetListByAccountIdAccountLearningPathListItemDto[];
-  accountLearningPathBySelectedAccountIdAndLearningPathId: GetByAccountIdAndLearningPathIdAccountLearningPathResponse | null;
-  accountLearningPathBySelectedLearningPathId: GetListByLearningPathIdAccountLearningPathListItemDto[];
+  accountLearningPathListByAccountId: GetListByAccountIdAccountLearningPathListItemDto[];
+  filteredByLearningPathIdAccountLearningPath: GetListByAccountIdAccountLearningPathListItemDto | null;
+  accountLearningPaths: GetListAccountLearningPathListItemDto[];
+  filteredByLearningPathIdAccountLearningPaths: GetListAccountLearningPathListItemDto[];
+
   learningPathLikeCount: number;
   accountLearningPathIsLikedRequest: UpdateAccountLearningPathIsLikedRequest | null;
   learningPathLikeStatus: boolean;
@@ -23,9 +25,10 @@ interface AccountLearningPathState {
 }
 
 const initialState: AccountLearningPathState = {
+  accountLearningPathListByAccountId: [],
+  filteredByLearningPathIdAccountLearningPath: null,
   accountLearningPaths: [],
-  accountLearningPathBySelectedAccountIdAndLearningPathId: null,
-  accountLearningPathBySelectedLearningPathId: [],
+  filteredByLearningPathIdAccountLearningPaths: [],
   learningPathLikeCount: 0,
   accountLearningPathIsLikedRequest: null,
   learningPathLikeStatus: false,
@@ -42,27 +45,32 @@ const accountLearningPathSlice = createSlice({
   name: "accountLearningPath",
   initialState,
   reducers: {
-    setAccountLearningPaths: (
+    setAccountLearningPathListByAccountId: (
       state,
       action: PayloadAction<GetListByAccountIdAccountLearningPathListItemDto[]>
     ) => {
+      state.accountLearningPathListByAccountId = action.payload;
+    },
+    setFilteredByLearningPathIdAccountLearningPath: (
+      state,
+      action: PayloadAction<GetListByAccountIdAccountLearningPathListItemDto>
+    ) => {
+      state.filteredByLearningPathIdAccountLearningPath = action.payload;
+    },
+
+    setAccountLearningPaths: (
+      state,
+      action: PayloadAction<GetListAccountLearningPathListItemDto[]>
+    ) => {
       state.accountLearningPaths = action.payload;
     },
-    setAccountLearningPathBySelectedAccountIdAndLearningPathId: (
+    setFilteredByLearningPathIdAccountLearningPaths: (
       state,
-      action: PayloadAction<GetByAccountIdAndLearningPathIdAccountLearningPathResponse>
+      action: PayloadAction<GetListAccountLearningPathListItemDto[]>
     ) => {
-      state.accountLearningPathBySelectedAccountIdAndLearningPathId =
-        action.payload;
+      state.filteredByLearningPathIdAccountLearningPaths = action.payload;
     },
-    setAccountLearningPathBySelectedLearningPathId: (
-      state,
-      action: PayloadAction<
-        GetListByLearningPathIdAccountLearningPathListItemDto[]
-      >
-    ) => {
-      state.accountLearningPathBySelectedLearningPathId = action.payload;
-    },
+
     setLearningPathLikeCount: (state, action: PayloadAction<number>) => {
       state.learningPathLikeCount = action.payload;
     },
@@ -113,9 +121,10 @@ const accountLearningPathSlice = createSlice({
 
 export const accountLearningPathReducer = accountLearningPathSlice.reducer;
 export const {
+  setAccountLearningPathListByAccountId,
+  setFilteredByLearningPathIdAccountLearningPath,
   setAccountLearningPaths,
-  setAccountLearningPathBySelectedAccountIdAndLearningPathId,
-  setAccountLearningPathBySelectedLearningPathId,
+  setFilteredByLearningPathIdAccountLearningPaths,
   setLearningPathLikeCount,
   incrementLearningPathLikeCount,
   decrementLearningPathLikeCount,

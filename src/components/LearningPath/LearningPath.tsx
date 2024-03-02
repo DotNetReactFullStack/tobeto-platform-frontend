@@ -9,16 +9,18 @@ import { RootState } from "../../store/configureStore";
 type Props = {};
 
 const LearningPath = (props: Props) => {
-  const accountLearningPaths: GetListByAccountIdAccountLearningPathListItemDto[] =
+  const accountLearningPathsByAccountId: GetListByAccountIdAccountLearningPathListItemDto[] =
     useSelector(
-      (state: RootState) => state.accountLearningPath.accountLearningPaths
+      (state: RootState) =>
+        state.accountLearningPath.accountLearningPathListByAccountId
     );
 
   return (
     <>
       <div className="learning-path-component">
-        {accountLearningPaths.length > 0 &&
-          accountLearningPaths
+        {accountLearningPathsByAccountId &&
+          accountLearningPathsByAccountId.length > 0 &&
+          accountLearningPathsByAccountId
             .slice(0, 4)
             .map((value, index) => (
               <LearningPathElement
@@ -30,7 +32,8 @@ const LearningPath = (props: Props) => {
               />
             ))}
       </div>
-      {accountLearningPaths.length > 4 ? (
+      {accountLearningPathsByAccountId &&
+      accountLearningPathsByAccountId.length > 4 ? (
         <ShowMoreButton redirectUrl="/my-learning-paths" />
       ) : (
         <></>
