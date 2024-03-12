@@ -229,7 +229,7 @@ const PersonalInformation = (props: Props) => {
     console.log("accountBilgileri>>>", accountUpdate);
     if (accountUpdate) {
       updateAccount(accountUpdate)
-        .then(() => { })
+        .then(() => {})
         .catch((error) => {
           console.error("Hata oluştu:", error);
         });
@@ -337,8 +337,8 @@ const PersonalInformation = (props: Props) => {
               labelText="Adınız*"
               inputName="firstName"
               inputValue={firstName}
-            //inputPlaceholder={firstName}
-            //inputValue="özgür"
+              //inputPlaceholder={firstName}
+              //inputValue="özgür"
             />
 
             <InputContainer
@@ -347,8 +347,8 @@ const PersonalInformation = (props: Props) => {
               labelText="Soyadınız*"
               inputName="lastName"
               inputValue={lastName}
-            //inputPlaceholder="Soyadınız"
-            //inputValue="sönmez"
+              //inputPlaceholder="Soyadınız"
+              //inputValue="sönmez"
             />
 
             <InputContainer
@@ -362,7 +362,7 @@ const PersonalInformation = (props: Props) => {
               onChange={(e) => {
                 formikProps.handleChange(e);
               }}
-            //inputValue="5554443322"
+              //inputValue="5554443322"
             />
 
             <InputContainer
@@ -377,7 +377,7 @@ const PersonalInformation = (props: Props) => {
               onChange={(e) => {
                 formikProps.handleChange(e);
               }}
-            //inputValue={formattedDate}
+              //inputValue={formattedDate}
             />
 
             <InputContainer
@@ -398,7 +398,7 @@ const PersonalInformation = (props: Props) => {
               inputType={InputType.Email}
               inputPlaceholder="E-Posta adresiniz"
               inputValue={email}
-            // disabled={true}
+              // disabled={true}
             />
             <div className="user-address-section">
               <InputContainer
@@ -407,15 +407,15 @@ const PersonalInformation = (props: Props) => {
                 elementType={FormElementType.Select}
                 labelText="Ülke*"
                 inputName="countryId"
-                defaultOptionText={countries[0].name}
-                optionData={countries.slice(1)}
+                defaultOptionText="Ülke"
+                optionData={countries == undefined ? [] : countries.slice(1)}
                 optionDataFilters={countriesOptionDataFilters}
                 optionDataSort={sortByPriorityAsc}
                 onChange={(e) => {
                   formikProps.handleChange(e);
                   setSelectedCountryId(Number(e.target.value));
                 }}
-              //inputValue="Türkiye"
+                //inputValue="Türkiye"
               />
 
               <InputContainer
@@ -432,7 +432,7 @@ const PersonalInformation = (props: Props) => {
                   formikProps.handleChange(e);
                   setSelectedCityId(Number(e.target.value));
                 }}
-              //inputValue="Sinop"
+                //inputValue="Sinop"
               />
 
               <InputContainer
@@ -448,7 +448,7 @@ const PersonalInformation = (props: Props) => {
                 onChange={(e) => {
                   formikProps.handleChange(e);
                 }}
-              //inputValue="Erfelek"
+                //inputValue="Erfelek"
               />
 
               <InputContainer
@@ -458,7 +458,7 @@ const PersonalInformation = (props: Props) => {
                 labelText="Mahalle / Sokak"
                 inputName="addressDetail"
                 inputPlaceholder="Açık Adres..."
-              //inputValue="sadasd mah. sadasd cad."
+                //inputValue="sadasd mah. sadasd cad."
               />
 
               <InputContainer
@@ -468,10 +468,10 @@ const PersonalInformation = (props: Props) => {
                 labelText="Hakkımda"
                 inputName="aboutMe"
                 inputPlaceholder={aboutMeDb}
-              //inputValue={formikProps.values.aboutMe}
-              // onChange={(e) => {
-              //   formikProps.handleChange(e);
-              // }}
+                //inputValue={formikProps.values.aboutMe}
+                // onChange={(e) => {
+                //   formikProps.handleChange(e);
+                // }}
               />
             </div>
             <button type="submit" className="personal-information-save-button">
