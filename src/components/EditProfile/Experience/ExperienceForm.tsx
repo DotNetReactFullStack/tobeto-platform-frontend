@@ -183,7 +183,7 @@ const ExperienceForm = (props: Props) => {
               labelText="İl Seçiniz*"
               inputName="cityId"
               defaultOptionText="İl"
-              optionData={cities}
+              optionData={cities == undefined ? [] : cities.slice(1)}
               optionDataFilters={[ifVisibilityIsTrue]}
               onChange={(e) => {
                 formikProps.handleChange(e);
